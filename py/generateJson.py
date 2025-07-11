@@ -123,7 +123,7 @@ def generate_json(repos):
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(mods, f, indent=2, ensure_ascii=False)
-        print(f"✅ Wrote {len(mods)} mods to {OUTPUT_FILE}")
+        print(f"Wrote {len(mods)} mods to {OUTPUT_FILE}")
 
 # ------------------------------
 # MAIN
