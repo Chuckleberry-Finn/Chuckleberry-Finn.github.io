@@ -10,7 +10,11 @@ fetch('mods.json')
     const total = mods.length;
     const baseSpacing = 8;
 
+    const shuffleSound = new Audio('sounds/shuffle.mp3');
+    const selectSound = new Audio('sounds/select.mp3');
+
     let hoveredIndex = -1;
+    let lastHovered = -1;
 
 
     mods.forEach((mod, index) => {
@@ -43,6 +47,8 @@ fetch('mods.json')
 
     stack.addEventListener('click', () => {
       if (hoveredIndex >= 0 && hoveredIndex < mods.length) {
+        selectSound.currentTime = 0;
+        selectSound.play();
         const mod = mods[hoveredIndex];
         modPreview.src = mod.banner;
         modInfo.innerHTML = `
@@ -120,6 +126,11 @@ fetch('mods.json')
       if (closestIndex !== -1) {
         const card = cards[closestIndex];
         card.style.transform = 'translateX(64px) translateY(-64px) rotate(30deg) scale(1.05)';
+        if (closestIndex !== -1 && closestIndex !== lastHovered) {
+          shuffleSound.currentTime = 0;
+          shuffleSound.play();
+          lastHovered = closestIndex;
+        }
         hoveredIndex = closestIndex;
       }
     }
