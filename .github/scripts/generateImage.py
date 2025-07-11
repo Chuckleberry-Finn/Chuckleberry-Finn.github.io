@@ -35,7 +35,6 @@ if not images:
 
 # Calculate spacing for overlap
 if len(images) > 1:
-    total_overlap = images[0].width + (len(images) - 1) * int(images[0].width * 0.5)
     spacing = int((output_width - images[0].width) / (len(images) - 1))
 else:
     spacing = 0
@@ -54,7 +53,11 @@ try:
 except:
     font = ImageFont.load_default()
 
-text_width, text_height = draw.textsize(title_text, font=font)
+# Get bounding box of text
+bbox = draw.textbbox((0, 0), title_text, font=font)
+text_width = bbox[2] - bbox[0]
+text_height = bbox[3] - bbox[1]
+
 draw.text(
     ((output_width - text_width) / 2, (title_height - text_height) / 2),
     title_text,
