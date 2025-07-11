@@ -45,7 +45,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add mods.json
           git commit -m "Update mods.json" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/Chuckleberry-Finn/Chuckleberry-Finn.github.io.git HEAD:main
+          git push https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/${{ github.repository }} HEAD:main
         env:
           CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
 
