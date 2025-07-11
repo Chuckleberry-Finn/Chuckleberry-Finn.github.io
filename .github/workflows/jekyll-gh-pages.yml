@@ -30,6 +30,14 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
+      - name: Show git remote and token
+        run: |
+          git remote -v
+          echo "Using token for: ${{ github.repository }}"
+          echo "Token length: ${#CHUCK_PAT}"
+        env:
+          CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
+
       - name: Generate and commit mods.json
         run: |
           python .github/scripts/generateJson.py
@@ -38,7 +46,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/${{ github.repository }}
           git add mods.json
           git commit -m "Update mods.json" || echo "No changes to commit"
-          git push origin HEAD:main
+          git push https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/${{ github.repository }} HEAD:main
         env:
           CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
 
