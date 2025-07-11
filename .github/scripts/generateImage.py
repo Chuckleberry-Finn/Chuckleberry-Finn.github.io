@@ -1,20 +1,25 @@
 import json
+import os
 import requests
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 from io import BytesIO
 
-# Load mods.json
+# Path to mods.json (2 dirs up)
+# mods_path = os.path.join(os.path.dirname(__file__), "..", "..", "mods.json")
+# mods_path = os.path.abspath(mods_path)
+
+# Load mod data
+# with open(mods_path, "r", encoding="utf-8") as f:
 with open("mods.json", "r", encoding="utf-8") as f:
     mods = json.load(f)
 
 # Config
-output_width = 700
-target_height = 256
-title_text = "Chuck's Mod Portfolio"
-font_size = 24
+output_width = 1000
+output_height = 256
+image_size = 256
 images = []
 
-# Load banners and resize
+# Load and resize banners
 for mod in mods:
     url = mod.get("banner")
     if not url:
@@ -22,7 +27,7 @@ for mod in mods:
     try:
         r = requests.get(url, timeout=10)
         img = Image.open(BytesIO(r.content)).convert("RGBA")
-        resized = img.resize((256, 256), Image.LANCZOS)
+        resized = img.resize((image_size, output_height), Image.LANCZOS)
         images.append(resized)
     except Exception as e:
         print(f"Failed to load {mod['name']}: {e}")
@@ -31,40 +36,29 @@ if not images:
     print("No images to combine.")
     exit()
 
-# Calculate spacing for overlap
-output = Image.new("RGBA", (output_width, target_height), (0, 0, 0, 0))
-
-num_images = len(images)
-if num_images == 1:
-    offsets = [0]
-else:
-    min_overlap = 20
-    max_offset = output_width - 256
-    spacing_range = max_offset - (min_overlap * (num_images - 1))
-    spacing_range = max(spacing_range, 0)
-    base_spacing = spacing_range // (num_images - 1)
-    offsets = [i * base_spacing for i in range(num_images)]
-
 # Create canvas
-for i in reversed(range(num_images)):
-    img = images[i]
-    x = offsets[i]
-    output.paste(img, (x, 0), img)
+output = Image.new("RGBA", (output_width, output_height), (0, 0, 0, 0))
+num_images = len(images)
 
-# Add title text
-draw = ImageDraw.Draw(output)
-try:
-    font = ImageFont.truetype("Helvetica.ttf", font_size)
-except:
-    font = ImageFont.load_default()
+# Calculate overlap-based positions (right images overlap more)
+positions = []
+if num_images == 1:
+    positions = [0]
+else:
+    easing = [((i / (num_images - 1)) ** 1.5) for i in range(num_images)]
+    max_eased = easing[-1]
+    eased_spread = [(1 - (e / max_eased)) for e in easing]  # inverse
+    total_spread = sum(eased_spread)
+    scale = (output_width - image_size) / total_spread
+    x = 0
+    for spread in eased_spread:
+        positions.append(int(x))
+        x += spread * scale
 
-bbox = draw.textbbox((0, 0), title_text, font=font)
-text_w = bbox[2] - bbox[0]
-text_h = bbox[3] - bbox[1]
-text_x = (output_width - text_w) // 2
-text_y = (target_height - text_h) // 2
-draw.text((text_x, text_y), title_text, fill=(255, 255, 255, 255), font=font)
+# Paste images back-to-front so leftmost is least covered
+for i in range(num_images - 1, -1, -1):
+    output.paste(images[i], (positions[i], 0), images[i])
 
-# Save
+# Save output
 output.save("mod_stack_preview.png")
 print("Saved: mod_stack_preview.png")
