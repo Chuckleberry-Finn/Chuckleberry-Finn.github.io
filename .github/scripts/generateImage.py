@@ -36,15 +36,20 @@ output = Image.new("RGBA", (output_width, target_height), (0, 0, 0, 0))
 
 num_images = len(images)
 if num_images == 1:
-    spacing = 0
+    offsets = [0]
 else:
-    spacing = (output_width - 256) // (num_images - 1)
+    min_overlap = 20
+    max_offset = output_width - 256
+    spacing_range = max_offset - (min_overlap * (num_images - 1))
+    spacing_range = max(spacing_range, 0)
+    base_spacing = spacing_range // (num_images - 1)
+    offsets = [i * base_spacing for i in range(num_images)]
 
 # Create canvas
-x = 0
-for img in images:
+for i in reversed(range(num_images)):
+    img = images[i]
+    x = offsets[i]
     output.paste(img, (x, 0), img)
-    x += spacing
 
 # Add title text
 draw = ImageDraw.Draw(output)
@@ -56,12 +61,9 @@ except:
 bbox = draw.textbbox((0, 0), title_text, font=font)
 text_w = bbox[2] - bbox[0]
 text_h = bbox[3] - bbox[1]
-draw.text(
-    ((output_width - text_w) / 2, (target_height - text_h) / 2),
-    title_text,
-    fill=(255, 255, 255, 255),
-    font=font
-)
+text_x = (output_width - text_w) // 2
+text_y = (target_height - text_h) // 2
+draw.text((text_x, text_y), title_text, fill=(255, 255, 255, 255), font=font)
 
 # Save
 output.save("mod_stack_preview.png")
