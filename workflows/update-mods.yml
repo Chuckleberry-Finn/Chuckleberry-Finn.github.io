@@ -1,0 +1,37 @@
+name: Update Mods JSON
+
+on:
+  push:
+    paths:
+      - 'py/**'
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Generate mods.json
+        run: python py/generateJson.py
+        env:
+          CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mods.json
+          git commit -m "Auto-update mods.json"
+          git push
