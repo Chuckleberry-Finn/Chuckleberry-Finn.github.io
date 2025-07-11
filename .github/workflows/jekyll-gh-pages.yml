@@ -49,9 +49,6 @@ jobs:
           source: ./
           destination: ./_site
 
-      - name: Copy mods.json into _site
-        run: cp mods.json ./_site/
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
