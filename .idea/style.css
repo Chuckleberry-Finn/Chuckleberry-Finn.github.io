@@ -1,0 +1,45 @@
+body {
+  font-family: sans-serif;
+  background: #111;
+  color: #fff;
+  padding: 2em;
+}
+
+h1 {
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: #222;
+  padding: 1em;
+  border-radius: 10px;
+  width: 200px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card h3 {
+  font-size: 1.1em;
+  margin: 0.5em 0 0;
+}
+
+.card a {
+  color: #00f0ff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
