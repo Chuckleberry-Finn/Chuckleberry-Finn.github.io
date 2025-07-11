@@ -43,10 +43,9 @@ jobs:
           python .github/scripts/generateJson.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/${{ github.repository }}
           git add mods.json
           git commit -m "Update mods.json" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/${{ github.repository }} HEAD:main
+          git push https://x-access-token:${{ secrets.CHUCK_PAT }}@github.com/Chuckleberry-Finn/Chuckleberry-Finn.github.io.git HEAD:main
         env:
           CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
 
