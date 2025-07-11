@@ -24,7 +24,7 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Generate mods.json
-        run: python scripts/generateJson.py
+        run: python .github/scripts/generateJson.py
         env:
           CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
 
