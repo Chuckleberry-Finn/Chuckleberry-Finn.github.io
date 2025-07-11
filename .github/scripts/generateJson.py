@@ -54,6 +54,7 @@ def get_workshop_title(soup):
         return title_div.text.strip()
     return None
 
+
 def get_workshop_image(soup):
     img = soup.find("img", {"id": "previewImageMain"})
     if img and img.get("src"):
@@ -63,11 +64,7 @@ def get_workshop_image(soup):
 def get_workshop_data(steam_url):
     try:
         headers = {
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/115.0.0.0 Safari/537.36"
-            ),
+            "User-Agent": "Mozilla/5.0",
             "Accept-Language": "en-US,en;q=0.9"
         }
         r = requests.get(steam_url, headers=headers, timeout=10)

@@ -1,15 +1,25 @@
 fetch('mods.json')
-  .then(response => response.json())
+  .then(res => res.json())
   .then(mods => {
-    const gallery = document.getElementById('modGallery');
+    const container = document.getElementById('modStack');
     mods.forEach(mod => {
       const card = document.createElement('div');
       card.className = 'card';
+      card.style.backgroundImage = `url(${mod.banner})`;
+
       card.innerHTML = `
-        <img src="${mod.image}" alt="${mod.name}">
-        <h3>${mod.name}</h3>
-        <a href="${mod.link}" target="_blank">View on Steam</a>
+        <div class="info-panel">
+          <strong>${mod.name}</strong><br>
+          Subs: ${mod.subs}<br>
+          <a href="${mod.steam_url}" target="_blank">Steam</a> ·
+          <a href="${mod.repo_url}" target="_blank">Repo</a>
+        </div>
       `;
-      gallery.appendChild(card);
+
+      container.appendChild(card);
     });
   });
+
+document.getElementById('toggleSpread').addEventListener('click', () => {
+  document.getElementById('modStack').classList.toggle('spread');
+});
