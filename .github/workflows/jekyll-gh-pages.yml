@@ -30,14 +30,6 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
-      - name: Show git remote and token
-        run: |
-          git remote -v
-          echo "Using token for: ${{ github.repository }}"
-          echo "Token length: ${#CHUCK_PAT}"
-        env:
-          CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
-
       - name: Generate and commit mods.json
         run: |
           python .github/scripts/generateJson.py
