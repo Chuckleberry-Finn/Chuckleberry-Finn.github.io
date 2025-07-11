@@ -94,9 +94,14 @@ def get_workshop_data(steam_url):
 # ------------------------------
 def generate_json(repos):
     mods = []
+    seen_urls = set()  # To track already-included mods by Steam URL
 
     for repo in repos:
         steam_url = repo["steam_url"]
+        if steam_url in seen_urls:
+            continue  # Skip duplicates
+        seen_urls.add(steam_url)
+
         github_url = repo["html_url"]
         repo_name = repo["name"]
 
