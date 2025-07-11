@@ -3,7 +3,7 @@ name: Update Mods JSON
 on:
   push:
     paths:
-      - 'py/**'
+      - 'scripts/**'
   schedule:
     - cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
   workflow_dispatch:
