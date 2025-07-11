@@ -46,13 +46,12 @@ h1 {
 .card {
   width: 20px;
   height: 180px;
-  background: #333;
-  transition: all 0.3s ease;
+  overflow: hidden;
   position: relative;
-  cursor: pointer;
-  border-radius: 4px;
   background-size: cover;
   background-position: center;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .stack.spread .card {
