@@ -40,6 +40,9 @@ jobs:
         env:
           CHUCK_PAT: ${{ secrets.CHUCK_PAT }}
 
+      - name: Generate mod stack image
+        run: python .github/scripts/generateImage.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
