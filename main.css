@@ -9,6 +9,23 @@ body {
   align-items: center;
 }
 
+.titleSection {
+  font-family: 'Cinzel', serif;
+  font-size: 2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.leftTitle, .rightTitle {
+  padding-top: 0.5em;
+}
+
+
 .mod-panel {
   display: flex;
   gap: 2em;
