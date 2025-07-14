@@ -13,8 +13,6 @@ fetch('mods.json')
     const shuffleSound = new Audio('sounds/shuffle.mp3');
     const selectSound = new Audio('sounds/select.mp3');
 
-
-    const stack = document.getElementById('modStack');
     let touchY = 0;
 
     stack.addEventListener('touchstart', (e) => {
