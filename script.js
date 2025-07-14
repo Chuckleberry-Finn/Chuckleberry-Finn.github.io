@@ -13,6 +13,40 @@ fetch('mods.json')
     const shuffleSound = new Audio('sounds/shuffle.mp3');
     const selectSound = new Audio('sounds/select.mp3');
 
+
+    let touchStartY = 0;
+
+    stack.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      touchStartY = touch.clientY;
+    });
+
+    stack.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const rect = stack.getBoundingClientRect();
+      const y = touch.clientY - rect.top;
+      hoveredIndex = getClosestCardIndex(y);
+      updatePositions(y);
+    });
+
+    stack.addEventListener('touchend', (e) => {
+      if (hoveredIndex >= 0 && hoveredIndex < mods.length) {
+        const mod = mods[hoveredIndex];
+        modPreview.src = mod.banner;
+        modInfo.innerHTML = `
+          <h3>${mod.name}</h3>
+          <p><strong>Subscribers:</strong> ${mod.subs.toLocaleString()}</p>
+          <p>
+            <a href="${mod.steam_url}" target="_blank">Steam</a> ·
+            <a href="${mod.repo_url}" target="_blank">Repo</a>
+          </p>
+        `;
+        selectSound.play();
+      }
+    });
+
+
+
     let hoveredIndex = -1;
     let lastHovered = -1;
 
