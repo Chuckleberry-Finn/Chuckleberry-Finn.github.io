@@ -14,35 +14,20 @@ fetch('mods.json')
     const selectSound = new Audio('sounds/select.mp3');
 
 
-    let touchStartY = 0;
+    let touchY = 0;
 
     stack.addEventListener('touchstart', (e) => {
-      const touch = e.touches[0];
-      touchStartY = touch.clientY;
+      touchY = e.touches[0].clientY;
+      updatePositions(touchY);
     });
 
     stack.addEventListener('touchmove', (e) => {
-      const touch = e.touches[0];
-      const rect = stack.getBoundingClientRect();
-      const y = touch.clientY - rect.top;
-      hoveredIndex = getClosestCardIndex(y);
-      updatePositions(y);
+      touchY = e.touches[0].clientY;
+      updatePositions(touchY);
     });
 
-    stack.addEventListener('touchend', (e) => {
-      if (hoveredIndex >= 0 && hoveredIndex < mods.length) {
-        const mod = mods[hoveredIndex];
-        modPreview.src = mod.banner;
-        modInfo.innerHTML = `
-          <h3>${mod.name}</h3>
-          <p><strong>Subscribers:</strong> ${mod.subs.toLocaleString()}</p>
-          <p>
-            <a href="${mod.steam_url}" target="_blank">Steam</a> ·
-            <a href="${mod.repo_url}" target="_blank">Repo</a>
-          </p>
-        `;
-        selectSound.play();
-      }
+    stack.addEventListener('touchend', () => {
+      updatePositions(null);
     });
 
 
@@ -117,6 +102,7 @@ fetch('mods.json')
 
 
     function matchStackHeight() {
+      if (window.innerWidth <= 768) return;
       const height = previewPanel.offsetHeight;
       stack.style.height = `${height}px`;
     }
@@ -157,9 +143,16 @@ fetch('mods.json')
         cards[i].style.transform = 'translateX(0) rotate(0deg) scale(1)';
       }
 
+
+
       if (closestIndex !== -1) {
         const card = cards[closestIndex];
-        card.style.transform = 'translateX(64px) translateY(-64px) rotate(30deg) scale(1.05)';
+
+        const isMobile = window.innerWidth <= 768;
+        card.style.transform = isMobile
+          ? 'translateX(80px) translateY(-64px) rotate(30deg) scale(1.1)'
+          : 'translateX(64px) translateY(-64px) rotate(30deg) scale(1.05)';
+
         if (closestIndex !== -1 && closestIndex !== lastHovered) {
           shuffleSound.currentTime = 0;
           shuffleSound.play();
