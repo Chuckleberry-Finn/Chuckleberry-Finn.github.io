@@ -14,22 +14,24 @@ fetch('mods.json')
     const selectSound = new Audio('sounds/select.mp3');
 
 
+    const stack = document.getElementById('modStack');
     let touchY = 0;
 
     stack.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       touchY = e.touches[0].clientY;
       updatePositions(touchY);
-    });
+    }, { passive: false });
 
     stack.addEventListener('touchmove', (e) => {
+      e.preventDefault();
       touchY = e.touches[0].clientY;
       updatePositions(touchY);
-    });
+    }, { passive: false });
 
     stack.addEventListener('touchend', () => {
       updatePositions(null);
     });
-
 
 
     let hoveredIndex = -1;
