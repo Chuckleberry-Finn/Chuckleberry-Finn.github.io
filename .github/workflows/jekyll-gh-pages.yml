@@ -3,6 +3,8 @@ name: Deploy (w/Jekyll + mods.json)
 on:
   push:
     branches: ["main"]
+  schedule:
+      - cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
   workflow_dispatch:
 
 permissions:
