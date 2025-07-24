@@ -55,11 +55,16 @@ def get_workshop_image(soup):
         return img["src"]
     return None
 
-def get_workshop_video(soup):
-    iframe = soup.find("iframe", {"src": lambda x: x and ("youtube.com" in x or "steamcdn" in x)})
-    if iframe:
-        return iframe["src"]
-    return None
+def extract_youtube_embed(steam_url):
+    try:
+        r = requests.get(steam_url, timeout=10)
+        soup = BeautifulSoup(r.text, "html.parser")
+        iframe = soup.find("iframe", src=lambda x: x and "youtube.com/embed" in x)
+        if iframe:
+            return iframe["src"]
+    except Exception as e:
+        print(f"[ERROR] {steam_url}: {e}")
+    return ""
 
 def get_workshop_data(steam_url):
     try:
@@ -83,7 +88,7 @@ def get_workshop_data(steam_url):
 
         title = get_workshop_title(soup)
         image = get_workshop_image(soup)
-        video = get_workshop_video(soup)
+        video = extract_youtube_embed(steam_url)
 
         return sub_count, title, image, video
 
