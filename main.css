@@ -42,6 +42,7 @@ body {
   border-radius: 8px;
   max-width: 800px;
   background-color: rgba(0, 0, 0, 0.2);
+  align-self: flex-start;
 }
 
 /* === Mod Card Stack === */
@@ -112,7 +113,7 @@ body {
 /* === Extra Panel (Ko-fi / YouTube) === */
 .extra-panel {
   background: #1a1a1a;
-  padding: 1em;
+  padding: 1.5em 1.5em;
   color: white;
   box-sizing: border-box;
   display: flex;
@@ -122,6 +123,7 @@ body {
   margin-top: 20px;
   border: 1px solid gray;
   border-radius: 8px;
+  align-self: flex-end;
 }
 
 .panel-row {
@@ -154,10 +156,11 @@ body {
   flex-direction: row;
   gap: 40px;
   margin-top: 20px;
+  margin-left: 33%;
   width: 100%;
   max-width: 1200px;
   box-sizing: border-box;
-  align-items: flex-start;
+  align-self: flex-center;
 }
 
 /* === Light Theme Support === */
