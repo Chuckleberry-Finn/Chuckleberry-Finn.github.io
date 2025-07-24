@@ -3,16 +3,12 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-# ------------------------------
 # CONFIG
-# ------------------------------
 GITHUB_USERNAME = "Chuckleberry-Finn"
 GITHUB_TOKEN = os.environ["CHUCK_PAT"]
 OUTPUT_FILE = "mods.json"
 
-# ------------------------------
 # GITHUB REPO FETCHING
-# ------------------------------
 def get_repos():
     url = "https://api.github.com/user/repos"
     headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
@@ -45,9 +41,7 @@ def get_repos():
 
     return filtered
 
-# ------------------------------
 # STEAM WORKSHOP SCRAPING
-# ------------------------------
 def get_workshop_title(soup):
     title_div = soup.find("div", class_="workshopItemTitle")
     if title_div:
@@ -61,6 +55,12 @@ def get_workshop_image(soup):
         return img["src"]
     return None
 
+def get_workshop_video(soup):
+    iframe = soup.find("iframe", {"src": lambda x: x and ("youtube.com" in x or "steamcdn" in x)})
+    if iframe:
+        return iframe["src"]
+    return None
+
 def get_workshop_data(steam_url):
     try:
         headers = {
@@ -69,7 +69,7 @@ def get_workshop_data(steam_url):
         }
         r = requests.get(steam_url, headers=headers, timeout=10)
         if r.status_code != 200:
-            return "?", None, None
+            return "?", None, None, None
 
         soup = BeautifulSoup(r.text, "html.parser")
 
@@ -83,15 +83,15 @@ def get_workshop_data(steam_url):
 
         title = get_workshop_title(soup)
         image = get_workshop_image(soup)
-        return sub_count, title, image
+        video = get_workshop_video(soup)
+
+        return sub_count, title, image, video
 
     except Exception as e:
         print(f"[Scraper error] {steam_url} → {e}")
-        return "?", None, None
+        return "?", None, None, None
 
-# ------------------------------
 # JSON OUTPUT
-# ------------------------------
 def generate_json(repos):
     mods = []
     seen_urls = set()  # To track already-included mods by Steam URL
@@ -105,7 +105,7 @@ def generate_json(repos):
         github_url = repo["html_url"]
         repo_name = repo["name"]
 
-        subs_str, title, banner = get_workshop_data(steam_url)
+        subs_str, title, banner, video = get_workshop_data(steam_url)
         project_name = title if title else repo_name
 
         try:
@@ -118,7 +118,8 @@ def generate_json(repos):
             "subs": subs_num,
             "steam_url": steam_url,
             "repo_url": github_url,
-            "banner": banner or ""
+            "banner": banner or "",
+            "video": video or "",
         })
 
     mods.sort(key=lambda x: x["subs"], reverse=True)
@@ -127,9 +128,7 @@ def generate_json(repos):
         json.dump(mods, f, indent=2, ensure_ascii=False)
         print(f"Wrote {len(mods)} mods to {OUTPUT_FILE}")
 
-# ------------------------------
 # MAIN
-# ------------------------------
 if __name__ == "__main__":
     repos = get_repos()
     generate_json(repos)

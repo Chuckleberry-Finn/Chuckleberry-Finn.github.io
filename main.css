@@ -163,6 +163,14 @@ body {
   align-self: flex-center;
 }
 
+.mod-video iframe,
+.mod-video video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 1em;
+}
+
 /* === Light Theme Support === */
 @media (prefers-color-scheme: light) {
   body {
