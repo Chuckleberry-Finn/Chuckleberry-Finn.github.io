@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import re
 from bs4 import BeautifulSoup
 
 # CONFIG
@@ -55,16 +56,14 @@ def get_workshop_image(soup):
         return img["src"]
     return None
 
-def extract_youtube_embed(steam_url):
+def extract_youtube_videos(steam_url):
     try:
         r = requests.get(steam_url, timeout=10)
-        soup = BeautifulSoup(r.text, "html.parser")
-        iframe = soup.find("iframe", src=lambda x: x and "youtube.com/embed" in x)
-        if iframe:
-            return iframe["src"]
+        matches = re.findall(r'"YOUTUBE_VIDEO_ID"\s*:\s*"([a-zA-Z0-9_-]{11})"', r.text)
+        return [f"https://www.youtube.com/watch?v={vid}" for vid in matches]
     except Exception as e:
         print(f"[ERROR] {steam_url}: {e}")
-    return ""
+    return []
 
 def get_workshop_data(steam_url):
     try:
@@ -88,9 +87,9 @@ def get_workshop_data(steam_url):
 
         title = get_workshop_title(soup)
         image = get_workshop_image(soup)
-        video = extract_youtube_embed(steam_url)
+        video_links = extract_youtube_videos(steam_url)
 
-        return sub_count, title, image, video
+        return sub_count, title, image, video_links
 
     except Exception as e:
         print(f"[Scraper error] {steam_url} → {e}")
@@ -110,7 +109,7 @@ def generate_json(repos):
         github_url = repo["html_url"]
         repo_name = repo["name"]
 
-        subs_str, title, banner, video = get_workshop_data(steam_url)
+        subs_str, title, banner, video_links = get_workshop_data(steam_url)
         project_name = title if title else repo_name
 
         try:
@@ -124,7 +123,7 @@ def generate_json(repos):
             "steam_url": steam_url,
             "repo_url": github_url,
             "banner": banner or "",
-            "video": video or "",
+            "videos": video_links or [],
         })
 
     mods.sort(key=lambda x: x["subs"], reverse=True)

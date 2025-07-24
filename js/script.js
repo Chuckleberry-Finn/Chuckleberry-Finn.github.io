@@ -99,50 +99,44 @@ function initModUI(mods) {
 
     function updateVideo(mod) {
       if (!videoContainer) return;
+      videoContainer.innerHTML = ""; // Clear previous content
 
-      if (mod.video && mod.video.trim() !== "") {
-        videoContainer.style.display = "block";
+      const videos = mod.videos || [];
+      if (!videos.length) return;
 
-        if (mod.video.includes("youtube.com") || mod.video.includes("youtu.be")) {
-          // Convert full URL to embed URL if needed
-          let embedUrl = mod.video;
+      let currentIndex = 0;
 
-          // Auto-convert if needed
-          if (mod.video.includes("watch?v=")) {
-            const videoId = mod.video.split("watch?v=")[1].split("&")[0];
-            embedUrl = `https://www.youtube.com/embed/${videoId}`;
-          } else if (mod.video.includes("youtu.be/")) {
-            const videoId = mod.video.split("youtu.be/")[1].split("?")[0];
-            embedUrl = `https://www.youtube.com/embed/${videoId}`;
-          }
+      const wrapper = document.createElement("div");
+      wrapper.className = "video-slideshow";
 
-          // Optional: Append default YouTube embed params
-          if (!embedUrl.includes("?")) embedUrl += "?rel=0";
+      const iframe = document.createElement("iframe");
+      iframe.width = "560";
+      iframe.height = "315";
+      iframe.src = videos[currentIndex].replace("watch?v=", "embed/"); // Embed format
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("allowfullscreen", "true");
+      wrapper.appendChild(iframe);
 
-          videoContainer.innerHTML = `
-            <div class="youtube-wrapper">
-              <iframe
-                src="${embedUrl}"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            </div>
-          `;
-        } else {
-          videoContainer.innerHTML = `
-            <video width="560" height="315" controls>
-              <source src="${mod.video}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          `;
-        }
-      } else {
-        videoContainer.innerHTML = "";
-        videoContainer.style.display = "none";
-      }
+      const left = document.createElement("div");
+      const right = document.createElement("div");
+      left.className = "arrow arrow-left";
+      right.className = "arrow arrow-right";
+      left.innerHTML = "&#9664;";
+      right.innerHTML = "&#9654;";
+
+      left.onclick = () => {
+        currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+        iframe.src = videos[currentIndex].replace("watch?v=", "embed/");
+      };
+
+      right.onclick = () => {
+        currentIndex = (currentIndex + 1) % videos.length;
+        iframe.src = videos[currentIndex].replace("watch?v=", "embed/");
+      };
+
+      wrapper.appendChild(left);
+      wrapper.appendChild(right);
+      videoContainer.appendChild(wrapper);
     }
 
   function getClosestCardIndex(mouseY) {
