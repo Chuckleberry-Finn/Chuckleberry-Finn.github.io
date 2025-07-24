@@ -166,7 +166,7 @@ body {
 .youtube-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   margin-top: 1em;
@@ -197,23 +197,24 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2em;
+  font-size: 1.5em;
   color: white;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 0.2em 0.4em;
-  border-radius: 0.2em;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0.2em 0.3em;
+  border-radius: 4px;
   cursor: pointer;
   z-index: 10;
   user-select: none;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
-.arrow-left {
-  left: 5px;
+.arrow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
 }
 
-.arrow-right {
-  right: 5px;
-}
+.arrow-left { left: -2em; }
+.arrow-right { right: -2em; }
 
 
 /* === Light Theme Support === */

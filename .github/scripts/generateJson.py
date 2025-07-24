@@ -59,11 +59,22 @@ def get_workshop_image(soup):
 def extract_youtube_videos(steam_url):
     try:
         r = requests.get(steam_url, timeout=10)
-        matches = re.findall(r'"YOUTUBE_VIDEO_ID"\s*:\s*"([a-zA-Z0-9_-]{11})"', r.text)
-        return [f"https://www.youtube.com/watch?v={vid}" for vid in matches]
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        video_ids = set()
+
+        for script in soup.find_all("script"):
+            if not script.string:
+                continue
+            matches = re.findall(r'YOUTUBE_VIDEO_ID\s*:\s*"([a-zA-Z0-9_-]{11})"', script.string)
+            for vid in matches:
+                video_ids.add(f"https://www.youtube.com/watch?v={vid}")
+
+        return list(video_ids)
+
     except Exception as e:
         print(f"[ERROR] {steam_url}: {e}")
-    return []
+        return []
 
 def get_workshop_data(steam_url):
     try:
