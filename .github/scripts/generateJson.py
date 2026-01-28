@@ -6,13 +6,13 @@ from bs4 import BeautifulSoup
 
 # CONFIG
 GITHUB_USERNAME = "Chuckleberry-Finn"
-GITHUB_TOKEN = os.environ["CHUCK_PAT"]
+GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
 OUTPUT_FILE = "mods.json"
 
 # GITHUB REPO FETCHING
 def get_repos():
     url = "https://api.github.com/user/repos"
-    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
+    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
     repos = []
     page = 1
 
