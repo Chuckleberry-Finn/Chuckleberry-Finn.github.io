@@ -4,56 +4,260 @@
         <meta charset="UTF-8">
         <title>Chuck's Mod Portfolio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Project Zomboid mods by Chuckleberry-Finn">
         <link rel="stylesheet" href="main.css">
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     </head>
 
     <body>
-        <div class="responsive-wrapper">
+        <!-- Dust particles -->
+        <div class="dust-container" aria-hidden="true">
+            <div class="dust"></div>
+            <div class="dust"></div>
+            <div class="dust"></div>
+            <div class="dust"></div>
+        </div>
 
-            <div>
-                <div class="titleSection">
-                    <span class="leftTitle">Chuck's</span>
-                    <img src="https://projectzomboid.com/blog/content/themes/rw-project-zomboid/assets/images/logo.png" width="150">
-                    <span class="rightTitle">Mods</span>
-                </div>
-                <div class="mod-panel">
-                    <div class="stack" id="modStack"></div>
+        <main class="responsive-wrapper">
 
-                    <div id="modDetail" class="mod-detail">
-                        <img id="modPreview" src="" alt="Mod Preview">
-                        <div id="modInfo"></div>
+            <!-- LEFT: Records -->
+            <section class="records-section">
+                <div class="stack" id="modStack" role="listbox" aria-label="Mod selection" tabindex="0"></div>
+                <div class="mobile-hint" id="mobileHint">← Swipe →</div>
+            </section>
+
+            <!-- MIDDLE: Turntable -->
+            <section class="turntable-section">
+                <!-- Title -->
+                <header class="title-section">
+                    <div class="neon-sign">
+                        <span class="neon-text">Chuck's</span>
+                        <img src="https://projectzomboid.com/blog/content/themes/rw-project-zomboid/assets/images/logo.png" width="132" alt="Project Zomboid Logo" class="pz-logo">
+                        <span class="neon-text">Mods</span>
+                    </div>
+                </header>
+                
+                <h2 class="mod-title" id="modTitle">Select a mod</h2>
+                
+                <div class="turntable">
+                    <svg class="turntable-svg" viewBox="0 0 418 352" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="bodyTop" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2d2d2d"/>
+                                <stop offset="100%" stop-color="#1a1a1a"/>
+                            </linearGradient>
+                            <linearGradient id="bodyFront" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#1a1a1a"/>
+                                <stop offset="100%" stop-color="#0f0f0f"/>
+                            </linearGradient>
+                            <linearGradient id="platterFelt" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2a2a2a"/>
+                                <stop offset="100%" stop-color="#1a1a1a"/>
+                            </linearGradient>
+                            <linearGradient id="dialGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#555"/>
+                                <stop offset="50%" stop-color="#333"/>
+                                <stop offset="100%" stop-color="#222"/>
+                            </linearGradient>
+                            <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Cabinet front face (3D depth) -->
+                        <path d="M17,308 L17,325 Q17,336 28,336 L390,336 Q401,336 401,325 L401,308 L17,308 Z" fill="url(#bodyFront)"/>
+                        
+                        <!-- Cabinet top surface -->
+                        <rect x="17" y="17" width="385" height="297" rx="7" fill="url(#bodyTop)"/>
+                        <rect x="17" y="17" width="385" height="297" rx="7" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+                        
+                        <!-- Inner recess -->
+                        <rect x="28" y="28" width="363" height="275" rx="4" fill="#141414"/>
+                        
+                        <!-- Platter base -->
+                        <circle cx="176" cy="165" r="116" fill="#0a0a0a"/>
+                        
+                        <!-- Felt mat - CIRCLE centered at 176,165 -->
+                        <circle cx="176" cy="165" r="108" fill="url(#platterFelt)"/>
+                        <circle cx="176" cy="165" r="108" fill="none" stroke="#444" stroke-width="0.5" opacity="0.5"/>
+                        
+                        <!-- Spindle -->
+                        <circle cx="176" cy="165" r="4" fill="#444"/>
+                        <circle cx="176" cy="165" r="2" fill="#666"/>
+                        
+                        <!-- === CONTROL PANEL AREA === -->
+                        <rect x="308" y="60" width="66" height="232" rx="3" fill="#1a1a1a"/>
+                        
+                        <!-- Dial 1 - Speed (smaller and lower) -->
+                        <circle cx="341" cy="105" r="16" fill="url(#dialGrad)"/>
+                        <circle cx="341" cy="105" r="13" fill="#2a2a2a"/>
+                        <circle cx="341" cy="105" r="10" fill="#333"/>
+                        <line x1="341" y1="105" x2="341" y2="95" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+                        <text x="341" y="132" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">SPEED</text>
+                        
+                        <!-- Dial 2 - Pitch (smaller and lower) -->
+                        <circle cx="341" cy="170" r="16" fill="url(#dialGrad)"/>
+                        <circle cx="341" cy="170" r="13" fill="#2a2a2a"/>
+                        <circle cx="341" cy="170" r="10" fill="#333"/>
+                        <line x1="341" y1="170" x2="348" y2="163" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+                        <text x="341" y="197" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">PITCH</text>
+                        
+                        <!-- Power button -->
+                        <circle cx="341" cy="235" r="11" fill="#222" stroke="#333" stroke-width="1"/>
+                        <circle cx="341" cy="235" r="6" fill="#1a1a1a"/>
+                        
+                        <!-- Red LED with glow -->
+                        <circle cx="341" cy="270" r="5" fill="#ff3333" filter="url(#redGlow)"/>
+                        <circle cx="341" cy="270" r="3" fill="#ff6666"/>
+                        <circle cx="341" cy="270" r="1.5" fill="#ffaaaa"/>
+                        
+                        <!-- Tonearm rest -->
+                        <rect x="291" y="66" width="9" height="17" rx="2" fill="#222"/>
+                    </svg>
+                    
+                    <!-- Vinyl record - CIRCLE centered on platter at 176,165 in SVG coords -->
+                    <div class="vinyl-record" id="vinylRecord">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="recordShine" cx="30%" cy="30%" r="70%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.06)"/>
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </radialGradient>
+                            </defs>
+                            <!-- Record base - CIRCLE -->
+                            <circle cx="100" cy="100" r="98" fill="#0d0d0d"/>
+                            <circle cx="100" cy="100" r="96" fill="#1a1a1a"/>
+                            
+                            <!-- Grooves - CIRCLES -->
+                            <circle cx="100" cy="100" r="88" fill="none" stroke="#222" stroke-width="0.3"/>
+                            <circle cx="100" cy="100" r="78" fill="none" stroke="#252525" stroke-width="0.3"/>
+                            <circle cx="100" cy="100" r="68" fill="none" stroke="#222" stroke-width="0.3"/>
+                            <circle cx="100" cy="100" r="58" fill="none" stroke="#252525" stroke-width="0.3"/>
+                            <circle cx="100" cy="100" r="48" fill="none" stroke="#222" stroke-width="0.3"/>
+                            
+                            <!-- Shine -->
+                            <circle cx="100" cy="100" r="96" fill="url(#recordShine)"/>
+                        </svg>
+                        
+                        <!-- Center label - LARGER -->
+                        <div class="record-label">
+                            <img id="modPreview" src="" alt="Album Art">
+                        </div>
+                    </div>
+                    
+                    <!-- Tonearm - positioned over vinyl when playing -->
+                    <div class="tonearm" id="tonearm">
+                        <svg viewBox="0 0 143 132" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="armMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#d0d0d0"/>
+                                    <stop offset="25%" stop-color="#a8a8a8"/>
+                                    <stop offset="50%" stop-color="#7a7a7a"/>
+                                    <stop offset="75%" stop-color="#555"/>
+                                    <stop offset="100%" stop-color="#3a3a3a"/>
+                                </linearGradient>
+                                <linearGradient id="pivotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#444"/>
+                                    <stop offset="50%" stop-color="#2a2a2a"/>
+                                    <stop offset="100%" stop-color="#1a1a1a"/>
+                                </linearGradient>
+                                <linearGradient id="counterweightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#555"/>
+                                    <stop offset="50%" stop-color="#333"/>
+                                    <stop offset="100%" stop-color="#222"/>
+                                </linearGradient>
+                                <radialGradient id="armTubeHighlight" cx="50%" cy="20%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- Pivot base shadow -->
+                            <ellipse cx="127" cy="19" rx="13" ry="3" fill="rgba(0,0,0,0.3)"/>
+                            
+                            <!-- Pivot base -->
+                            <circle cx="127" cy="17" r="13" fill="url(#pivotGrad)"/>
+                            <circle cx="127" cy="17" r="13" fill="none" stroke="#555" stroke-width="0.5"/>
+                            <circle cx="127" cy="17" r="10" fill="#2a2a2a"/>
+                            <circle cx="127" cy="17" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+                            <circle cx="127" cy="17" r="6" fill="#333"/>
+                            <circle cx="125" cy="15" r="2" fill="rgba(255,255,255,0.15)"/>
+                            
+                            <!-- Counterweight with detail -->
+                            <ellipse cx="132" cy="17" rx="9" ry="7" fill="url(#counterweightGrad)"/>
+                            <ellipse cx="132" cy="17" rx="9" ry="7" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
+                            <ellipse cx="131" cy="15.5" rx="5" ry="3" fill="rgba(255,255,255,0.08)"/>
+                            <line x1="132" y1="12" x2="132" y2="22" stroke="#1a1a1a" stroke-width="0.5"/>
+                            
+                            <!-- Arm tube - main body -->
+                            <rect x="17" y="12" width="110" height="9" rx="3" fill="url(#armMetal)"/>
+                            
+                            <!-- Arm tube highlight -->
+                            <rect x="17" y="12" width="110" height="4" rx="3" fill="url(#armTubeHighlight)" opacity="0.6"/>
+                            
+                            <!-- Arm tube edge shadow -->
+                            <rect x="17" y="18" width="110" height="2" rx="1" fill="rgba(0,0,0,0.3)"/>
+                            
+                            <!-- Arm tube details/rings -->
+                            <line x1="40" y1="12" x2="40" y2="21" stroke="#555" stroke-width="0.5"/>
+                            <line x1="60" y1="12" x2="60" y2="21" stroke="#555" stroke-width="0.5"/>
+                            <line x1="80" y1="12" x2="80" y2="21" stroke="#555" stroke-width="0.5"/>
+                            <line x1="100" y1="12" x2="100" y2="21" stroke="#555" stroke-width="0.5"/>
+                            
+                            <!-- Headshell mount with 3D effect -->
+                            <rect x="9" y="10" width="13" height="13" rx="2" fill="#666"/>
+                            <rect x="9" y="10" width="13" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
+                            <rect x="9" y="10" width="13" height="13" rx="2" fill="none" stroke="#444" stroke-width="0.5"/>
+                            
+                            <!-- Headshell with shading -->
+                            <polygon points="0,11 9,9 9,24 0,22" fill="#555"/>
+                            <polygon points="0,11 9,9 9,16 0,14.5" fill="rgba(255,255,255,0.08)"/>
+                            <polygon points="0,11 9,9 9,24 0,22" fill="none" stroke="#333" stroke-width="0.5"/>
+                            
+                            <!-- Cartridge with detail -->
+                            <rect x="-2" y="13" width="9" height="7" rx="1" fill="#2a2a2a"/>
+                            <rect x="-2" y="13" width="9" height="3" rx="1" fill="rgba(255,255,255,0.06)"/>
+                            <rect x="-2" y="13" width="9" height="7" rx="1" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
+                            
+                            <!-- Stylus with shine -->
+                            <line x1="2" y1="20" x2="2" y2="26" stroke="#999" stroke-width="1.5"/>
+                            <line x1="2" y1="20" x2="2" y2="24" stroke="#ccc" stroke-width="0.5"/>
+                            <circle cx="2" cy="26" r="1.5" fill="#e0e0e0"/>
+                            <circle cx="1.5" cy="25.5" r="0.8" fill="#fff"/>
+                        </svg>
                     </div>
                 </div>
-                <div id="modVideoContainer" class="mod-video" style="margin-top: 1em;"></div>
-                <script src="js/script.js"></script>
-            </div>
+                
+                <div id="modInfo" class="mod-info"></div>
+                <div id="modVideoContainer" class="mod-video"></div>
+            </section>
 
-
-            <div class="extra-panel">
+            <!-- RIGHT: Profile -->
+            <aside class="extra-panel">
+                <div class="panel-profile" id="github-profile">
+                    <script src="js/githubProfile.js" defer></script>
+                </div>
                 <div class="panel-row">
-                    <div class="panel-profile" id="github-profile">
-                        <script src="js/githubProfile.js" defer></script>
-                    </div>
+                    <script src="https://apis.google.com/js/platform.js" async defer></script>
+                    <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
                 </div>
                 <div class="panel-row">
-                    <div class="panel-item">
-                        <script src="https://apis.google.com/js/platform.js" async defer></script>
-                        <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
-                    </div>
-                    <div class="panel-item">
-                        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                        <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
-                    </div>
+                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+                    <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
                 </div>
-                <div class="panel-row">
+                <div class="panel-row discord-row">
                     <a href="https://discord.gg/pGWr5TucHn">
-                        <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png">
+                        <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png" alt="PZ Modding Community" loading="lazy">
                     </a>
                 </div>
-            </div>
+            </aside>
 
-        </div>
+        </main>
+        
+        <script src="js/script.js"></script>
     </body>
-
 </html>

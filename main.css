@@ -1,272 +1,550 @@
+/* === Variables === */
+:root {
+  --amber: #ffbf47;
+  --amber-glow: #ff9500;
+  --cream: #f5e6c8;
+}
+
 /* === Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
 body {
-  font-family: sans-serif;
-  background: #111;
-  color: #fff;
-  padding: 2em;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #1a1209 0%, #0d0906 100%);
+  color: var(--cream);
   margin: 0;
+  padding: 1.1rem;
+  padding-top: 8rem;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-/* === Header / Title === */
-.titleSection {
-  font-family: 'Cinzel', serif;
-  font-size: 2em;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75em;
-  flex-wrap: wrap;
-  text-align: center;
-  position: relative;
-  top: 1.6em;
-  z-index: 1;
-}
-
-.leftTitle, .rightTitle {
-  padding-top: 0.5em;
-}
-
-/* === Mod Stack Panel === */
-.mod-panel {
-  display: flex;
-  gap: 2em;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 2em auto;
-  padding: 1em;
-  border: 1px solid gray;
-  border-radius: 8px;
-  max-width: 800px;
-  background-color: rgba(0, 0, 0, 0.2);
-  align-self: flex-start;
-}
-
-/* === Mod Card Stack === */
-.stack {
-  position: relative;
-  width: 110px;
-  perspective: 1000px;
-  overflow: visible;
-  z-index: 1;
-}
-
-.card {
-  width: 128px;
-  height: 128px;
-  position: absolute;
-  left: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 5px;
-  cursor: pointer;
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease, top 0.2s ease;
-  z-index: var(--stack-index);
-}
-
-/* === Mod Detail Panel === */
-.mod-detail {
-  width: 280px;
-  background: rgba(34, 34, 34, 0.25);
-  padding: 1em;
-  border-radius: 10px;
-  color: white;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.mod-detail h3 {
-  font-size: 1.25em;
-  margin: 0 0 0.5em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.mod-detail a {
-  color: #66ccff;
-  text-decoration: none;
-}
-
-.mod-detail a:visited {
-  color: #aa88ff;
-}
-
-.mod-detail a:hover {
-  text-decoration: underline;
-  color: #ffffff;
-}
-
-.mod-detail img {
-  width: 256px;
-  height: 256px;
-  border-radius: 10px;
-  margin-bottom: 1em;
-}
-
-/* === Extra Panel (Ko-fi / YouTube) === */
-.extra-panel {
-  background: #1a1a1a;
-  padding: 1.5em 1.5em;
-  color: white;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 130px;
-  border: 1px solid gray;
-  border-radius: 8px;
-  align-items: flex-start;
-}
-
-.panel-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.panel-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 200px;
-}
-#github-profile {
-  background-color: #0d1117;
-  width: 100%;
-  padding: 1.5em;
-  align-items: flex-start;
-}
-
-
-/* === Layout Wrapper === */
-.responsive-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-top: -50px;
-  margin-left: 33%;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
-  align-items: flex-start;
-}
-
-.youtube-wrapper {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  margin-top: 1em;
-}
-
-.youtube-wrapper iframe {
-  position: absolute;
+/* === Dust Particles === */
+.dust-container {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 220, 150, 0.2);
+  border-radius: 50%;
+  animation: float-dust 18s infinite linear;
+}
+
+.dust:nth-child(1) { left: 15%; animation-delay: 0s; }
+.dust:nth-child(2) { left: 35%; animation-delay: 4s; }
+.dust:nth-child(3) { left: 60%; animation-delay: 2s; }
+.dust:nth-child(4) { left: 85%; animation-delay: 6s; }
+
+@keyframes float-dust {
+  0% { transform: translateY(100vh); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-50px); opacity: 0; }
+}
+
+/* === Title - FLOATING ABOVE TURNTABLE SECTION === */
+.title-section {
+  position: absolute;
+  top: -6.5rem;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 0 1.1rem;
+}
+
+.neon-sign {
+  font-family: 'Lobster', cursive;
+  font-size: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.neon-text {
+  color: #ffcc66;
+  text-shadow:
+    0 0 2px #000,
+    0 0 5px #ffcc66,
+    0 0 10px #ffcc66,
+    0 0 20px #ff9500,
+    0 0 30px #ff9500;
+  animation: neon-flicker 4s infinite;
+}
+
+.pz-logo {
+  filter: drop-shadow(0 0 8px rgba(255, 100, 100, 0.4));
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 2px #000, 0 0 5px #ffcc66, 0 0 10px #ffcc66, 0 0 20px #ff9500, 0 0 30px #ff9500;
+  }
+  20%, 24%, 55% {
+    text-shadow: 0 0 2px #000, 0 0 3px #ffcc66, 0 0 8px #ffcc66;
+  }
+}
+
+/* === Main Layout === */
+.responsive-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 1rem;
+}
+
+/* === LEFT: Records Stack === */
+.records-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 100;
+}
+
+.stack {
+  position: relative;
+  width: 242px;
+  height: calc(100vh - 180px);
+  max-height: 700px;
+  min-height: 580px;
+  perspective: 900px;
+  outline: none;
+}
+
+.stack:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Cards 46% larger: 140 * 1.1 * 1.33 * 1.1 ≈ 226px */
+.card {
+  width: 226px;
+  height: 226px;
+  position: absolute;
+  left: 8px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+  cursor: pointer;
+  transform-origin: center bottom;
+  transition: transform 0.2s ease, top 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* === MIDDLE: Turntable === */
+.turntable-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.mod-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.43rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin: 0.3rem 0 0.3rem 0;
+  text-align: center;
+  max-width: 438px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  order: 2;
+}
+
+/* Turntable reduced size to fit video: 380 * 1.1 * 1.05 ≈ 438 */
+.turntable {
+  position: relative;
+  width: 438px;
+  height: 369px;
+  order: 1;
+  margin-bottom: 1rem;
+}
+
+.turntable-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Vinyl record - centered on felt platter */
+/* Scaled proportionally for 438px turntable */
+.vinyl-record {
+  position: absolute;
+  top: 68px;
+  left: 80px;
+  width: 210px;
+  height: 210px;
+  animation: spin-record 1.8s linear infinite paused;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
+}
+
+.vinyl-record.spinning {
+  animation-play-state: running;
+}
+
+@keyframes spin-record {
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-record svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Center label - large enough to cover black center and form proper circle */
+.record-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 101px;
+  height: 101px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--amber);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.record-label img {
+  width: 142%;
+  height: 142%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.record-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 30% 30%, #ddd 0%, #999 30%, #555 60%, #333 100%);
+  border-radius: 50%;
+  box-shadow: 
+    inset 1px 1px 2px rgba(255,255,255,0.6),
+    inset -1px -1px 2px rgba(0,0,0,0.8),
+    0 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Tonearm - over vinyl when playing */
+.tonearm {
+  position: absolute;
+  top: 35px;
+  right: 57px;
+  width: 150px;
+  height: 138px;
+  transform-origin: 89% 13%;
+  transform: rotate(30deg);
+  transition: transform 0.6s ease;
+}
+
+.tonearm.playing {
+  transform: rotate(-8deg);
+}
+
+.tonearm svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* === Mod Info === */
+.mod-info {
+  margin-top: 0;
+  text-align: center;
+  order: 3;
+}
+
+.mod-info p {
+  margin: 0.4em 0;
+  font-size: 1.1em;
+}
+
+.mod-info .subs {
+  display: inline-block;
+  background: rgba(255, 191, 71, 0.1);
+  padding: 0.3em 0.8em;
+  border-radius: 16px;
+  font-size: 0.95em;
+  border: 1px solid rgba(255, 191, 71, 0.2);
+}
+
+.mod-info a {
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mod-info a:hover {
+  color: #fff;
+}
+
+/* === Video with arrows OUTSIDE === */
+.mod-video {
+  margin-top: 1.1rem;
+  order: 4;
 }
 
 .video-slideshow {
   position: relative;
-  width: 560px;
-  height: 315px;
-  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .video-slideshow iframe {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
+  width: 438px;
+  height: 246px;
+  border: none;
+  border-radius: 6px;
+  background: #000;
 }
 
 .arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   font-size: 1.5em;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 0.2em 0.3em;
+  color: var(--amber);
+  background: rgba(30, 22, 15, 0.9);
+  padding: 0.5em 0.4em;
   border-radius: 4px;
   cursor: pointer;
+  border: 1px solid rgba(255, 191, 71, 0.2);
+  transition: background 0.2s;
+  flex-shrink: 0;
   z-index: 10;
-  user-select: none;
-  transition: background-color 0.2s, transform 0.2s;
+  width: 2.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .arrow:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) scale(1.1);
+  background: rgba(255, 191, 71, 0.2);
 }
 
-.arrow-left { left: -2em; }
-.arrow-right { right: -2em; }
+/* === RIGHT: Profile Panel === */
+.extra-panel {
+  background: rgba(30, 22, 15, 0.85);
+  padding: 1.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border: 1px solid rgba(255, 191, 71, 0.12);
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  overflow: visible;
+}
 
+.panel-row {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
 
-/* === Light Theme Support === */
-@media (prefers-color-scheme: light) {
-  body {
-    background: #f5f5f5;
-    color: #111;
+.discord-row {
+  margin-top: 1rem;
+}
+
+.discord-row img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.panel-profile {
+  background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+  padding: 1.86rem;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  margin-bottom: 0.7rem;
+}
+
+.panel-profile * {
+  font-size: 1.3em;
+}
+
+.panel-profile img {
+  width: 91px !important;
+}
+
+.panel-profile h2 {
+  font-size: 1.43em !important;
+}
+
+.panel-profile p {
+  font-size: 1.04em !important;
+}
+
+/* === Mobile Hint === */
+.mobile-hint {
+  display: none;
+  text-align: center;
+  color: var(--amber);
+  font-size: 0.88em;
+  opacity: 0.5;
+  margin-top: 0.5rem;
+}
+
+/* === Tablet === */
+@media (max-width: 1100px) {
+  .responsive-wrapper {
+    flex-wrap: wrap;
   }
-
-  .mod-detail,
+  
   .extra-panel {
-    background: rgba(255, 255, 255, 0.25);
-    color: #111;
+    width: 100%;
+    max-width: 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
-  .mod-detail a {
-    color: #007acc;
+  
+  .panel-profile {
+    min-width: 220px;
+  }
+  
+  .discord-row {
+    width: 100%;
+  }
+  
+  .discord-row img {
+    max-width: 330px;
   }
 }
 
-/* === Mobile Layout === */
-@media (max-width: 480px) {
+/* === Mobile === */
+@media (max-width: 700px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .neon-sign {
+    font-size: 2rem;
+  }
+  
+  .pz-logo {
+    width: 88px;
+  }
+  
   .responsive-wrapper {
     flex-direction: column;
-    gap: 1.5em;
-  }
-
-  .stack {
-    flex-direction: column;
     align-items: center;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: auto;
-    padding: 0;
+    gap: 1.1rem;
   }
-
-  .card {
-    width: 90vw;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    margin-bottom: 1em;
-  }
-
-  .mod-detail img {
+  
+  .stack {
     width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+    max-width: 350px;
+    height: 160px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 15, 10, 0.5);
+    border-radius: 8px;
+    padding: 0.5rem;
   }
+  
+  .card {
+    width: 143px;
+    height: 143px;
+  }
+  
+  .turntable {
+    width: 340px;
+    height: 287px;
+  }
+  
+  .vinyl-record {
+    top: 53px;
+    left: 62px;
+    width: 163px;
+    height: 163px;
+  }
+  
+  .record-label {
+    width: 67px;
+    height: 67px;
+  }
+  
+  .tonearm {
+    top: 27px;
+    right: 50px;
+    width: 117px;
+    height: 108px;
+  }
+  
+  .mod-title {
+    font-size: 1.2rem;
+    max-width: 340px;
+  }
+  
+  .video-slideshow iframe {
+    width: 300px;
+    height: 169px;
+  }
+  
+  .arrow {
+    font-size: 1.2em;
+    padding: 0.4em 0.5em;
+  }
+  
+  .mobile-hint {
+    display: block;
+  }
+  
+  .extra-panel {
+    width: 100%;
+    max-width: 330px;
+  }
+  
+  .dust-container {
+    display: none;
+  }
+}
 
-  .mod-detail, .extra-panel {
-    max-width: 90vw;
-    margin: 0 auto;
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .vinyl-record, .dust, .neon-text, .card, .tonearm {
+    animation: none !important;
+    transition: none !important;
   }
 }
