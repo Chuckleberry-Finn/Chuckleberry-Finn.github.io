@@ -1,0 +1,16 @@
+name = "steam-issue-tracker"
+main = "index.js"
+compatibility_date = "2024-12-01"
+
+# ── Environment Variables ──────────────────────────────────
+# Secrets (set via CLI):
+#   npx wrangler secret put GITHUB_TOKEN
+#   npx wrangler secret put SESSION_SECRET
+#
+# Non-secret vars:
+[vars]
+GITHUB_OWNER = "Chuckleberry-Finn"
+ALLOWED_REPOS = "*"
+# Or restrict to specific repos:
+# ALLOWED_REPOS = "Skill-Recovery-Journal,EasyConfigChucked,errorMagnifier"
+ALLOWED_ORIGINS = "https://chuckleberry-finn.github.io"

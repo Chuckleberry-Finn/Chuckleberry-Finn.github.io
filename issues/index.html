@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue Tracker</title>
+<script src="config.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & VARIABLES — matches Chuckleberry-Finn.github.io
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --amber:       #ffbf47;
+  --amber-glow:  #ff9500;
+  --amber-dim:   #c4922e;
+  --cream:       #f5e6c8;
+  --cream-dim:   #b8a88c;
+  --bg-top:      #1a1209;
+  --bg-bottom:   #0d0906;
+  --panel:       rgba(30, 22, 15, 0.85);
+  --panel-solid: #1e160f;
+  --surface:     rgba(40, 30, 18, 0.7);
+  --border:      rgba(255, 191, 71, 0.12);
+  --border-h:    rgba(255, 191, 71, 0.25);
+  --input-bg:    rgba(20, 14, 8, 0.8);
+  --input-bd:    rgba(255, 191, 71, 0.15);
+  --green:       #6e9a2a;
+  --green-txt:   #d2e885;
+  --red:         #c0392b;
+  --radius:      4px;
+  --radius-lg:   8px;
+  --font:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { font-size: 15px; }
+body {
+  font-family: var(--font);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  color: var(--cream);
+  min-height: 100vh;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* ── Dust particles (borrowed from main site) ─────────── */
+.dust-container {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 100; overflow: hidden;
+}
+.dust {
+  position: absolute; width: 2px; height: 2px;
+  background: rgba(255, 220, 150, 0.2);
+  border-radius: 50%;
+  animation: float-dust 18s infinite linear;
+}
+.dust:nth-child(1) { left: 15%; animation-delay: 0s; }
+.dust:nth-child(2) { left: 35%; animation-delay: 4s; }
+.dust:nth-child(3) { left: 60%; animation-delay: 2s; }
+.dust:nth-child(4) { left: 85%; animation-delay: 6s; }
+@keyframes float-dust {
+  0%   { transform: translateY(100vh); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-50px); opacity: 0; }
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+.page { position: relative; z-index: 1; min-height: 100vh; }
+.container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+/* ── Top bar ──────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  background: linear-gradient(180deg, rgba(26,18,9,.97), rgba(13,9,6,.95));
+  border-bottom: 1px solid var(--border);
+  padding: 13px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.topbar-home {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .82rem; color: var(--cream-dim); text-decoration: none;
+  padding: 5px 11px; border-radius: var(--radius);
+  border: 1px solid transparent; transition: all .2s;
+}
+.topbar-home:hover { color: var(--amber); border-color: var(--border-h); }
+.topbar-home svg { width: 14px; height: 14px; }
+.topbar-title-area {}
+.topbar-title {
+  font-family: 'Lobster', cursive;
+  font-size: 1.25rem; color: var(--amber);
+  text-shadow: 0 0 8px rgba(255,159,0,.3);
+}
+.topbar-sub { font-size: .73rem; color: var(--cream-dim); margin-top: 1px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Auth badge ───────────────────────────────────────── */
+.auth-badge {
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 13px; background: rgba(255,191,71,.05);
+  border: 1px solid var(--input-bd); border-radius: 20px;
+  font-size: .8rem; color: var(--cream-dim); transition: all .2s;
+}
+.auth-badge.ok { border-color: var(--green); color: var(--green-txt); }
+.auth-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cream-dim); }
+.auth-badge.ok .auth-dot { background: var(--green); }
+
+
+/* ═══════════════════════════════════════════════════════════
+   HUB — PROJECT PICKER GRID
+   ═══════════════════════════════════════════════════════════ */
+#view-hub, #view-form { display: none; }
+#view-hub.active, #view-form.active { display: block; }
+
+.hub-header { text-align: center; padding: 44px 0 32px; }
+.hub-header h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 2.2rem; color: var(--amber);
+  text-shadow: 0 0 5px rgba(255,204,102,.4), 0 0 15px rgba(255,149,0,.2);
+}
+.hub-header p { font-size: .92rem; color: var(--cream-dim); margin-top: 6px; }
+
+.loading-msg {
+  text-align: center; padding: 40px; color: var(--cream-dim);
+  font-size: .9rem;
+}
+
+/* ── Mod cards ────────────────────────────────────────── */
+.mod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding-bottom: 50px;
+}
+
+.mod-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  text-decoration: none; color: inherit; display: block;
+}
+.mod-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-h);
+  box-shadow: 0 10px 35px rgba(0,0,0,.5), 0 0 20px rgba(255,191,71,.06);
+}
+
+.mod-card-banner {
+  height: 130px;
+  background: var(--surface);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.mod-card-banner::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, var(--panel-solid) 0%, transparent 55%);
+}
+
+.mod-card-body { padding: 14px 18px 18px; }
+.mod-card-name {
+  font-size: 1rem; font-weight: 700; color: var(--cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+.mod-card-meta {
+  font-size: .78rem; color: var(--cream-dim);
+  display: flex; align-items: center; gap: 12px;
+}
+.mod-card-subs {
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.mod-card-subs svg { width: 12px; height: 12px; opacity: .6; }
+
+.mod-card-arrow {
+  position: absolute; bottom: 16px; right: 16px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,191,71,.06); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cream-dim); transition: all .25s;
+}
+.mod-card:hover .mod-card-arrow {
+  background: var(--amber); border-color: var(--amber); color: var(--bg-top);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   FORM VIEW — ISSUE SUBMISSION
+   ═══════════════════════════════════════════════════════════ */
+
+.form-content { padding: 24px 0 50px; }
+
+/* ── Mod header on form page ──────────────────────────── */
+.form-mod-header {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+.form-mod-banner {
+  width: 72px; height: 72px; border-radius: var(--radius);
+  background: var(--surface); background-size: cover;
+  background-position: center; flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.form-mod-info h2 { font-size: 1.1rem; font-weight: 700; color: var(--cream); }
+.form-mod-info p { font-size: .82rem; color: var(--cream-dim); margin-top: 2px; }
+.form-mod-info a {
+  color: var(--amber); text-decoration: none; font-size: .82rem;
+}
+.form-mod-info a:hover { color: #fff; }
+
+/* ── Auth section ─────────────────────────────────────── */
+.auth-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px; margin-bottom: 20px;
+  text-align: center;
+}
+.auth-section h3 { font-size: .98rem; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+.auth-section p { font-size: .82rem; color: var(--cream-dim); margin-bottom: 16px; }
+.auth-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn-gh, .btn-st {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 10px 24px; border: none; border-radius: var(--radius);
+  font-family: var(--font); font-size: .88rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; text-decoration: none;
+}
+.btn-gh { background: #24292e; color: #fff; border: 1px solid #444d56; }
+.btn-gh:hover { background: #2f363d; border-color: #586069; }
+.btn-st { background: linear-gradient(135deg, #1387b8, #1a9fff); color: #fff; }
+.btn-st:hover { background: linear-gradient(135deg, #1592c8, #3daeff); }
+.btn-icon { width: 17px; height: 17px; flex-shrink: 0; }
+.sign-out-link {
+  font-size: .76rem; color: var(--cream-dim); text-decoration: underline;
+  cursor: pointer; margin-top: 10px; display: inline-block;
+}
+.sign-out-link:hover { color: var(--amber); }
+
+/* ── Info banner ──────────────────────────────────────── */
+.info-banner {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(255,191,71,.06); border: 1px solid rgba(255,191,71,.15);
+  border-radius: var(--radius); padding: 11px 15px;
+  margin-bottom: 18px; font-size: .82rem; color: var(--amber); line-height: 1.4;
+}
+.info-banner svg { flex-shrink: 0; margin-top: 1px; }
+
+/* ── Tabs ─────────────────────────────────────────────── */
+.tabs {
+  display: flex; gap: 2px; margin-bottom: 20px;
+  background: rgba(0,0,0,.3); border-radius: var(--radius-lg); padding: 4px;
+}
+.tab {
+  flex: 1; padding: 10px 16px; background: transparent; border: none;
+  border-radius: 6px; font-family: var(--font);
+  font-size: .88rem; font-weight: 600; color: var(--cream-dim);
+  cursor: pointer; transition: all .2s;
+}
+.tab:hover { color: var(--cream); background: rgba(255,191,71,.05); }
+.tab.active {
+  background: var(--surface); color: var(--amber);
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+
+/* ── Form card ────────────────────────────────────────── */
+.form-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+
+.field { margin-bottom: 16px; }
+.field:last-child { margin-bottom: 0; }
+.field label {
+  display: block; font-size: .82rem; font-weight: 600;
+  color: var(--cream); margin-bottom: 5px;
+}
+.field label .req { color: var(--amber); margin-left: 2px; }
+
+.field input[type="text"],
+.field textarea,
+.field select {
+  width: 100%; padding: 9px 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-bd);
+  border-radius: var(--radius);
+  color: var(--cream); font-family: var(--font); font-size: .87rem;
+  transition: border-color .2s, box-shadow .2s; outline: none;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 2px rgba(255,191,71,.1);
+}
+.field textarea { min-height: 90px; resize: vertical; line-height: 1.5; }
+.field select {
+  appearance: none; cursor: pointer; padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8a88c' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+}
+.field select option { background: var(--panel-solid); color: var(--cream); }
+
+/* ── Submit ───────────────────────────────────────────── */
+.submit-area {
+  margin-top: 22px; display: flex; align-items: center;
+  gap: 14px; flex-wrap: wrap;
+}
+.btn-submit {
+  padding: 11px 32px;
+  background: linear-gradient(135deg, rgba(255,191,71,.15), rgba(255,149,0,.2));
+  border: 1px solid var(--border-h);
+  border-radius: var(--radius);
+  font-family: var(--font); font-size: .93rem; font-weight: 700;
+  color: var(--amber); cursor: pointer;
+  transition: all .2s; letter-spacing: .01em;
+}
+.btn-submit:hover {
+  background: linear-gradient(135deg, rgba(255,191,71,.25), rgba(255,149,0,.3));
+  border-color: var(--amber);
+  color: #fff; transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255,149,0,.15);
+}
+.btn-submit:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.submit-hint { font-size: .78rem; color: var(--cream-dim); line-height: 1.4; }
+
+/* ── Toast ────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 22px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--panel-solid); border: 1px solid var(--amber);
+  border-radius: var(--radius); padding: 12px 22px; color: var(--cream);
+  font-size: .87rem; box-shadow: 0 8px 30px rgba(0,0,0,.55);
+  z-index: 300; opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.error { border-color: var(--red); }
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+  padding: 22px 0; text-align: center;
+  font-size: .74rem; color: var(--cream-dim);
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--amber); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ── Animations ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim { animation: fadeUp .4s ease forwards; opacity: 0; }
+.anim-d1 { animation-delay: .06s; }
+.anim-d2 { animation-delay: .12s; }
+.anim-d3 { animation-delay: .18s; }
+.anim-d4 { animation-delay: .24s; }
+.anim-d5 { animation-delay: .30s; }
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .form-card { padding: 16px 14px; }
+  .auth-section { padding: 18px 14px; }
+  .auth-buttons { flex-direction: column; align-items: stretch; }
+  .btn-gh, .btn-st { justify-content: center; }
+  .submit-area { flex-direction: column; align-items: stretch; }
+  .btn-submit { text-align: center; }
+  .mod-grid { grid-template-columns: 1fr; }
+  .form-mod-header { flex-direction: column; align-items: flex-start; }
+  .hub-header h1 { font-size: 1.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dust { animation: none !important; }
+  .anim { animation: none !important; opacity: 1; }
+}
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Dust particles (same as main site) -->
+<div class="dust-container">
+  <div class="dust"></div><div class="dust"></div>
+  <div class="dust"></div><div class="dust"></div>
+</div>
+
+<div class="page">
+  <div id="topbar-mount"></div>
+
+  <!-- ── HUB VIEW ─────────────────────────────────────── -->
+  <div id="view-hub">
+    <div class="container">
+      <div class="hub-header anim">
+        <h1 id="hub-title">Issue Tracker</h1>
+        <p id="hub-sub">Report bugs or request features for any mod</p>
+      </div>
+      <div id="mod-grid" class="mod-grid">
+        <div class="loading-msg">Loading mods...</div>
+      </div>
+      <div class="footer anim anim-d3">
+        <a href="../">← Back to Mods</a> ·
+        Powered by <a href="https://github.com" target="_blank">GitHub Issues</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FORM VIEW ────────────────────────────────────── -->
+  <div id="view-form">
+    <div class="container">
+      <div class="form-content">
+        <div id="form-mod-header-mount"></div>
+
+        <section class="auth-section anim anim-d1" id="auth-section">
+          <h3>Choose how to submit</h3>
+          <p>GitHub users submit directly. Steam users submit via bot.</p>
+          <div class="auth-buttons">
+            <button class="btn-gh" onclick="authGitHub()">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              Sign in with GitHub
+            </button>
+            <button class="btn-st" onclick="authSteam()" id="btn-steam">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
+              Sign in with Steam
+            </button>
+          </div>
+          <div id="sign-out-area" class="hidden">
+            <span class="sign-out-link" onclick="signOut()">Sign out</span>
+          </div>
+        </section>
+
+        <div class="info-banner anim anim-d2" id="info-banner">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span>Sign in above to submit. GitHub users will be redirected to review and submit directly on GitHub.</span>
+        </div>
+
+        <div class="tabs anim anim-d3" id="tabs-mount"></div>
+
+        <div class="form-card anim anim-d4">
+          <form id="issue-form" onsubmit="handleSubmit(event)">
+            <div id="form-fields"></div>
+            <div class="submit-area">
+              <button type="submit" class="btn-submit" id="btn-submit" disabled>Submit Issue</button>
+              <span class="submit-hint" id="submit-hint">Sign in above to enable submission.</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="footer anim anim-d5">
+          <a href="./">← All Mods</a> ·
+          <a id="footer-repo" href="#" target="_blank">View Repository</a> ·
+          <a href="../">Back to Mods Showcase</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════════════════════ */
+const state = {
+  mods: [],
+  currentView: 'hub',
+  currentMod: null,   // mod object from mods.json
+  currentTab: 'bug',
+  auth: { method: null, username: null, steamId: null, token: null },
+};
+
+/* ═══════════════════════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════════════════════ */
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function parseRepoUrl(url) {
+  // "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal" → { owner, repo }
+  try {
+    const parts = new URL(url).pathname.split('/').filter(Boolean);
+    if (parts.length >= 2) return { owner: parts[0], repo: parts[1] };
+  } catch(e) {}
+  return { owner: CONFIG.defaultOwner, repo: '' };
+}
+
+function repoSlug(mod) {
+  return parseRepoUrl(mod.repo_url).repo;
+}
+
+function formatSubs(n) {
+  if (n < 0) return '?';
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  return n.toLocaleString();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', async () => {
+  restoreAuth();
+  checkAuthCallback();
+
+  // Load mods.json
+  try {
+    const resp = await fetch(CONFIG.modsJsonPath);
+    state.mods = await resp.json();
+  } catch(e) {
+    document.getElementById('mod-grid').innerHTML =
+      '<div class="loading-msg" style="color:var(--red)">Failed to load mods.json</div>';
+    return;
+  }
+
+  // Route
+  const params = new URLSearchParams(window.location.search);
+  const repoParam = params.get('repo');
+
+  if (repoParam) {
+    const mod = state.mods.find(m => repoSlug(m) === repoParam);
+    if (mod) { showFormView(mod); return; }
+  }
+  showHubView();
+});
+
+/* ═══════════════════════════════════════════════════════════
+   HUB VIEW
+   ═══════════════════════════════════════════════════════════ */
+function showHubView() {
+  state.currentView = 'hub';
+  state.currentMod = null;
+  document.getElementById('view-hub').classList.add('active');
+  document.getElementById('view-form').classList.remove('active');
+  document.title = CONFIG.hub.title;
+
+  // Topbar
+  document.getElementById('topbar-mount').innerHTML = `
+    <nav class="topbar">
+      <div class="topbar-left">
+        <a class="topbar-home" href="../">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          Mods
+        </a>
+        <div class="topbar-title-area">
+          <div class="topbar-title">${esc(CONFIG.hub.title)}</div>
+          <div class="topbar-sub">${esc(CONFIG.hub.subtitle)}</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="auth-badge ${state.auth.method ? 'ok' : ''}">
+          <span class="auth-dot"></span>
+          <span>${state.auth.method ? esc(state.auth.username) : 'Not signed in'}</span>
+        </div>
+      </div>
+    </nav>`;
+
+  // Hub text
+  document.getElementById('hub-title').textContent = CONFIG.hub.title;
+  document.getElementById('hub-sub').textContent = CONFIG.hub.subtitle;
+
+  // Build grid
+  const grid = document.getElementById('mod-grid');
+  grid.innerHTML = '';
+
+  state.mods.forEach((mod, i) => {
+    const slug = repoSlug(mod);
+    if (!slug) return;
+
+    const card = document.createElement('a');
+    card.className = `mod-card anim`;
+    card.style.animationDelay = `${0.06 + i * 0.04}s`;
+    card.href = `?repo=${slug}`;
+    card.onclick = (e) => { e.preventDefault(); navigateTo(mod); };
+
+    const bannerStyle = mod.banner ? `background-image:url('${mod.banner}')` : '';
+
+    card.innerHTML = `
+      <div class="mod-card-banner" style="${bannerStyle}"></div>
+      <div class="mod-card-body">
+        <div class="mod-card-name" title="${esc(mod.name)}">${esc(mod.name)}</div>
+        <div class="mod-card-meta">
+          <span class="mod-card-subs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            ${formatSubs(mod.subs)}
+          </span>
+          <a href="${mod.steam_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:var(--cream-dim);text-decoration:none;font-size:.78rem;">Steam ↗</a>
+        </div>
+      </div>
+      <div class="mod-card-arrow">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </div>`;
+
+    grid.appendChild(card);
+  });
+}
+
+function navigateTo(mod) {
+  const slug = repoSlug(mod);
+  window.history.pushState({}, '', `?repo=${slug}`);
+  showFormView(mod);
+}
+
+window.addEventListener('popstate', () => {
+  const params = new URLSearchParams(window.location.search);
+  const repoParam = params.get('repo');
+  if (repoParam) {
+    const mod = state.mods.find(m => repoSlug(m) === repoParam);
+    if (mod) { showFormView(mod); return; }
+  }
+  showHubView();
+});
+
+/* ═══════════════════════════════════════════════════════════
+   FORM VIEW
+   ═══════════════════════════════════════════════════════════ */
+function showFormView(mod) {
+  state.currentView = 'form';
+  state.currentMod = mod;
+  state.currentTab = 'bug';
+
+  document.getElementById('view-hub').classList.remove('active');
+  document.getElementById('view-form').classList.add('active');
+  document.title = `${mod.name} — Issue Tracker`;
+
+  const { owner, repo } = parseRepoUrl(mod.repo_url);
+
+  // Topbar
+  document.getElementById('topbar-mount').innerHTML = `
+    <nav class="topbar">
+      <div class="topbar-left">
+        <a class="topbar-home" href="?" onclick="event.preventDefault(); window.history.pushState({},'','?'); showHubView();">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          All Mods
+        </a>
+      </div>
+      <div class="topbar-right">
+        <div class="auth-badge ${state.auth.method ? 'ok' : ''}" id="auth-badge">
+          <span class="auth-dot"></span>
+          <span id="auth-badge-text">${state.auth.method ? esc(state.auth.username) : 'Not signed in'}</span>
+        </div>
+      </div>
+    </nav>`;
+
+  // Mod header
+  const bannerStyle = mod.banner ? `background-image:url('${mod.banner}')` : '';
+  const steamLink = mod.steam_url
+    ? `<a href="${mod.steam_url}" target="_blank">Steam Workshop ↗</a> · `
+    : '';
+
+  document.getElementById('form-mod-header-mount').innerHTML = `
+    <div class="form-mod-header anim">
+      <div class="form-mod-banner" style="${bannerStyle}"></div>
+      <div class="form-mod-info">
+        <h2>${esc(mod.name)}</h2>
+        <p>${formatSubs(mod.subs)} subscribers</p>
+        <p>${steamLink}<a href="${mod.repo_url}" target="_blank">GitHub Repo ↗</a></p>
+      </div>
+    </div>`;
+
+  document.getElementById('footer-repo').href = mod.repo_url;
+
+  // Steam button visibility
+  const steamBtn = document.getElementById('btn-steam');
+  if (!CONFIG.worker?.url) {
+    steamBtn.style.display = 'none';
+  } else {
+    steamBtn.style.display = '';
+  }
+
+  // Tabs
+  const tabsMount = document.getElementById('tabs-mount');
+  tabsMount.innerHTML = '';
+  Object.keys(CONFIG.issueTypes).forEach(key => {
+    const btn = document.createElement('button');
+    btn.className = `tab ${key === state.currentTab ? 'active' : ''}`;
+    btn.dataset.type = key;
+    btn.textContent = CONFIG.issueTypes[key].label;
+    btn.onclick = () => switchTab(key);
+    tabsMount.appendChild(btn);
+  });
+
+  renderFields();
+  updateAuthUI();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FORM FIELDS
+   ═══════════════════════════════════════════════════════════ */
+function renderFields() {
+  const type = CONFIG.issueTypes[state.currentTab];
+  if (!type) return;
+  const container = document.getElementById('form-fields');
+  container.innerHTML = '';
+
+  type.fields.forEach(field => {
+    const div = document.createElement('div');
+    div.className = 'field';
+    const req = field.required ? '<span class="req">*</span>' : '';
+    let input = '';
+    switch (field.type) {
+      case 'text':
+        input = `<input type="text" id="f-${field.id}" placeholder="${esc(field.placeholder||'')}" ${field.required?'required':''}>`;
+        break;
+      case 'textarea':
+        input = `<textarea id="f-${field.id}" placeholder="${esc(field.placeholder||'')}" ${field.required?'required':''}></textarea>`;
+        break;
+      case 'select':
+        const opts = (field.options||[]).map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('');
+        input = `<select id="f-${field.id}" ${field.required?'required':''}><option value="">Select...</option>${opts}</select>`;
+        break;
+    }
+    div.innerHTML = `<label for="f-${field.id}">${esc(field.label)}${req}</label>${input}`;
+    container.appendChild(div);
+  });
+}
+
+function switchTab(type) {
+  state.currentTab = type;
+  document.querySelectorAll('#tabs-mount .tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.type === type));
+  renderFields();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AUTH
+   ═══════════════════════════════════════════════════════════ */
+function authGitHub() {
+  const username = prompt('Enter your GitHub username (for display):');
+  if (username?.trim()) {
+    state.auth = { method: 'github', username: username.trim(), steamId: null, token: null };
+    saveAuth(); updateAuthUI();
+    showToast(`Signed in as GitHub user: ${username.trim()}`);
+  }
+}
+
+function authSteam() {
+  if (!CONFIG.worker?.url) { showToast('Steam login not configured.', true); return; }
+  const returnUrl = encodeURIComponent(window.location.href);
+  window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
+}
+
+function checkAuthCallback() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('steam_auth') === 'success') {
+    state.auth = {
+      method: 'steam', username: p.get('steam_name') || 'Steam User',
+      steamId: p.get('steam_id'), token: p.get('session_token'),
+    };
+    saveAuth();
+    const repo = p.get('repo');
+    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
+    showToast(`Signed in as Steam user: ${state.auth.username}`);
+  } else if (p.get('steam_auth') === 'error') {
+    const repo = p.get('repo');
+    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
+    showToast('Steam authentication failed.', true);
+  }
+}
+
+function restoreAuth() {
+  try { const s = localStorage.getItem('cfi_auth'); if (s) state.auth = JSON.parse(s); } catch(e) {}
+}
+function saveAuth() { localStorage.setItem('cfi_auth', JSON.stringify(state.auth)); }
+
+function signOut() {
+  state.auth = { method: null, username: null, steamId: null, token: null };
+  localStorage.removeItem('cfi_auth');
+  updateAuthUI();
+  showToast('Signed out.');
+}
+
+function updateAuthUI() {
+  const badge = document.getElementById('auth-badge');
+  const badgeText = document.getElementById('auth-badge-text');
+  const signOutArea = document.getElementById('sign-out-area');
+  const submitBtn = document.getElementById('btn-submit');
+  const submitHint = document.getElementById('submit-hint');
+  const infoBanner = document.getElementById('info-banner');
+  if (!badge) return;
+
+  if (state.auth.method) {
+    badge.classList.add('ok');
+    badgeText.textContent = state.auth.username;
+    signOutArea.classList.remove('hidden');
+    submitBtn.disabled = false;
+    infoBanner.classList.add('hidden');
+    submitHint.textContent = state.auth.method === 'github'
+      ? 'You\'ll be redirected to GitHub to review and submit.'
+      : `Issue created on your behalf as "${state.auth.username}".`;
+  } else {
+    badge.classList.remove('ok');
+    badgeText.textContent = 'Not signed in';
+    signOutArea.classList.add('hidden');
+    submitBtn.disabled = true;
+    infoBanner.classList.remove('hidden');
+    submitHint.textContent = 'Sign in above to enable submission.';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SUBMISSION
+   ═══════════════════════════════════════════════════════════ */
+function handleSubmit(e) {
+  e.preventDefault();
+  if (!state.auth.method) { showToast('Please sign in first.', true); return; }
+  if (!state.currentMod) return;
+
+  const type = CONFIG.issueTypes[state.currentTab];
+  const data = {};
+  for (const f of type.fields) {
+    const el = document.getElementById(`f-${f.id}`);
+    if (el) data[f.id] = el.value.trim();
+  }
+  for (const f of type.fields) {
+    if (f.required && !data[f.id]) {
+      showToast(`Please fill in: ${f.label}`, true);
+      document.getElementById(`f-${f.id}`)?.focus();
+      return;
+    }
+  }
+
+  const { owner, repo } = parseRepoUrl(state.currentMod.repo_url);
+  const title = data.title || 'Untitled';
+  const body = buildBody(type, data);
+  const prefix = state.currentTab === 'bug' ? 'Bug' : 'Feature';
+
+  if (state.auth.method === 'github') {
+    const params = new URLSearchParams({
+      title: `[${prefix}] ${title}`, body, labels: type.githubLabel,
+    });
+    window.open(`https://github.com/${owner}/${repo}/issues/new?${params}`, '_blank');
+    showToast('Redirected to GitHub — review and submit there!');
+  } else {
+    submitViaSteam(`[${prefix}] ${title}`, body, type.githubLabel, repo);
+  }
+}
+
+function buildBody(type, data) {
+  const mod = state.currentMod;
+  const lines = [];
+  if (state.auth.method === 'steam') {
+    lines.push(`> **Submitted by Steam user:** ${state.auth.username} (ID: \`${state.auth.steamId}\`)`);
+  } else {
+    lines.push(`> **Submitted via:** Issue Tracker`);
+  }
+  lines.push(`> **Mod:** [${mod.name}](${mod.steam_url})`);
+  lines.push('');
+
+  for (const f of type.fields) {
+    if (f.id === 'title' || !data[f.id]) continue;
+    lines.push(`### ${f.label}`);
+    lines.push(data[f.id]);
+    lines.push('');
+  }
+
+  lines.push('---');
+  lines.push(`*Submitted via [Issue Tracker](${window.location.href})*`);
+  return lines.join('\n');
+}
+
+async function submitViaSteam(title, body, label, repo) {
+  if (!CONFIG.worker?.url) { showToast('Steam submission not configured.', true); return; }
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  try {
+    const resp = await fetch(`${CONFIG.worker.url}/api/issues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title, body, labels: [label], repo,
+        session_token: state.auth.token,
+        steam_id: state.auth.steamId,
+        steam_name: state.auth.username,
+      }),
+    });
+    if (!resp.ok) { const err = await resp.json().catch(()=>({})); throw new Error(err.message || `HTTP ${resp.status}`); }
+    const result = await resp.json();
+    showToast(`Issue #${result.issue_number} created!`);
+    document.getElementById('issue-form').reset();
+  } catch(err) {
+    showToast(`Failed: ${err.message}`, true);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Submit Issue';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg, isError = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast show ${isError ? 'error' : ''}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = 'toast', 4000);
+}
+</script>
+</body>
+</html>

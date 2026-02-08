@@ -2,3 +2,4 @@ include:
   - mods.json
   - sounds
   - js
+  - issues
