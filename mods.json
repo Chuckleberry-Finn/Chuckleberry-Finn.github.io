@@ -1,7 +1,7 @@
 [
   {
     "name": "errorMagnifier",
-    "subs": 2056836,
+    "subs": 2056844,
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179",
     "repo_url": "https://github.com/Chuckleberry-Finn/errorMagnifier",
     "banner": "https://images.steamusercontent.com/ugc/2006946285955965520/F1B969816DF9BDB7EF43BDD2345BA1045BEA895F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
@@ -10,7 +10,7 @@
   },
   {
     "name": "Night Vision Chucked",
-    "subs": 439431,
+    "subs": 439432,
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2842179206",
     "repo_url": "https://github.com/Chuckleberry-Finn/Night-Vision-Chucked",
     "banner": "https://images.steamusercontent.com/ugc/1921366611159145148/AC5B41FA2A2C33C059D93F24CA980E43EDDE48BA/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
@@ -64,7 +64,7 @@
   },
   {
     "name": "Zomboid Paper API",
-    "subs": 21144,
+    "subs": 21145,
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3155647374",
     "repo_url": "https://github.com/Chuckleberry-Finn/zomboidPaper",
     "banner": "https://images.steamusercontent.com/ugc/2533907488990539423/F760F5AB72DDB51B5AA8A54CBFF9D92DA4C461DC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
@@ -104,7 +104,7 @@
   },
   {
     "name": "Game Night: Spiffo's Trading Cards",
-    "subs": 7808,
+    "subs": 7809,
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3271303304",
     "repo_url": "https://github.com/Chuckleberry-Finn/game-night-spiffoTC",
     "banner": "https://images.steamusercontent.com/ugc/2491134695819138510/C793FB05D6A42F5B1F7BC00AE38D3016E831CB76/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
@@ -113,7 +113,7 @@
   },
   {
     "name": "Game Night: Zombies Drop Games",
-    "subs": 6850,
+    "subs": 6851,
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3281767964",
     "repo_url": "https://github.com/Chuckleberry-Finn/ZombiesDropGames",
     "banner": "https://images.steamusercontent.com/ugc/2547430415543462780/F616FD889BD0BA84332C4A2C7171B4523DF6E9C2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
@@ -131,7 +131,7 @@
   },
   {
     "name": "Game Night: Yu-Spiff-Oh",
-    "subs": 6143,
+    "subs": 6144,
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3350997307",
     "repo_url": "https://github.com/Chuckleberry-Finn/game-night-Yu-Spiff-oh",
     "banner": "https://images.steamusercontent.com/ugc/2493397190882990463/50C9E164E4A0A685A6ADE69F88DD72703FF09223/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
@@ -182,5 +182,140 @@
     "banner": "https://images.steamusercontent.com/ugc/2053126773768868475/FA93DA8E062B9B1A103696E1BA5D9751DDE663B4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false
+  },
+  {
+    "name": "Named-Literature",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2822983942",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Named-Literature",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "game-night",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3058279917",
+    "repo_url": "https://github.com/Chuckleberry-Finn/game-night",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "PZLastStandTogether",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "MGRS-FMCCYAYFGLE",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2928660831",
+    "repo_url": "https://github.com/Chuckleberry-Finn/MGRS-FMCCYAYFGLE",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "moddingAlertSystem",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3077900375",
+    "repo_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "SwapIt",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2366717227",
+    "repo_url": "https://github.com/Chuckleberry-Finn/SwapIt",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "EasyConfigChucked",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2529746725",
+    "repo_url": "https://github.com/Chuckleberry-Finn/EasyConfigChucked",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "Bard-To-The-Bone",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3484029638",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "interactive-tailoring",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3522680786",
+    "repo_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "zomboid-cnd-speech",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2398253681",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "Zombies-Hear-Your-Microphone",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3004111200",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Zombies-Hear-Your-Microphone",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "You-Drive-I-Sleep",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2830570280",
+    "repo_url": "https://github.com/Chuckleberry-Finn/You-Drive-I-Sleep",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "Vanilla-Weapons-Expanded",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3395648868",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "Skill-Recovery-Journal",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal",
+    "banner": "",
+    "videos": [],
+    "highlight": true
+  },
+  {
+    "name": "ExpandedHelicopterEvents",
+    "subs": -1,
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2458631365",
+    "repo_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents",
+    "banner": "",
+    "videos": [],
+    "highlight": true
   }
 ]
