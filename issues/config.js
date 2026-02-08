@@ -20,7 +20,7 @@ const CONFIG = {
   // ── Cloudflare Worker (Steam auth backend) ────────────
   //    Leave empty to disable Steam login.
   worker: {
-    url: "https://steam-issue-tracker.chuuckthesheep.workers.dev",
+    url: "https://steam-issue-tracker.chuckleberryfinn.workers.dev",
   },
 
   // ── Path to mods.json relative to this page ───────────
