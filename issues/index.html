@@ -101,16 +101,7 @@ body {
 .topbar-sub { font-size: .73rem; color: var(--cream-dim); margin-top: 1px; }
 .topbar-right { display: flex; align-items: center; gap: 10px; }
 
-/* ── Auth badge ───────────────────────────────────────── */
-.auth-badge {
-  display: flex; align-items: center; gap: 7px;
-  padding: 5px 13px; background: rgba(255,191,71,.05);
-  border: 1px solid var(--input-bd); border-radius: 20px;
-  font-size: .8rem; color: var(--cream-dim); transition: all .2s;
-}
-.auth-badge.ok { border-color: var(--green); color: var(--green-txt); }
-.auth-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cream-dim); }
-.auth-badge.ok .auth-dot { background: var(--green); }
+/* ── (auth badge removed — no login gate) ─────────────── */
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -224,43 +215,13 @@ body {
 }
 .form-mod-info a:hover { color: #fff; }
 
-/* ── Auth section ─────────────────────────────────────── */
-.auth-section {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 22px 26px; margin-bottom: 20px;
-  text-align: center;
-}
-.auth-section h3 { font-size: .98rem; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
-.auth-section p { font-size: .82rem; color: var(--cream-dim); margin-bottom: 16px; }
-.auth-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-.btn-gh, .btn-st {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 10px 24px; border: none; border-radius: var(--radius);
-  font-family: var(--font); font-size: .88rem; font-weight: 600;
-  cursor: pointer; transition: all .2s; text-decoration: none;
-}
-.btn-gh { background: #24292e; color: #fff; border: 1px solid #444d56; }
-.btn-gh:hover { background: #2f363d; border-color: #586069; }
-.btn-st { background: linear-gradient(135deg, #1387b8, #1a9fff); color: #fff; }
-.btn-st:hover { background: linear-gradient(135deg, #1592c8, #3daeff); }
+/* ── Shared button icon ───────────────────────────────── */
 .btn-icon { width: 17px; height: 17px; flex-shrink: 0; }
 .sign-out-link {
   font-size: .76rem; color: var(--cream-dim); text-decoration: underline;
-  cursor: pointer; margin-top: 10px; display: inline-block;
+  cursor: pointer; display: inline;
 }
 .sign-out-link:hover { color: var(--amber); }
-
-/* ── Info banner ──────────────────────────────────────── */
-.info-banner {
-  display: flex; align-items: flex-start; gap: 10px;
-  background: rgba(255,191,71,.06); border: 1px solid rgba(255,191,71,.15);
-  border-radius: var(--radius); padding: 11px 15px;
-  margin-bottom: 18px; font-size: .82rem; color: var(--amber); line-height: 1.4;
-}
-.info-banner svg { flex-shrink: 0; margin-top: 1px; }
 
 /* ── Tabs ─────────────────────────────────────────────── */
 .tabs {
@@ -318,28 +279,51 @@ body {
 }
 .field select option { background: var(--panel-solid); color: var(--cream); }
 
-/* ── Submit ───────────────────────────────────────────── */
-.submit-area {
-  margin-top: 22px; display: flex; align-items: center;
-  gap: 14px; flex-wrap: wrap;
+/* ── Submit section ────────────────────────────────────── */
+.submit-section {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
 }
-.btn-submit {
-  padding: 11px 32px;
-  background: linear-gradient(135deg, rgba(255,191,71,.15), rgba(255,149,0,.2));
-  border: 1px solid var(--border-h);
-  border-radius: var(--radius);
-  font-family: var(--font); font-size: .93rem; font-weight: 700;
-  color: var(--amber); cursor: pointer;
-  transition: all .2s; letter-spacing: .01em;
+.submit-divider-label {
+  font-size: .76rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--cream-dim); margin-bottom: 14px;
 }
-.btn-submit:hover {
-  background: linear-gradient(135deg, rgba(255,191,71,.25), rgba(255,149,0,.3));
-  border-color: var(--amber);
-  color: #fff; transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(255,149,0,.15);
+.submit-buttons {
+  display: flex; flex-direction: column; gap: 16px;
 }
-.btn-submit:disabled { opacity: .4; cursor: not-allowed; transform: none; }
-.submit-hint { font-size: .78rem; color: var(--cream-dim); line-height: 1.4; }
+.btn-submit-gh, .btn-submit-st {
+  display: inline-flex; align-items: center; gap: 10px;
+  width: 100%; padding: 13px 20px; border: none; border-radius: var(--radius);
+  font-family: var(--font); font-size: .92rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; text-decoration: none;
+}
+.btn-submit-gh {
+  background: #24292e; color: #fff; border: 1px solid #444d56;
+}
+.btn-submit-gh:hover {
+  background: #2f363d; border-color: var(--amber);
+  box-shadow: 0 0 12px rgba(255,191,71,.1);
+}
+.btn-submit-st {
+  background: linear-gradient(135deg, rgba(19,135,184,.2), rgba(26,159,255,.12));
+  color: var(--cream); border: 1px solid rgba(26,159,255,.2);
+}
+.btn-submit-st:hover {
+  background: linear-gradient(135deg, rgba(19,135,184,.3), rgba(26,159,255,.2));
+  border-color: rgba(26,159,255,.45);
+}
+.btn-submit-st:disabled { opacity: .45; cursor: not-allowed; }
+.submit-btn-hint {
+  display: block; font-size: .75rem; color: var(--cream-dim);
+  margin-top: -10px; padding-left: 2px; line-height: 1.35;
+}
+#steam-submit-area { display: flex; flex-direction: column; gap: 6px; }
+.steam-user-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .8rem; color: #66c0f4; padding: 4px 0 0;
+}
+.steam-user-badge strong { color: #fff; }
 
 /* ── Toast ────────────────────────────────────────────── */
 .toast {
@@ -377,11 +361,7 @@ body {
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 600px) {
   .form-card { padding: 16px 14px; }
-  .auth-section { padding: 18px 14px; }
-  .auth-buttons { flex-direction: column; align-items: stretch; }
-  .btn-gh, .btn-st { justify-content: center; }
-  .submit-area { flex-direction: column; align-items: stretch; }
-  .btn-submit { text-align: center; }
+  .btn-submit-gh, .btn-submit-st { font-size: .85rem; padding: 12px 16px; }
   .mod-grid { grid-template-columns: 1fr; }
   .form-mod-header { flex-direction: column; align-items: flex-start; }
   .hub-header h1 { font-size: 1.75rem; }
@@ -429,37 +409,37 @@ body {
       <div class="form-content">
         <div id="form-mod-header-mount"></div>
 
-        <section class="auth-section anim anim-d1" id="auth-section">
-          <h3>Choose how to submit</h3>
-          <p>GitHub users submit directly. Steam users submit via bot.</p>
-          <div class="auth-buttons">
-            <button class="btn-gh" onclick="authGitHub()">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              Sign in with GitHub
-            </button>
-            <button class="btn-st" onclick="authSteam()" id="btn-steam">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
-              Sign in with Steam
-            </button>
-          </div>
-          <div id="sign-out-area" class="hidden">
-            <span class="sign-out-link" onclick="signOut()">Sign out</span>
-          </div>
-        </section>
+        <div class="tabs anim anim-d1" id="tabs-mount"></div>
 
-        <div class="info-banner anim anim-d2" id="info-banner">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <span>Sign in above to submit. GitHub users will be redirected to review and submit directly on GitHub.</span>
-        </div>
-
-        <div class="tabs anim anim-d3" id="tabs-mount"></div>
-
-        <div class="form-card anim anim-d4">
-          <form id="issue-form" onsubmit="handleSubmit(event)">
+        <div class="form-card anim anim-d2">
+          <form id="issue-form" onsubmit="event.preventDefault()">
             <div id="form-fields"></div>
-            <div class="submit-area">
-              <button type="submit" class="btn-submit" id="btn-submit" disabled>Submit Issue</button>
-              <span class="submit-hint" id="submit-hint">Sign in above to enable submission.</span>
+
+            <!-- ── Dual submit area ──────────────────── -->
+            <div class="submit-section">
+              <div class="submit-divider-label">Submit via</div>
+
+              <div class="submit-buttons">
+                <!-- GitHub: always available, redirects to github.com -->
+                <button type="button" class="btn-submit-gh" onclick="submitViaGitHub()">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  Submit via GitHub
+                </button>
+                <span class="submit-btn-hint">Opens GitHub — you'll review &amp; submit from your account</span>
+
+                <!-- Steam: requires login via worker -->
+                <div id="steam-submit-area">
+                  <button type="button" class="btn-submit-st" id="btn-steam-submit" onclick="handleSteamSubmit()">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
+                    <span id="steam-btn-label">Sign in with Steam to submit</span>
+                  </button>
+                  <span class="submit-btn-hint" id="steam-submit-hint">No GitHub account? Submit via your Steam identity instead</span>
+                  <div id="steam-user-badge" class="steam-user-badge hidden">
+                    <span>Signed in as <strong id="steam-user-name"></strong></span>
+                    <span class="sign-out-link" onclick="signOutSteam()">sign out</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -483,9 +463,9 @@ body {
 const state = {
   mods: [],
   currentView: 'hub',
-  currentMod: null,   // mod object from mods.json
+  currentMod: null,
   currentTab: 'bug',
-  auth: { method: null, username: null, steamId: null, token: null },
+  steam: { username: null, steamId: null, token: null },
 };
 
 /* ═══════════════════════════════════════════════════════════
@@ -494,7 +474,6 @@ const state = {
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
 function parseRepoUrl(url) {
-  // "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal" → { owner, repo }
   try {
     const parts = new URL(url).pathname.split('/').filter(Boolean);
     if (parts.length >= 2) return { owner: parts[0], repo: parts[1] };
@@ -502,9 +481,7 @@ function parseRepoUrl(url) {
   return { owner: CONFIG.defaultOwner, repo: '' };
 }
 
-function repoSlug(mod) {
-  return parseRepoUrl(mod.repo_url).repo;
-}
+function repoSlug(mod) { return parseRepoUrl(mod.repo_url).repo; }
 
 function formatSubs(n) {
   if (n < 0) return '?';
@@ -517,10 +494,9 @@ function formatSubs(n) {
    INIT
    ═══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', async () => {
-  restoreAuth();
-  checkAuthCallback();
+  restoreSteam();
+  checkSteamCallback();
 
-  // Load mods.json
   try {
     const resp = await fetch(CONFIG.modsJsonPath);
     state.mods = await resp.json();
@@ -530,10 +506,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Route
   const params = new URLSearchParams(window.location.search);
   const repoParam = params.get('repo');
-
   if (repoParam) {
     const mod = state.mods.find(m => repoSlug(m) === repoParam);
     if (mod) { showFormView(mod); return; }
@@ -551,7 +525,6 @@ function showHubView() {
   document.getElementById('view-form').classList.remove('active');
   document.title = CONFIG.hub.title;
 
-  // Topbar
   document.getElementById('topbar-mount').innerHTML = `
     <nav class="topbar">
       <div class="topbar-left">
@@ -564,19 +537,11 @@ function showHubView() {
           <div class="topbar-sub">${esc(CONFIG.hub.subtitle)}</div>
         </div>
       </div>
-      <div class="topbar-right">
-        <div class="auth-badge ${state.auth.method ? 'ok' : ''}">
-          <span class="auth-dot"></span>
-          <span>${state.auth.method ? esc(state.auth.username) : 'Not signed in'}</span>
-        </div>
-      </div>
     </nav>`;
 
-  // Hub text
   document.getElementById('hub-title').textContent = CONFIG.hub.title;
   document.getElementById('hub-sub').textContent = CONFIG.hub.subtitle;
 
-  // Build grid
   const grid = document.getElementById('mod-grid');
   grid.innerHTML = '';
 
@@ -642,7 +607,6 @@ function showFormView(mod) {
 
   const { owner, repo } = parseRepoUrl(mod.repo_url);
 
-  // Topbar
   document.getElementById('topbar-mount').innerHTML = `
     <nav class="topbar">
       <div class="topbar-left">
@@ -650,12 +614,6 @@ function showFormView(mod) {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
           All Mods
         </a>
-      </div>
-      <div class="topbar-right">
-        <div class="auth-badge ${state.auth.method ? 'ok' : ''}" id="auth-badge">
-          <span class="auth-dot"></span>
-          <span id="auth-badge-text">${state.auth.method ? esc(state.auth.username) : 'Not signed in'}</span>
-        </div>
       </div>
     </nav>`;
 
@@ -677,12 +635,12 @@ function showFormView(mod) {
 
   document.getElementById('footer-repo').href = mod.repo_url;
 
-  // Steam button visibility
-  const steamBtn = document.getElementById('btn-steam');
+  // Show/hide Steam submit based on worker config
+  const steamArea = document.getElementById('steam-submit-area');
   if (!CONFIG.worker?.url) {
-    steamBtn.style.display = 'none';
+    steamArea.style.display = 'none';
   } else {
-    steamBtn.style.display = '';
+    steamArea.style.display = '';
   }
 
   // Tabs
@@ -698,7 +656,7 @@ function showFormView(mod) {
   });
 
   renderFields();
-  updateAuthUI();
+  updateSteamUI();
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -740,89 +698,9 @@ function switchTab(type) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   AUTH
+   VALIDATION — shared by both submit paths
    ═══════════════════════════════════════════════════════════ */
-function authGitHub() {
-  const username = prompt('Enter your GitHub username (for display):');
-  if (username?.trim()) {
-    state.auth = { method: 'github', username: username.trim(), steamId: null, token: null };
-    saveAuth(); updateAuthUI();
-    showToast(`Signed in as GitHub user: ${username.trim()}`);
-  }
-}
-
-function authSteam() {
-  if (!CONFIG.worker?.url) { showToast('Steam login not configured.', true); return; }
-  const returnUrl = encodeURIComponent(window.location.href);
-  window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
-}
-
-function checkAuthCallback() {
-  const p = new URLSearchParams(window.location.search);
-  if (p.get('steam_auth') === 'success') {
-    state.auth = {
-      method: 'steam', username: p.get('steam_name') || 'Steam User',
-      steamId: p.get('steam_id'), token: p.get('session_token'),
-    };
-    saveAuth();
-    const repo = p.get('repo');
-    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
-    showToast(`Signed in as Steam user: ${state.auth.username}`);
-  } else if (p.get('steam_auth') === 'error') {
-    const repo = p.get('repo');
-    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
-    showToast('Steam authentication failed.', true);
-  }
-}
-
-function restoreAuth() {
-  try { const s = localStorage.getItem('cfi_auth'); if (s) state.auth = JSON.parse(s); } catch(e) {}
-}
-function saveAuth() { localStorage.setItem('cfi_auth', JSON.stringify(state.auth)); }
-
-function signOut() {
-  state.auth = { method: null, username: null, steamId: null, token: null };
-  localStorage.removeItem('cfi_auth');
-  updateAuthUI();
-  showToast('Signed out.');
-}
-
-function updateAuthUI() {
-  const badge = document.getElementById('auth-badge');
-  const badgeText = document.getElementById('auth-badge-text');
-  const signOutArea = document.getElementById('sign-out-area');
-  const submitBtn = document.getElementById('btn-submit');
-  const submitHint = document.getElementById('submit-hint');
-  const infoBanner = document.getElementById('info-banner');
-  if (!badge) return;
-
-  if (state.auth.method) {
-    badge.classList.add('ok');
-    badgeText.textContent = state.auth.username;
-    signOutArea.classList.remove('hidden');
-    submitBtn.disabled = false;
-    infoBanner.classList.add('hidden');
-    submitHint.textContent = state.auth.method === 'github'
-      ? 'You\'ll be redirected to GitHub to review and submit.'
-      : `Issue created on your behalf as "${state.auth.username}".`;
-  } else {
-    badge.classList.remove('ok');
-    badgeText.textContent = 'Not signed in';
-    signOutArea.classList.add('hidden');
-    submitBtn.disabled = true;
-    infoBanner.classList.remove('hidden');
-    submitHint.textContent = 'Sign in above to enable submission.';
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SUBMISSION
-   ═══════════════════════════════════════════════════════════ */
-function handleSubmit(e) {
-  e.preventDefault();
-  if (!state.auth.method) { showToast('Please sign in first.', true); return; }
-  if (!state.currentMod) return;
-
+function validateAndCollect() {
   const type = CONFIG.issueTypes[state.currentTab];
   const data = {};
   for (const f of type.fields) {
@@ -833,31 +711,17 @@ function handleSubmit(e) {
     if (f.required && !data[f.id]) {
       showToast(`Please fill in: ${f.label}`, true);
       document.getElementById(`f-${f.id}`)?.focus();
-      return;
+      return null;
     }
   }
-
-  const { owner, repo } = parseRepoUrl(state.currentMod.repo_url);
-  const title = data.title || 'Untitled';
-  const body = buildBody(type, data);
-  const prefix = state.currentTab === 'bug' ? 'Bug' : 'Feature';
-
-  if (state.auth.method === 'github') {
-    const params = new URLSearchParams({
-      title: `[${prefix}] ${title}`, body, labels: type.githubLabel,
-    });
-    window.open(`https://github.com/${owner}/${repo}/issues/new?${params}`, '_blank');
-    showToast('Redirected to GitHub — review and submit there!');
-  } else {
-    submitViaSteam(`[${prefix}] ${title}`, body, type.githubLabel, repo);
-  }
+  return data;
 }
 
-function buildBody(type, data) {
+function buildBody(type, data, isSteam) {
   const mod = state.currentMod;
   const lines = [];
-  if (state.auth.method === 'steam') {
-    lines.push(`> **Submitted by Steam user:** ${state.auth.username} (ID: \`${state.auth.steamId}\`)`);
+  if (isSteam && state.steam.username) {
+    lines.push(`> **Submitted by Steam user:** ${state.steam.username} (ID: \`${state.steam.steamId}\`)`);
   } else {
     lines.push(`> **Submitted via:** Issue Tracker`);
   }
@@ -876,29 +740,148 @@ function buildBody(type, data) {
   return lines.join('\n');
 }
 
-async function submitViaSteam(title, body, label, repo) {
-  if (!CONFIG.worker?.url) { showToast('Steam submission not configured.', true); return; }
-  const btn = document.getElementById('btn-submit');
-  btn.disabled = true; btn.textContent = 'Submitting...';
+/* ═══════════════════════════════════════════════════════════
+   SUBMIT VIA GITHUB (no login needed)
+   ═══════════════════════════════════════════════════════════ */
+function submitViaGitHub() {
+  if (!state.currentMod) return;
+  const data = validateAndCollect();
+  if (!data) return;
+
+  const { owner, repo } = parseRepoUrl(state.currentMod.repo_url);
+  const type = CONFIG.issueTypes[state.currentTab];
+  const prefix = state.currentTab === 'bug' ? 'Bug' : 'Feature';
+  const title = data.title || 'Untitled';
+  const body = buildBody(type, data, false);
+
+  const params = new URLSearchParams({
+    title: `[${prefix}] ${title}`,
+    body: body,
+    labels: type.githubLabel,
+  });
+
+  // Redirect to GitHub — they handle auth themselves
+  window.open(`https://github.com/${owner}/${repo}/issues/new?${params}`, '_blank');
+  showToast('Opened GitHub — review and submit your issue there!');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SUBMIT VIA STEAM (requires Steam login)
+   ═══════════════════════════════════════════════════════════ */
+function handleSteamSubmit() {
+  // If not logged in to Steam yet, start the login flow
+  if (!state.steam.token) {
+    if (!CONFIG.worker?.url) {
+      showToast('Steam login is not configured for this tracker.', true);
+      return;
+    }
+    // Redirect to worker's Steam OpenID flow
+    const returnUrl = encodeURIComponent(window.location.href);
+    window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
+    return;
+  }
+
+  // Already logged in — validate and submit
+  const data = validateAndCollect();
+  if (!data) return;
+
+  const { owner, repo } = parseRepoUrl(state.currentMod.repo_url);
+  const type = CONFIG.issueTypes[state.currentTab];
+  const prefix = state.currentTab === 'bug' ? 'Bug' : 'Feature';
+  const title = data.title || 'Untitled';
+  const body = buildBody(type, data, true);
+
+  doSteamSubmit(`[${prefix}] ${title}`, body, type.githubLabel, repo);
+}
+
+async function doSteamSubmit(title, body, label, repo) {
+  const btn = document.getElementById('btn-steam-submit');
+  btn.disabled = true;
+  document.getElementById('steam-btn-label').textContent = 'Submitting...';
+
   try {
     const resp = await fetch(`${CONFIG.worker.url}/api/issues`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         title, body, labels: [label], repo,
-        session_token: state.auth.token,
-        steam_id: state.auth.steamId,
-        steam_name: state.auth.username,
+        session_token: state.steam.token,
+        steam_id: state.steam.steamId,
+        steam_name: state.steam.username,
       }),
     });
-    if (!resp.ok) { const err = await resp.json().catch(()=>({})); throw new Error(err.message || `HTTP ${resp.status}`); }
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || `HTTP ${resp.status}`);
+    }
     const result = await resp.json();
-    showToast(`Issue #${result.issue_number} created!`);
+    showToast(`Issue #${result.issue_number} created successfully!`);
     document.getElementById('issue-form').reset();
   } catch(err) {
     showToast(`Failed: ${err.message}`, true);
   } finally {
-    btn.disabled = false; btn.textContent = 'Submit Issue';
+    btn.disabled = false;
+    document.getElementById('steam-btn-label').textContent = 'Submit via Steam';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STEAM AUTH STATE
+   ═══════════════════════════════════════════════════════════ */
+function checkSteamCallback() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('steam_auth') === 'success') {
+    state.steam = {
+      username: p.get('steam_name') || 'Steam User',
+      steamId: p.get('steam_id'),
+      token: p.get('session_token'),
+    };
+    saveSteam();
+    // Clean auth params, keep ?repo=
+    const repo = p.get('repo');
+    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
+    showToast(`Signed in as Steam user: ${state.steam.username}`);
+  } else if (p.get('steam_auth') === 'error') {
+    const repo = p.get('repo');
+    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
+    showToast('Steam authentication failed.', true);
+  }
+}
+
+function restoreSteam() {
+  try {
+    const s = localStorage.getItem('cfi_steam');
+    if (s) state.steam = JSON.parse(s);
+  } catch(e) {}
+}
+
+function saveSteam() {
+  localStorage.setItem('cfi_steam', JSON.stringify(state.steam));
+}
+
+function signOutSteam() {
+  state.steam = { username: null, steamId: null, token: null };
+  localStorage.removeItem('cfi_steam');
+  updateSteamUI();
+  showToast('Signed out of Steam.');
+}
+
+function updateSteamUI() {
+  const badge = document.getElementById('steam-user-badge');
+  const nameEl = document.getElementById('steam-user-name');
+  const btnLabel = document.getElementById('steam-btn-label');
+  const hint = document.getElementById('steam-submit-hint');
+  if (!badge) return;
+
+  if (state.steam.token) {
+    badge.classList.remove('hidden');
+    nameEl.textContent = state.steam.username;
+    btnLabel.textContent = 'Submit via Steam';
+    hint.textContent = `Issue will be created on your behalf as "${state.steam.username}"`;
+  } else {
+    badge.classList.add('hidden');
+    btnLabel.textContent = 'Sign in with Steam to submit';
+    hint.textContent = 'No GitHub account? Submit via your Steam identity instead';
   }
 }
 
