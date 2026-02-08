@@ -521,7 +521,13 @@ textarea.form-input {
   color: var(--green-txt);
 }
 
-.btn-github:hover {
+.btn-github:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-github.enabled:not(:disabled):hover {
   background: linear-gradient(135deg, rgba(110,154,42,.2), rgba(110,154,42,.15));
   transform: translateY(-2px);
   box-shadow: 0 5px 18px rgba(110,154,42,.2);
@@ -533,15 +539,16 @@ textarea.form-input {
   color: #66c0f4;
 }
 
-.btn-steam:hover:not(:disabled) {
+.btn-steam:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-steam.enabled:not(:disabled):hover {
   background: linear-gradient(135deg, rgba(102,192,244,.2), rgba(102,192,244,.15));
   transform: translateY(-2px);
   box-shadow: 0 5px 18px rgba(102,192,244,.2);
-}
-
-.btn-steam:disabled {
-  opacity: .5;
-  cursor: not-allowed;
 }
 
 .btn-icon {

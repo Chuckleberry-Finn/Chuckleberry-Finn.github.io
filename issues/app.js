@@ -234,6 +234,18 @@ function renderFields() {
   // Initialize validation
   const form = document.getElementById('issue-form');
   FormValidator.initValidation(form);
+  
+  // Disable both submit buttons initially
+  const githubBtn = document.getElementById('btn-github-submit');
+  const steamBtn = document.getElementById('btn-steam-submit');
+  if (githubBtn) {
+    githubBtn.disabled = true;
+    githubBtn.classList.remove('enabled');
+  }
+  if (steamBtn) {
+    steamBtn.disabled = true;
+    steamBtn.classList.remove('enabled');
+  }
 }
 
 /**

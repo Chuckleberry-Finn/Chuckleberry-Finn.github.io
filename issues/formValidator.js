@@ -108,12 +108,27 @@ const FormValidator = {
    */
   updateSubmitButton(form, submitBtn) {
     const isValid = this.isFormValid(form);
-    submitBtn.disabled = !isValid;
     
-    if (isValid) {
-      submitBtn.classList.add('enabled');
-    } else {
-      submitBtn.classList.remove('enabled');
+    // Update both GitHub and Steam buttons
+    const githubBtn = document.getElementById('btn-github-submit');
+    const steamBtn = document.getElementById('btn-steam-submit');
+    
+    if (githubBtn) {
+      githubBtn.disabled = !isValid;
+      if (isValid) {
+        githubBtn.classList.add('enabled');
+      } else {
+        githubBtn.classList.remove('enabled');
+      }
+    }
+    
+    if (steamBtn) {
+      steamBtn.disabled = !isValid;
+      if (isValid) {
+        steamBtn.classList.add('enabled');
+      } else {
+        steamBtn.classList.remove('enabled');
+      }
     }
   },
 
