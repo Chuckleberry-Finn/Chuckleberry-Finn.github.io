@@ -23,8 +23,12 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: 'issues/worker'
           secrets: |
-            GITHUB_TOKEN
+            GITHUB_APP_ID
+            GITHUB_APP_PRIVATE_KEY
+            GITHUB_INSTALLATION_ID
             SESSION_SECRET
         env:
-          GITHUB_TOKEN: ${{ secrets.CHUCK_PAT }}
+          GITHUB_APP_ID: ${{ secrets.GITHUB_APP_ID }}
+          GITHUB_APP_PRIVATE_KEY: ${{ secrets.GITHUB_APP_PRIVATE_KEY }}
+          GITHUB_INSTALLATION_ID: ${{ secrets.GITHUB_INSTALLATION_ID }}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}

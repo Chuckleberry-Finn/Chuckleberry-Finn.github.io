@@ -1,21 +1,18 @@
 /**
  * ============================================================
- *  STEAM ISSUE TRACKER — Cloudflare Worker (Multi-Repo)
+ *  STEAM ISSUE TRACKER — Cloudflare Worker (GitHub App Auth)
  * ============================================================
- *  Handles:
- *    1. Steam OpenID authentication
- *    2. Creating GitHub issues on any repo under GITHUB_OWNER
+ *  Uses GitHub App authentication so issues appear as created
+ *  by a bot instead of a personal account.
  *
- *  ENVIRONMENT VARIABLES (Cloudflare dashboard or wrangler secret):
- *    GITHUB_TOKEN      — PAT or App token with issues:write
- *    GITHUB_OWNER      — Your GitHub username / org
- *    ALLOWED_REPOS     — Comma-separated list of allowed repo names
- *                        (e.g. "my-game,mod-tools,another-project")
- *                        Set to "*" to allow all repos under GITHUB_OWNER
- *    SESSION_SECRET    — Random string for HMAC session tokens
- *    ALLOWED_ORIGINS   — Comma-separated CORS origins
- *
- *  DEPLOY:  npx wrangler deploy
+ *  ENVIRONMENT VARIABLES:
+ *    GITHUB_APP_ID          — Your GitHub App ID
+ *    GITHUB_APP_PRIVATE_KEY — Your GitHub App private key (.pem contents)
+ *    GITHUB_INSTALLATION_ID — Installation ID for your repos
+ *    GITHUB_OWNER           — Your GitHub username / org
+ *    ALLOWED_REPOS          — Comma-separated list of allowed repo names
+ *    SESSION_SECRET         — Random string for HMAC session tokens
+ *    ALLOWED_ORIGINS        — Comma-separated CORS origins
  * ============================================================
  */
 
@@ -125,7 +122,83 @@ async function handleSteamCallback(url, env) {
 
 
 /* ═══════════════════════════════════════════════════════════
-   ISSUE CREATION (MULTI-REPO)
+   GITHUB APP AUTHENTICATION
+   ═══════════════════════════════════════════════════════════ */
+
+async function getGitHubAppToken(env) {
+  // Generate JWT for GitHub App authentication
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    iat: now - 60,  // Issued 60 seconds in the past to account for clock drift
+    exp: now + 600, // Expires in 10 minutes
+    iss: env.GITHUB_APP_ID
+  };
+
+  const jwt = await generateJWT(payload, env.GITHUB_APP_PRIVATE_KEY);
+
+  // Exchange JWT for installation access token
+  const resp = await fetch(
+    `https://api.github.com/app/installations/${env.GITHUB_INSTALLATION_ID}/access_tokens`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${jwt}`,
+        'Accept': 'application/vnd.github+json',
+        'User-Agent': 'SteamIssueTracker/2.0',
+        'X-GitHub-Api-Version': '2022-11-28',
+      }
+    }
+  );
+
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`Failed to get GitHub App token: ${resp.status} ${err}`);
+  }
+
+  const data = await resp.json();
+  return data.token;
+}
+
+async function generateJWT(payload, privateKeyPem) {
+  // Parse PEM private key
+  const pemContents = privateKeyPem
+    .replace('-----BEGIN RSA PRIVATE KEY-----', '')
+    .replace('-----END RSA PRIVATE KEY-----', '')
+    .replace(/\s/g, '');
+  
+  const binaryKey = base64ToArrayBuffer(pemContents);
+  
+  // Import the key
+  const cryptoKey = await crypto.subtle.importKey(
+    'pkcs8',
+    binaryKey,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+
+  // Create JWT header
+  const header = { alg: 'RS256', typ: 'JWT' };
+  
+  // Encode header and payload
+  const encodedHeader = base64UrlEncode(JSON.stringify(header));
+  const encodedPayload = base64UrlEncode(JSON.stringify(payload));
+  const data = `${encodedHeader}.${encodedPayload}`;
+
+  // Sign
+  const signature = await crypto.subtle.sign(
+    'RSASSA-PKCS1-v1_5',
+    cryptoKey,
+    new TextEncoder().encode(data)
+  );
+
+  const encodedSignature = base64UrlEncode(signature);
+  return `${data}.${encodedSignature}`;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ISSUE CREATION (WITH GITHUB APP)
    ═══════════════════════════════════════════════════════════ */
 
 async function handleCreateIssue(request, env, cors) {
@@ -186,24 +259,22 @@ async function handleCreateIssue(request, env, cors) {
     return json({ error: `Repo "${repo}" is not in the allowed list` }, 403, cors);
   }
 
+  // Get GitHub App token
+  console.log('Getting GitHub App token...');
+  let githubToken;
+  try {
+    githubToken = await getGitHubAppToken(env);
+    console.log('Got GitHub App token');
+  } catch (err) {
+    console.error('Failed to get GitHub App token:', err);
+    return json({
+      error: 'GitHub authentication failed',
+      details: err.message
+    }, 500, cors);
+  }
+
   // Create issue via GitHub API
   console.log('Creating GitHub issue:', { owner: env.GITHUB_OWNER, repo });
-  
-  if (!env.GITHUB_TOKEN) {
-    console.error('GITHUB_TOKEN not configured!');
-    return json({ 
-      error: 'Server configuration error', 
-      details: 'GITHUB_TOKEN not set in worker' 
-    }, 500, cors);
-  }
-  
-  if (!env.GITHUB_OWNER) {
-    console.error('GITHUB_OWNER not configured!');
-    return json({ 
-      error: 'Server configuration error', 
-      details: 'GITHUB_OWNER not set in worker' 
-    }, 500, cors);
-  }
   
   const owner = env.GITHUB_OWNER;
   const issuePayload = { 
@@ -222,7 +293,7 @@ async function handleCreateIssue(request, env, cors) {
     ghResp = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
+        'Authorization': `Bearer ${githubToken}`,
         'Accept': 'application/vnd.github+json',
         'User-Agent': 'SteamIssueTracker/2.0',
         'X-GitHub-Api-Version': '2022-11-28',
@@ -252,12 +323,11 @@ async function handleCreateIssue(request, env, cors) {
       console.error(`GitHub API error ${ghResp.status}:`, errText);
     }
     
-    // Provide helpful error messages based on status
     let userMessage = '';
     if (ghResp.status === 401) {
-      userMessage = 'GitHub token is invalid or expired';
+      userMessage = 'GitHub App authentication failed';
     } else if (ghResp.status === 403) {
-      userMessage = 'GitHub token lacks permission to create issues';
+      userMessage = 'GitHub App lacks permission to create issues';
     } else if (ghResp.status === 404) {
       userMessage = `Repository ${owner}/${repo} not found or not accessible`;
     } else if (ghResp.status === 422) {
@@ -311,4 +381,23 @@ function getCorsHeaders(request, env) {
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
   };
+}
+
+function base64ToArrayBuffer(base64) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+function base64UrlEncode(data) {
+  let base64;
+  if (typeof data === 'string') {
+    base64 = btoa(data);
+  } else {
+    base64 = btoa(String.fromCharCode(...new Uint8Array(data)));
+  }
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
 }
