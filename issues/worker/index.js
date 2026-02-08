@@ -100,13 +100,16 @@ async function handleSteamCallback(url, env) {
   }
   const steamId = match[1];
 
-  // Fetch display name
+  // Fetch display name and avatar
   let steamName = `Steam User ${steamId}`;
+  let steamAvatar = '';
   try {
     const pResp = await fetch(`https://steamcommunity.com/profiles/${steamId}/?xml=1`);
     const pXml = await pResp.text();
     const nm = pXml.match(/<steamID><!\[CDATA\[(.*?)\]\]><\/steamID>/);
     if (nm) steamName = nm[1];
+    const av = pXml.match(/<avatarFull><!\[CDATA\[(.*?)\]\]><\/avatarFull>/);
+    if (av) steamAvatar = av[1];
   } catch (e) { console.error('Profile fetch failed:', e); }
 
   // Session token
@@ -115,6 +118,7 @@ async function handleSteamCallback(url, env) {
   redirect.searchParams.set('steam_auth', 'success');
   redirect.searchParams.set('steam_id', steamId);
   redirect.searchParams.set('steam_name', steamName);
+  redirect.searchParams.set('steam_avatar', steamAvatar);
   redirect.searchParams.set('session_token', token);
 
   return Response.redirect(redirect.toString(), 302);
@@ -203,7 +207,7 @@ async function generateJWT(payload, privateKeyPem) {
 
 async function handleCreateIssue(request, env, cors) {
   const body = await request.json();
-  const { title, body: issueBody, labels, repo, session_token, steam_id, steam_name } = body;
+  const { title, body: issueBody, labels, repo, session_token, steam_id, steam_name, steam_avatar } = body;
 
   console.log('Issue creation request:', {
     hasTitle: !!title,
@@ -212,6 +216,7 @@ async function handleCreateIssue(request, env, cors) {
     hasSessionToken: !!session_token,
     hasSteamId: !!steam_id,
     hasSteamName: !!steam_name,
+    hasSteamAvatar: !!steam_avatar,
     sessionTokenLength: session_token?.length,
     steamId: steam_id
   });
