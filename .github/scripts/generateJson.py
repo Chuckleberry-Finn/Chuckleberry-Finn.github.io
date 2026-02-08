@@ -13,6 +13,7 @@ OUTPUT_FILE = "mods.json"
 # Rate limiting
 STEAM_REQUESTS_PER_MINUTE = 10
 steam_request_times = []
+rate_limit_engaged = False  # Only engage after we hit a 429 error
 
 # GITHUB REPO FETCHING
 def get_repos():
@@ -40,8 +41,13 @@ def get_repos():
 
 # RATE LIMITING
 def wait_for_rate_limit():
-    """Ensure we don't exceed STEAM_REQUESTS_PER_MINUTE"""
-    global steam_request_times
+    """Ensure we don't exceed STEAM_REQUESTS_PER_MINUTE (only when rate_limit_engaged)"""
+    global steam_request_times, rate_limit_engaged
+    
+    # Only apply rate limiting if we've been rate limited before
+    if not rate_limit_engaged:
+        return
+    
     now = time.time()
     
     # Remove requests older than 60 seconds
@@ -60,6 +66,13 @@ def wait_for_rate_limit():
     
     # Record this request
     steam_request_times.append(time.time())
+
+def engage_rate_limiting():
+    """Enable rate limiting after receiving a 429 error"""
+    global rate_limit_engaged
+    if not rate_limit_engaged:
+        print("[RATE LIMIT] Engaging rate limiter due to 429 response")
+        rate_limit_engaged = True
 
 # WORKSHOP.TXT FETCHING
 def get_workshop_id_from_repo(repo):
@@ -155,6 +168,7 @@ def get_workshop_data(steam_url, max_retries=3):
             r = requests.get(steam_url, headers=headers, timeout=15)
             
             if r.status_code == 429:  # Too Many Requests
+                engage_rate_limiting()  # Enable rate limiting for all future requests
                 wait_time = 30 * (attempt + 1)
                 print(f"[RATE LIMITED] Waiting {wait_time}s before retry (attempt {attempt + 1}/{max_retries})...")
                 time.sleep(wait_time)
