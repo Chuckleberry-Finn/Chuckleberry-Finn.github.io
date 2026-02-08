@@ -1,6 +1,10 @@
 fetch('mods.json')
   .then(res => res.json())
-  .then(initModUI)
+  .then(data => {
+    // Filter to only show highlights on main page
+    const highlightedMods = data.filter(mod => mod.highlight === true);
+    initModUI(highlightedMods);
+  })
   .catch(err => console.error("Failed to load mods.json", err));
 
 function initModUI(mods) {

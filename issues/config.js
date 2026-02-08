@@ -41,6 +41,7 @@ const CONFIG = {
         { id: "gameversion", label: "Game Version",               type: "text",     required: false, placeholder: "e.g. Build 42.0.5" },
         { id: "modlist",     label: "Other Active Mods",          type: "textarea", required: false, placeholder: "List other mods you're running (if relevant)" },
         { id: "extra",       label: "Additional Context",         type: "textarea", required: false, placeholder: "Screenshots, log files, system specs, etc." },
+        //{ id: "attachment",  label: "Attachment (Optional)",      type: "file",     required: false, accept: ".png,.jpg,.jpeg,.gif,.txt,.log,.zip,.json,.lua,.md", maxSize: 10485760 },
       ]
     },
     feature: {
@@ -52,6 +53,7 @@ const CONFIG = {
         { id: "description", label: "Description",                type: "textarea", required: true,  placeholder: "Describe the feature you'd like to see" },
         { id: "usecase",     label: "Use Case / Motivation",      type: "textarea", required: true,  placeholder: "Why is this feature valuable? What problem does it solve?" },
         { id: "extra",       label: "Additional Context",         type: "textarea", required: false, placeholder: "Mockups, examples, etc." },
+        //{ id: "attachment",  label: "Attachment (Optional)",      type: "file",     required: false, accept: ".png,.jpg,.jpeg,.gif,.txt,.log,.zip,.json,.lua,.md", maxSize: 10485760 },
       ]
     }
   },

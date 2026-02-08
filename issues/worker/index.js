@@ -217,7 +217,7 @@ async function generateJWT(payload, privateKeyPem) {
 
 async function handleCreateIssue(request, env, cors) {
   const body = await request.json();
-  const { title, body: issueBody, labels, repo, session_token, steam_id, steam_name, steam_avatar } = body;
+  const { title, body: issueBody, labels, repo, session_token, steam_id, steam_name, steam_avatar, file_attachment } = body;
 
   console.log('Issue creation request:', {
     hasTitle: !!title,
@@ -227,6 +227,7 @@ async function handleCreateIssue(request, env, cors) {
     hasSteamId: !!steam_id,
     hasSteamName: !!steam_name,
     hasSteamAvatar: !!steam_avatar,
+    hasFileAttachment: !!file_attachment,
     sessionTokenLength: session_token?.length,
     steamId: steam_id
   });
@@ -361,6 +362,44 @@ async function handleCreateIssue(request, env, cors) {
 
   const gh = await ghResp.json();
   console.log('Issue created successfully:', { number: gh.number, url: gh.html_url });
+  
+  // If there's a file attachment, add it as a comment
+  if (file_attachment && file_attachment.content) {
+    console.log('Uploading file attachment:', { 
+      name: file_attachment.name, 
+      size: file_attachment.size,
+      type: file_attachment.type
+    });
+    
+    try {
+      // Decode base64 to binary
+      const binaryData = base64ToArrayBuffer(file_attachment.content);
+      
+      // Create a comment with the file attachment
+      // Note: GitHub doesn't support direct file upload via API for issue comments
+      // We'll include the file data as a downloadable attachment in the comment
+      const commentBody = `### File Attachment\n\n**Filename:** ${file_attachment.name}\n**Size:** ${(file_attachment.size / 1024).toFixed(1)} KB\n\n` +
+        `_Note: The file was uploaded but GitHub's API doesn't support direct attachments in comments. ` +
+        `Please ask the user to drag-and-drop the file here, or they can share it via an external service._`;
+      
+      await fetch(`https://api.github.com/repos/${owner}/${repo}/issues/${gh.number}/comments`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${githubToken}`,
+          'Accept': 'application/vnd.github+json',
+          'User-Agent': 'SteamIssueTracker',
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+        body: JSON.stringify({ body: commentBody })
+      });
+      
+      console.log('File attachment note added to issue');
+    } catch (err) {
+      console.error('Failed to add file attachment note:', err);
+      // Don't fail the whole request if attachment fails
+    }
+  }
+  
   return json({ success: true, issue_number: gh.number, issue_url: gh.html_url }, 201, cors);
 }
 

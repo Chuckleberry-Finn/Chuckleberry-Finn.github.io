@@ -14,6 +14,7 @@ let steamState = {
   token: null
 };
 
+// Cache for GitHub stats
 let githubStatsCache = {};
 
 // Initialize app when DOM is loaded
@@ -27,13 +28,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Check if we should auto-open a specific repo
   const params = new URLSearchParams(window.location.search);
   const repoParam = params.get('repo');
+  const workshopIdParam = params.get('workshop_id');
   
   if (repoParam && mods.length > 0) {
+    // Explicit repo parameter takes priority
     const mod = mods.find(m => m.repo_url.includes(`/${repoParam}`));
     if (mod) {
       showForm(mod);
     }
+  } else if (workshopIdParam && mods.length > 0) {
+    // Workshop ID parameter (works even through Steam's link filter)
+    const mod = mods.find(m => m.steam_url && m.steam_url.includes(`id=${workshopIdParam}`));
+    if (mod) {
+      console.log('Auto-detected mod from workshop_id parameter:', mod.name);
+      showForm(mod);
+    }
   } else {
+    // Try to detect from referer (Steam Workshop link)
+    // This may not work if link goes through Steam's filter
     const detectedMod = detectModFromReferer();
     if (detectedMod) {
       showForm(detectedMod);
@@ -69,6 +81,7 @@ async function loadMods() {
     const response = await fetch(CONFIG.modsJsonPath);
     mods = await response.json();
     
+    // Fetch GitHub stats for all repos
     await fetchGitHubStats();
     
     loadingMsg.style.display = 'none';
@@ -79,6 +92,9 @@ async function loadMods() {
   }
 }
 
+/**
+ * Fetch GitHub stats for all mods
+ */
 async function fetchGitHubStats() {
   const fetchPromises = mods.map(async (mod) => {
     const { owner, repo } = parseRepoUrl(mod.repo_url);
@@ -187,6 +203,7 @@ function showHub() {
   // Update URL
   window.history.pushState({}, '', window.location.pathname);
   
+  // Update topbar
   document.getElementById('topbar-sub').textContent = 'Report bugs & request features';
 }
 
@@ -323,7 +340,17 @@ function submitViaGitHub() {
   
   const prefix = currentTab === 'bug' ? 'Bug' : 'Feature';
   const title = `[${prefix}] ${data.title}`;
-  const body = buildIssueBody(data, issueTypeConfig, false);
+  
+  // Check if there's a file attachment
+  const fileInput = document.getElementById('f-attachment');
+  const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+  
+  let body = buildIssueBody(data, issueTypeConfig, false);
+  
+  if (hasFile) {
+    const file = fileInput.files[0];
+    body += `\n\n---\n**Note:** User has a file attachment (${file.name}, ${(file.size / 1024).toFixed(1)}KB) that they will need to drag-and-drop into this issue after creation, as GitHub's issue creation URL doesn't support file uploads.`;
+  }
   
   const params = new URLSearchParams({
     title: title,
@@ -333,6 +360,10 @@ function submitViaGitHub() {
   
   const url = `https://github.com/${owner}/${repo}/issues/new?${params.toString()}`;
   window.open(url, '_blank');
+  
+  if (hasFile) {
+    showToast('Issue form opened! Don\'t forget to drag-and-drop your attachment into the issue.', false);
+  }
 }
 
 /**
@@ -343,6 +374,7 @@ function handleSteamSubmit() {
     // Save form state before redirect
     saveFormState();
     
+    // Redirect to Steam login
     const returnUrl = encodeURIComponent(window.location.href);
     window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
     return;
@@ -351,6 +383,9 @@ function handleSteamSubmit() {
   submitViaSteam();
 }
 
+/**
+ * Submit via Steam (POST to worker)
+ */
 async function submitViaSteam() {
   if (!currentMod) return;
   
@@ -374,15 +409,42 @@ async function submitViaSteam() {
     
     const prefix = currentTab === 'bug' ? 'Bug' : 'Feature';
     const title = `[${prefix}] ${data.title}`;
-    const body = buildIssueBody(data, issueTypeConfig, true);
+    let body = buildIssueBody(data, issueTypeConfig, true);
+    
+    // Handle file attachment
+    const fileInput = document.getElementById('f-attachment');
+    let fileData = null;
+    
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      btnLabel.textContent = 'Uploading file...';
+      
+      try {
+        // Convert file to base64
+        const base64 = await fileToBase64(file);
+        fileData = {
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          content: base64
+        };
+        
+        body += `\n\n### Attachment\n**File:** ${file.name} (${(file.size / 1024).toFixed(1)}KB)`;
+        btnLabel.textContent = 'Creating issue...';
+      } catch (err) {
+        console.error('File upload error:', err);
+        showToast('Failed to process file attachment', true);
+        btn.disabled = false;
+        btnLabel.textContent = originalText;
+        return;
+      }
+    }
     
     console.log('Submitting to worker:', {
       url: `${CONFIG.worker.url}/api/issues`,
       repo: repo,
       hasToken: !!steamState.token,
-      tokenLength: steamState.token?.length,
-      steamId: steamState.steamId,
-      steamName: steamState.username
+      hasFile: !!fileData
     });
     
     const resp = await fetch(`${CONFIG.worker.url}/api/issues`, {
@@ -396,7 +458,8 @@ async function submitViaSteam() {
         session_token: steamState.token,
         steam_id: steamState.steamId,
         steam_name: steamState.username,
-        steam_avatar: steamState.avatar
+        steam_avatar: steamState.avatar,
+        file_attachment: fileData
       })
     });
     
@@ -450,6 +513,12 @@ async function submitViaSteam() {
     form.reset();
     FormValidator.clearValidation(form);
     
+    // Clear file input display
+    const fileInfo = document.getElementById('f-attachment-info');
+    if (fileInfo) fileInfo.textContent = '';
+    const fileLabel = document.querySelector('.file-input-text');
+    if (fileLabel) fileLabel.textContent = 'Choose file...';
+    
     // Open the created issue in new tab
     if (result.issue_url) {
       window.open(result.issue_url, '_blank');
@@ -467,6 +536,22 @@ async function submitViaSteam() {
     btn.disabled = false;
     btnLabel.textContent = originalText;
   }
+}
+
+/**
+ * Convert file to base64
+ */
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // Remove data URL prefix (e.g., "data:image/png;base64,")
+      const base64 = reader.result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 /**
@@ -680,6 +765,9 @@ function showToast(msg, isError = false) {
   toastTimer = setTimeout(() => el.className = 'toast', 4000);
 }
 
+/**
+ * Detect which mod to show based on referer (Steam Workshop link)
+ */
 function detectModFromReferer() {
   const referer = document.referrer;
   
@@ -690,12 +778,15 @@ function detectModFromReferer() {
   
   console.log('Detected Steam Workshop referer:', referer);
   
+  // Extract Steam Workshop ID from referer
+  // Format: https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437
   const idMatch = referer.match(/[?&]id=(\d+)/);
   if (!idMatch) return null;
   
   const workshopId = idMatch[1];
   console.log('Workshop ID:', workshopId);
   
+  // Find mod with matching Steam URL
   const mod = mods.find(m => m.steam_url && m.steam_url.includes(`id=${workshopId}`));
   
   if (mod) {

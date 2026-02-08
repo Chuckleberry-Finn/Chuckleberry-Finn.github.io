@@ -1,10 +1,4 @@
-/**
- * ============================================================
- *  ISSUE TRACKER STYLES — Matches Chuckleberry-Finn.github.io
- * ============================================================
- */
-
-*, *::before, *::after { 
+*, *::before, *::after {
   box-sizing: border-box; 
   margin: 0; 
   padding: 0; 
@@ -238,7 +232,7 @@ body {
 /* ── Mod cards ─────────────────────────────────────────── */
 .mod-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
   padding-bottom: 50px;
 }
@@ -263,9 +257,9 @@ body {
 }
 
 .mod-card-banner {
-  height: 130px;
+  height: 65px;
   background: var(--surface);
-  background-size: cover;
+  background-size: 110%;
   background-position: center;
   position: relative;
 }
@@ -432,6 +426,77 @@ body {
   color: var(--amber); 
 }
 
+/* ── Info banner ───────────────────────────────────────── */
+.info-banner {
+  display: flex;
+  gap: 14px;
+  background: rgba(110, 154, 42, 0.08);
+  border: 1px solid rgba(110, 154, 42, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.info-banner-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--green-txt);
+}
+
+.info-banner-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.info-banner-content {
+  flex: 1;
+}
+
+.info-banner-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green-txt);
+  margin-bottom: 6px;
+}
+
+.info-banner-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--cream);
+}
+
+.info-banner-text a {
+  color: var(--amber);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info-banner-text a:hover {
+  text-decoration: underline;
+}
+
+.info-banner-text strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.console-path {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--cream-dim);
+}
+
+.console-path strong {
+  color: var(--green-txt);
+  margin-right: 4px;
+}
+
 /* ── Form panel ────────────────────────────────────────── */
 .form-panel {
   background: var(--panel);
@@ -498,6 +563,66 @@ textarea.form-input {
 
 .form-input.invalid {
   border-color: var(--red);
+}
+
+/* ── File input ────────────────────────────────────────── */
+.file-input-container {
+  margin-top: 8px;
+}
+
+.form-file-input {
+  display: none;
+}
+
+.file-input-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--cream);
+  font-size: .88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.file-input-label:hover {
+  background: rgba(255,191,71,.08);
+  border-color: var(--border-h);
+}
+
+.file-input-label svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--amber);
+}
+
+.file-input-text {
+  color: var(--cream-dim);
+}
+
+.file-input-info {
+  margin-top: 8px;
+  font-size: .85rem;
+  color: var(--cream-dim);
+}
+
+.file-input-info.success {
+  color: var(--green-txt);
+}
+
+.file-input-info.error {
+  color: var(--red);
+}
+
+.file-input-help {
+  margin-top: 4px;
+  font-size: .78rem;
+  color: var(--cream-dim);
+  opacity: .7;
 }
 
 /* ── Submit buttons ────────────────────────────────────── */
