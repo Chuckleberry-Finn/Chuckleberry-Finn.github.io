@@ -1,279 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Chuck's Mod Portfolio</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Project Zomboid mods by Chuckleberry-Finn">
-        <link rel="stylesheet" href="main.css">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue Tracker</title>
+<script src="config.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & VARIABLES — matches Chuckleberry-Finn.github.io
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <body>
-        <!-- Dust particles -->
-        <div class="dust-container" aria-hidden="true">
-            <div class="dust"></div>
-            <div class="dust"></div>
-            <div class="dust"></div>
-            <div class="dust"></div>
+:root {
+  --amber:       #ffbf47;
+  --amber-glow:  #ff9500;
+  --amber-dim:   #c4922e;
+  --cream:       #f5e6c8;
+  --cream-dim:   #b8a88c;
+  --bg-top:      #1a1209;
+  --bg-bottom:   #0d0906;
+  --panel:       rgba(30, 22, 15, 0.85);
+  --panel-solid: #1e160f;
+  --surface:     rgba(40, 30, 18, 0.7);
+  --border:      rgba(255, 191, 71, 0.12);
+  --border-h:    rgba(255, 191, 71, 0.25);
+  --input-bg:    rgba(20, 14, 8, 0.8);
+  --input-bd:    rgba(255, 191, 71, 0.15);
+  --green:       #6e9a2a;
+  --green-txt:   #d2e885;
+  --red:         #c0392b;
+  --radius:      4px;
+  --radius-lg:   8px;
+  --font:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { font-size: 15px; }
+body {
+  font-family: var(--font);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  color: var(--cream);
+  min-height: 100vh;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* ── Dust particles (borrowed from main site) ─────────── */
+.dust-container {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 100; overflow: hidden;
+}
+.dust {
+  position: absolute; width: 2px; height: 2px;
+  background: rgba(255, 220, 150, 0.2);
+  border-radius: 50%;
+  animation: float-dust 18s infinite linear;
+}
+.dust:nth-child(1) { left: 15%; animation-delay: 0s; }
+.dust:nth-child(2) { left: 35%; animation-delay: 4s; }
+.dust:nth-child(3) { left: 60%; animation-delay: 2s; }
+.dust:nth-child(4) { left: 85%; animation-delay: 6s; }
+@keyframes float-dust {
+  0%   { transform: translateY(100vh); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-50px); opacity: 0; }
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+.page { position: relative; z-index: 1; min-height: 100vh; }
+.container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+/* ── Top bar ──────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  background: linear-gradient(180deg, rgba(26,18,9,.97), rgba(13,9,6,.95));
+  border-bottom: 1px solid var(--border);
+  padding: 13px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.topbar-home {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .82rem; color: var(--cream-dim); text-decoration: none;
+  padding: 5px 11px; border-radius: var(--radius);
+  border: 1px solid transparent; transition: all .2s;
+}
+.topbar-home:hover { color: var(--amber); border-color: var(--border-h); }
+.topbar-home svg { width: 14px; height: 14px; }
+.topbar-title-area {}
+.topbar-title {
+  font-family: 'Lobster', cursive;
+  font-size: 1.25rem; color: var(--amber);
+  text-shadow: 0 0 8px rgba(255,159,0,.3);
+}
+.topbar-sub { font-size: .73rem; color: var(--cream-dim); margin-top: 1px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── (auth badge removed — no login gate) ─────────────── */
+
+
+/* ═══════════════════════════════════════════════════════════
+   HUB — PROJECT PICKER GRID
+   ═══════════════════════════════════════════════════════════ */
+#view-hub, #view-form { display: none; }
+#view-hub.active, #view-form.active { display: block; }
+
+.hub-header { text-align: center; padding: 44px 0 32px; }
+.hub-header h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 2.2rem; color: var(--amber);
+  text-shadow: 0 0 5px rgba(255,204,102,.4), 0 0 15px rgba(255,149,0,.2);
+}
+.hub-header p { font-size: .92rem; color: var(--cream-dim); margin-top: 6px; }
+
+.loading-msg {
+  text-align: center; padding: 40px; color: var(--cream-dim);
+  font-size: .9rem;
+}
+
+/* ── Mod cards ────────────────────────────────────────── */
+.mod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding-bottom: 50px;
+}
+
+.mod-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  text-decoration: none; color: inherit; display: block;
+}
+.mod-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-h);
+  box-shadow: 0 10px 35px rgba(0,0,0,.5), 0 0 20px rgba(255,191,71,.06);
+}
+
+.mod-card-banner {
+  height: 130px;
+  background: var(--surface);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.mod-card-banner::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, var(--panel-solid) 0%, transparent 55%);
+}
+
+.mod-card-body { padding: 14px 18px 18px; }
+.mod-card-name {
+  font-size: 1rem; font-weight: 700; color: var(--cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+.mod-card-meta {
+  font-size: .78rem; color: var(--cream-dim);
+  display: flex; align-items: center; gap: 12px;
+}
+.mod-card-subs {
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.mod-card-subs svg { width: 12px; height: 12px; opacity: .6; }
+
+.mod-card-arrow {
+  position: absolute; bottom: 16px; right: 16px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,191,71,.06); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cream-dim); transition: all .25s;
+}
+.mod-card:hover .mod-card-arrow {
+  background: var(--amber); border-color: var(--amber); color: var(--bg-top);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   FORM VIEW — ISSUE SUBMISSION
+   ═══════════════════════════════════════════════════════════ */
+
+.form-content { padding: 24px 0 50px; }
+
+/* ── Mod header on form page ──────────────────────────── */
+.form-mod-header {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+.form-mod-banner {
+  width: 72px; height: 72px; border-radius: var(--radius);
+  background: var(--surface); background-size: cover;
+  background-position: center; flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.form-mod-info h2 { font-size: 1.1rem; font-weight: 700; color: var(--cream); }
+.form-mod-info p { font-size: .82rem; color: var(--cream-dim); margin-top: 2px; }
+.form-mod-info a {
+  color: var(--amber); text-decoration: none; font-size: .82rem;
+}
+.form-mod-info a:hover { color: #fff; }
+
+/* ── Shared button icon ───────────────────────────────── */
+.btn-icon { width: 17px; height: 17px; flex-shrink: 0; }
+.sign-out-link {
+  font-size: .76rem; color: var(--cream-dim); text-decoration: underline;
+  cursor: pointer; display: inline;
+}
+.sign-out-link:hover { color: var(--amber); }
+
+/* ── Tabs ─────────────────────────────────────────────── */
+.tabs {
+  display: flex; gap: 2px; margin-bottom: 20px;
+  background: rgba(0,0,0,.3); border-radius: var(--radius-lg); padding: 4px;
+}
+.tab {
+  flex: 1; padding: 10px 16px; background: transparent; border: none;
+  border-radius: 6px; font-family: var(--font);
+  font-size: .88rem; font-weight: 600; color: var(--cream-dim);
+  cursor: pointer; transition: all .2s;
+}
+.tab:hover { background: rgba(255,191,71,.06); color: var(--cream); }
+.tab.active { background: var(--surface); color: var(--amber); }
+
+.form-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px 30px;
+}
+
+.field { margin-bottom: 20px; }
+.field label {
+  display: block; font-size: .88rem; font-weight: 600; color: var(--cream);
+  margin-bottom: 8px;
+}
+.req { color: var(--red); margin-left: 2px; }
+
+.field input, .field textarea, .field select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-bd);
+  border-radius: var(--radius);
+  color: var(--cream);
+  font-family: var(--font);
+  font-size: .88rem;
+  padding: 10px 12px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(255,191,71,.1);
+}
+.field textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* ── Submit section with side-by-side buttons ──────────── */
+.submit-section {
+  margin-top: 32px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border);
+}
+.submit-section h3 {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--cream-dim);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* Container for buttons in a row */
+.submit-buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Each button option */
+.submit-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* The button itself */
+.submit-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--cream);
+  font-family: var(--font);
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--border-h);
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.github-btn:hover:not(:disabled) {
+  background: rgba(36, 41, 46, 0.9);
+  border-color: #444;
+}
+
+.steam-btn:hover:not(:disabled) {
+  background: rgba(23, 26, 33, 0.9);
+  border-color: #1b2838;
+}
+
+/* Description text under each button */
+.btn-description {
+  font-size: .75rem;
+  color: var(--cream-dim);
+  text-align: center;
+  line-height: 1.4;
+  max-width: 280px;
+  margin: 0;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 640px) {
+  .submit-buttons-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ── Steam badge (for when user is logged in) ──────────── */
+.steam-user-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(23, 26, 33, 0.6);
+  border: 1px solid rgba(27, 40, 56, 0.5);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-size: .8rem;
+  margin-bottom: 16px;
+}
+.steam-user-badge.hidden { display: none; }
+.steam-user-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ── Toast ────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  font-size: .88rem;
+  color: var(--cream);
+  opacity: 0;
+  transition: all .3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  z-index: 9999;
+  max-width: 90%;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.error {
+  background: var(--red);
+  border-color: rgba(192, 57, 43, 0.4);
+  color: #fff;
+}
+
+/* ── Utility ──────────────────────────────────────────── */
+.hidden { display: none !important; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--cream-dim);
+  font-family: var(--font);
+  font-size: .84rem;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .2s;
+}
+.back-btn:hover {
+  border-color: var(--border-h);
+  color: var(--amber);
+  background: rgba(255,191,71,.04);
+}
+.back-btn svg { width: 14px; height: 14px; }
+</style>
+</head>
+<body>
+<div class="dust-container">
+  <div class="dust"></div>
+  <div class="dust"></div>
+  <div class="dust"></div>
+  <div class="dust"></div>
+</div>
+
+<div class="page">
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="https://chuckleberry-finn.github.io" class="topbar-home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Home
+      </a>
+      <div class="topbar-title-area">
+        <div class="topbar-title">Issue Tracker</div>
+        <div class="topbar-sub"><strong>Report Issues</strong><br>& Request Features</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <!-- (no login badge) -->
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- ═══════════════════════════════════════════════════════════
+         HUB VIEW — Project picker
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="view-hub">
+      <div class="hub-header">
+        <h1>Select a Project</h1>
+        <p>Choose which mod you'd like to report about</p>
+      </div>
+      <div id="mod-grid-mount" class="mod-grid">
+        <div class="loading-msg">Loading projects...</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FORM VIEW — Issue submission
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="view-form">
+      <div class="form-content">
+        <button class="back-btn" onclick="backToHub()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to projects
+        </button>
+
+        <div class="form-mod-header">
+          <div id="form-mod-banner" class="form-mod-banner"></div>
+          <div class="form-mod-info">
+            <h2 id="form-mod-name">Mod Name</h2>
+            <p id="form-mod-desc">Description</p>
+            <a id="form-mod-link" href="#" target="_blank">View on Steam Workshop</a>
+          </div>
         </div>
 
-        <main class="responsive-wrapper">
+        <div class="tabs" id="tabs-mount">
+          <!-- tabs inserted here -->
+        </div>
 
-            <!-- LEFT: Records -->
-            <section class="records-section">
-                <div class="stack" id="modStack" role="listbox" aria-label="Mod selection" tabindex="0"></div>
-                <div class="mobile-hint" id="mobileHint">← Swipe →</div>
-            </section>
+        <form id="issue-form" class="form-box">
+          <div id="fields-mount"></div>
 
-            <!-- MIDDLE: Turntable -->
-            <section class="turntable-section">
-                <!-- Title -->
-                <header class="title-section">
-                    <div class="neon-sign">
-                        <span class="neon-text">Chuck's</span>
-                        <img src="https://projectzomboid.com/blog/content/themes/rw-project-zomboid/assets/images/logo.png" width="132" alt="Project Zomboid Logo" class="pz-logo">
-                        <span class="neon-text">Mods</span>
-                    </div>
-                </header>
-                
-                <!-- Total Subscriber Count -->
-                <div class="total-subs" id="totalSubs">
-                    <span class="total-subs-count" id="totalSubsCount">Loading...</span> total subscribers
-                </div>
-                
-                <h2 class="mod-title" id="modTitle">Select a mod</h2>
-                
-                <div class="turntable">
-                    <svg class="turntable-svg" viewBox="0 0 418 352" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="bodyTop" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#2d2d2d"/>
-                                <stop offset="100%" stop-color="#1a1a1a"/>
-                            </linearGradient>
-                            <linearGradient id="bodyFront" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#1a1a1a"/>
-                                <stop offset="100%" stop-color="#0f0f0f"/>
-                            </linearGradient>
-                            <linearGradient id="platterFelt" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#2a2a2a"/>
-                                <stop offset="100%" stop-color="#1a1a1a"/>
-                            </linearGradient>
-                            <linearGradient id="dialGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#555"/>
-                                <stop offset="50%" stop-color="#333"/>
-                                <stop offset="100%" stop-color="#222"/>
-                            </linearGradient>
-                            <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="3" result="blur"/>
-                                <feMerge>
-                                    <feMergeNode in="blur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-                        
-                        <!-- Cabinet front face (3D depth) -->
-                        <path d="M17,308 L17,325 Q17,336 28,336 L390,336 Q401,336 401,325 L401,308 L17,308 Z" fill="url(#bodyFront)"/>
-                        
-                        <!-- Cabinet top surface -->
-                        <rect x="17" y="17" width="385" height="297" rx="7" fill="url(#bodyTop)"/>
-                        <rect x="17" y="17" width="385" height="297" rx="7" fill="none" stroke="#3a3a3a" stroke-width="1"/>
-                        
-                        <!-- Inner recess -->
-                        <rect x="28" y="28" width="363" height="275" rx="4" fill="#141414"/>
-                        
-                        <!-- Platter base -->
-                        <circle cx="176" cy="165" r="116" fill="#0a0a0a"/>
-                        
-                        <!-- Felt mat - CIRCLE centered at 176,165 -->
-                        <circle cx="176" cy="165" r="108" fill="url(#platterFelt)"/>
-                        <circle cx="176" cy="165" r="108" fill="none" stroke="#444" stroke-width="0.5" opacity="0.5"/>
-                        
-                        <!-- Spindle -->
-                        <circle cx="176" cy="165" r="4" fill="#444"/>
-                        <circle cx="176" cy="165" r="2" fill="#666"/>
-                        
-                        <!-- === CONTROL PANEL AREA === -->
-                        <rect x="308" y="60" width="66" height="232" rx="3" fill="#1a1a1a"/>
-                        
-                        <!-- Dial 1 - Speed (smaller and lower) -->
-                        <circle cx="341" cy="105" r="16" fill="url(#dialGrad)"/>
-                        <circle cx="341" cy="105" r="13" fill="#2a2a2a"/>
-                        <circle cx="341" cy="105" r="10" fill="#333"/>
-                        <line x1="341" y1="105" x2="341" y2="95" stroke="#888" stroke-width="2" stroke-linecap="round"/>
-                        <text x="341" y="132" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">SPEED</text>
-                        
-                        <!-- Dial 2 - Pitch (smaller and lower) -->
-                        <circle cx="341" cy="170" r="16" fill="url(#dialGrad)"/>
-                        <circle cx="341" cy="170" r="13" fill="#2a2a2a"/>
-                        <circle cx="341" cy="170" r="10" fill="#333"/>
-                        <line x1="341" y1="170" x2="348" y2="163" stroke="#888" stroke-width="2" stroke-linecap="round"/>
-                        <text x="341" y="197" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">PITCH</text>
-                        
-                        <!-- Power button -->
-                        <circle cx="341" cy="235" r="11" fill="#222" stroke="#333" stroke-width="1"/>
-                        <circle cx="341" cy="235" r="6" fill="#1a1a1a"/>
-                        
-                        <!-- Red LED with glow -->
-                        <circle cx="341" cy="270" r="5" fill="#ff3333" filter="url(#redGlow)"/>
-                        <circle cx="341" cy="270" r="3" fill="#ff6666"/>
-                        <circle cx="341" cy="270" r="1.5" fill="#ffaaaa"/>
-                        
-                        <!-- Tonearm rest -->
-                        <rect x="291" y="66" width="9" height="17" rx="2" fill="#222"/>
-                    </svg>
-                    
-                    <!-- Vinyl record - CIRCLE centered on platter at 176,165 in SVG coords -->
-                    <div class="vinyl-record" id="vinylRecord">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <radialGradient id="recordShine" cx="30%" cy="30%" r="70%">
-                                    <stop offset="0%" stop-color="rgba(255,255,255,0.06)"/>
-                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-                                </radialGradient>
-                            </defs>
-                            <!-- Record base - CIRCLE -->
-                            <circle cx="100" cy="100" r="98" fill="#0d0d0d"/>
-                            <circle cx="100" cy="100" r="96" fill="#1a1a1a"/>
-                            
-                            <!-- Grooves - CIRCLES -->
-                            <circle cx="100" cy="100" r="88" fill="none" stroke="#222" stroke-width="0.3"/>
-                            <circle cx="100" cy="100" r="78" fill="none" stroke="#252525" stroke-width="0.3"/>
-                            <circle cx="100" cy="100" r="68" fill="none" stroke="#222" stroke-width="0.3"/>
-                            <circle cx="100" cy="100" r="58" fill="none" stroke="#252525" stroke-width="0.3"/>
-                            <circle cx="100" cy="100" r="48" fill="none" stroke="#222" stroke-width="0.3"/>
-                            
-                            <!-- Shine -->
-                            <circle cx="100" cy="100" r="96" fill="url(#recordShine)"/>
-                        </svg>
-                        
-                        <!-- Center label - LARGER -->
-                        <div class="record-label">
-                            <img id="modPreview" src="" alt="Album Art">
-                        </div>
-                    </div>
-                    
-                    <!-- Tonearm - positioned over vinyl when playing -->
-                    <div class="tonearm" id="tonearm">
-                        <svg viewBox="0 0 143 132" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="armMetal" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#d0d0d0"/>
-                                    <stop offset="25%" stop-color="#a8a8a8"/>
-                                    <stop offset="50%" stop-color="#7a7a7a"/>
-                                    <stop offset="75%" stop-color="#555"/>
-                                    <stop offset="100%" stop-color="#3a3a3a"/>
-                                </linearGradient>
-                                <linearGradient id="pivotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#444"/>
-                                    <stop offset="50%" stop-color="#2a2a2a"/>
-                                    <stop offset="100%" stop-color="#1a1a1a"/>
-                                </linearGradient>
-                                <linearGradient id="counterweightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#555"/>
-                                    <stop offset="50%" stop-color="#333"/>
-                                    <stop offset="100%" stop-color="#222"/>
-                                </linearGradient>
-                                <radialGradient id="armTubeHighlight" cx="50%" cy="20%">
-                                    <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
-                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-                                </radialGradient>
-                            </defs>
-                            
-                            <!-- Pivot base shadow -->
-                            <ellipse cx="127" cy="19" rx="13" ry="3" fill="rgba(0,0,0,0.3)"/>
-                            
-                            <!-- Pivot base -->
-                            <circle cx="127" cy="17" r="13" fill="url(#pivotGrad)"/>
-                            <circle cx="127" cy="17" r="13" fill="none" stroke="#555" stroke-width="0.5"/>
-                            <circle cx="127" cy="17" r="10" fill="#2a2a2a"/>
-                            <circle cx="127" cy="17" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
-                            <circle cx="127" cy="17" r="6" fill="#333"/>
-                            <circle cx="125" cy="15" r="2" fill="rgba(255,255,255,0.15)"/>
-                            
-                            <!-- Counterweight with detail -->
-                            <ellipse cx="132" cy="17" rx="9" ry="7" fill="url(#counterweightGrad)"/>
-                            <ellipse cx="132" cy="17" rx="9" ry="7" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
-                            <ellipse cx="131" cy="15.5" rx="5" ry="3" fill="rgba(255,255,255,0.08)"/>
-                            <line x1="132" y1="12" x2="132" y2="22" stroke="#1a1a1a" stroke-width="0.5"/>
-                            
-                            <!-- Arm tube - main body -->
-                            <rect x="17" y="12" width="110" height="9" rx="3" fill="url(#armMetal)"/>
-                            
-                            <!-- Arm tube highlight -->
-                            <rect x="17" y="12" width="110" height="4" rx="3" fill="url(#armTubeHighlight)" opacity="0.6"/>
-                            
-                            <!-- Arm tube edge shadow -->
-                            <rect x="17" y="18" width="110" height="2" rx="1" fill="rgba(0,0,0,0.3)"/>
-                            
-                            <!-- Arm tube details/rings -->
-                            <line x1="40" y1="12" x2="40" y2="21" stroke="#555" stroke-width="0.5"/>
-                            <line x1="60" y1="12" x2="60" y2="21" stroke="#555" stroke-width="0.5"/>
-                            <line x1="80" y1="12" x2="80" y2="21" stroke="#555" stroke-width="0.5"/>
-                            <line x1="100" y1="12" x2="100" y2="21" stroke="#555" stroke-width="0.5"/>
-                            
-                            <!-- Headshell mount with 3D effect -->
-                            <rect x="9" y="10" width="13" height="13" rx="2" fill="#666"/>
-                            <rect x="9" y="10" width="13" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
-                            <rect x="9" y="10" width="13" height="13" rx="2" fill="none" stroke="#444" stroke-width="0.5"/>
-                            
-                            <!-- Headshell with shading -->
-                            <polygon points="0,11 9,9 9,24 0,22" fill="#555"/>
-                            <polygon points="0,11 9,9 9,16 0,14.5" fill="rgba(255,255,255,0.08)"/>
-                            <polygon points="0,11 9,9 9,24 0,22" fill="none" stroke="#333" stroke-width="0.5"/>
-                            
-                            <!-- Cartridge with detail -->
-                            <rect x="-2" y="13" width="9" height="7" rx="1" fill="#2a2a2a"/>
-                            <rect x="-2" y="13" width="9" height="3" rx="1" fill="rgba(255,255,255,0.06)"/>
-                            <rect x="-2" y="13" width="9" height="7" rx="1" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
-                            
-                            <!-- Stylus with shine -->
-                            <line x1="2" y1="20" x2="2" y2="26" stroke="#999" stroke-width="1.5"/>
-                            <line x1="2" y1="20" x2="2" y2="24" stroke="#ccc" stroke-width="0.5"/>
-                            <circle cx="2" cy="26" r="1.5" fill="#e0e0e0"/>
-                            <circle cx="1.5" cy="25.5" r="0.8" fill="#fff"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div id="modInfo" class="mod-info"></div>
-                <div id="modVideoContainer" class="mod-video"></div>
-            </section>
+          <div class="submit-section">
+            <h3>SUBMIT VIA</h3>
+            <div class="submit-buttons-container">
+              <div class="submit-option">
+                <button type="button" class="submit-btn github-btn" onclick="submitViaGitHub()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  Submit via GitHub
+                </button>
+                <p class="btn-description">Opens GitHub — you'll review & submit from your account</p>
+              </div>
+              
+              <div class="submit-option">
+                <button type="button" id="btn-steam-submit" class="submit-btn steam-btn" onclick="handleSteamSubmit()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/>
+                  </svg>
+                  <span id="steam-btn-label">Sign in with Steam to submit</span>
+                </button>
+                <p class="btn-description" id="steam-submit-hint">No GitHub account? Submit via your Steam identity instead</p>
+              </div>
+            </div>
 
-            <!-- RIGHT: Profile -->
-            <aside class="extra-panel">
-                <!-- Issue Tracker Button -->
-                <a href="issues/" class="issue-tracker-button">
-                    <div class="issue-tracker-icon">
-                        <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/spifforoach.png" alt="Report Issue" class="issue-tracker-img">
-                    </div>
-                    <div class="issue-tracker-content">
-                        <div class="issue-tracker-title">Report Issues & Request Features</div>
-                        <div class="issue-tracker-subtitle">Help improve the mods →</div>
-                    </div>
-                </a>
-                
-                <div class="panel-profile" id="github-profile">
-                    <script src="js/githubProfile.js" defer></script>
-                </div>
-                <div class="panel-row">
-                    <script src="https://apis.google.com/js/platform.js" async defer></script>
-                    <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
-                </div>
-                <div class="panel-row">
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                    <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
-                </div>
-                <div class="panel-row discord-row">
-                    <a href="https://discord.gg/pGWr5TucHn">
-                        <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png" alt="PZ Modding Community" loading="lazy">
-                    </a>
-                </div>
-            </aside>
+            <!-- Steam user badge (shown when logged in) -->
+            <div id="steam-user-badge" class="steam-user-badge hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/>
+              </svg>
+              <span>Signed in as <strong id="steam-user-name">Steam User</strong></span>
+              <span class="sign-out-link" onclick="signOutSteam()">Sign out</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-        </main>
-        
-        <script src="js/script.js"></script>
-    </body>
+<div id="toast" class="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════════════════════ */
+const state = {
+  mods: [],
+  currentMod: null,
+  currentTab: 'bug',
+  steam: { username: null, steamId: null, token: null }
+};
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+(async function() {
+  checkSteamCallback();
+  restoreSteam();
+  updateSteamUI();
+
+  await loadMods();
+  initViews();
+})();
+
+async function loadMods() {
+  try {
+    const resp = await fetch(CONFIG.modsJsonPath);
+    state.mods = await resp.json();
+  } catch(err) {
+    console.error('Failed to load mods.json:', err);
+    document.getElementById('mod-grid-mount').innerHTML =
+      '<div class="loading-msg">Error loading projects. Please refresh.</div>';
+  }
+}
+
+function initViews() {
+  const p = new URLSearchParams(window.location.search);
+  const repoName = p.get('repo');
+  if (repoName) {
+    const mod = state.mods.find(m => parseRepoUrl(m.repo_url).repo === repoName);
+    if (mod) {
+      showForm(mod);
+      return;
+    }
+  }
+  showHub();
+}
+
+function showHub() {
+  document.getElementById('view-hub').classList.add('active');
+  document.getElementById('view-form').classList.remove('active');
+  renderHub();
+}
+
+function showForm(mod) {
+  state.currentMod = mod;
+  document.getElementById('view-hub').classList.remove('active');
+  document.getElementById('view-form').classList.add('active');
+  renderForm();
+}
+
+function backToHub() {
+  window.history.replaceState({}, '', window.location.pathname);
+  showHub();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HUB RENDERING
+   ═══════════════════════════════════════════════════════════ */
+function renderHub() {
+  const grid = document.getElementById('mod-grid-mount');
+  if (!state.mods || state.mods.length === 0) {
+    grid.innerHTML = '<div class="loading-msg">No projects available yet.</div>';
+    return;
+  }
+
+  grid.innerHTML = state.mods.map(mod => {
+    const banner = mod.preview_url || '';
+    const subs = formatNumber(mod.subscriptions);
+    const { owner, repo } = parseRepoUrl(mod.repo_url);
+    return `
+      <a href="?repo=${encodeURIComponent(repo)}" class="mod-card" onclick="event.preventDefault(); showForm(state.mods.find(m=>m.name==='${esc(mod.name)}'))">
+        <div class="mod-card-banner" style="background-image: url('${esc(banner)}')"></div>
+        <div class="mod-card-body">
+          <div class="mod-card-name">${esc(mod.name)}</div>
+          <div class="mod-card-meta">
+            <span class="mod-card-subs">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              ${subs}
+            </span>
+          </div>
+        </div>
+        <div class="mod-card-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14m-7-7l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FORM RENDERING
+   ═══════════════════════════════════════════════════════════ */
+function renderForm() {
+  const mod = state.currentMod;
+  document.getElementById('form-mod-banner').style.backgroundImage = `url('${esc(mod.preview_url||'')}')`;
+  document.getElementById('form-mod-name').textContent = mod.name;
+  document.getElementById('form-mod-desc').textContent = mod.description || 'No description';
+  document.getElementById('form-mod-link').href = mod.steam_url;
+
+  // Tabs
+  const tabsContainer = document.getElementById('tabs-mount');
+  tabsContainer.innerHTML = Object.entries(CONFIG.issueTypes).map(([key, type]) =>
+    `<button type="button" class="tab ${key === state.currentTab ? 'active' : ''}" data-type="${key}" onclick="switchTab('${key}')">${esc(type.label)}</button>`
+  ).join('');
+
+  renderFields();
+  updateSteamUI();
+}
+
+function renderFields() {
+  const type = CONFIG.issueTypes[state.currentTab];
+  const container = document.getElementById('fields-mount');
+  container.innerHTML = '';
+
+  type.fields.forEach(field => {
+    const div = document.createElement('div');
+    div.className = 'field';
+    const req = field.required ? '<span class="req">*</span>' : '';
+    let input = '';
+    switch (field.type) {
+      case 'text':
+        input = `<input type="text" id="f-${field.id}" placeholder="${esc(field.placeholder||'')}" ${field.required?'required':''}>`;
+        break;
+      case 'textarea':
+        input = `<textarea id="f-${field.id}" placeholder="${esc(field.placeholder||'')}" ${field.required?'required':''}></textarea>`;
+        break;
+      case 'select':
+        const opts = (field.options||[]).map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('');
+        input = `<select id="f-${field.id}" ${field.required?'required':''}><option value="">Select...</option>${opts}</select>`;
+        break;
+    }
+    div.innerHTML = `<label for="f-${field.id}">${esc(field.label)}${req}</label>${input}`;
+    container.appendChild(div);
+  });
+}
+
+function switchTab(type) {
+  state.currentTab = type;
+  document.querySelectorAll('#tabs-mount .tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.type === type));
+  renderFields();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VALIDATION — shared by both submit paths
+   ═══════════════════════════════════════════════════════════ */
+function validateAndCollect() {
+  const type = CONFIG.issueTypes[state.currentTab];
+  const data = {};
+  for (const f of type.fields) {
+    const el = document.getElementById(`f-${f.id}`);
+    if (el) data[f.id] = el.value.trim();
+  }
+  for (const f of type.fields) {
+    if (f.required && !data[f.id]) {
+      showToast(`Please fill in: ${f.label}`, true);
+      document.getElementById(`f-${f.id}`)?.focus();
+      return null;
+    }
+  }
+  return data;
+}
+
+function buildBody(type, data, isSteam) {
+  const mod = state.currentMod;
+  const lines = [];
+  if (isSteam && state.steam.username) {
+    lines.push(`> **Submitted by Steam user:** ${state.steam.username} (ID: \`${state.steam.steamId}\`)`);
+  } else {
+    lines.push(`> **Submitted via:** Issue Tracker`);
+  }
+  lines.push(`> **Mod:** [${mod.name}](${mod.steam_url})`);
+  lines.push('');
+
+  for (const f of type.fields) {
+    if (f.id === 'title' || !data[f.id]) continue;
+    lines.push(`### ${f.label}`);
+    lines.push(data[f.id]);
+    lines.push('');
+  }
+
+  lines.push('---');
+  lines.push(`*Submitted via [Issue Tracker](${window.location.href})*`);
+  return lines.join('\n');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SUBMIT VIA GITHUB (no login needed)
+   ═══════════════════════════════════════════════════════════ */
+function submitViaGitHub() {
+  if (!state.currentMod) return;
+  const data = validateAndCollect();
+  if (!data) return;
+
+  const { owner, repo } = parseRepoUrl(state.currentMod.repo_url);
+  const type = CONFIG.issueTypes[state.currentTab];
+  const prefix = state.currentTab === 'bug' ? 'Bug' : 'Feature';
+  const title = data.title || 'Untitled';
+  const body = buildBody(type, data, false);
+
+  const params = new URLSearchParams({
+    title: `[${prefix}] ${title}`,
+    body: body,
+    labels: type.githubLabel,
+  });
+
+  // Redirect to GitHub — they handle auth themselves
+  window.open(`https://github.com/${owner}/${repo}/issues/new?${params}`, '_blank');
+  showToast('Opened GitHub — review and submit your issue there!');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SUBMIT VIA STEAM (requires Steam login)
+   ═══════════════════════════════════════════════════════════ */
+function handleSteamSubmit() {
+  // If not logged in to Steam yet, start the login flow
+  if (!state.steam.token) {
+    if (!CONFIG.worker?.url) {
+      showToast('Steam login is not configured for this tracker.', true);
+      return;
+    }
+    // Redirect to worker's Steam OpenID flow
+    const returnUrl = encodeURIComponent(window.location.href);
+    window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
+    return;
+  }
+
+  // Already logged in — validate and submit
+  const data = validateAndCollect();
+  if (!data) return;
+
+  const { owner, repo } = parseRepoUrl(state.currentMod.repo_url);
+  const type = CONFIG.issueTypes[state.currentTab];
+  const prefix = state.currentTab === 'bug' ? 'Bug' : 'Feature';
+  const title = data.title || 'Untitled';
+  const body = buildBody(type, data, true);
+
+  doSteamSubmit(`[${prefix}] ${title}`, body, type.githubLabel, repo);
+}
+
+async function doSteamSubmit(title, body, label, repo) {
+  const btn = document.getElementById('btn-steam-submit');
+  btn.disabled = true;
+  document.getElementById('steam-btn-label').textContent = 'Submitting...';
+
+  try {
+    const resp = await fetch(`${CONFIG.worker.url}/api/issues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title, body, labels: [label], repo,
+        session_token: state.steam.token,
+        steam_id: state.steam.steamId,
+        steam_name: state.steam.username,
+      }),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || `HTTP ${resp.status}`);
+    }
+    const result = await resp.json();
+    showToast(`Issue #${result.issue_number} created successfully!`);
+    document.getElementById('issue-form').reset();
+  } catch(err) {
+    showToast(`Failed: ${err.message}`, true);
+  } finally {
+    btn.disabled = false;
+    document.getElementById('steam-btn-label').textContent = 'Submit via Steam';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STEAM AUTH STATE
+   ═══════════════════════════════════════════════════════════ */
+function checkSteamCallback() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('steam_auth') === 'success') {
+    state.steam = {
+      username: p.get('steam_name') || 'Steam User',
+      steamId: p.get('steam_id'),
+      token: p.get('session_token'),
+    };
+    saveSteam();
+    // Clean auth params, keep ?repo=
+    const repo = p.get('repo');
+    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
+    showToast(`Signed in as Steam user: ${state.steam.username}`);
+  } else if (p.get('steam_auth') === 'error') {
+    const repo = p.get('repo');
+    window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
+    showToast('Steam authentication failed.', true);
+  }
+}
+
+function restoreSteam() {
+  try {
+    const s = localStorage.getItem('cfi_steam');
+    if (s) state.steam = JSON.parse(s);
+  } catch(e) {}
+}
+
+function saveSteam() {
+  localStorage.setItem('cfi_steam', JSON.stringify(state.steam));
+}
+
+function signOutSteam() {
+  state.steam = { username: null, steamId: null, token: null };
+  localStorage.removeItem('cfi_steam');
+  updateSteamUI();
+  showToast('Signed out of Steam.');
+}
+
+function updateSteamUI() {
+  const badge = document.getElementById('steam-user-badge');
+  const nameEl = document.getElementById('steam-user-name');
+  const btnLabel = document.getElementById('steam-btn-label');
+  const hint = document.getElementById('steam-submit-hint');
+  if (!badge) return;
+
+  if (state.steam.token) {
+    badge.classList.remove('hidden');
+    nameEl.textContent = state.steam.username;
+    btnLabel.textContent = 'Submit via Steam';
+    hint.textContent = `Issue will be created on your behalf as "${state.steam.username}"`;
+  } else {
+    badge.classList.add('hidden');
+    btnLabel.textContent = 'Sign in with Steam to submit';
+    hint.textContent = 'No GitHub account? Submit via your Steam identity instead';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg, isError = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast show ${isError ? 'error' : ''}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = 'toast', 4000);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UTILS
+   ═══════════════════════════════════════════════════════════ */
+function parseRepoUrl(url) {
+  const m = url.match(/github\.com\/([^/]+)\/([^/]+)/);
+  return m ? { owner: m[1], repo: m[2] } : { owner: CONFIG.defaultOwner, repo: 'unknown' };
+}
+
+function formatNumber(n) {
+  if (!n) return '0';
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+  return n.toString();
+}
+
+function esc(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+</script>
+</body>
 </html>
