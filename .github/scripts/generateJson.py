@@ -216,25 +216,32 @@ def generate_json(repos):
     seen_workshop_ids = set()  # To track already-included mods by workshop ID
 
     # FIRST PASS: Process repos with homepage Steam URLs (highlights)
-    print("\n=== FIRST PASS: Processing highlighted mods (homepage URLs) ===")
+    print("\n" + "="*60)
+    print("=== FIRST PASS: Processing highlighted mods (homepage URLs) ===")
+    print("="*60)
     highlight_repos = [repo for repo in repos if repo.get("homepage", "") and "steamcommunity.com" in repo.get("homepage", "")]
     
-    for repo in highlight_repos:
+    total_highlights = len(highlight_repos)
+    print(f"Found {total_highlights} highlighted repos to process\n")
+    
+    for idx, repo in enumerate(highlight_repos, 1):
+        print(f"\n[{idx}/{total_highlights}] ", end="")
+        
         workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
         
         if not workshop_id:
-            print(f"[SKIP] No workshop ID found for {repo['name']}")
+            print(f"SKIP - No workshop ID found for {repo['name']}")
             continue
         
         if workshop_id in seen_workshop_ids:
-            print(f"[SKIP] Duplicate workshop ID {workshop_id} for {repo['name']}")
+            print(f"SKIP - Duplicate workshop ID {workshop_id} for {repo['name']}")
             continue
         
         seen_workshop_ids.add(workshop_id)
         github_url = repo["html_url"]
         repo_name = repo["name"]
         
-        print(f"[PROCESSING HIGHLIGHT] {repo_name} (ID: {workshop_id})")
+        print(f"Processing: {repo_name} (ID: {workshop_id})")
         subs_str, title, banner, video_links = get_workshop_data(steam_url)
         
         # Use repo name as fallback if title fetch failed
@@ -261,24 +268,37 @@ def generate_json(repos):
         mods.append(mod_data)
         
         status = "✓" if title and banner and subs_str != "?" else "⚠️ (missing data)"
-        print(f"[ADDED] {project_name} (ID: {workshop_id}) - HIGHLIGHT {status}")
+        print(f"         Result: {status}")
     
-    print(f"\n✓ Completed first pass: {len(mods)} highlights added\n")
+    print(f"\n{'='*60}")
+    print(f"✓ Completed first pass: {len(mods)} highlights added")
+    print(f"{'='*60}\n")
     
     # SECOND PASS: Process remaining repos for workshop.txt
+    print("\n" + "="*60)
     print("=== SECOND PASS: Processing standard mods (workshop.txt) ===")
+    print("="*60)
     remaining_repos = [repo for repo in repos if repo not in highlight_repos]
     
-    for repo in remaining_repos:
+    total_remaining = len(remaining_repos)
+    print(f"Found {total_remaining} non-highlighted repos to check\n")
+    
+    processed = 0
+    added = 0
+    
+    for idx, repo in enumerate(remaining_repos, 1):
         workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
         
         # Skip if no workshop ID found
         if not workshop_id:
             continue  # Silent skip for repos without workshop.txt
         
+        processed += 1
+        print(f"\n[{processed}/?] ", end="")
+        
         # Skip duplicates
         if workshop_id in seen_workshop_ids:
-            print(f"[SKIP] Duplicate workshop ID {workshop_id} for {repo['name']}")
+            print(f"SKIP - Duplicate workshop ID {workshop_id} for {repo['name']}")
             continue
         
         seen_workshop_ids.add(workshop_id)
@@ -291,12 +311,12 @@ def generate_json(repos):
         repo_name = repo["name"]
         
         # For non-highlights from workshop.txt, validate the Steam page exists
-        print(f"[PROCESSING STANDARD] {repo_name} (ID: {workshop_id})")
+        print(f"Processing: {repo_name} (ID: {workshop_id})")
         subs_str, title, banner, video_links = get_workshop_data(steam_url)
         
         # Skip if workshop page doesn't exist or has no title
         if not title:
-            print(f"[SKIP] Invalid workshop page for {repo_name} (ID: {workshop_id})")
+            print(f"         Result: SKIP - Invalid workshop page")
             continue
         
         project_name = title
@@ -320,11 +340,14 @@ def generate_json(repos):
                 pass  # Don't include subs if invalid
         
         mods.append(mod_data)
+        added += 1
         
         status = "✓" if banner and subs_str != "?" else "⚠️ (no banner)" if not banner else "⚠️ (no subs)"
-        print(f"[ADDED] {project_name} (ID: {workshop_id}) - standard {status}")
+        print(f"         Result: {status}")
     
-    print(f"\n✓ Completed second pass: {len(mods) - len(highlight_repos)} standard mods added\n")
+    print(f"\n{'='*60}")
+    print(f"✓ Completed second pass: {added} standard mods added")
+    print(f"{'='*60}\n")
 
     # Sort by subs (highest first), but handle missing subs
     mods.sort(key=lambda x: x.get("subs", 0), reverse=True)
