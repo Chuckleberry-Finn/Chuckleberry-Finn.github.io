@@ -106,11 +106,21 @@ async function handleSteamCallback(url, env) {
   try {
     const pResp = await fetch(`https://steamcommunity.com/profiles/${steamId}/?xml=1`);
     const pXml = await pResp.text();
+    console.log('Steam profile XML fetched, length:', pXml.length);
+    
     const nm = pXml.match(/<steamID><!\[CDATA\[(.*?)\]\]><\/steamID>/);
     if (nm) steamName = nm[1];
+    
     const av = pXml.match(/<avatarFull><!\[CDATA\[(.*?)\]\]><\/avatarFull>/);
-    if (av) steamAvatar = av[1];
-  } catch (e) { console.error('Profile fetch failed:', e); }
+    if (av) {
+      steamAvatar = av[1];
+      console.log('Avatar URL found:', steamAvatar);
+    } else {
+      console.log('Avatar not found in XML');
+    }
+  } catch (e) { 
+    console.error('Profile fetch failed:', e); 
+  }
 
   // Session token
   const token = await hmacToken(steamId, env.SESSION_SECRET);
@@ -118,7 +128,7 @@ async function handleSteamCallback(url, env) {
   redirect.searchParams.set('steam_auth', 'success');
   redirect.searchParams.set('steam_id', steamId);
   redirect.searchParams.set('steam_name', steamName);
-  redirect.searchParams.set('steam_avatar', steamAvatar);
+  redirect.searchParams.set('steam_avatar', encodeURIComponent(steamAvatar));
   redirect.searchParams.set('session_token', token);
 
   return Response.redirect(redirect.toString(), 302);

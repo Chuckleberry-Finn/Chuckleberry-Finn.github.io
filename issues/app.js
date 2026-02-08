@@ -469,9 +469,19 @@ function buildIssueBody(data, issueTypeConfig, isSteam) {
   const lines = [];
   
   if (isSteam && steamState.username) {
+    console.log('Building Steam issue body with:', {
+      username: steamState.username,
+      steamId: steamState.steamId,
+      hasAvatar: !!steamState.avatar,
+      avatarUrl: steamState.avatar
+    });
+    
     lines.push(`> **Submitted by Steam user:** [${steamState.username}](https://steamcommunity.com/profiles/${steamState.steamId}) (ID: \`${steamState.steamId}\`)`);
     if (steamState.avatar) {
       lines.push(`> <img src="${steamState.avatar}" width="48" height="48" alt="${steamState.username}"/>`);
+      console.log('Avatar image tag added to issue body');
+    } else {
+      console.log('No avatar URL available, skipping image');
     }
   } else {
     lines.push(`> **Submitted via:** Issue Tracker`);
@@ -499,12 +509,23 @@ function buildIssueBody(data, issueTypeConfig, isSteam) {
 function checkSteamCallback() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('steam_auth') === 'success') {
+    const avatarParam = params.get('steam_avatar') || '';
+    const decodedAvatar = avatarParam ? decodeURIComponent(avatarParam) : '';
+    
     steamState = {
       username: params.get('steam_name') || 'Steam User',
       steamId: params.get('steam_id'),
-      avatar: params.get('steam_avatar') || '',
+      avatar: decodedAvatar,
       token: params.get('session_token'),
     };
+    
+    console.log('Steam auth successful:', {
+      username: steamState.username,
+      steamId: steamState.steamId,
+      hasAvatar: !!steamState.avatar,
+      avatarUrl: steamState.avatar
+    });
+    
     saveSteam();
     
     // Clean auth params, keep ?repo=
