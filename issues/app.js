@@ -2,9 +2,6 @@
  * ============================================================
  *  MAIN APP — Coordinates all modules (Grid layout version)
  * ============================================================
- *  This is the entry point that initializes the app.
- *  Matches the visual design of the old index.html
- * ============================================================
  */
 
 let mods = [];
@@ -13,6 +10,7 @@ let currentTab = 'bug';
 let steamState = {
   username: null,
   steamId: null,
+  avatar: null,
   token: null
 };
 
@@ -373,6 +371,7 @@ async function submitViaSteam(title, body, label, repo) {
       session_token: steamState.token,
       steam_id: steamState.steamId,
       steam_name: steamState.username,
+      steam_avatar: steamState.avatar,
     };
     
     console.log('📤 Sending request...');
@@ -462,7 +461,10 @@ function buildIssueBody(data, issueTypeConfig, isSteam) {
   const lines = [];
   
   if (isSteam && steamState.username) {
-    lines.push(`> **Submitted by Steam user:** ${steamState.username} (ID: \`${steamState.steamId}\`)`);
+    lines.push(`> **Submitted by Steam user:** [${steamState.username}](https://steamcommunity.com/profiles/${steamState.steamId}) (ID: \`${steamState.steamId}\`)`);
+    if (steamState.avatar) {
+      lines.push(`> <img src="${steamState.avatar}" width="48" height="48" alt="${steamState.username}"/>`);
+    }
   } else {
     lines.push(`> **Submitted via:** Issue Tracker`);
   }
@@ -492,6 +494,7 @@ function checkSteamCallback() {
     steamState = {
       username: params.get('steam_name') || 'Steam User',
       steamId: params.get('steam_id'),
+      avatar: params.get('steam_avatar') || '',
       token: params.get('session_token'),
     };
     saveSteam();
@@ -605,7 +608,7 @@ function restoreFormState() {
  * Sign out of Steam
  */
 function signOutSteam() {
-  steamState = { username: null, steamId: null, token: null };
+  steamState = { username: null, steamId: null, avatar: null, token: null };
   localStorage.removeItem('cfi_steam');
   updateSteamUI();
   showToast('Signed out of Steam.');
