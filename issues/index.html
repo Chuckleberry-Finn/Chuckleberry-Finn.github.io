@@ -608,8 +608,8 @@ function renderHub() {
   }
 
   grid.innerHTML = state.mods.map(mod => {
-    const banner = mod.preview_url || '';
-    const subs = formatNumber(mod.subscriptions);
+    const banner = mod.banner || mod.preview_url || '';
+    const subs = formatNumber(mod.subs || mod.subscriptions || 0);
     const { owner, repo } = parseRepoUrl(mod.repo_url);
     return `
       <a href="?repo=${encodeURIComponent(repo)}" class="mod-card" onclick="event.preventDefault(); showForm(state.mods.find(m=>m.name==='${esc(mod.name)}'))">
@@ -643,7 +643,8 @@ function renderHub() {
    ═══════════════════════════════════════════════════════════ */
 function renderForm() {
   const mod = state.currentMod;
-  document.getElementById('form-mod-banner').style.backgroundImage = `url('${esc(mod.preview_url||'')}')`;
+  const banner = mod.banner || mod.preview_url || '';
+  document.getElementById('form-mod-banner').style.backgroundImage = `url('${esc(banner)}')`;
   document.getElementById('form-mod-name').textContent = mod.name;
   document.getElementById('form-mod-desc').textContent = mod.description || 'No description';
   document.getElementById('form-mod-link').href = mod.steam_url;
