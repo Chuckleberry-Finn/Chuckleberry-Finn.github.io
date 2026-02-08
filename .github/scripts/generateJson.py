@@ -4,16 +4,98 @@ import json
 import re
 import time
 from bs4 import BeautifulSoup
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from threading import Lock, Semaphore
+from collections import deque
 
 # CONFIG
 GITHUB_USERNAME = "Chuckleberry-Finn"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 OUTPUT_FILE = "mods.json"
 
-# Rate limiting
+# Detect if running in GitHub Actions
+IS_GITHUB_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
+
+# Concurrency settings
+STEAM_MAX_WORKERS = 1  # For Steam requests (rate limited)
+
+# Rate limiting - PROACTIVE from the start
 STEAM_REQUESTS_PER_MINUTE = 10
-steam_request_times = []
-rate_limit_engaged = False  # Only engage after we hit a 429 error
+RATE_WINDOW = 60  # seconds
+
+# GitHub Actions logging helpers
+def gh_group(title):
+    """Start a collapsible group in GitHub Actions"""
+    if IS_GITHUB_ACTIONS:
+        print(f"::group::{title}")
+    else:
+        print(f"\n{'='*60}")
+        print(f"=== {title} ===")
+        print(f"{'='*60}")
+
+def gh_endgroup():
+    """End a collapsible group in GitHub Actions"""
+    if IS_GITHUB_ACTIONS:
+        print("::endgroup::")
+
+def gh_notice(message):
+    """Print a notice in GitHub Actions"""
+    if IS_GITHUB_ACTIONS:
+        print(f"::notice::{message}")
+    else:
+        print(f"i {message}")
+
+def gh_warning(message):
+    """Print a warning in GitHub Actions"""
+    if IS_GITHUB_ACTIONS:
+        print(f"::warning::{message}")
+    else:
+        print(f"! {message}")
+
+def gh_error(message):
+    """Print an error in GitHub Actions"""
+    if IS_GITHUB_ACTIONS:
+        print(f"::error::{message}")
+    else:
+        print(f"x {message}")
+
+class RateLimiter:
+    """Thread-safe rate limiter using sliding window"""
+    def __init__(self, max_requests, window_seconds):
+        self.max_requests = max_requests
+        self.window = window_seconds
+        self.requests = deque()
+        self.lock = Lock()
+    
+    def acquire(self):
+        """Wait until we can make a request within rate limits"""
+        with self.lock:
+            now = time.time()
+            
+            # Remove requests outside the window
+            while self.requests and now - self.requests[0] >= self.window:
+                self.requests.popleft()
+            
+            # If at capacity, wait for the oldest request to age out
+            if len(self.requests) >= self.max_requests:
+                sleep_time = self.window - (now - self.requests[0]) + 0.1
+                if sleep_time > 0:
+                    if IS_GITHUB_ACTIONS:
+                        print(f" Rate limit: waiting {sleep_time:.1f}s... ({len(self.requests)}/{self.max_requests} requests in window)")
+                    else:
+                        print(f" Rate limit: waiting {sleep_time:.1f}s...")
+                    time.sleep(sleep_time)
+                    # Clean up again after sleeping
+                    now = time.time()
+                    while self.requests and now - self.requests[0] >= self.window:
+                        self.requests.popleft()
+            
+            # Record this request
+            self.requests.append(time.time())
+
+# Global rate limiter - always active
+steam_limiter = RateLimiter(STEAM_REQUESTS_PER_MINUTE, RATE_WINDOW)
 
 # GITHUB REPO FETCHING
 def get_repos():
@@ -39,41 +121,6 @@ def get_repos():
 
     return [repo for repo in repos if not repo.get("archived")]
 
-# RATE LIMITING
-def wait_for_rate_limit():
-    """Ensure we don't exceed STEAM_REQUESTS_PER_MINUTE (only when rate_limit_engaged)"""
-    global steam_request_times, rate_limit_engaged
-    
-    # Only apply rate limiting if we've been rate limited before
-    if not rate_limit_engaged:
-        return
-    
-    now = time.time()
-    
-    # Remove requests older than 60 seconds
-    steam_request_times = [t for t in steam_request_times if now - t < 60]
-    
-    # If we've hit the limit, wait
-    if len(steam_request_times) >= STEAM_REQUESTS_PER_MINUTE:
-        oldest = steam_request_times[0]
-        wait_time = 60 - (now - oldest) + 1  # Add 1 second buffer
-        if wait_time > 0:
-            print(f"[RATE LIMIT] Waiting {wait_time:.1f}s before next Steam request...")
-            time.sleep(wait_time)
-            # Clean up again after waiting
-            now = time.time()
-            steam_request_times = [t for t in steam_request_times if now - t < 60]
-    
-    # Record this request
-    steam_request_times.append(time.time())
-
-def engage_rate_limiting():
-    """Enable rate limiting after receiving a 429 error"""
-    global rate_limit_engaged
-    if not rate_limit_engaged:
-        print("[RATE LIMIT] Engaging rate limiter due to 429 response")
-        rate_limit_engaged = True
-
 # WORKSHOP.TXT FETCHING
 def get_workshop_id_from_repo(repo):
     """
@@ -97,14 +144,13 @@ def get_workshop_id_from_repo(repo):
     try:
         r = requests.get(raw_url, headers=headers, timeout=10)
         if r.status_code == 200:
-            # Look for line starting with 'id='
             for line in r.text.split('\n'):
                 line = line.strip()
                 if line.startswith('id='):
                     workshop_id = line.split('=', 1)[1].strip()
                     return (workshop_id, False, None)
-    except Exception as e:
-        print(f"[INFO] Could not fetch workshop.txt for {repo['name']}: {e}")
+    except Exception:
+        pass
     
     # Try master branch as fallback
     raw_url_master = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{repo['name']}/master/workshop.txt"
@@ -116,7 +162,7 @@ def get_workshop_id_from_repo(repo):
                 if line.startswith('id='):
                     workshop_id = line.split('=', 1)[1].strip()
                     return (workshop_id, False, None)
-    except Exception as e:
+    except Exception:
         pass
     
     return (None, False, None)
@@ -128,7 +174,6 @@ def get_workshop_title(soup):
         return title_div.text.strip()
     return None
 
-
 def get_workshop_image(soup):
     img = soup.find("img", {"id": "previewImageMain"})
     if img and img.get("src"):
@@ -139,27 +184,23 @@ def extract_youtube_videos(steam_url):
     try:
         r = requests.get(steam_url, timeout=10)
         soup = BeautifulSoup(r.text, "html.parser")
-
         video_ids = set()
-
         for script in soup.find_all("script"):
             if not script.string:
                 continue
             matches = re.findall(r'YOUTUBE_VIDEO_ID\s*:\s*"([a-zA-Z0-9_-]{11})"', script.string)
             for vid in matches:
                 video_ids.add(f"https://www.youtube.com/watch?v={vid}")
-
         return list(video_ids)
-
-    except Exception as e:
-        print(f"[ERROR] {steam_url}: {e}")
+    except Exception:
         return []
 
 def get_workshop_data(steam_url, max_retries=3):
-    """Fetch workshop data with rate limiting and retries"""
+    """Fetch workshop data with proactive rate limiting"""
     for attempt in range(max_retries):
         try:
-            wait_for_rate_limit()
+            # ALWAYS rate limit before making request
+            steam_limiter.acquire()
             
             headers = {
                 "User-Agent": "Mozilla/5.0",
@@ -167,15 +208,14 @@ def get_workshop_data(steam_url, max_retries=3):
             }
             r = requests.get(steam_url, headers=headers, timeout=15)
             
-            if r.status_code == 429:  # Too Many Requests
-                engage_rate_limiting()  # Enable rate limiting for all future requests
+            if r.status_code == 429:
+                # If we still get rate limited, back off exponentially
                 wait_time = 30 * (attempt + 1)
-                print(f"[RATE LIMITED] Waiting {wait_time}s before retry (attempt {attempt + 1}/{max_retries})...")
+                gh_warning(f"Got 429 despite rate limiting, backing off {wait_time}s...")
                 time.sleep(wait_time)
                 continue
                 
             if r.status_code != 200:
-                print(f"[WARNING] Status {r.status_code} for {steam_url}")
                 if attempt < max_retries - 1:
                     time.sleep(5 * (attempt + 1))
                     continue
@@ -198,56 +238,35 @@ def get_workshop_data(steam_url, max_retries=3):
             return sub_count, title, image, video_links
 
         except requests.exceptions.Timeout:
-            print(f"[TIMEOUT] Request timed out for {steam_url} (attempt {attempt + 1}/{max_retries})")
             if attempt < max_retries - 1:
                 time.sleep(5 * (attempt + 1))
                 continue
         except Exception as e:
-            print(f"[ERROR] {steam_url} → {e}")
             if attempt < max_retries - 1:
                 time.sleep(5 * (attempt + 1))
                 continue
     
     return "?", None, None, None
 
-# JSON OUTPUT
-def generate_json(repos):
-    mods = []
-    seen_workshop_ids = set()  # To track already-included mods by workshop ID
-
-    # FIRST PASS: Process repos with homepage Steam URLs (highlights)
-    print("\n" + "="*60)
-    print("=== FIRST PASS: Processing highlighted mods (homepage URLs) ===")
-    print("="*60)
-    highlight_repos = [repo for repo in repos if repo.get("homepage", "") and "steamcommunity.com" in repo.get("homepage", "")]
+# PROCESS SINGLE MOD
+def process_mod(repo, is_second_pass=False):
+    """Process a single mod - used for concurrent execution"""
+    workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
     
-    total_highlights = len(highlight_repos)
-    print(f"Found {total_highlights} highlighted repos to process\n")
+    if not workshop_id:
+        return None
     
-    for idx, repo in enumerate(highlight_repos, 1):
-        print(f"\n[{idx}/{total_highlights}] ", end="")
-        
-        workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
-        
-        if not workshop_id:
-            print(f"SKIP - No workshop ID found for {repo['name']}")
-            continue
-        
-        if workshop_id in seen_workshop_ids:
-            print(f"SKIP - Duplicate workshop ID {workshop_id} for {repo['name']}")
-            continue
-        
-        seen_workshop_ids.add(workshop_id)
-        github_url = repo["html_url"]
-        repo_name = repo["name"]
-        
-        print(f"Processing: {repo_name} (ID: {workshop_id})")
-        subs_str, title, banner, video_links = get_workshop_data(steam_url)
-        
-        # Use repo name as fallback if title fetch failed
+    if not steam_url:
+        steam_url = f"https://steamcommunity.com/sharedfiles/filedetails/?id={workshop_id}"
+    
+    github_url = repo["html_url"]
+    repo_name = repo["name"]
+    
+    subs_str, title, banner, video_links = get_workshop_data(steam_url)
+    
+    # For highlights, always include
+    if is_highlight:
         project_name = title if title else repo_name
-        
-        # Only include subs if we got valid data, otherwise omit the field
         mod_data = {
             "name": project_name,
             "steam_url": steam_url,
@@ -255,140 +274,167 @@ def generate_json(repos):
             "banner": banner or "",
             "videos": video_links or [],
             "highlight": True,
+            "workshop_id": workshop_id
         }
         
-        # Only add subs if we got valid data
         if subs_str != "?" and title and banner:
             try:
-                subs_num = int(subs_str)
-                mod_data["subs"] = subs_num
+                mod_data["subs"] = int(subs_str)
             except ValueError:
-                pass  # Don't include subs if invalid
+                pass
         
-        mods.append(mod_data)
-        
-        status = "✓" if title and banner and subs_str != "?" else "⚠️ (missing data)"
-        print(f"         Result: {status}")
+        return mod_data
     
-    print(f"\n{'='*60}")
-    print(f"✓ Completed first pass: {len(mods)} highlights added")
-    print(f"{'='*60}\n")
+    # For non-highlights, validate
+    if not title:
+        return None
     
-    # SECOND PASS: Process remaining repos for workshop.txt
-    print("\n" + "="*60)
-    print("=== SECOND PASS: Processing standard mods (workshop.txt) ===")
-    print("="*60)
-    remaining_repos = [repo for repo in repos if repo not in highlight_repos]
+    mod_data = {
+        "name": title,
+        "steam_url": steam_url,
+        "repo_url": github_url,
+        "banner": banner or "",
+        "videos": video_links or [],
+        "highlight": False,
+        "workshop_id": workshop_id
+    }
     
-    total_remaining = len(remaining_repos)
-    print(f"Found {total_remaining} non-highlighted repos to check\n")
+    if subs_str != "?" and banner:
+        try:
+            mod_data["subs"] = int(subs_str)
+        except ValueError:
+            pass
     
-    processed = 0
-    added = 0
-    
-    for idx, repo in enumerate(remaining_repos, 1):
-        workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
-        
-        # Skip if no workshop ID found
-        if not workshop_id:
-            continue  # Silent skip for repos without workshop.txt
-        
-        processed += 1
-        print(f"\n[{processed}/?] ", end="")
-        
-        # Skip duplicates
-        if workshop_id in seen_workshop_ids:
-            print(f"SKIP - Duplicate workshop ID {workshop_id} for {repo['name']}")
-            continue
-        
-        seen_workshop_ids.add(workshop_id)
-        
-        # Construct steam_url for non-highlights
-        if not steam_url:
-            steam_url = f"https://steamcommunity.com/sharedfiles/filedetails/?id={workshop_id}"
-        
-        github_url = repo["html_url"]
-        repo_name = repo["name"]
-        
-        # For non-highlights from workshop.txt, validate the Steam page exists
-        print(f"Processing: {repo_name} (ID: {workshop_id})")
-        subs_str, title, banner, video_links = get_workshop_data(steam_url)
-        
-        # Skip if workshop page doesn't exist or has no title
-        if not title:
-            print(f"         Result: SKIP - Invalid workshop page")
-            continue
-        
-        project_name = title
-        
-        # Only include subs if we got valid data
-        mod_data = {
-            "name": project_name,
-            "steam_url": steam_url,
-            "repo_url": github_url,
-            "banner": banner or "",
-            "videos": video_links or [],
-            "highlight": False,
-        }
-        
-        # Only add subs if we got valid data
-        if subs_str != "?" and banner:
-            try:
-                subs_num = int(subs_str)
-                mod_data["subs"] = subs_num
-            except ValueError:
-                pass  # Don't include subs if invalid
-        
-        mods.append(mod_data)
-        added += 1
-        
-        status = "✓" if banner and subs_str != "?" else "⚠️ (no banner)" if not banner else "⚠️ (no subs)"
-        print(f"         Result: {status}")
-    
-    print(f"\n{'='*60}")
-    print(f"✓ Completed second pass: {added} standard mods added")
-    print(f"{'='*60}\n")
+    return mod_data
 
-    # Sort by subs (highest first), but handle missing subs
+# JSON OUTPUT
+def generate_json(repos):
+    mods = []
+    seen_workshop_ids = set()
+    
+    # FIRST PASS: Process highlights concurrently (but rate limited)
+    gh_group("FIRST PASS: Processing highlighted mods")
+    highlight_repos = [repo for repo in repos if repo.get("homepage", "") and "steamcommunity.com" in repo.get("homepage", "")]
+    
+    total_highlights = len(highlight_repos)
+    print(f"Found {total_highlights} highlighted repos to process")
+    print(f"Processing with {STEAM_MAX_WORKERS} concurrent workers...")
+    print(f"Rate limit: {STEAM_REQUESTS_PER_MINUTE} requests per minute\n")
+    
+    # Track progress for GitHub Actions
+    completed = 0
+    success_count = 0
+    
+    with ThreadPoolExecutor(max_workers=STEAM_MAX_WORKERS) as executor:
+        future_to_repo = {executor.submit(process_mod, repo): repo for repo in highlight_repos}
+        
+        for idx, future in enumerate(as_completed(future_to_repo), 1):
+            repo = future_to_repo[future]
+            completed += 1
+            
+            # Show progress percentage in GitHub Actions
+            if IS_GITHUB_ACTIONS and completed % 5 == 0:
+                progress = (completed / total_highlights) * 100
+                print(f"Progress: {completed}/{total_highlights} ({progress:.1f}%)")
+            
+            print(f"[{idx}/{total_highlights}] {repo['name']}: ", end="", flush=True)
+            
+            try:
+                mod_data = future.result()
+                if mod_data and mod_data['workshop_id'] not in seen_workshop_ids:
+                    seen_workshop_ids.add(mod_data['workshop_id'])
+                    mods.append(mod_data)
+                    status = "✓" if mod_data.get('banner') and 'subs' in mod_data else "⚠️"
+                    success_count += 1
+                    print(status)
+                else:
+                    print("SKIP")
+            except Exception as e:
+                gh_error(f"Failed to process {repo['name']}: {e}")
+                print(f"ERROR - {e}")
+    
+    gh_notice(f"Completed first pass: {success_count}/{total_highlights} highlights added")
+    gh_endgroup()
+    
+    # SECOND PASS: Process remaining repos
+    gh_group("SECOND PASS: Processing standard mods")
+    remaining_repos = [repo for repo in repos if repo not in highlight_repos]
+    print(f"Checking {len(remaining_repos)} repos for workshop.txt...")
+    print(f"Processing with {STEAM_MAX_WORKERS} concurrent workers...\n")
+    
+    added = 0
+    completed = 0
+    total_remaining = len(remaining_repos)
+    
+    with ThreadPoolExecutor(max_workers=STEAM_MAX_WORKERS) as executor:
+        future_to_repo = {executor.submit(process_mod, repo, True): repo for repo in remaining_repos}
+        
+        for future in as_completed(future_to_repo):
+            repo = future_to_repo[future]
+            completed += 1
+            
+            # Show progress percentage in GitHub Actions
+            if IS_GITHUB_ACTIONS and completed % 10 == 0:
+                progress = (completed / total_remaining) * 100
+                print(f"Progress: {completed}/{total_remaining} ({progress:.1f}%)")
+            
+            try:
+                mod_data = future.result()
+                if mod_data and mod_data['workshop_id'] not in seen_workshop_ids:
+                    seen_workshop_ids.add(mod_data['workshop_id'])
+                    mods.append(mod_data)
+                    added += 1
+                    status = "✓" if mod_data.get('banner') and 'subs' in mod_data else "⚠️"
+                    print(f"[+] {repo['name']}: {status}")
+            except Exception:
+                pass
+    
+    gh_notice(f"Completed second pass: {added} standard mods added")
+    gh_endgroup()
+
+    # Remove workshop_id from final output (was only for deduplication)
+    for mod in mods:
+        mod.pop('workshop_id', None)
+    
+    # Sort by subs
     mods.sort(key=lambda x: x.get("subs", 0), reverse=True)
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(mods, f, indent=2, ensure_ascii=False)
-        
+    
+    # Statistics
     highlights = sum(1 for m in mods if m.get("highlight"))
-    highlights_with_complete_data = sum(1 for m in mods if m.get("highlight") and m.get("banner") and "subs" in m)
-    highlights_with_banners = sum(1 for m in mods if m.get("highlight") and m.get("banner"))
-    standard_with_complete_data = sum(1 for m in mods if not m.get("highlight") and m.get("banner") and "subs" in m)
-    standard_with_banners = sum(1 for m in mods if not m.get("highlight") and m.get("banner"))
-    
-    print(f"\n{'='*60}")
-    print(f"✓ Wrote {len(mods)} mods to {OUTPUT_FILE}")
     print(f"{'='*60}")
-    print(f"  HIGHLIGHTS (main page):")
-    print(f"    • {highlights} total")
-    print(f"    • {highlights_with_complete_data}/{highlights} with complete data (banner + subs)")
-    print(f"    • {highlights_with_banners}/{highlights} with banners")
-    print(f"\n  STANDARD (issue tracker):")
-    print(f"    • {len(mods) - highlights} total")
-    print(f"    • {standard_with_complete_data}/{len(mods) - highlights} with complete data (banner + subs)")
-    print(f"    • {standard_with_banners}/{len(mods) - highlights} with banners")
-    
-    # List any highlights missing data
-    missing_data = [m for m in mods if m.get("highlight") and (not m.get("banner") or "subs" not in m)]
-    if missing_data:
-        print(f"\n⚠️  {len(missing_data)} highlights with incomplete data:")
-        for m in missing_data:
-            issues = []
-            if not m.get("banner"):
-                issues.append("no banner")
-            if "subs" not in m:
-                issues.append("no subs")
-            print(f"    - {m['name']}: {', '.join(issues)}")
-    
+    print(f"✓ Wrote {len(mods)} mods to {OUTPUT_FILE}")
+    print(f"  • {highlights} highlights (main page)")
+    print(f"  • {len(mods) - highlights} standard (issue tracker)")
     print(f"{'='*60}\n")
+    
+    gh_notice(f"Successfully generated {OUTPUT_FILE} with {len(mods)} mods")
+    
+    return mods
 
 # MAIN
 if __name__ == "__main__":
+    if IS_GITHUB_ACTIONS:
+        gh_group("Setup")
+    
+    print(f"{'='*60}")
+    print(f"Starting at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"{'='*60}\n")
+    
+    start_time = time.time()
     repos = get_repos()
-    print(f"Found {len(repos)} non-archived repos")
+    print(f"Found {len(repos)} non-archived repos\n")
+    
+    if IS_GITHUB_ACTIONS:
+        gh_endgroup()
+    
     generate_json(repos)
+    
+    elapsed = time.time() - start_time
+    print(f"{'='*60}")
+    print(f"Completed in {elapsed:.1f} seconds ({elapsed/60:.1f} minutes)")
+    print(f"{'='*60}")
+    
+    gh_notice(f"Total execution time: {elapsed/60:.1f} minutes")
