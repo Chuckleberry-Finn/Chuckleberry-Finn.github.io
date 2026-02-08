@@ -1,6 +1,13 @@
 fetch('mods.json')
   .then(res => res.json())
   .then(data => {
+    // Calculate total subs from ALL mods (highlighted and non-highlighted)
+    const totalSubs = data.reduce((sum, mod) => sum + (mod.subs || 0), 0);
+    const totalSubsEl = document.getElementById('totalSubsCount');
+    if (totalSubsEl) {
+      totalSubsEl.textContent = formatSubs(totalSubs);
+    }
+    
     // Filter to only show highlights on main page
     const highlightedMods = data.filter(mod => mod.highlight === true);
     initModUI(highlightedMods);
@@ -16,13 +23,6 @@ function initModUI(mods) {
   const mobileHint = document.getElementById('mobileHint');
   const vinylRecord = document.getElementById('vinylRecord');
   const tonearm = document.getElementById('tonearm');
-
-  // Calculate and display total subscribers (only count mods with subs data)
-  const totalSubs = mods.reduce((sum, mod) => sum + (mod.subs || 0), 0);
-  const totalSubsEl = document.getElementById('totalSubsCount');
-  if (totalSubsEl) {
-    totalSubsEl.textContent = formatSubs(totalSubs);
-  }
 
   const cards = [];
   const cardHeight = 226;
