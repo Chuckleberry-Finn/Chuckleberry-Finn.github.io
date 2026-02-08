@@ -4,8 +4,8 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'issues/index.js'
-      - 'issues/wrangler.toml'
+      - 'issues/worker/index.js'
+      - 'issues/worker/wrangler.toml'
       - '.github/workflows/deploy-worker.yml'
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: 'issues'
+          workingDirectory: 'issues/worker'
           secrets: |
             GITHUB_TOKEN
             SESSION_SECRET
