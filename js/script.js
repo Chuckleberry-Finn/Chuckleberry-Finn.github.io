@@ -13,6 +13,13 @@ function initModUI(mods) {
   const vinylRecord = document.getElementById('vinylRecord');
   const tonearm = document.getElementById('tonearm');
 
+  // Calculate and display total subscribers
+  const totalSubs = mods.reduce((sum, mod) => sum + (mod.subs || 0), 0);
+  const totalSubsEl = document.getElementById('totalSubsCount');
+  if (totalSubsEl) {
+    totalSubsEl.textContent = formatSubs(totalSubs);
+  }
+
   const cards = [];
   const cardHeight = 226;
   const cardWidth = 226;

@@ -174,6 +174,36 @@ body {
   position: relative;
 }
 
+/* === Total Subscriber Count === */
+.total-subs {
+  text-align: center;
+  margin: 0.8rem 0 0.5rem 0;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 191, 71, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 191, 71, 0.15);
+  order: 1.5;
+}
+
+.total-subs-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  opacity: 0.8;
+}
+
+.total-subs-count {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cream);
+  text-shadow: 0 0 10px rgba(255, 191, 71, 0.3);
+}
+
 .mod-title {
   font-family: 'Inter', sans-serif;
   font-size: 1.43rem;
@@ -362,6 +392,64 @@ body {
 }
 
 /* === RIGHT: Profile Panel === */
+/* Issue Tracker Button */
+.issue-tracker-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 191, 71, 0.15) 0%, rgba(255, 149, 0, 0.1) 100%);
+  border: 2px solid var(--amber);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--cream);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 191, 71, 0.2);
+}
+
+.issue-tracker-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 191, 71, 0.35);
+  background: linear-gradient(135deg, rgba(255, 191, 71, 0.25) 0%, rgba(255, 149, 0, 0.15) 100%);
+  border-color: #ffcc66;
+}
+
+.issue-tracker-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--amber);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-top);
+}
+
+.issue-tracker-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.issue-tracker-content {
+  flex: 1;
+}
+
+.issue-tracker-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 0.2rem;
+  text-shadow: 0 0 8px rgba(255, 191, 71, 0.3);
+}
+
+.issue-tracker-subtitle {
+  font-size: 0.85rem;
+  color: var(--cream);
+  opacity: 0.9;
+}
+
 .extra-panel {
   background: rgba(30, 22, 15, 0.85);
   padding: 1.82rem;
@@ -515,6 +603,42 @@ body {
   .mod-title {
     font-size: 1.2rem;
     max-width: 340px;
+  }
+  
+  .total-subs {
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+  }
+  
+  .total-subs-label {
+    font-size: 0.65rem;
+  }
+  
+  .total-subs-count {
+    font-size: 1.2rem;
+  }
+  
+  .issue-tracker-button {
+    padding: 1rem 1.2rem;
+    gap: 0.8rem;
+  }
+  
+  .issue-tracker-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .issue-tracker-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .issue-tracker-title {
+    font-size: 1rem;
+  }
+  
+  .issue-tracker-subtitle {
+    font-size: 0.8rem;
   }
   
   .video-slideshow iframe {
