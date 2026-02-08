@@ -285,6 +285,11 @@ function submitViaGitHub() {
   
   window.open(`https://github.com/${owner}/${repo}/issues/new?${params}`, '_blank');
   showToast('Opened GitHub — review and submit your issue there!');
+  
+  // Return to hub after a short delay
+  setTimeout(() => {
+    showHub();
+  }, 1500);
 }
 
 /**
@@ -440,10 +445,13 @@ async function submitViaSteam(title, body, label, repo) {
     
     // Open the created issue in new tab
     if (result.issue_url) {
-      setTimeout(() => {
-        window.open(result.issue_url, '_blank');
-      }, 1000);
+      window.open(result.issue_url, '_blank');
     }
+    
+    // Return to hub after a short delay
+    setTimeout(() => {
+      showHub();
+    }, 1500);
     
   } catch (err) {
     console.error('Submit error:', err);
