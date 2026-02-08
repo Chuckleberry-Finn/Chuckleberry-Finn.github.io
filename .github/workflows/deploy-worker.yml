@@ -26,5 +26,5 @@ jobs:
             GITHUB_TOKEN
             SESSION_SECRET
         env:
-          GITHUB_TOKEN: ${{ secrets.CHUCK_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
