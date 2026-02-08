@@ -1,6 +1,6 @@
 /**
  * ============================================================
- *  MAIN APP — Coordinates all modules (Grid layout version)
+ *  MAIN APP — Coordinates all modules
  * ============================================================
  */
 

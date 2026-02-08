@@ -148,7 +148,7 @@ async function getGitHubAppToken(env) {
       headers: {
         'Authorization': `Bearer ${jwt}`,
         'Accept': 'application/vnd.github+json',
-        'User-Agent': 'SteamIssueTracker/2.0',
+        'User-Agent': 'SteamIssueTracker',
         'X-GitHub-Api-Version': '2022-11-28',
       }
     }
@@ -300,7 +300,7 @@ async function handleCreateIssue(request, env, cors) {
       headers: {
         'Authorization': `Bearer ${githubToken}`,
         'Accept': 'application/vnd.github+json',
-        'User-Agent': 'SteamIssueTracker/2.0',
+        'User-Agent': 'SteamIssueTracker',
         'X-GitHub-Api-Version': '2022-11-28',
       },
       body: JSON.stringify(issuePayload),

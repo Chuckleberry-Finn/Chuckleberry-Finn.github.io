@@ -4,12 +4,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 
-# Path to mods.json (2 dirs up)
-# mods_path = os.path.join(os.path.dirname(__file__), "..", "..", "mods.json")
-# mods_path = os.path.abspath(mods_path)
-
 # Load mod data
-# with open(mods_path, "r", encoding="utf-8") as f:
 with open("mods.json", "r", encoding="utf-8") as f:
     mods = json.load(f)
 
