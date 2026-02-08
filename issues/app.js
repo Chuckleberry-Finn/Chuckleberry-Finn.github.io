@@ -345,32 +345,72 @@ async function submitViaSteam(title, body, label, repo) {
     btn.disabled = true;
     btnLabel.textContent = 'Submitting...';
     
-    // Debug log
-    console.log('Submitting with credentials:', {
-      hasToken: !!steamState.token,
-      hasSteamId: !!steamState.steamId,
-      repo: repo
+    // Comprehensive debug logging
+    console.group('🔍 Steam Submission Debug');
+    console.log('Steam State:', {
+      username: steamState.username,
+      steamId: steamState.steamId,
+      tokenLength: steamState.token?.length,
+      tokenPreview: steamState.token?.substring(0, 10) + '...'
     });
+    console.log('Payload:', {
+      title,
+      bodyLength: body.length,
+      labels: [label],
+      repo,
+      hasSessionToken: !!steamState.token,
+      hasSteamId: !!steamState.steamId,
+      hasSteamName: !!steamState.username
+    });
+    console.log('Worker URL:', CONFIG.worker.url);
+    console.groupEnd();
+    
+    const payload = {
+      title,
+      body,
+      labels: [label],
+      repo,
+      session_token: steamState.token,
+      steam_id: steamState.steamId,
+      steam_name: steamState.username,
+    };
+    
+    console.log('📤 Sending request...');
     
     const resp = await fetch(`${CONFIG.worker.url}/api/issues`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title,
-        body,
-        labels: [label],
-        repo,
-        session_token: steamState.token,
-        steam_id: steamState.steamId,
-        steam_name: steamState.username,
-      }),
+      body: JSON.stringify(payload),
+    });
+    
+    console.log('📥 Response:', {
+      status: resp.status,
+      statusText: resp.statusText,
+      ok: resp.ok
     });
     
     if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
+      const contentType = resp.headers.get('content-type');
+      let err;
+      
+      if (contentType && contentType.includes('application/json')) {
+        err = await resp.json();
+      } else {
+        const text = await resp.text();
+        err = { error: text || 'Unknown error' };
+      }
+      
+      console.error('❌ Error Response:', err);
       
       // Handle 401/403 - session expired or invalid
       if (resp.status === 401 || resp.status === 403) {
+        console.warn('Session invalid. Details:', {
+          status: resp.status,
+          error: err.error || err.message,
+          currentSteamId: steamState.steamId,
+          currentTokenLength: steamState.token?.length
+        });
+        
         // Clear invalid session
         steamState = { username: null, steamId: null, token: null };
         localStorage.removeItem('cfi_steam');
@@ -378,19 +418,22 @@ async function submitViaSteam(title, body, label, repo) {
         
         // Save form and retry login
         saveFormState();
-        showToast('Session expired. Please sign in again.', true);
+        
+        const errorMsg = err.error || err.message || 'Session expired';
+        showToast(`Authentication failed: ${errorMsg}. Please sign in again.`, true);
         
         setTimeout(() => {
           const returnUrl = encodeURIComponent(window.location.href);
           window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
-        }, 2000);
+        }, 2500);
         return;
       }
       
-      throw new Error(err.message || err.error || `HTTP ${resp.status}`);
+      throw new Error(err.message || err.error || `HTTP ${resp.status}: ${resp.statusText}`);
     }
     
     const result = await resp.json();
+    console.log('✅ Success:', result);
     showToast(`Issue #${result.issue_number} created successfully!`);
     
     document.getElementById('issue-form').reset();

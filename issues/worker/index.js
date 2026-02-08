@@ -32,7 +32,7 @@ export default {
       if (url.pathname === '/auth/steam')          return handleSteamStart(url, env);
       if (url.pathname === '/auth/steam/callback')  return handleSteamCallback(url, env);
       if (url.pathname === '/api/issues' && request.method === 'POST') {
-        return handleCreateIssue(request, env, cors);
+        return await handleCreateIssue(request, env, cors);
       }
       if (url.pathname === '/health') {
         return json({ status: 'ok', time: new Date().toISOString() }, 200, cors);
@@ -40,7 +40,12 @@ export default {
       return json({ error: 'Not found' }, 404, cors);
     } catch (err) {
       console.error('Worker error:', err);
-      return json({ error: 'Internal error', message: err.message }, 500, cors);
+      console.error('Error stack:', err.stack);
+      return json({ 
+        error: 'Internal server error', 
+        message: err.message,
+        type: err.name
+      }, 500, cors);
     }
   }
 };
@@ -127,41 +132,150 @@ async function handleCreateIssue(request, env, cors) {
   const body = await request.json();
   const { title, body: issueBody, labels, repo, session_token, steam_id, steam_name } = body;
 
+  console.log('Issue creation request:', {
+    hasTitle: !!title,
+    hasBody: !!issueBody,
+    hasRepo: !!repo,
+    hasSessionToken: !!session_token,
+    hasSteamId: !!steam_id,
+    hasSteamName: !!steam_name,
+    sessionTokenLength: session_token?.length,
+    steamId: steam_id
+  });
+
   // Validate input
-  if (!title || !issueBody) return json({ error: 'Missing title or body' }, 400, cors);
-  if (!repo)                return json({ error: 'Missing repo' }, 400, cors);
-  if (!session_token || !steam_id) return json({ error: 'Not authenticated' }, 401, cors);
+  if (!title || !issueBody) {
+    console.error('Missing title or body');
+    return json({ error: 'Missing title or body' }, 400, cors);
+  }
+  if (!repo) {
+    console.error('Missing repo');
+    return json({ error: 'Missing repo' }, 400, cors);
+  }
+  if (!session_token || !steam_id) {
+    console.error('Missing authentication', { hasToken: !!session_token, hasId: !!steam_id });
+    return json({ error: 'Not authenticated', details: 'Missing session_token or steam_id' }, 401, cors);
+  }
 
   // Verify session
+  if (!env.SESSION_SECRET) {
+    console.error('SESSION_SECRET not configured in worker!');
+    return json({ error: 'Server configuration error', details: 'SESSION_SECRET not set' }, 500, cors);
+  }
+  
   const expected = await hmacToken(steam_id, env.SESSION_SECRET);
-  if (session_token !== expected) return json({ error: 'Invalid session' }, 403, cors);
+  console.log('Session validation:', {
+    receivedTokenLength: session_token.length,
+    expectedTokenLength: expected.length,
+    tokensMatch: session_token === expected,
+    steamId: steam_id
+  });
+  
+  if (session_token !== expected) {
+    console.error('Session token mismatch');
+    return json({ 
+      error: 'Invalid session', 
+      details: 'Session token validation failed. Please sign in again.' 
+    }, 403, cors);
+  }
 
   // Check repo allowlist
   const allowed = (env.ALLOWED_REPOS || '*').split(',').map(s => s.trim());
   if (!allowed.includes('*') && !allowed.includes(repo)) {
+    console.error('Repo not allowed:', { repo, allowed });
     return json({ error: `Repo "${repo}" is not in the allowed list` }, 403, cors);
   }
 
   // Create issue via GitHub API
+  console.log('Creating GitHub issue:', { owner: env.GITHUB_OWNER, repo });
+  
+  if (!env.GITHUB_TOKEN) {
+    console.error('GITHUB_TOKEN not configured!');
+    return json({ 
+      error: 'Server configuration error', 
+      details: 'GITHUB_TOKEN not set in worker' 
+    }, 500, cors);
+  }
+  
+  if (!env.GITHUB_OWNER) {
+    console.error('GITHUB_OWNER not configured!');
+    return json({ 
+      error: 'Server configuration error', 
+      details: 'GITHUB_OWNER not set in worker' 
+    }, 500, cors);
+  }
+  
   const owner = env.GITHUB_OWNER;
-  const ghResp = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github+json',
-      'User-Agent': 'SteamIssueTracker/2.0',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-    body: JSON.stringify({ title, body: issueBody, labels: labels || [] }),
+  const issuePayload = { 
+    title, 
+    body: issueBody, 
+    labels: labels || [] 
+  };
+  
+  console.log('GitHub API request:', {
+    url: `https://api.github.com/repos/${owner}/${repo}/issues`,
+    payload: issuePayload
   });
+  
+  let ghResp;
+  try {
+    ghResp = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'User-Agent': 'SteamIssueTracker/2.0',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify(issuePayload),
+    });
+  } catch (fetchError) {
+    console.error('GitHub API fetch failed:', fetchError);
+    return json({ 
+      error: 'Failed to reach GitHub API', 
+      message: fetchError.message,
+      details: 'Network error when connecting to GitHub'
+    }, 502, cors);
+  }
+
+  console.log('GitHub response status:', ghResp.status);
 
   if (!ghResp.ok) {
-    const errText = await ghResp.text();
-    console.error(`GitHub ${ghResp.status}:`, errText);
-    return json({ error: 'GitHub API error', message: `HTTP ${ghResp.status}` }, 502, cors);
+    let errText = '';
+    let errJson = null;
+    
+    try {
+      errText = await ghResp.text();
+      errJson = JSON.parse(errText);
+      console.error(`GitHub API error ${ghResp.status}:`, errJson);
+    } catch (e) {
+      console.error(`GitHub API error ${ghResp.status}:`, errText);
+    }
+    
+    // Provide helpful error messages based on status
+    let userMessage = '';
+    if (ghResp.status === 401) {
+      userMessage = 'GitHub token is invalid or expired';
+    } else if (ghResp.status === 403) {
+      userMessage = 'GitHub token lacks permission to create issues';
+    } else if (ghResp.status === 404) {
+      userMessage = `Repository ${owner}/${repo} not found or not accessible`;
+    } else if (ghResp.status === 422) {
+      userMessage = 'Invalid issue data';
+    } else {
+      userMessage = `GitHub API error (${ghResp.status})`;
+    }
+    
+    return json({ 
+      error: 'GitHub API error', 
+      message: userMessage,
+      status: ghResp.status,
+      details: errJson?.message || errText.substring(0, 200)
+    }, 502, cors);
   }
 
   const gh = await ghResp.json();
+  console.log('Issue created successfully:', { number: gh.number, url: gh.html_url });
   return json({ success: true, issue_number: gh.number, issue_url: gh.html_url }, 201, cors);
 }
 
