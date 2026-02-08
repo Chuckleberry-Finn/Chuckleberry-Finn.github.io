@@ -299,6 +299,17 @@ async function handleSteamSubmit() {
       showToast('Steam login is not configured for this tracker.', true);
       return;
     }
+    
+    // Validate form before redirecting
+    const form = document.getElementById('issue-form');
+    if (!FormValidator.validateForm(form)) {
+      showToast('Please fill in all required fields', true);
+      return;
+    }
+    
+    // Save form state before redirect
+    saveFormState();
+    
     const returnUrl = encodeURIComponent(window.location.href);
     window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
     return;
@@ -334,6 +345,13 @@ async function submitViaSteam(title, body, label, repo) {
     btn.disabled = true;
     btnLabel.textContent = 'Submitting...';
     
+    // Debug log
+    console.log('Submitting with credentials:', {
+      hasToken: !!steamState.token,
+      hasSteamId: !!steamState.steamId,
+      repo: repo
+    });
+    
     const resp = await fetch(`${CONFIG.worker.url}/api/issues`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -350,7 +368,26 @@ async function submitViaSteam(title, body, label, repo) {
     
     if (!resp.ok) {
       const err = await resp.json().catch(() => ({}));
-      throw new Error(err.message || `HTTP ${resp.status}`);
+      
+      // Handle 401/403 - session expired or invalid
+      if (resp.status === 401 || resp.status === 403) {
+        // Clear invalid session
+        steamState = { username: null, steamId: null, token: null };
+        localStorage.removeItem('cfi_steam');
+        updateSteamUI();
+        
+        // Save form and retry login
+        saveFormState();
+        showToast('Session expired. Please sign in again.', true);
+        
+        setTimeout(() => {
+          const returnUrl = encodeURIComponent(window.location.href);
+          window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
+        }, 2000);
+        return;
+      }
+      
+      throw new Error(err.message || err.error || `HTTP ${resp.status}`);
     }
     
     const result = await resp.json();
@@ -359,7 +396,15 @@ async function submitViaSteam(title, body, label, repo) {
     document.getElementById('issue-form').reset();
     FormValidator.clearValidation(document.getElementById('issue-form'));
     
+    // Open the created issue in new tab
+    if (result.issue_url) {
+      setTimeout(() => {
+        window.open(result.issue_url, '_blank');
+      }, 1000);
+    }
+    
   } catch (err) {
+    console.error('Submit error:', err);
     showToast(`Failed: ${err.message}`, true);
   } finally {
     btn.disabled = false;
@@ -413,10 +458,14 @@ function checkSteamCallback() {
     window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
     showToast(`Signed in as Steam user: ${steamState.username}`);
     updateSteamUI();
+    
+    // Restore form state after successful login
+    restoreFormState();
   } else if (params.get('steam_auth') === 'error') {
     const repo = params.get('repo');
     window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
     showToast('Steam authentication failed.', true);
+    localStorage.removeItem('cfi_form_state'); // Clear saved form on error
   }
 }
 
@@ -435,6 +484,78 @@ function restoreSteam() {
  */
 function saveSteam() {
   localStorage.setItem('cfi_steam', JSON.stringify(steamState));
+}
+
+/**
+ * Save form state before redirect
+ */
+function saveFormState() {
+  const form = document.getElementById('issue-form');
+  if (!form || !currentMod) return;
+  
+  const formData = FormHandler.getFormData(form);
+  const formState = {
+    modRepo: currentMod.repo_url,
+    tab: currentTab,
+    data: formData,
+    timestamp: Date.now()
+  };
+  localStorage.setItem('cfi_form_state', JSON.stringify(formState));
+}
+
+/**
+ * Restore form state after redirect
+ */
+function restoreFormState() {
+  try {
+    const saved = localStorage.getItem('cfi_form_state');
+    if (!saved) return;
+    
+    const formState = JSON.parse(saved);
+    // Only restore if less than 10 minutes old
+    if (Date.now() - formState.timestamp > 600000) {
+      localStorage.removeItem('cfi_form_state');
+      return;
+    }
+    
+    // Find the mod
+    const mod = mods.find(m => m.repo_url === formState.modRepo);
+    if (!mod) {
+      localStorage.removeItem('cfi_form_state');
+      return;
+    }
+    
+    // Show the form for this mod
+    showForm(mod);
+    
+    // Switch to saved tab
+    if (formState.tab) {
+      currentTab = formState.tab;
+      document.querySelectorAll('#tabs-mount .tab').forEach(t =>
+        t.classList.toggle('active', t.dataset.type === formState.tab)
+      );
+    }
+    
+    // Restore form data
+    setTimeout(() => {
+      const form = document.getElementById('issue-form');
+      if (form && formState.data) {
+        Object.entries(formState.data).forEach(([key, value]) => {
+          const input = form.querySelector(`[name="${key}"]`);
+          if (input) {
+            input.value = value;
+          }
+        });
+        // Re-validate to enable submit button if form is complete
+        FormValidator.initValidation(form);
+      }
+      localStorage.removeItem('cfi_form_state');
+    }, 100);
+    
+  } catch (e) {
+    console.error('Failed to restore form state:', e);
+    localStorage.removeItem('cfi_form_state');
+  }
 }
 
 /**
