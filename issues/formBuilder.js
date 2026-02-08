@@ -8,57 +8,6 @@
  */
 
 const FormBuilder = {
-  /**
-   * Build a complete form from issue type config
-   * @param {Object} issueTypeConfig - The issue type configuration from CONFIG
-   * @param {string} issueTypeName - The name of the issue type (e.g., 'bug', 'feature')
-   * @returns {HTMLFormElement} The generated form element
-   */
-  buildForm(issueTypeConfig, issueTypeName) {
-    const form = document.createElement('form');
-    form.className = 'issue-form';
-    form.id = `${issueTypeName}-form`;
-    form.dataset.issueType = issueTypeName;
-
-    // Add form title
-    const title = document.createElement('h2');
-    title.textContent = issueTypeConfig.label;
-    title.className = 'form-title';
-    form.appendChild(title);
-
-    // Build each field
-    issueTypeConfig.fields.forEach(fieldConfig => {
-      const fieldGroup = this.buildField(fieldConfig);
-      form.appendChild(fieldGroup);
-    });
-
-    // Add submit button container
-    const buttonContainer = document.createElement('div');
-    buttonContainer.className = 'form-actions';
-
-    const submitBtn = document.createElement('button');
-    submitBtn.type = 'submit';
-    submitBtn.className = 'submit-btn';
-    submitBtn.textContent = 'Submit ' + issueTypeConfig.label;
-    submitBtn.disabled = true; // Start disabled
-    submitBtn.id = `${issueTypeName}-submit`;
-
-    const cancelBtn = document.createElement('button');
-    cancelBtn.type = 'button';
-    cancelBtn.className = 'cancel-btn';
-    cancelBtn.textContent = 'Cancel';
-    cancelBtn.onclick = () => {
-      form.reset();
-      document.getElementById('formContainer').style.display = 'none';
-      document.getElementById('issueTypeSection').style.display = 'block';
-    };
-
-    buttonContainer.appendChild(submitBtn);
-    buttonContainer.appendChild(cancelBtn);
-    form.appendChild(buttonContainer);
-
-    return form;
-  },
 
   /**
    * Build a single form field
@@ -74,7 +23,7 @@ const FormBuilder = {
 
     // Label
     const label = document.createElement('label');
-    label.htmlFor = fieldConfig.id;
+    label.htmlFor = 'f-' + fieldConfig.id;
     label.textContent = fieldConfig.label;
     if (fieldConfig.required) {
       const requiredSpan = document.createElement('span');
@@ -106,7 +55,7 @@ const FormBuilder = {
     // Error message placeholder
     const errorMsg = document.createElement('div');
     errorMsg.className = 'error-message';
-    errorMsg.id = `${fieldConfig.id}-error`;
+    errorMsg.id = `f-${fieldConfig.id}-error`;
     fieldGroup.appendChild(errorMsg);
 
     return fieldGroup;
@@ -118,7 +67,7 @@ const FormBuilder = {
   buildTextInput(fieldConfig) {
     const input = document.createElement('input');
     input.type = 'text';
-    input.id = fieldConfig.id;
+    input.id = 'f-' + fieldConfig.id;
     input.name = fieldConfig.id;
     input.className = 'form-input';
     input.placeholder = fieldConfig.placeholder || '';
@@ -132,7 +81,7 @@ const FormBuilder = {
    */
   buildTextarea(fieldConfig) {
     const textarea = document.createElement('textarea');
-    textarea.id = fieldConfig.id;
+    textarea.id = 'f-' + fieldConfig.id;
     textarea.name = fieldConfig.id;
     textarea.className = 'form-input';
     textarea.placeholder = fieldConfig.placeholder || '';
@@ -147,9 +96,9 @@ const FormBuilder = {
    */
   buildSelect(fieldConfig) {
     const select = document.createElement('select');
-    select.id = fieldConfig.id;
+    select.id = 'f-' + fieldConfig.id;
     select.name = fieldConfig.id;
-    select.className = 'form-input';
+    select.className = 'form-select';
     select.required = fieldConfig.required || false;
     select.dataset.required = fieldConfig.required || false;
 
