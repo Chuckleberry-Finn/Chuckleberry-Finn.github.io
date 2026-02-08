@@ -484,7 +484,6 @@ function buildIssueBody(data, issueTypeConfig, isSteam) {
       console.log('No avatar URL available, skipping image');
     }
   } else {
-    lines.push(`> **Submitted via:** Issue Tracker`);
   }
   lines.push(`> **Mod:** [${currentMod.name}](${currentMod.steam_url})`);
   lines.push('');
@@ -496,9 +495,6 @@ function buildIssueBody(data, issueTypeConfig, isSteam) {
     lines.push(data[field.id]);
     lines.push('');
   });
-  
-  lines.push('---');
-  lines.push(`*Submitted via [Issue Tracker](${window.location.href})*`);
   
   return lines.join('\n');
 }
