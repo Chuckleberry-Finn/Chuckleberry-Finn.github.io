@@ -184,8 +184,8 @@ function initModUI(mods) {
 
     const subs = formatSubs(mod.subs);
     modInfo.innerHTML = `
-      <p><span class="subs">${subs} subscribers</span></p>
       <p>
+        <span class="subs">${subs} subscribers</span> · 
         <a href="${mod.steam_url}" target="_blank" rel="noopener">Steam</a> · 
         <a href="${mod.repo_url}" target="_blank" rel="noopener">Repo</a>
       </p>

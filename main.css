@@ -178,30 +178,20 @@ body {
 .total-subs {
   text-align: center;
   margin: 0.8rem 0 0.5rem 0;
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem 1rem;
   background: rgba(255, 191, 71, 0.08);
   border-radius: 20px;
   border: 1px solid rgba(255, 191, 71, 0.15);
   order: 1.5;
-}
-
-.total-subs-label {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--amber);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-  opacity: 0.8;
+  font-size: 0.95rem;
+  color: var(--cream);
 }
 
 .total-subs-count {
-  display: block;
-  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--cream);
+  color: var(--amber);
   text-shadow: 0 0 10px rgba(255, 191, 71, 0.3);
+  font-size: 1.1em;
 }
 
 .mod-title {
@@ -425,6 +415,13 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--bg-top);
+  overflow: hidden;
+}
+
+.issue-tracker-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .issue-tracker-icon svg {
@@ -607,15 +604,12 @@ body {
   
   .total-subs {
     margin: 0.5rem 0;
-    padding: 0.5rem 1rem;
-  }
-  
-  .total-subs-label {
-    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
   }
   
   .total-subs-count {
-    font-size: 1.2rem;
+    font-size: 1em;
   }
   
   .issue-tracker-button {
@@ -626,6 +620,11 @@ body {
   .issue-tracker-icon {
     width: 40px;
     height: 40px;
+  }
+  
+  .issue-tracker-img {
+    width: 100%;
+    height: 100%;
   }
   
   .issue-tracker-icon svg {

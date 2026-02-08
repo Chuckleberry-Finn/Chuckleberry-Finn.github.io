@@ -20,7 +20,7 @@ const CONFIG = {
   // ── Cloudflare Worker (Steam auth backend) ────────────
   //    Leave empty to disable Steam login.
   worker: {
-    url: "",  // e.g. "https://steam-issues.chuckleberry-finn.workers.dev"
+    url: "https://chuckleberry-finn-issue-tracker.chuuckthesheep.workers.dev",  // e.g. "https://steam-issues.chuckleberry-finn.workers.dev"
   },
 
   // ── Path to mods.json relative to this page ───────────
@@ -29,7 +29,7 @@ const CONFIG = {
   // ── Issue types & form fields ─────────────────────────
   issueTypes: {
     bug: {
-      label: "🐛 Bug Report",
+      label: "Bug Report",
       githubLabel: "bug",
       fields: [
         { id: "title",       label: "Summary",                    type: "text",     required: true,  placeholder: "Brief description of the bug" },
@@ -44,7 +44,7 @@ const CONFIG = {
       ]
     },
     feature: {
-      label: "💡 Feature Request",
+      label: "Feature Request",
       githubLabel: "enhancement",
       fields: [
         { id: "title",       label: "Feature Title",              type: "text",     required: true,  placeholder: "Short, descriptive title" },

@@ -1,0 +1,30 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'issues/index.js'
+      - 'issues/wrangler.toml'
+      - '.github/workflows/deploy-worker.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Cloudflare Workers
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: 'issues'
+          secrets: |
+            GITHUB_TOKEN
+            SESSION_SECRET
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHUCK_PAT }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
