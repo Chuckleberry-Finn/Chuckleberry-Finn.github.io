@@ -17,7 +17,7 @@ function initModUI(mods) {
   const vinylRecord = document.getElementById('vinylRecord');
   const tonearm = document.getElementById('tonearm');
 
-  // Calculate and display total subscribers
+  // Calculate and display total subscribers (only count mods with subs data)
   const totalSubs = mods.reduce((sum, mod) => sum + (mod.subs || 0), 0);
   const totalSubsEl = document.getElementById('totalSubsCount');
   if (totalSubsEl) {
@@ -186,10 +186,14 @@ function initModUI(mods) {
     modPreview.src = mod.banner || "";
     modPreview.alt = mod.name;
 
-    const subs = formatSubs(mod.subs);
+    // Only show subscriber count if we have that data
+    const subsHtml = mod.subs !== undefined 
+      ? `<span class="subs">${formatSubs(mod.subs)} subscribers</span> · ` 
+      : '';
+    
     modInfo.innerHTML = `
       <p>
-        <span class="subs">${subs} subscribers</span> · 
+        ${subsHtml}
         <a href="${mod.steam_url}" target="_blank" rel="noopener">Steam</a> · 
         <a href="${mod.repo_url}" target="_blank" rel="noopener">Repo</a>
       </p>
