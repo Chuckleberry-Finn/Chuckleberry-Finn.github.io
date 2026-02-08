@@ -37,17 +37,17 @@ def get_repos():
 def get_workshop_id_from_repo(repo):
     """
     Fetch workshop.txt from repo and extract workshop ID
-    Returns (workshop_id, is_highlight) tuple
+    Returns (workshop_id, is_highlight, steam_url) tuple
     """
     # Check if repo has homepage with Steam URL (these are highlights)
     homepage = repo.get("homepage", "")
     is_highlight = homepage and "steamcommunity.com" in homepage
     
-    # If homepage has Steam URL, extract ID from there
+    # If homepage has Steam URL, extract ID and use the full URL directly
     if is_highlight:
         match = re.search(r'id=(\d+)', homepage)
         if match:
-            return (match.group(1), True)
+            return (match.group(1), True, homepage)
     
     # Otherwise, try to fetch workshop.txt from repo
     raw_url = f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/{repo['name']}/main/workshop.txt"
@@ -61,7 +61,7 @@ def get_workshop_id_from_repo(repo):
                 line = line.strip()
                 if line.startswith('id='):
                     workshop_id = line.split('=', 1)[1].strip()
-                    return (workshop_id, False)
+                    return (workshop_id, False, None)
     except Exception as e:
         print(f"[INFO] Could not fetch workshop.txt for {repo['name']}: {e}")
     
@@ -74,11 +74,11 @@ def get_workshop_id_from_repo(repo):
                 line = line.strip()
                 if line.startswith('id='):
                     workshop_id = line.split('=', 1)[1].strip()
-                    return (workshop_id, False)
+                    return (workshop_id, False, None)
     except Exception as e:
         pass
     
-    return (None, False)
+    return (None, False, None)
 
 # STEAM WORKSHOP SCRAPING
 def get_workshop_title(soup):
@@ -150,7 +150,7 @@ def generate_json(repos):
     seen_workshop_ids = set()  # To track already-included mods by workshop ID
 
     for repo in repos:
-        workshop_id, is_highlight = get_workshop_id_from_repo(repo)
+        workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
         
         # Skip if no workshop ID found
         if not workshop_id:
@@ -164,35 +164,62 @@ def generate_json(repos):
         
         seen_workshop_ids.add(workshop_id)
         
-        steam_url = f"https://steamcommunity.com/sharedfiles/filedetails/?id={workshop_id}"
+        # Use provided steam_url for highlights, construct for non-highlights
+        if not steam_url:
+            steam_url = f"https://steamcommunity.com/sharedfiles/filedetails/?id={workshop_id}"
+        
         github_url = repo["html_url"]
         repo_name = repo["name"]
 
-        subs_str, title, banner, video_links = get_workshop_data(steam_url)
-        
-        # Skip if workshop page doesn't exist or has no title
-        if not title:
-            print(f"[SKIP] Invalid workshop page for {repo_name} (ID: {workshop_id})")
-            continue
-        
-        project_name = title if title else repo_name
+        # For highlights, we trust the homepage URL and skip validation
+        if is_highlight:
+            # Still try to fetch workshop data for subs/title/banner, but don't fail if it doesn't work
+            subs_str, title, banner, video_links = get_workshop_data(steam_url)
+            project_name = title if title else repo_name
+            
+            try:
+                subs_num = int(subs_str) if subs_str != "?" else -1
+            except ValueError:
+                subs_num = -1
 
-        try:
-            subs_num = int(subs_str) if subs_str != "?" else -1
-        except ValueError:
-            subs_num = -1
+            mods.append({
+                "name": project_name,
+                "subs": subs_num,
+                "steam_url": steam_url,
+                "repo_url": github_url,
+                "banner": banner or "",
+                "videos": video_links or [],
+                "highlight": True,
+            })
+            
+            print(f"[ADDED] {project_name} (ID: {workshop_id}) - HIGHLIGHT")
+        else:
+            # For non-highlights from workshop.txt, validate the Steam page exists
+            subs_str, title, banner, video_links = get_workshop_data(steam_url)
+            
+            # Skip if workshop page doesn't exist or has no title
+            if not title:
+                print(f"[SKIP] Invalid workshop page for {repo_name} (ID: {workshop_id})")
+                continue
+            
+            project_name = title if title else repo_name
 
-        mods.append({
-            "name": project_name,
-            "subs": subs_num,
-            "steam_url": steam_url,
-            "repo_url": github_url,
-            "banner": banner or "",
-            "videos": video_links or [],
-            "highlight": is_highlight,
-        })
-        
-        print(f"[ADDED] {project_name} (ID: {workshop_id}) - {'HIGHLIGHT' if is_highlight else 'standard'}")
+            try:
+                subs_num = int(subs_str) if subs_str != "?" else -1
+            except ValueError:
+                subs_num = -1
+
+            mods.append({
+                "name": project_name,
+                "subs": subs_num,
+                "steam_url": steam_url,
+                "repo_url": github_url,
+                "banner": banner or "",
+                "videos": video_links or [],
+                "highlight": False,
+            })
+            
+            print(f"[ADDED] {project_name} (ID: {workshop_id}) - standard")
 
     # Sort by subs (highest first)
     mods.sort(key=lambda x: x["subs"], reverse=True)
