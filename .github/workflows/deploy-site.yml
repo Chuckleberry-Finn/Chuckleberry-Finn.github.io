@@ -3,6 +3,10 @@ name: Deploy Site (Jekyll)
 on:
   push:
     branches: ["main"]
+  workflow_run:
+    workflows: ["Update Mods Data"]
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
