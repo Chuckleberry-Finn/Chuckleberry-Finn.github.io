@@ -43,8 +43,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Add generated files
-          git add mods.json mod_stack_preview.png
+          # Add generated files (including queue)
+          git add mods.json mod_stack_preview.png github_stats_queue.json
           
           # Check if there are changes to commit
           if git diff --quiet && git diff --staged --quiet; then

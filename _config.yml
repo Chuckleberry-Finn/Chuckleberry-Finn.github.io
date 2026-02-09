@@ -1,5 +1,6 @@
 include:
   - mods.json
+  - github_stats_queue.json
   - sounds
   - js
   - issues
