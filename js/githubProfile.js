@@ -3,14 +3,14 @@ const fallbackProfile = {
   name: 'Chuckleberry Finn',
   login: 'Chuckleberry-Finn',
   bio: 'Project Zomboid modder',
-  avatar_url: 'https://avatars.githubusercontent.com/u/50658419?v=4',
+  avatar_url: 'https://avatars.githubusercontent.com/u/50658419?v=4&size=200',
   html_url: 'https://github.com/Chuckleberry-Finn',
   followers: 50 // Approximate - will be updated if API works
 };
 
 // Try to fetch from GitHub API with timeout
 const controller = new AbortController();
-const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
 fetch('https://api.github.com/users/Chuckleberry-Finn', { 
   signal: controller.signal,
