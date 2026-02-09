@@ -21,7 +21,7 @@ IS_GITHUB_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
 STEAM_MAX_WORKERS = 1  # For Steam requests (rate limited)
 
 # Rate limiting - PROACTIVE from the start
-STEAM_REQUESTS_PER_MINUTE = 10
+STEAM_REQUESTS_PER_MINUTE = 9
 RATE_WINDOW = 60  # seconds
 
 # GitHub Actions logging helpers
