@@ -6,6 +6,8 @@ fetch('mods.json')
     const totalSubsEl = document.getElementById('totalSubsCount');
     if (totalSubsEl) {
       totalSubsEl.textContent = formatSubs(totalSubs);
+      // Fade in the total subs display
+      document.getElementById('totalSubs').style.opacity = '1';
     }
     
     // Filter to only show highlights on main page
@@ -183,6 +185,10 @@ function initModUI(mods) {
   function updatePreview(mod) {
     modTitle.textContent = mod.name;
     modTitle.title = mod.name;
+    // Fade in the title on first load
+    if (modTitle.style.opacity === '0') {
+      modTitle.style.opacity = '1';
+    }
     modPreview.src = mod.banner || "";
     modPreview.alt = mod.name;
 
