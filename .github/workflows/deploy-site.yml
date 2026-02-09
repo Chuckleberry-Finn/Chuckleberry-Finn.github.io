@@ -3,11 +3,6 @@ name: Deploy Site (Jekyll)
 on:
   push:
     branches: ["main"]
-    paths:
-      - 'index.html'
-      - 'main.css'
-      - 'js/**'
-      - '_config.yml'
   workflow_dispatch:
 
 permissions:
