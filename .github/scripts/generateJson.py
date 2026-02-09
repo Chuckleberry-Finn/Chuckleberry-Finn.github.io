@@ -212,7 +212,7 @@ def get_repos():
         repos.extend(page_repos)
         page += 1
 
-    return [repo for repo in repos if not repo.get("archived")]
+    return [repo for repo in repos if not repo.get("archived") and not repo.get("private")]
 
 # ============================================================
 # WORKSHOP.TXT FETCHING
@@ -643,7 +643,7 @@ if __name__ == "__main__":
     
     start_time = time.time()
     repos = get_repos()
-    print(f"Found {len(repos)} non-archived repos\n")
+    print(f"Found {len(repos)} non-archived and non-private repos\n")
     
     if IS_GITHUB_ACTIONS:
         gh_endgroup()
