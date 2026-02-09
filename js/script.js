@@ -1,3 +1,10 @@
+// Utility function to format subscriber numbers
+function formatSubs(n) {
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  return n.toLocaleString();
+}
+
 fetch('mods.json')
   .then(res => res.json())
   .then(data => {
@@ -205,12 +212,6 @@ function initModUI(mods) {
       </p>
     `;
     updateVideo(mod);
-  }
-
-  function formatSubs(n) {
-    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
-    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
-    return n.toLocaleString();
   }
 
   function updateVideo(mod) {
