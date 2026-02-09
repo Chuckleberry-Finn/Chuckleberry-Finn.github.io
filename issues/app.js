@@ -96,6 +96,31 @@ async function loadMods() {
  * Fetch GitHub stats for all mods
  */
 async function fetchGitHubStats() {
+  // Try to load from cache (valid for 30 minutes)
+  const cacheKey = 'github_stats_cache';
+  const cacheTimeKey = 'github_stats_cache_time';
+  const cacheMaxAge = 30 * 60 * 1000; // 30 minutes
+  
+  try {
+    const cachedData = localStorage.getItem(cacheKey);
+    const cacheTime = localStorage.getItem(cacheTimeKey);
+    
+    if (cachedData && cacheTime) {
+      const age = Date.now() - parseInt(cacheTime);
+      if (age < cacheMaxAge) {
+        console.log('Using cached GitHub stats (age:', Math.round(age / 1000 / 60), 'minutes)');
+        githubStatsCache = JSON.parse(cachedData);
+        return;
+      } else {
+        console.log('Cache expired, fetching fresh data');
+      }
+    }
+  } catch (e) {
+    console.warn('Cache read failed:', e);
+  }
+  
+  // Fetch fresh data
+  console.log('Fetching GitHub stats for', mods.length, 'repositories...');
   const fetchPromises = mods.map(async (mod) => {
     const { owner, repo } = parseRepoUrl(mod.repo_url);
     try {
@@ -108,6 +133,10 @@ async function fetchGitHubStats() {
           forks: data.forks_count,
           updatedAt: data.updated_at
         };
+      } else if (response.status === 403) {
+        console.warn(`GitHub API rate limit exceeded for ${owner}/${repo}`);
+      } else {
+        console.warn(`Failed to fetch stats for ${owner}/${repo}: ${response.status}`);
       }
     } catch (error) {
       console.warn(`Failed to fetch stats for ${owner}/${repo}:`, error);
@@ -115,6 +144,28 @@ async function fetchGitHubStats() {
   });
   
   await Promise.all(fetchPromises);
+  
+  // Save to cache if we got any data
+  if (Object.keys(githubStatsCache).length > 0) {
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(githubStatsCache));
+      localStorage.setItem(cacheTimeKey, Date.now().toString());
+      console.log('GitHub stats cached successfully');
+    } catch (e) {
+      console.warn('Cache write failed:', e);
+    }
+  }
+  
+  // Log rate limit status
+  fetch('https://api.github.com/rate_limit')
+    .then(r => r.json())
+    .then(data => {
+      console.log('GitHub API Rate Limit - Remaining:', data.rate.remaining, '/', data.rate.limit);
+      if (data.rate.remaining < 10) {
+        console.warn('⚠️ GitHub API rate limit low! Resets at', new Date(data.rate.reset * 1000).toLocaleTimeString());
+      }
+    })
+    .catch(() => {});
 }
 
 /**
