@@ -17,21 +17,25 @@ const FormBuilder = {
   buildField(fieldConfig) {
     const fieldGroup = document.createElement('div');
     fieldGroup.className = 'form-group';
-    if (fieldConfig.required) {
-      fieldGroup.classList.add('required');
-    }
 
-    // Label
+    // Label container with required indicator
+    const labelContainer = document.createElement('div');
+    labelContainer.className = 'label-container';
+    
     const label = document.createElement('label');
     label.htmlFor = 'f-' + fieldConfig.id;
     label.textContent = fieldConfig.label;
+    labelContainer.appendChild(label);
+    
     if (fieldConfig.required) {
-      const requiredSpan = document.createElement('span');
-      requiredSpan.className = 'required-indicator';
-      requiredSpan.textContent = ' *';
-      label.appendChild(requiredSpan);
+      const requiredMsg = document.createElement('span');
+      requiredMsg.className = 'required-message';
+      requiredMsg.id = `f-${fieldConfig.id}-required`;
+      requiredMsg.textContent = 'Required';
+      labelContainer.appendChild(requiredMsg);
     }
-    fieldGroup.appendChild(label);
+    
+    fieldGroup.appendChild(labelContainer);
 
     // Input element
     let input;

@@ -94,11 +94,17 @@ body {
   background: linear-gradient(180deg, rgba(26,18,9,.97), rgba(13,9,6,.95));
   border-bottom: 1px solid var(--border);
   padding: 13px 20px;
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+.topbar-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 0;
 }
 
 .topbar-left { 
@@ -147,6 +153,40 @@ body {
   display: flex; 
   align-items: center; 
   gap: 10px; 
+}
+
+/* Quality bar inline with topbar */
+.topbar-quality-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 80%;
+  max-width: 736px; /* 80% of 920px container */
+  pointer-events: none;
+}
+
+.topbar-quality-bar.hidden {
+  display: none;
+}
+
+.topbar-quality-bar .quality-bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 191, 71, 0.1);
+}
+
+.topbar-quality-bar .quality-text {
+  font-size: 0.85rem;
+  color: var(--cream-dim);
+  text-align: center;
+  transition: color 0.3s;
 }
 
 .steam-user-badge {
@@ -414,6 +454,24 @@ body {
   color: var(--cream-dim);
   cursor: pointer; 
   transition: all .2s;
+  position: relative;
+}
+
+.tab-indicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 191, 71, 0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
 }
 
 .tab:hover { 
@@ -424,6 +482,88 @@ body {
 .tab.active { 
   background: var(--surface); 
   color: var(--amber); 
+}
+
+/* ── Quality Bar Fill (shared styles) ──────────────────── */
+.quality-bar-container {
+  margin-bottom: 8px;
+}
+
+.quality-bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, var(--red) 0%, var(--red) 100%);
+  box-shadow: 0 0 12px rgba(192, 57, 43, 0.6);
+}
+
+/* Quality level color classes */
+.quality-bar-fill.terrible {
+  background: linear-gradient(90deg, #8b0000 0%, var(--red) 100%);
+  box-shadow: 0 0 12px rgba(139, 0, 0, 0.7);
+}
+
+.quality-bar-fill.poor {
+  background: linear-gradient(90deg, var(--red) 0%, #e67e22 100%);
+  box-shadow: 0 0 12px rgba(192, 57, 43, 0.6);
+}
+
+.quality-bar-fill.fair {
+  background: linear-gradient(90deg, #e67e22 0%, #f39c12 100%);
+  box-shadow: 0 0 12px rgba(230, 126, 34, 0.6);
+}
+
+.quality-bar-fill.good {
+  background: linear-gradient(90deg, #f39c12 0%, var(--amber) 100%);
+  box-shadow: 0 0 12px rgba(243, 156, 18, 0.6);
+}
+
+.quality-bar-fill.great {
+  background: linear-gradient(90deg, var(--amber) 0%, #a8c256 100%);
+  box-shadow: 0 0 12px rgba(255, 191, 71, 0.6);
+}
+
+.quality-bar-fill.excellent {
+  background: linear-gradient(90deg, #a8c256 0%, var(--green) 100%);
+  box-shadow: 0 0 12px rgba(168, 194, 86, 0.7);
+}
+
+.quality-text {
+  font-weight: 700;
+  transition: color 0.3s ease;
+  text-align: center;
+}
+
+/* Quality text color classes */
+.quality-text.terrible {
+  color: #ff6b6b;
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.4);
+}
+
+.quality-text.poor {
+  color: #ff8787;
+  text-shadow: 0 0 10px rgba(192, 57, 43, 0.4);
+}
+
+.quality-text.fair {
+  color: #ffa94d;
+  text-shadow: 0 0 10px rgba(230, 126, 34, 0.4);
+}
+
+.quality-text.good {
+  color: #ffd43b;
+  text-shadow: 0 0 10px rgba(243, 156, 18, 0.4);
+}
+
+.quality-text.great {
+  color: var(--amber);
+  text-shadow: 0 0 10px rgba(255, 191, 71, 0.4);
+}
+
+.quality-text.excellent {
+  color: var(--green-txt);
+  text-shadow: 0 0 10px rgba(110, 154, 42, 0.4);
 }
 
 /* ── Info banner ───────────────────────────────────────── */
@@ -510,12 +650,19 @@ body {
   margin-bottom: 18px;
 }
 
+.label-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
 .form-group label {
-  display: block;
+  display: inline-block;
   font-size: .88rem;
   font-weight: 600;
   color: var(--cream);
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 
 .required-indicator {
@@ -561,8 +708,27 @@ textarea.form-input {
   min-height: 1.2em;
 }
 
+.required-message {
+  color: var(--cream-dim);
+  font-size: .72rem;
+  opacity: 0.5;
+  transition: color 0.2s, opacity 0.2s;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.required-message.error {
+  color: var(--red);
+  opacity: 1;
+}
+
 .form-input.invalid {
   border-color: var(--red);
+}
+
+.form-input.touched {
+  /* Just a marker class, no styles needed */
 }
 
 /* ── File input ────────────────────────────────────────── */
@@ -734,10 +900,9 @@ textarea.form-input {
 
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .topbar {
+  .topbar-content {
     flex-direction: column;
     gap: 10px;
-    padding: 10px 15px;
   }
 
   .topbar-left,
@@ -775,5 +940,13 @@ textarea.form-input {
 
   .form-panel {
     padding: 18px 20px;
+  }
+  
+  .topbar-quality-bar .quality-bar {
+    height: 14px;
+  }
+  
+  .topbar-quality-bar .quality-status {
+    font-size: 0.8rem;
   }
 }

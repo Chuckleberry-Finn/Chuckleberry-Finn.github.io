@@ -20,25 +20,36 @@
   <div class="page">
     <!-- Top bar -->
     <div class="topbar">
-      <div class="topbar-left">
-        <a href="https://chuckleberry-finn.github.io" class="topbar-home">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-          </svg>
-          Home
-        </a>
-        <div class="topbar-title-area">
-          <div class="topbar-title" id="topbar-title">Issue Tracker</div>
-          <div class="topbar-sub" id="topbar-sub">Report bugs & request features</div>
+      <div class="topbar-content">
+        <div class="topbar-left">
+          <a href="https://chuckleberry-finn.github.io" class="topbar-home">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            Home
+          </a>
+          <div class="topbar-title-area">
+            <div class="topbar-title" id="topbar-title">Issue Tracker</div>
+            <div class="topbar-sub" id="topbar-sub">Report bugs & request features</div>
+          </div>
         </div>
-      </div>
-      <div class="topbar-right">
-        <div class="steam-user-badge hidden" id="steam-user-badge">
-          <svg viewBox="0 0 256 259" fill="currentColor">
-            <path d="M127.778 0C70.366 0 22.47 42.714 14.107 98.13L68.45 119.82c5.52-3.77 12.176-5.978 19.35-5.978.684 0 1.362.022 2.033.063l24.375-35.343v-.5c0-26.125 21.25-47.375 47.375-47.375 26.124 0 47.374 21.25 47.374 47.375 0 26.124-21.25 47.374-47.374 47.374h-1.093l-34.719 24.844c0 .53.016 1.054.016 1.584 0 19.007-15.46 34.467-34.468 34.467-16.758 0-30.747-12.028-33.875-27.968L9.596 141.03C22.03 201.394 70.84 248.79 129.778 248.79c69.036 0 125-55.964 125-125s-55.964-125-125-125zm-67.53 176.03l-13.25-5.47c2.344 4.874 6.406 8.936 11.75 11.094 11.53 4.687 24.81-.906 29.5-12.468 2.28-5.594 2.28-11.688 0-17.25-2.282-5.563-6.72-9.875-12.313-12.156-5.53-2.28-11.47-2.25-16.78-.155l13.718 5.686c8.5 3.5 12.53 13.28 9.03 21.78-3.5 8.5-13.156 12.437-21.656 8.938z"/>
-          </svg>
-          <span class="steam-user-name" id="steam-user-name"></span>
-          <button class="sign-out-link" id="sign-out-link">sign out</button>
+        
+        <!-- Quality Indicator (inline, only visible on bug reports) -->
+        <div class="topbar-quality-bar hidden" id="quality-indicator-wrapper">
+          <div class="quality-bar" id="quality-bar">
+            <div class="quality-bar-fill" id="quality-bar-fill"></div>
+          </div>
+          <div class="quality-text" id="quality-text">Start filling out the form</div>
+        </div>
+        
+        <div class="topbar-right">
+          <div class="steam-user-badge hidden" id="steam-user-badge">
+            <svg viewBox="0 0 256 259" fill="currentColor">
+              <path d="M127.778 0C70.366 0 22.47 42.714 14.107 98.13L68.45 119.82c5.52-3.77 12.176-5.978 19.35-5.978.684 0 1.362.022 2.033.063l24.375-35.343v-.5c0-26.125 21.25-47.375 47.375-47.375 26.124 0 47.374 21.25 47.374 47.375 0 26.124-21.25 47.374-47.374 47.374h-1.093l-34.719 24.844c0 .53.016 1.054.016 1.584 0 19.007-15.46 34.467-34.468 34.467-16.758 0-30.747-12.028-33.875-27.968L9.596 141.03C22.03 201.394 70.84 248.79 129.778 248.79c69.036 0 125-55.964 125-125s-55.964-125-125-125zm-67.53 176.03l-13.25-5.47c2.344 4.874 6.406 8.936 11.75 11.094 11.53 4.687 24.81-.906 29.5-12.468 2.28-5.594 2.28-11.688 0-17.25-2.282-5.563-6.72-9.875-12.313-12.156-5.53-2.28-11.47-2.25-16.78-.155l13.718 5.686c8.5 3.5 12.53 13.28 9.03 21.78-3.5 8.5-13.156 12.437-21.656 8.938z"/>
+            </svg>
+            <span class="steam-user-name" id="steam-user-name"></span>
+            <button class="sign-out-link" id="sign-out-link">sign out</button>
+          </div>
         </div>
       </div>
     </div>

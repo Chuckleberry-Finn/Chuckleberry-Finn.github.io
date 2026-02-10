@@ -311,7 +311,18 @@ function renderTabs() {
     const tab = document.createElement('button');
     tab.className = 'tab';
     tab.dataset.type = typeKey;
-    tab.textContent = typeConfig.label;
+    
+    const hasSavedData = tabFormData[typeKey] && Object.keys(tabFormData[typeKey]).length > 0;
+    
+    tab.innerHTML = typeConfig.label;
+    
+    if (hasSavedData && typeKey !== currentTab) {
+      const dot = document.createElement('span');
+      dot.className = 'tab-indicator';
+      dot.title = 'This tab has saved data';
+      tab.appendChild(dot);
+    }
+    
     tab.onclick = () => switchTab(typeKey);
     
     if (typeKey === currentTab) {
@@ -322,15 +333,73 @@ function renderTabs() {
   });
 }
 
+let tabFormData = {
+  bug: {},
+  feature: {}
+};
+
 /**
  * Switch to a different tab
  */
 function switchTab(typeKey) {
+  if (currentTab === typeKey) return;
+  
+  if (currentTab && hasFormData()) {
+    saveCurrentTabData();
+  }
+  
   currentTab = typeKey;
-  document.querySelectorAll('#tabs-mount .tab').forEach(t =>
-    t.classList.toggle('active', t.dataset.type === typeKey)
-  );
+  
+  renderTabs();
+  
   renderFields();
+}
+
+function hasFormData() {
+  const form = document.getElementById('issue-form');
+  if (!form) return false;
+  
+  const inputs = form.querySelectorAll('input, textarea, select');
+  for (let input of inputs) {
+    if (input.value.trim()) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function saveCurrentTabData() {
+  const form = document.getElementById('issue-form');
+  if (!form) return;
+  
+  const data = {};
+  const inputs = form.querySelectorAll('input, textarea, select');
+  inputs.forEach(input => {
+    if (input.name) {
+      data[input.name] = input.value;
+    }
+  });
+  
+  tabFormData[currentTab] = data;
+}
+
+function restoreTabData() {
+  const savedData = tabFormData[currentTab];
+  if (!savedData || Object.keys(savedData).length === 0) return;
+  
+  const form = document.getElementById('issue-form');
+  if (!form) return;
+  
+  setTimeout(() => {
+    Object.keys(savedData).forEach(fieldName => {
+      const input = form.querySelector(`[name="${fieldName}"]`);
+      if (input) {
+        input.value = savedData[fieldName];
+        // Trigger input event to update validation
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    });
+  }, 50);
 }
 
 /**
@@ -350,7 +419,15 @@ function renderFields() {
   
   // Initialize validation
   const form = document.getElementById('issue-form');
-  FormValidator.initValidation(form);
+  FormValidator.initValidation(form, issueTypeConfig.fields);
+  
+  if (currentTab === 'bug') {
+    FormValidator.showQualityIndicator();
+  } else {
+    FormValidator.hideQualityIndicator();
+  }
+  
+  restoreTabData();
   
   // Disable both submit buttons initially
   const githubBtn = document.getElementById('btn-github-submit');
