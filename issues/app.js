@@ -162,7 +162,7 @@ async function fetchGitHubStats() {
     .then(data => {
       console.log('GitHub API Rate Limit - Remaining:', data.rate.remaining, '/', data.rate.limit);
       if (data.rate.remaining < 10) {
-        console.warn('⚠️ GitHub API rate limit low! Resets at', new Date(data.rate.reset * 1000).toLocaleTimeString());
+        console.warn('!️ GitHub API rate limit low! Resets at', new Date(data.rate.reset * 1000).toLocaleTimeString());
       }
     })
     .catch(() => {});

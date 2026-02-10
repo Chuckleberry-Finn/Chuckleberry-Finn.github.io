@@ -48,7 +48,7 @@ def gh_notice(message):
     if IS_GITHUB_ACTIONS:
         print(f"::notice::{message}")
     else:
-        print(f"ℹ {message}")
+        print(f"{message}")
 
 def gh_warning(message):
     """Print a warning in GitHub Actions"""
@@ -86,9 +86,9 @@ class RateLimiter:
                 sleep_time = self.window - (now - self.requests[0]) + 0.1
                 if sleep_time > 0:
                     if IS_GITHUB_ACTIONS:
-                        print(f"⏱ Rate limit: waiting {sleep_time:.1f}s... ({len(self.requests)}/{self.max_requests} requests in window)")
+                        print(f"Rate limit: waiting {sleep_time:.1f}s... ({len(self.requests)}/{self.max_requests} requests in window)")
                     else:
-                        print(f"⏱ Rate limit: waiting {sleep_time:.1f}s...")
+                        print(f"Rate limit: waiting {sleep_time:.1f}s...")
                     time.sleep(sleep_time)
                     # Clean up again after sleeping
                     now = time.time()
@@ -422,15 +422,15 @@ def generate_json(repos):
     # Load existing GitHub stats
     gh_group("Loading Existing GitHub Stats")
     existing_github_stats = load_existing_stats()
-    print(f"📊 Found {len(existing_github_stats)} existing GitHub stats in cache")
+    print(f"Found {len(existing_github_stats)} existing GitHub stats in cache")
     gh_endgroup()
     
     # Load queue
     gh_group("Loading GitHub Stats Queue")
     pending_queue, queue_timestamp = load_queue()
-    print(f"📋 Pending repos in queue: {len(pending_queue)}")
+    print(f"Pending repos in queue: {len(pending_queue)}")
     if queue_timestamp:
-        print(f"⏰ Queue last updated: {queue_timestamp}")
+        print(f"Queue last updated: {queue_timestamp}")
     gh_endgroup()
     
     # FIRST PASS: Process highlights concurrently (but rate limited)
@@ -463,7 +463,7 @@ def generate_json(repos):
                 if mod_data and mod_data['workshop_id'] not in seen_workshop_ids:
                     seen_workshop_ids.add(mod_data['workshop_id'])
                     mods.append(mod_data)
-                    status = "✓" if mod_data.get('banner') and 'subs' in mod_data else "⚠️"
+                    status = "✓" if mod_data.get('banner') and 'subs' in mod_data else "!️"
                     success_count += 1
                     print(status)
                 else:
@@ -502,7 +502,7 @@ def generate_json(repos):
                     seen_workshop_ids.add(mod_data['workshop_id'])
                     mods.append(mod_data)
                     added += 1
-                    status = "✓" if mod_data.get('banner') and 'subs' in mod_data else "⚠️"
+                    status = "✓" if mod_data.get('banner') and 'subs' in mod_data else "!️"
                     print(f"[+] {repo['name']}: {status}")
             except Exception:
                 pass
@@ -523,7 +523,7 @@ def generate_json(repos):
     repos_to_fetch = []
     
     # Priority 1: Process queue first (finish what we started)
-    print(f"\n📋 Processing queue...")
+    print(f"\nProcessing queue...")
     for repo_url in pending_queue:
         if repo_url in repo_map:
             repos_to_fetch.append(repo_url)
@@ -533,7 +533,7 @@ def generate_json(repos):
     print(f"  • {len(repos_to_fetch)} repos from queue")
     
     # Priority 2: Repos without stats at all
-    print(f"\n🆕 Finding repos without stats...")
+    print(f"\nFinding repos without stats...")
     repos_without_stats = []
     for mod in mods:
         repo_url = mod['repo_url']
@@ -547,14 +547,14 @@ def generate_json(repos):
     fetch_count = min(len(repos_to_fetch), GITHUB_API_LIMIT)
     repos_to_fetch = repos_to_fetch[:fetch_count]
     
-    print(f"\n📊 GitHub Stats Plan:")
+    print(f"\nGitHub Stats Plan:")
     print(f"  • Will fetch: {fetch_count} repos")
     print(f"  • Already have: {len(existing_github_stats)} repos")
     print(f"  • Will queue: {max(0, len(pending_queue) + len(repos_without_stats) - fetch_count)} repos for next run")
     
     # Fetch GitHub stats for selected repos
     if repos_to_fetch:
-        print(f"\n🔄 Fetching GitHub stats for {len(repos_to_fetch)} repositories...")
+        print(f"\nFetching GitHub stats for {len(repos_to_fetch)} repositories...")
         
         for idx, repo_url in enumerate(repos_to_fetch, 1):
             repo_obj = repo_map.get(repo_url)
@@ -584,7 +584,7 @@ def generate_json(repos):
     
     # Save queue
     save_queue(remaining_queue)
-    print(f"\n💾 Saved {len(remaining_queue)} repos to queue for next run")
+    print(f"\nSaved {len(remaining_queue)} repos to queue for next run")
     
     gh_endgroup()
     

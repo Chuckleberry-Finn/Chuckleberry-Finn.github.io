@@ -5,6 +5,45 @@ function formatSubs(n) {
   return n.toLocaleString();
 }
 
+// Utility function to format timestamp for watermark
+function formatTimestamp(isoString) {
+  const date = new Date(isoString);
+  const now = new Date();
+  const diffMs = now - date;
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMins / 60);
+  const diffDays = Math.floor(diffHours / 24);
+  
+  if (diffMins < 60) {
+    return `${diffMins}m ago`;
+  } else if (diffHours < 24) {
+    return `${diffHours}h ago`;
+  } else if (diffDays === 1) {
+    return '1 day ago';
+  } else if (diffDays < 7) {
+    return `${diffDays} days ago`;
+  } else {
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+}
+
+// Fetch and display last update time
+fetch('github_stats_queue.json')
+  .then(res => res.json())
+  .then(data => {
+    const watermarkEl = document.getElementById('watermark-text');
+    if (watermarkEl && data.timestamp) {
+      watermarkEl.textContent = `Data updated ${formatTimestamp(data.timestamp)}`;
+    }
+  })
+  .catch(err => {
+    console.warn('Could not load timestamp:', err);
+    const watermarkEl = document.getElementById('watermark-text');
+    if (watermarkEl) {
+      watermarkEl.textContent = 'Data updated recently';
+    }
+  });
+
 fetch('mods.json')
   .then(res => res.json())
   .then(data => {

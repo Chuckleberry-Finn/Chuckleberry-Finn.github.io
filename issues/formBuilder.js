@@ -183,7 +183,7 @@ const FormBuilder = {
         // Check file size
         const maxSize = fieldConfig.maxSize || 10485760; // 10MB default
         if (file.size > maxSize) {
-          fileInfo.textContent = `⚠️ File too large (max ${(maxSize / 1048576).toFixed(0)}MB)`;
+          fileInfo.textContent = `!️ File too large (max ${(maxSize / 1048576).toFixed(0)}MB)`;
           fileInfo.className = 'file-input-info error';
           input.value = '';
           textSpan.textContent = 'Choose file...';

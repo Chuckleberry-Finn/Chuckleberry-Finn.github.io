@@ -1,12 +1,16 @@
 name: Deploy Site (Jekyll)
 
 on:
+  # Trigger on push to main, but only for code/style changes
   push:
     branches: ["main"]
-  workflow_run:
-    workflows: ["Update Mods Data"]
-    types:
-      - completed
+    paths:
+      - '**.css'
+      - '**.html'
+      - '**.js'
+      - '**.py'
+      - '**.yml'
+  # Manual trigger
   workflow_dispatch:
 
 permissions:
