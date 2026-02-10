@@ -755,9 +755,11 @@ body {
   color: var(--cream);
 }
 
-.watermark-icon {
-  font-size: 0.85em;
-  opacity: 0.7;
+.data-watermark::before {
+  content: '•';
+  color: rgba(255, 191, 71, 0.5);
+  font-size: 1.2em;
+  line-height: 1;
 }
 
 @media (max-width: 700px) {
