@@ -28,12 +28,21 @@ function formatTimestamp(isoString) {
 }
 
 // Fetch and display last update time
-fetch('github_stats_queue.json')
-  .then(res => res.json())
+// Add timestamp to URL to prevent caching
+fetch(`github_stats_queue.json?t=${Date.now()}`)
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+    return res.json();
+  })
   .then(data => {
     const watermarkEl = document.getElementById('watermark-text');
     if (watermarkEl && data.timestamp) {
       watermarkEl.textContent = `Data updated ${formatTimestamp(data.timestamp)}`;
+      console.log('Watermark updated:', data.timestamp);
+    } else {
+      console.warn('Timestamp data missing:', data);
     }
   })
   .catch(err => {
@@ -44,7 +53,7 @@ fetch('github_stats_queue.json')
     }
   });
 
-fetch('mods.json')
+fetch(`mods.json?t=${Date.now()}`)
   .then(res => res.json())
   .then(data => {
     // Calculate total subs from ALL mods (highlighted and non-highlighted)
