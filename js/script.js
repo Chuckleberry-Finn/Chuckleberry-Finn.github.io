@@ -13,8 +13,6 @@ fetch('mods.json')
     const totalSubsEl = document.getElementById('totalSubsCount');
     if (totalSubsEl) {
       totalSubsEl.textContent = formatSubs(totalSubs);
-      // Fade in the total subs display
-      document.getElementById('totalSubs').style.opacity = '1';
     }
     
     // Filter to only show highlights on main page
@@ -60,23 +58,20 @@ function initModUI(mods) {
     card.setAttribute('role', 'option');
     card.setAttribute('aria-label', mod.name);
     card.dataset.index = index;
-    card.style.opacity = '0';
+    card.style.opacity = '1'; // Show immediately instead of fade-in
+    card.style.transition = 'all 0.3s ease';
     
     stack.appendChild(card);
     cards.push(card);
-
-    setTimeout(() => {
-      card.style.transition = 'all 0.3s ease';
-      card.style.opacity = '1';
-    }, 50 + index * 30);
   });
 
-  setTimeout(() => {
-    selectMod(0);
-    if (!isMobile) {
-      updateStackPositions(null);
-    }
-  }, 50 + total * 30 + 100);
+  // Select first mod immediately
+  selectMod(0);
+  if (!isMobile) {
+    updateStackPositions(null);
+  } else {
+    updateCarouselPositions();
+  }
 
   // Desktop events
   stack.addEventListener('mousemove', (e) => {
@@ -173,12 +168,7 @@ function initModUI(mods) {
     selectedIndex = index;
     hoveredIndex = index;
     
-    if (lastHovered !== index) {
-      shuffleSound.currentTime = 0;
-      shuffleSound.play().catch(() => {});
-      lastHovered = index;
-    }
-    
+    // Only play sound on actual selection (click/tap/keyboard), not hover
     selectSound.currentTime = 0;
     selectSound.play().catch(() => {});
     
@@ -192,10 +182,7 @@ function initModUI(mods) {
   function updatePreview(mod) {
     modTitle.textContent = mod.name;
     modTitle.title = mod.name;
-    // Fade in the title on first load
-    if (modTitle.style.opacity === '0') {
-      modTitle.style.opacity = '1';
-    }
+    modTitle.style.opacity = '1'; // Always visible, no fade
     modPreview.src = mod.banner || "";
     modPreview.alt = mod.name;
 
@@ -332,18 +319,13 @@ function initModUI(mods) {
       }
     });
 
-    if (closestIndex !== -1 && closestIndex !== lastHovered) {
-      shuffleSound.currentTime = 0;
-      shuffleSound.play().catch(() => {});
-      lastHovered = closestIndex;
-    }
     hoveredIndex = closestIndex;
   }
 
   function updateCarouselPositions(drag = 0) {
     if (!isMobile) return;
     const center = stack.offsetWidth / 2;
-    const mobileCardWidth = 143;
+    const mobileCardWidth = 120; // Updated to match new mobile card size
     const spacing = 99;
 
     cards.forEach((card, i) => {
@@ -351,17 +333,18 @@ function initModUI(mods) {
       const x = center - mobileCardWidth / 2 + offset * spacing + drag;
       const dist = Math.abs(offset * spacing + drag);
       const scale = 1 - Math.min(dist / (spacing * 2), 1) * 0.15;
-      const opacity = 1 - Math.min(dist / (spacing * 2), 1) * 0.4;
-
+      // Removed opacity fade - all cards now fully opaque
+      
       card.style.top = '15px';
       card.style.left = `${x}px`;
       card.style.transform = `scale(${scale})`;
-      card.style.opacity = Math.max(0.4, opacity);
+      card.style.opacity = '1'; // Always fully opaque
       card.style.zIndex = 100 - Math.abs(offset);
     });
   }
 
+  // Initialize mobile carousel immediately if on mobile
   if (isMobile) {
-    setTimeout(updateCarouselPositions, 50 + total * 30 + 150);
+    updateCarouselPositions();
   }
 }

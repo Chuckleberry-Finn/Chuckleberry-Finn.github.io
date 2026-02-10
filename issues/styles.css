@@ -900,15 +900,34 @@ textarea.form-input {
 
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .topbar {
+    padding: 10px 15px;
+  }
+
   .topbar-content {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .topbar-left,
   .topbar-right {
     width: 100%;
     justify-content: center;
+  }
+  
+  .topbar-title-area {
+    text-align: center;
+  }
+  
+  /* Move quality bar below topbar content on mobile */
+  .topbar-quality-bar {
+    position: relative;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 8px;
+    order: 10; /* Move to bottom */
   }
 
   .hub-header h1 {
@@ -921,11 +940,52 @@ textarea.form-input {
 
   .submit-section {
     flex-direction: column;
+    gap: 16px;
   }
 
   .form-mod-header {
     flex-direction: column;
     text-align: center;
+    padding: 16px 18px;
+  }
+  
+  .form-mod-banner {
+    width: 64px;
+    height: 64px;
+  }
+  
+  /* Better touch targets for tabs */
+  .tabs {
+    gap: 8px;
+  }
+  
+  .tab {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  /* Optimize form inputs for mobile */
+  .form-input,
+  .form-select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 12px;
+  }
+  
+  textarea.form-input {
+    min-height: 120px; /* Larger on mobile for easier typing */
+  }
+  
+  /* Better info banner on mobile */
+  .info-banner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  
+  .console-path {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
   }
 }
 
@@ -935,18 +995,82 @@ textarea.form-input {
   }
 
   .container {
-    padding: 0 15px;
+    padding: 0 12px;
+  }
+  
+  .topbar {
+    padding: 8px 12px;
   }
 
   .form-panel {
-    padding: 18px 20px;
+    padding: 16px;
+  }
+  
+  .form-content {
+    padding: 16px 0 40px;
   }
   
   .topbar-quality-bar .quality-bar {
-    height: 14px;
+    height: 12px;
   }
   
-  .topbar-quality-bar .quality-status {
+  .topbar-quality-bar .quality-text {
+    font-size: 0.75rem;
+  }
+  
+  .topbar-title {
+    font-size: 1.1rem;
+  }
+  
+  .topbar-sub {
+    font-size: 0.7rem;
+  }
+  
+  /* Compact home link on very small screens */
+  .topbar-home {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  
+  .topbar-home svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Better submit buttons on small screens */
+  .submit-btn {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Compact Steam badge */
+  .steam-user-badge {
+    font-size: 0.72rem;
+    padding: 4px 8px;
+  }
+  
+  .steam-user-badge svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Better file input on mobile */
+  .file-input-label {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+  
+  /* Adjust info banner text for small screens */
+  .info-banner-text {
     font-size: 0.8rem;
+  }
+  
+  .info-banner-title {
+    font-size: 0.85rem;
   }
 }
