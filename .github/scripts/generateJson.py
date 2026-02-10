@@ -26,7 +26,7 @@ STEAM_MAX_WORKERS = 1  # For Steam requests (rate limited)
 
 # Rate limiting - PROACTIVE from the start
 STEAM_REQUESTS_PER_MINUTE = 9
-RATE_WINDOW = 60  # seconds
+RATE_WINDOW = 65  # seconds
 
 # GitHub Actions logging helpers
 def gh_group(title):
