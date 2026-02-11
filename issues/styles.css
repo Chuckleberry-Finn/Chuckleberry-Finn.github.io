@@ -1074,3 +1074,21 @@ textarea.form-input {
     font-size: 0.85rem;
   }
 }
+
+/* ============================================================
+   FORM LAYOUT — Two-column layout for form + issues sidebar
+   ============================================================ */
+
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* On tablets and below, stack the layout */
+@media (max-width: 1200px) {
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+}

@@ -293,6 +293,14 @@ function showForm(mod) {
   // Setup submit buttons
   setupSubmitButtons();
   
+  // Initialize issues sidebar
+  const repoMatch2 = mod.repo_url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+  if (repoMatch2 && typeof IssuesList !== 'undefined') {
+    const owner = repoMatch2[1];
+    const repo = repoMatch2[2].replace(/\.git$/, ''); // Remove .git if present
+    IssuesList.init(owner, repo);
+  }
+  
   // Update URL
   const repoMatch = mod.repo_url.match(/github\.com\/[^\/]+\/([^\/]+)/);
   if (repoMatch) {

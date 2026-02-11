@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Issue Tracker - Chuck's Mods</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="issuesSidebar.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
 </head>
@@ -69,74 +70,81 @@
     <!-- Form view (issue submission) -->
     <div id="view-form">
       <div class="container">
-        <div class="form-content">
-          <!-- Mod header -->
-          <div class="form-mod-header" id="form-mod-header">
-            <div class="form-mod-banner" id="form-mod-banner"></div>
-            <div class="form-mod-info">
-              <h2 id="form-mod-name"></h2>
-              <p>
-                <a href="#" id="form-mod-steam" target="_blank">Steam Workshop</a>
-                ·
-                <a href="#" id="form-mod-github" target="_blank">GitHub</a>
-                ·
-                <a href="#" id="back-to-hub" style="color: var(--cream-dim);">← Back to projects</a>
-              </p>
-            </div>
-          </div>
-
-          <!-- Tabs -->
-          <div class="tabs" id="tabs-mount"></div>
-
-          <!-- Helpful Info Banner -->
-          <div class="info-banner">
-            <div class="info-banner-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 16v-4"></path>
-                <path d="M12 8h.01"></path>
-              </svg>
-            </div>
-            <div class="info-banner-content">
-              <div class="info-banner-title">Helpful Resources</div>
-              <div class="info-banner-text">
-                <strong>For clear error messages:</strong> Install <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179" target="_blank">errorMagnifier</a>
-                <br>
-                <strong>Console logs location:</strong>
-                <span class="console-path"><strong>Windows:</strong> %userprofile%\Zomboid\console.txt</span>
-                <span class="console-path"><strong>Mac/Linux:</strong> $User\Zomboid\console.txt</span>
+        <div class="form-layout">
+          <div class="form-content">
+            <!-- Mod header -->
+            <div class="form-mod-header" id="form-mod-header">
+              <div class="form-mod-banner" id="form-mod-banner"></div>
+              <div class="form-mod-info">
+                <h2 id="form-mod-name"></h2>
+                <p>
+                  <a href="#" id="form-mod-steam" target="_blank">Steam Workshop</a>
+                  ·
+                  <a href="#" id="form-mod-github" target="_blank">GitHub</a>
+                  ·
+                  <a href="#" id="back-to-hub" style="color: var(--cream-dim);">← Back to projects</a>
+                </p>
               </div>
             </div>
-          </div>
 
-          <!-- Form -->
-          <div class="form-panel">
-            <form id="issue-form">
-              <div id="fields-mount"></div>
+            <!-- Tabs -->
+            <div class="tabs" id="tabs-mount"></div>
 
-              <!-- Submit buttons -->
-              <div class="submit-section">
-                <div>
-                  <button type="button" class="submit-btn btn-github" id="btn-github-submit" disabled>
-                    <svg class="btn-icon" viewBox="0 0 16 16" fill="currentColor">
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    Submit on GitHub
-                  </button>
-                  <div class="submit-hint">Opens GitHub issue form (requires GitHub account)</div>
-                </div>
-                <div>
-                  <button type="button" class="submit-btn btn-steam" id="btn-steam-submit" disabled>
-                    <svg class="btn-icon" viewBox="0 0 256 259" fill="currentColor">
-                      <path d="M127.778 0C70.366 0 22.47 42.714 14.107 98.13L68.45 119.82c5.52-3.77 12.176-5.978 19.35-5.978.684 0 1.362.022 2.033.063l24.375-35.343v-.5c0-26.125 21.25-47.375 47.375-47.375 26.124 0 47.374 21.25 47.374 47.375 0 26.124-21.25 47.374-47.374 47.374h-1.093l-34.719 24.844c0 .53.016 1.054.016 1.584 0 19.007-15.46 34.467-34.468 34.467-16.758 0-30.747-12.028-33.875-27.968L9.596 141.03C22.03 201.394 70.84 248.79 129.778 248.79c69.036 0 125-55.964 125-125s-55.964-125-125-125zm-67.53 176.03l-13.25-5.47c2.344 4.874 6.406 8.936 11.75 11.094 11.53 4.687 24.81-.906 29.5-12.468 2.28-5.594 2.28-11.688 0-17.25-2.282-5.563-6.72-9.875-12.313-12.156-5.53-2.28-11.47-2.25-16.78-.155l13.718 5.686c8.5 3.5 12.53 13.28 9.03 21.78-3.5 8.5-13.156 12.437-21.656 8.938z"/>
-                    </svg>
-                    <span id="steam-btn-label">Sign in with Steam to submit</span>
-                  </button>
-                  <div class="submit-hint" id="steam-submit-hint">No GitHub account? Submit via your Steam identity instead</div>
+            <!-- Helpful Info Banner -->
+            <div class="info-banner">
+              <div class="info-banner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 16v-4"></path>
+                  <path d="M12 8h.01"></path>
+                </svg>
+              </div>
+              <div class="info-banner-content">
+                <div class="info-banner-title">Helpful Resources</div>
+                <div class="info-banner-text">
+                  <strong>For clear error messages:</strong> Install <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179" target="_blank">errorMagnifier</a>
+                  <br>
+                  <strong>Console logs location:</strong>
+                  <span class="console-path"><strong>Windows:</strong> %userprofile%\Zomboid\console.txt</span>
+                  <span class="console-path"><strong>Mac/Linux:</strong> $User\Zomboid\console.txt</span>
                 </div>
               </div>
-            </form>
+            </div>
+
+            <!-- Form -->
+            <div class="form-panel">
+              <form id="issue-form">
+                <div id="fields-mount"></div>
+
+                <!-- Submit buttons -->
+                <div class="submit-section">
+                  <div>
+                    <button type="button" class="submit-btn btn-github" id="btn-github-submit" disabled>
+                      <svg class="btn-icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>
+                      Submit on GitHub
+                    </button>
+                    <div class="submit-hint">Opens GitHub issue form (requires GitHub account)</div>
+                  </div>
+                  <div>
+                    <button type="button" class="submit-btn btn-steam" id="btn-steam-submit" disabled>
+                      <svg class="btn-icon" viewBox="0 0 256 259" fill="currentColor">
+                        <path d="M127.778 0C70.366 0 22.47 42.714 14.107 98.13L68.45 119.82c5.52-3.77 12.176-5.978 19.35-5.978.684 0 1.362.022 2.033.063l24.375-35.343v-.5c0-26.125 21.25-47.375 47.375-47.375 26.124 0 47.374 21.25 47.374 47.375 0 26.124-21.25 47.374-47.374 47.374h-1.093l-34.719 24.844c0 .53.016 1.054.016 1.584 0 19.007-15.46 34.467-34.468 34.467-16.758 0-30.747-12.028-33.875-27.968L9.596 141.03C22.03 201.394 70.84 248.79 129.778 248.79c69.036 0 125-55.964 125-125s-55.964-125-125-125zm-67.53 176.03l-13.25-5.47c2.344 4.874 6.406 8.936 11.75 11.094 11.53 4.687 24.81-.906 29.5-12.468 2.28-5.594 2.28-11.688 0-17.25-2.282-5.563-6.72-9.875-12.313-12.156-5.53-2.28-11.47-2.25-16.78-.155l13.718 5.686c8.5 3.5 12.53 13.28 9.03 21.78-3.5 8.5-13.156 12.437-21.656 8.938z"/>
+                      </svg>
+                      <span id="steam-btn-label">Sign in with Steam to submit</span>
+                    </button>
+                    <div class="submit-hint" id="steam-submit-hint">No GitHub account? Submit via your Steam identity instead</div>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
+          
+          <!-- Issues Sidebar -->
+          <aside class="issues-sidebar" id="issues-sidebar">
+            <!-- Issues will be loaded here by issuesList.js -->
+          </aside>
         </div>
       </div>
     </div>
@@ -150,6 +158,7 @@
   <script src="formBuilder.js"></script>
   <script src="formValidator.js"></script>
   <script src="formHandler.js"></script>
+  <script src="issuesList.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
