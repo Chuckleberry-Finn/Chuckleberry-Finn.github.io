@@ -5,7 +5,7 @@
   <title>Chuckleberry Finn - Project Zomboid Mods</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Professional portfolio of Project Zomboid mods by Chuckleberry Finn">
-  <link rel="stylesheet" href="main-professional.css">
+  <link rel="stylesheet" href="main.css">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -17,7 +17,7 @@
       <img src="https://projectzomboid.com/blog/content/themes/rw-project-zomboid/assets/images/logo.png" width="132" alt="Project Zomboid" class="pz-logo">
       <span>Mods</span>
     </h1>
-    <p class="site-subtitle">Professional mod development portfolio</p>
+    <p class="site-subtitle">Project Zomboid Mod Development</p>
   </header>
 
   <!-- Total Subscriber Count -->
@@ -37,14 +37,23 @@
       <!-- Mod Details Card -->
       <article class="mod-details" id="modDetails">
         <div class="mod-header">
-          <h2 class="mod-name" id="modName">Select a mod</h2>
+          <h2 class="mod-name" id="modName">Loading mods...</h2>
           
           <!-- Stats Grid -->
-          <div class="mod-stats" id="modStats"></div>
+          <div class="mod-stats" id="modStats">
+            <div class="stat-item">
+              <div class="stat-label">Loading</div>
+              <div class="stat-value">...</div>
+            </div>
+          </div>
         </div>
 
         <!-- Links -->
-        <div class="mod-links" id="modLinks"></div>
+        <div class="mod-links" id="modLinks">
+          <div style="text-align: center; opacity: 0.5; padding: 2rem;">
+            Loading mod data...
+          </div>
+        </div>
 
         <!-- Video -->
         <div class="mod-video" id="modVideo"></div>
@@ -136,6 +145,6 @@
     <span id="watermark-text">Loading...</span>
   </div>
 
-  <script src="js/script-professional.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
