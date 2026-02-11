@@ -97,20 +97,19 @@ body {
 .turntable-background {
   position: fixed;
   top: 180px;
-  right: 8%;
+  left: 5%;
   width: 500px;
   height: 500px;
   transform: rotateZ(-40deg) rotateX(20deg);
-  opacity: 0.8; /* TESTING: Very visible */
-  filter: blur(0px); /* TESTING: No blur */
+  opacity: 0.3;
+  filter: blur(0.5px);
   pointer-events: none;
   z-index: 2;
   transition: opacity 0.3s ease;
-  border: 3px solid red; /* TESTING: Red border to see position */
 }
 
 .turntable-background:hover {
-  opacity: 0.9;
+  opacity: 0.4;
 }
 
 /* Vinyl record in background */
@@ -466,13 +465,13 @@ body {
     padding: 0;
   }
   
-  /* Turntable positioned to overlap right side of carousel */
+  /* Turntable positioned to overlap left side of carousel */
   .turntable-background {
     top: 160px;
-    right: 8%;
+    left: 8%;
     width: 520px;
     height: 520px;
-    opacity: 0.9; /* TESTING: Very visible */
+    opacity: 0.35;
   }
 }
 
@@ -494,9 +493,9 @@ body {
   .turntable-background {
     width: 400px;
     height: 400px;
-    opacity: 0.12;
+    opacity: 0.15;
     top: 150px;
-    right: 5%;
+    left: 5%;
   }
   
   .content-grid {
