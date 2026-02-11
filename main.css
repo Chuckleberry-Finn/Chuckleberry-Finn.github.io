@@ -95,12 +95,13 @@ body {
 
 /* === ATMOSPHERIC TURNTABLE BACKGROUND === */
 .turntable-background {
+  display: none; /* Hidden for now */
   position: absolute;
   top: -40px;
   left: 0;
-  width: 380px;
-  height: 380px;
-  transform: rotateZ(-35deg) rotateX(48deg);
+  width: 400px;
+  height: 400px;
+  transform: rotateZ(-30deg) rotateX(20deg);
   opacity: 1;
   filter: drop-shadow(0 10px 25px rgba(0,0,0,0.6));
   pointer-events: none;
@@ -110,11 +111,11 @@ body {
 /* Vinyl record in background */
 .bg-vinyl-record {
   position: absolute;
-  top: 50%;
+  top: 61%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
+  width: 220px;
+  height: 220px;
   animation: spin-record 8s linear infinite;
 }
 
@@ -187,7 +188,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 5;
 }
 
 .card-stack {
@@ -195,7 +196,7 @@ body {
   width: 100%;
   height: 120px;
   outline: none;
-  z-index: 1;
+  z-index: 10;
 }
 
 .card-stack:focus-visible {
@@ -507,22 +508,22 @@ body {
   
   /* Turntable positioned to overlap left side of carousel */
   .turntable-background {
-    top: 180px;
-    left: 8%;
-    width: 400px;
-    height: 400px;
+    top: -60px;
+    left: 20px;
+    width: 420px;
+    height: 420px;
     opacity: 1;
-    transform: rotateZ(-35deg) rotateX(50deg);
+    transform: rotateZ(-30deg) rotateX(22deg);
   }
   
   .bg-record-label {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
   
   .bg-vinyl-record {
-    width: 260px;
-    height: 260px;
+    width: 230px;
+    height: 230px;
   }
 }
 
@@ -545,19 +546,19 @@ body {
     width: 320px;
     height: 320px;
     opacity: 1;
-    top: 150px;
-    left: 5%;
-    transform: rotateZ(-35deg) rotateX(48deg);
+    top: -30px;
+    left: -10px;
+    transform: rotateZ(-30deg) rotateX(20deg);
   }
   
   .bg-record-label {
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
   }
   
   .bg-vinyl-record {
-    width: 210px;
-    height: 210px;
+    width: 170px;
+    height: 170px;
   }
   
   .content-grid {
