@@ -37,14 +37,19 @@ jobs:
           python .github/scripts/generateImage.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Generate issues cache
+        run: python .github/scripts/generateIssuesCache.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Add generated files (including queue)
-          git add mods.json mod_stack_preview.png github_stats_queue.json
+          # Add generated files (including queue and cache)
+          git add mods.json mod_stack_preview.png github_stats_queue.json issues/cache/issues_cache.json
           
           # Check if there are changes to commit
           if git diff --quiet && git diff --staged --quiet; then

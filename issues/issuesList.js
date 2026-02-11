@@ -1,15 +1,16 @@
 /**
  * ============================================================
- *  ISSUES LIST — Fetch and display open issues from GitHub
+ *  ISSUES LIST — Display cached issues (no live API calls)
  * ============================================================
- *  Fetches open issues for the current repo and displays them
- *  in a sidebar on the issue tracker form page.
+ *  Reads from pre-generated cache file instead of hitting
+ *  GitHub API directly. Cache is updated hourly by GitHub Action.
  * ============================================================
  */
 
 const IssuesList = {
   currentRepo: null,
   currentOwner: null,
+  issuesCache: null,
   
   /**
    * Initialize the issues list for a specific repo
@@ -41,77 +42,58 @@ const IssuesList = {
     `;
     
     try {
-      const issues = await this.fetchIssues(owner, repo);
+      // Load cache if not already loaded
+      if (!this.issuesCache) {
+        await this.loadCache();
+      }
+      
+      const issues = this.getIssuesForRepo(owner, repo);
       this.renderIssues(issues, container);
     } catch (error) {
-      console.error('Failed to fetch issues:', error);
+      console.error('Failed to load issues:', error);
       this.renderError(container, error);
     }
   },
   
   /**
-   * Fetch open issues from GitHub API
-   * @param {string} owner - GitHub username
-   * @param {string} repo - Repository name
-   * @returns {Promise<Array>} Array of issue objects
+   * Load the issues cache file
+   * @returns {Promise<void>}
    */
-  async fetchIssues(owner, repo) {
-    const url = `https://api.github.com/repos/${owner}/${repo}/issues`;
-    const params = new URLSearchParams({
-      state: 'open',
-      sort: 'created',
-      direction: 'desc',
-      per_page: '30' // Fetch more to ensure we get pinned ones
-    });
-    
-    const response = await fetch(`${url}?${params}`, {
-      headers: {
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    });
+  async loadCache() {
+    const cacheUrl = 'cache/issues_cache.json';
+    const response = await fetch(cacheUrl + '?t=' + Date.now()); // Cache bust
     
     if (!response.ok) {
-      throw new Error(`GitHub API returned ${response.status}`);
+      throw new Error(`Failed to load issues cache (${response.status})`);
     }
     
-    const issues = await response.json();
-    
-    // Filter out pull requests (they appear in issues endpoint)
-    const filteredIssues = issues.filter(issue => !issue.pull_request);
-    
-    // Sort: pinned issues first (determined by labels or specific criteria)
-    // GitHub doesn't have a native "pinned" flag in the API, but we can check for:
-    // 1. Issues with "pinned" label
-    // 2. Issues labeled as "announcement" or "important"
-    const sortedIssues = filteredIssues.sort((a, b) => {
-      const aIsPinned = this.isPinnedIssue(a);
-      const bIsPinned = this.isPinnedIssue(b);
-      
-      // Pinned issues come first
-      if (aIsPinned && !bIsPinned) return -1;
-      if (!aIsPinned && bIsPinned) return 1;
-      
-      // Otherwise sort by created date (newest first)
-      return new Date(b.created_at) - new Date(a.created_at);
-    });
-    
-    // Return top 10
-    return sortedIssues.slice(0, 10);
+    this.issuesCache = await response.json();
   },
   
   /**
-   * Check if an issue should be treated as pinned
-   * @param {Object} issue - Issue object
-   * @returns {boolean} True if issue is pinned
+   * Get issues for a specific repo from cache
+   * @param {string} owner - GitHub username
+   * @param {string} repo - Repository name
+   * @returns {Array} Array of issue objects
    */
-  isPinnedIssue(issue) {
-    if (!issue.labels || !Array.isArray(issue.labels)) return false;
+  getIssuesForRepo(owner, repo) {
+    if (!this.issuesCache) {
+      return [];
+    }
     
-    // Check for labels that indicate a pinned/important issue
-    const pinnedLabels = ['pinned', 'announcement', 'important', 'sticky'];
-    return issue.labels.some(label => 
-      pinnedLabels.includes(label.name.toLowerCase())
-    );
+    const cacheKey = `${owner}/${repo}`;
+    const repoCache = this.issuesCache[cacheKey];
+    
+    if (!repoCache) {
+      console.warn(`No cached issues found for ${cacheKey}`);
+      return [];
+    }
+    
+    if (repoCache.error) {
+      throw new Error(repoCache.error);
+    }
+    
+    return repoCache.issues || [];
   },
   
   /**
@@ -157,7 +139,7 @@ const IssuesList = {
   
   /**
    * Render a single issue card
-   * @param {Object} issue - Issue object from GitHub API
+   * @param {Object} issue - Issue object from cache
    * @returns {string} HTML string
    */
   renderIssueCard(issue) {
@@ -240,9 +222,24 @@ const IssuesList = {
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
         <p>Unable to load issues</p>
-        <span>${this.escapeHtml(error.message)}</span>
+        <span>Cache may be updating</span>
       </div>
     `;
+  },
+  
+  /**
+   * Check if an issue should be treated as pinned
+   * @param {Object} issue - Issue object
+   * @returns {boolean} True if issue is pinned
+   */
+  isPinnedIssue(issue) {
+    if (!issue.labels || !Array.isArray(issue.labels)) return false;
+    
+    // Check for labels that indicate a pinned/important issue
+    const pinnedLabels = ['pinned', 'announcement', 'important', 'sticky'];
+    return issue.labels.some(label => 
+      pinnedLabels.includes(label.name.toLowerCase())
+    );
   },
   
   /**
