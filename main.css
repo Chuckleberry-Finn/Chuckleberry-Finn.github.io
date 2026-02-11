@@ -96,11 +96,11 @@ body {
 /* === ATMOSPHERIC TURNTABLE BACKGROUND === */
 .turntable-background {
   position: fixed;
-  top: 180px;
+  top: 200px;
   left: 5%;
-  width: 500px;
-  height: 500px;
-  transform: rotateZ(-35deg) rotateX(65deg);
+  width: 320px;
+  height: 320px;
+  transform: rotateZ(-35deg) rotateX(70deg);
   opacity: 1;
   filter: none;
   pointer-events: none;
@@ -118,8 +118,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
-  height: 350px;
+  width: 220px;
+  height: 220px;
   animation: spin-record 8s linear infinite;
 }
 
@@ -138,8 +138,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
   background: var(--amber);
@@ -512,17 +512,22 @@ body {
   
   /* Turntable positioned to overlap left side of carousel */
   .turntable-background {
-    top: 160px;
+    top: 180px;
     left: 8%;
-    width: 520px;
-    height: 520px;
+    width: 350px;
+    height: 350px;
     opacity: 1;
-    transform: rotateZ(-35deg) rotateX(68deg);
+    transform: rotateZ(-35deg) rotateX(72deg);
   }
   
   .bg-record-label {
-    width: 140px;
-    height: 140px;
+    width: 90px;
+    height: 90px;
+  }
+  
+  .bg-vinyl-record {
+    width: 230px;
+    height: 230px;
   }
 }
 
@@ -542,17 +547,22 @@ body {
   }
   
   .turntable-background {
-    width: 380px;
-    height: 380px;
+    width: 280px;
+    height: 280px;
     opacity: 0.9;
     top: 150px;
     left: 5%;
-    transform: rotateZ(-35deg) rotateX(65deg);
+    transform: rotateZ(-35deg) rotateX(70deg);
   }
   
   .bg-record-label {
-    width: 100px;
-    height: 100px;
+    width: 65px;
+    height: 65px;
+  }
+  
+  .bg-vinyl-record {
+    width: 180px;
+    height: 180px;
   }
   
   .content-grid {
