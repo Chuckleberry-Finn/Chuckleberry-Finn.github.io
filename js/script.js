@@ -372,7 +372,7 @@ function initModUI(mods) {
 
   function updateCarouselPositions(drag = 0) {
     if (!isMobile) return;
-    const center = stack.offsetWidth / 2;
+    const center = window.innerWidth / 2; // Use viewport width instead of stack width
     const mobileCardWidth = 90; // Updated to match smaller mobile card size
     const spacing = 75; // Tighter spacing for smaller cards
 
