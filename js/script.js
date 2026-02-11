@@ -197,68 +197,60 @@ function initModCarousel(mods) {
     // Update name
     modName.textContent = mod.name;
 
-    // Build stats HTML with both Steam and GitHub data
-    const statsHTML = [];
+    // Clear stats - we'll show them under the buttons instead
+    modStats.innerHTML = '';
+
+    // Build links with stats underneath
+    const linksHTML = [];
     
-    // Steam subscribers
-    if (mod.subs !== undefined) {
-      statsHTML.push(`
-        <div class="stat-item">
-          <div class="stat-label">Steam Subscribers</div>
-          <div class="stat-value">
-            <span class="stat-icon">🎮</span>${formatNumber(mod.subs)}
-          </div>
-        </div>
-      `);
+    // Steam Workshop link with subscribers
+    const steamStats = mod.subs !== undefined 
+      ? `<div class="link-stats">${formatNumber(mod.subs)} subscribers</div>` 
+      : '';
+    
+    linksHTML.push(`
+      <div class="link-with-stats">
+        <a href="${mod.steam_url}" target="_blank" rel="noopener" class="mod-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.85.63-3.55 1.69-4.9l5.31 2.2c.15-.03.29-.05.44-.05.86 0 1.58.54 1.87 1.3l2.58-1.88c1.02 0 1.85.83 1.85 1.85 0 1.02-.83 1.85-1.85 1.85l-2.6 1.88c0 .03 0 .06-.01.09l-3.64 5.18C13.73 19.17 12.9 20 12 20zm5.92-10.38c-.68 0-1.23-.55-1.23-1.23s.55-1.23 1.23-1.23 1.23.55 1.23 1.23-.55 1.23-1.23 1.23z"/>
+          </svg>
+          View on Steam Workshop
+        </a>
+        ${steamStats}
+      </div>
+    `);
+
+    // GitHub Repository link with stats
+    const githubStatsHTML = [];
+    if (mod.github) {
+      if (mod.github.stars !== undefined) {
+        githubStatsHTML.push(`<span class="gh-stat">★ ${formatNumber(mod.github.stars)} stars</span>`);
+      }
+      if (mod.github.forks !== undefined) {
+        githubStatsHTML.push(`<span class="gh-stat">⑂ ${formatNumber(mod.github.forks)} forks</span>`);
+      }
+      if (mod.github.openIssues !== undefined) {
+        githubStatsHTML.push(`<span class="gh-stat">⚠ ${mod.github.openIssues} issues</span>`);
+      }
     }
+    
+    const githubStats = githubStatsHTML.length > 0
+      ? `<div class="link-stats">${githubStatsHTML.join(' · ')}</div>`
+      : '';
 
-    // GitHub stars
-    if (mod.github && mod.github.stars !== undefined) {
-      statsHTML.push(`
-        <div class="stat-item">
-          <div class="stat-label">GitHub Stars</div>
-          <div class="stat-value">
-            <span class="stat-icon">⭐</span>${formatNumber(mod.github.stars)}
-          </div>
-        </div>
-      `);
-    }
+    linksHTML.push(`
+      <div class="link-with-stats">
+        <a href="${mod.repo_url}" target="_blank" rel="noopener" class="mod-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+          View GitHub Repository
+        </a>
+        ${githubStats}
+      </div>
+    `);
 
-    // GitHub forks
-    if (mod.github && mod.github.forks !== undefined) {
-      statsHTML.push(`
-        <div class="stat-item">
-          <div class="stat-label">Forks</div>
-          <div class="stat-value">
-            <span class="stat-icon">🔱</span>${formatNumber(mod.github.forks)}
-          </div>
-        </div>
-      `);
-    }
-
-    // Open issues
-    if (mod.github && mod.github.openIssues !== undefined) {
-      statsHTML.push(`
-        <div class="stat-item">
-          <div class="stat-label">Open Issues</div>
-          <div class="stat-value">
-            <span class="stat-icon">🐛</span>${mod.github.openIssues}
-          </div>
-        </div>
-      `);
-    }
-
-    modStats.innerHTML = statsHTML.join('');
-
-    // Update links
-    modLinks.innerHTML = `
-      <a href="${mod.steam_url}" target="_blank" rel="noopener" class="mod-link">
-        <span>🎮</span> View on Steam Workshop
-      </a>
-      <a href="${mod.repo_url}" target="_blank" rel="noopener" class="mod-link">
-        <span>💻</span> View Repository
-      </a>
-    `;
+    modLinks.innerHTML = linksHTML.join('');
 
     // Update video
     updateVideo(mod);
