@@ -45,8 +45,15 @@ fetch(`github_stats_queue.json?t=${Date.now()}`)
 
 // Load and display mods
 fetch(`mods.json?t=${Date.now()}`)
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    return res.json();
+  })
   .then(data => {
+    console.log('Loaded mods:', data.length);
+    
     // Calculate total subs from ALL mods
     const totalSubs = data.reduce((sum, mod) => sum + (mod.subs || 0), 0);
     const totalSubsEl = document.getElementById('totalSubsCount');
@@ -56,16 +63,35 @@ fetch(`mods.json?t=${Date.now()}`)
     
     // Filter to only show highlights
     const highlightedMods = data.filter(mod => mod.highlight === true);
+    console.log('Highlighted mods:', highlightedMods.length);
+    
+    if (highlightedMods.length === 0) {
+      console.error('No highlighted mods found!');
+      document.getElementById('modName').textContent = 'No mods available';
+      return;
+    }
+    
     initModCarousel(highlightedMods);
   })
-  .catch(err => console.error("Failed to load mods.json", err));
+  .catch(err => {
+    console.error("Failed to load mods.json", err);
+    document.getElementById('modName').textContent = 'Error loading mods';
+    document.getElementById('modStats').innerHTML = '<div class="stat-item"><div class="stat-label">Error</div><div class="stat-value">Could not load data</div></div>';
+  });
 
 function initModCarousel(mods) {
+  console.log('Initializing carousel with', mods.length, 'mods');
+  
   const stack = document.getElementById('cardStack');
   const modName = document.getElementById('modName');
   const modStats = document.getElementById('modStats');
   const modLinks = document.getElementById('modLinks');
   const modVideo = document.getElementById('modVideo');
+
+  if (!stack) {
+    console.error('cardStack element not found!');
+    return;
+  }
 
   const cards = [];
   let selectedIndex = 0;
@@ -87,6 +113,8 @@ function initModCarousel(mods) {
     stack.appendChild(card);
     cards.push(card);
   });
+
+  console.log('Created', cards.length, 'cards');
 
   // Select first mod immediately
   selectMod(0);
