@@ -19,11 +19,13 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  background: #1a1209;
+  background: linear-gradient(180deg, #1a1209 0%, #0d0906 100%);
+  background-attachment: fixed;
   color: var(--cream);
   margin: 0;
   padding: 0;
-  min-height: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
