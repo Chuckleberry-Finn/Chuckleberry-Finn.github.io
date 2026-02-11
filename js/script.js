@@ -197,6 +197,13 @@ function initModCarousel(mods) {
     // Update name
     modName.textContent = mod.name;
 
+    // Update background vinyl label
+    const bgModPreview = document.getElementById('bgModPreview');
+    if (bgModPreview) {
+      bgModPreview.src = mod.banner || '';
+      bgModPreview.alt = mod.name;
+    }
+
     // Clear stats - we'll show them under the buttons instead
     modStats.innerHTML = '';
 
