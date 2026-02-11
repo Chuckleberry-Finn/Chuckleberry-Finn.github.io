@@ -3,6 +3,8 @@
   --amber: #ffbf47;
   --amber-glow: #ff9500;
   --cream: #f5e6c8;
+  --bg-top: #1a1209;
+  --bg-bottom: #0d0906;
 }
 
 /* === Base === */
@@ -17,366 +19,316 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(180deg, #1a1209 0%, #0d0906 100%);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
   color: var(--cream);
   margin: 0;
-  padding: 1.1rem;
-  padding-top: 8rem;
+  padding: 0;
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
   overflow-x: hidden;
 }
 
-/* === Dust Particles === */
-.dust-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 100;
-  overflow: hidden;
+/* === Header === */
+.site-header {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  position: relative;
+  z-index: 10;
 }
 
-.dust {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(255, 220, 150, 0.2);
-  border-radius: 50%;
-  animation: float-dust 18s infinite linear;
-}
-
-.dust:nth-child(1) { left: 15%; animation-delay: 0s; }
-.dust:nth-child(2) { left: 35%; animation-delay: 4s; }
-.dust:nth-child(3) { left: 60%; animation-delay: 2s; }
-.dust:nth-child(4) { left: 85%; animation-delay: 6s; }
-
-@keyframes float-dust {
-  0% { transform: translateY(100vh); opacity: 0; }
-  10% { opacity: 0.4; }
-  90% { opacity: 0.4; }
-  100% { transform: translateY(-50px); opacity: 0; }
-}
-
-/* === Title - FLOATING ABOVE TURNTABLE SECTION === */
-.title-section {
-  position: absolute;
-  top: -6.5rem;
-  left: 0;
-  width: 100%;
-  padding: 0.5rem 0 1.1rem;
-}
-
-.neon-sign {
+.site-title {
   font-family: 'Lobster', cursive;
-  font-size: 2.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-}
-
-.neon-text {
+  font-size: 2.5rem;
   color: #ffcc66;
   text-shadow:
     0 0 2px #000,
     0 0 5px #ffcc66,
     0 0 10px #ffcc66,
-    0 0 20px #ff9500,
-    0 0 30px #ff9500;
-  animation: neon-flicker 4s infinite;
+    0 0 20px #ff9500;
+  margin: 0 0 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  flex-wrap: wrap;
 }
 
 .pz-logo {
   filter: drop-shadow(0 0 8px rgba(255, 100, 100, 0.4));
 }
 
-@keyframes neon-flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    text-shadow: 0 0 2px #000, 0 0 5px #ffcc66, 0 0 10px #ffcc66, 0 0 20px #ff9500, 0 0 30px #ff9500;
-  }
-  20%, 24%, 55% {
-    text-shadow: 0 0 2px #000, 0 0 3px #ffcc66, 0 0 8px #ffcc66;
-  }
-}
-
-/* === Main Layout === */
-.responsive-wrapper {
-  display: flex;
-  gap: 1rem;
-  flex: 1;
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left: 1rem;
-}
-
-/* === LEFT: Records Stack === */
-.records-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -2.5rem;
-  position: relative;
-  z-index: 100;
-}
-
-.stack {
-  position: relative;
-  width: 242px;
-  height: calc(100vh - 180px);
-  max-height: 700px;
-  min-height: 580px;
-  perspective: 900px;
-  outline: none;
-}
-
-.stack:focus-visible {
-  outline: 2px solid var(--amber);
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-/* Cards 46% larger: 140 * 1.1 * 1.33 * 1.1 ≈ 226px */
-.card {
-  width: 226px;
-  height: 226px;
-  position: absolute;
-  left: 8px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 3px;
-  cursor: pointer;
-  transform-origin: center bottom;
-  transition: transform 0.2s ease, top 0.2s ease, box-shadow 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.6);
-}
-
-/* Removed the semi-transparent gradient overlay - cards now fully opaque */
-
-/* === MIDDLE: Turntable === */
-.turntable-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+.site-subtitle {
+  font-size: 1rem;
+  color: rgba(245, 230, 200, 0.7);
+  margin: 0;
+  font-weight: 400;
 }
 
 /* === Total Subscriber Count === */
 .total-subs {
   text-align: center;
-  margin: 0.8rem 0 0.5rem 0;
-  padding: 0.4rem 1rem;
+  margin: 0 auto 1.5rem;
+  padding: 0.6rem 1.5rem;
   background: rgba(255, 191, 71, 0.08);
   border-radius: 20px;
   border: 1px solid rgba(255, 191, 71, 0.15);
-  order: 1.5;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--cream);
+  max-width: 280px;
 }
 
 .total-subs-count {
   font-weight: 700;
   color: var(--amber);
   text-shadow: 0 0 10px rgba(255, 191, 71, 0.3);
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
-.mod-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.43rem;
-  font-weight: 600;
-  color: var(--cream);
-  margin: 0.3rem 0 0.3rem 0;
-  text-align: center;
-  max-width: 438px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  order: 2;
-}
-
-/* Turntable reduced size to fit video: 380 * 1.1 * 1.05 ≈ 438 */
-.turntable {
+/* === Main Layout === */
+.main-content {
   position: relative;
-  width: 438px;
-  height: 369px;
-  order: 1;
-  margin-bottom: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
 }
 
-.turntable-svg {
+/* === ATMOSPHERIC TURNTABLE BACKGROUND === */
+.turntable-background {
+  position: fixed;
+  top: 50%;
+  right: -10%;
+  width: 700px;
+  height: 700px;
+  transform: translateY(-50%) rotateZ(-40deg) rotateX(20deg);
+  opacity: 0.15;
+  filter: blur(1px);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.turntable-background:hover {
+  opacity: 0.25;
+}
+
+/* Vinyl record in background */
+.bg-vinyl-record {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  animation: spin-record 8s linear infinite;
+}
+
+.bg-vinyl-record svg {
   width: 100%;
   height: 100%;
-}
-
-/* Vinyl record - centered on felt platter */
-/* Scaled proportionally for 438px turntable */
-.vinyl-record {
-  position: absolute;
-  top: 68px;
-  left: 80px;
-  width: 210px;
-  height: 210px;
-  animation: spin-record 1.8s linear infinite paused;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
-}
-
-.vinyl-record.spinning {
-  animation-play-state: running;
 }
 
 @keyframes spin-record {
-  to { transform: rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.vinyl-record svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Center label - large enough to cover black center and form proper circle */
-.record-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 101px;
-  height: 101px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--amber);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-}
-
-.record-label img {
-  width: 142%;
-  height: 142%;
-  object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.record-label::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  background: radial-gradient(circle at 30% 30%, #ddd 0%, #999 30%, #555 60%, #333 100%);
-  border-radius: 50%;
-  box-shadow: 
-    inset 1px 1px 2px rgba(255,255,255,0.6),
-    inset -1px -1px 2px rgba(0,0,0,0.8),
-    0 1px 3px rgba(0,0,0,0.6);
-}
-
-/* Tonearm - over vinyl when playing */
-.tonearm {
-  position: absolute;
-  top: 35px;
-  right: 57px;
-  width: 150px;
-  height: 138px;
-  transform-origin: 89% 13%;
-  transform: rotate(30deg);
-  transition: transform 0.6s ease;
-}
-
-.tonearm.playing {
-  transform: rotate(-8deg);
-}
-
-.tonearm svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* === Mod Info === */
-.mod-info {
-  margin-top: 0;
-  text-align: center;
-  order: 3;
-}
-
-.mod-info p {
-  margin: 0.4em 0;
-  font-size: 1.1em;
-}
-
-.mod-info .subs {
-  display: inline-block;
-  background: rgba(255, 191, 71, 0.1);
-  padding: 0.3em 0.8em;
-  border-radius: 16px;
-  font-size: 0.95em;
-  border: 1px solid rgba(255, 191, 71, 0.2);
-}
-
-.mod-info a {
-  color: var(--amber);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.mod-info a:hover {
-  color: #fff;
-}
-
-/* === Video with arrows OUTSIDE === */
-.mod-video {
-  margin-top: 1.1rem;
-  order: 4;
-}
-
-.video-slideshow {
+/* === MOD SHOWCASE SECTION === */
+.mod-showcase {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  z-index: 5;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.video-slideshow iframe {
-  width: 438px;
-  height: 246px;
-  border: none;
-  border-radius: 6px;
-  background: #000;
-}
-
-.arrow {
-  font-size: 1.5em;
-  color: var(--amber);
-  background: rgba(30, 22, 15, 0.9);
-  padding: 0.5em 0.4em;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid rgba(255, 191, 71, 0.2);
-  transition: background 0.2s;
-  flex-shrink: 0;
-  z-index: 10;
-  width: 2.2em;
+/* === Card Carousel === */
+.card-carousel {
+  position: relative;
+  height: 140px;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.arrow:hover {
-  background: rgba(255, 191, 71, 0.2);
+.card-stack {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  outline: none;
 }
 
-/* === RIGHT: Profile Panel === */
+.card-stack:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.mod-card {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  border: 2px solid rgba(255, 191, 71, 0.15);
+}
+
+.mod-card:hover {
+  border-color: rgba(255, 191, 71, 0.4);
+}
+
+/* === MOD DETAILS CARD === */
+.mod-details {
+  background: linear-gradient(180deg, rgba(30, 22, 15, 0.95) 0%, rgba(20, 15, 10, 0.98) 100%);
+  border: 1px solid rgba(255, 191, 71, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+.mod-header {
+  margin-bottom: 1.5rem;
+}
+
+.mod-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+/* Stats Grid */
+.mod-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  background: rgba(255, 191, 71, 0.05);
+  border: 1px solid rgba(255, 191, 71, 0.15);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(245, 230, 200, 0.6);
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-shadow: 0 0 10px rgba(255, 191, 71, 0.2);
+}
+
+.stat-icon {
+  font-size: 0.9rem;
+  margin-right: 0.25rem;
+  opacity: 0.8;
+}
+
+/* Links */
+.mod-links {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.mod-link {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 191, 71, 0.1);
+  border: 1px solid rgba(255, 191, 71, 0.25);
+  border-radius: 8px;
+  color: var(--amber);
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mod-link:hover {
+  background: rgba(255, 191, 71, 0.2);
+  border-color: rgba(255, 191, 71, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 191, 71, 0.2);
+}
+
+/* Video Section */
+.mod-video {
+  margin-top: 1.5rem;
+}
+
+.video-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  border: none;
+  border-radius: 8px;
+  background: #000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.video-arrow {
+  font-size: 1.5rem;
+  color: var(--amber);
+  background: rgba(30, 22, 15, 0.9);
+  padding: 0.75rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 191, 71, 0.2);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-arrow:hover {
+  background: rgba(255, 191, 71, 0.2);
+  transform: scale(1.1);
+}
+
+.video-arrow.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  position: relative;
+  z-index: 5;
+  max-width: 400px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+}
+
 /* Issue Tracker Button */
 .issue-tracker-button {
   display: flex;
@@ -409,7 +361,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bg-top);
   overflow: hidden;
 }
 
@@ -417,11 +368,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.issue-tracker-icon svg {
-  width: 28px;
-  height: 28px;
 }
 
 .issue-tracker-content {
@@ -442,307 +388,29 @@ body {
   opacity: 0.9;
 }
 
-.extra-panel {
-  background: rgba(30, 22, 15, 0.85);
-  padding: 1.82rem;
+/* Profile Panel */
+.profile-panel {
+  background: linear-gradient(180deg, rgba(30, 22, 15, 0.9) 0%, rgba(20, 15, 10, 0.95) 100%);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 191, 71, 0.2);
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.support-links {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  border: 1px solid rgba(255, 191, 71, 0.12);
-  border-radius: 8px;
-  width: 400px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  overflow: visible;
+  gap: 1rem;
+  align-items: center;
 }
 
-.panel-row {
-  display: flex;
-  justify-content: center;
-  margin: 0.5rem 0;
+.support-link {
+  width: 100%;
+  max-width: 330px;
 }
 
-.discord-row {
-  margin-top: 1rem;
-}
-
-.discord-row img {
-  max-width: 100%;
-  border-radius: 4px;
-}
-
-.panel-profile {
-  background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-  padding: 1.86rem;
-  border-radius: 6px;
-  border: 1px solid #30363d;
-  margin-bottom: 0.7rem;
-}
-
-.panel-profile * {
-  font-size: 1.3em;
-}
-
-.panel-profile img {
-  width: 91px !important;
-}
-
-.panel-profile h2 {
-  font-size: 1.43em !important;
-}
-
-.panel-profile p {
-  font-size: 1.04em !important;
-}
-
-/* === Mobile Hint === */
-.mobile-hint {
-  display: none;
-  text-align: center;
-  color: var(--amber);
-  font-size: 0.88em;
-  opacity: 0.5;
-  margin-top: 0.5rem;
-}
-
-/* === Tablet === */
-@media (max-width: 1100px) {
-  .responsive-wrapper {
-    flex-wrap: wrap;
-  }
-  
-  .extra-panel {
-    width: 100%;
-    max-width: 500px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .panel-profile {
-    min-width: 220px;
-  }
-  
-  .discord-row {
-    width: 100%;
-  }
-  
-  .discord-row img {
-    max-width: 330px;
-  }
-}
-
-/* === Mobile === */
-@media (max-width: 700px) {
-  body {
-    padding: 0.8rem;
-    padding-top: 2rem;
-  }
-  
-  /* Hide title section on mobile - too much */
-  .title-section {
-    display: none;
-  }
-  
-  .neon-sign {
-    font-size: 1.6rem;
-  }
-  
-  .pz-logo {
-    width: 70px;
-  }
-  
-  .responsive-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding-left: 0;
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  /* Better mobile card stack */
-  .records-section {
-    margin-top: 0;
-    width: 100%;
-    margin-bottom: 0;
-  }
-  
-  .stack {
-    width: 100%;
-    max-width: 100%;
-    height: 100px !important;
-    min-height: 100px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
-    margin-bottom: 0.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .card {
-    width: 90px;
-    height: 90px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    position: absolute;
-  }
-  
-  /* Make turntable section more compact on mobile */
-  .turntable-section {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 0;
-  }
-  
-  .turntable {
-    width: 320px;
-    height: 270px;
-  }
-  
-  .vinyl-record {
-    top: 50px;
-    left: 58px;
-    width: 154px;
-    height: 154px;
-  }
-  
-  .record-label {
-    width: 63px;
-    height: 63px;
-  }
-  
-  .tonearm {
-    top: 25px;
-    right: 47px;
-    width: 110px;
-    height: 102px;
-  }
-  
-  .mod-title {
-    font-size: 1.15rem;
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-  
-  .total-subs {
-    margin: 0.6rem 0;
-    padding: 0.35rem 0.7rem;
-    font-size: 0.8rem;
-  }
-  
-  .total-subs-count {
-    font-size: 1em;
-  }
-  
-  /* More compact mod info */
-  .mod-info {
-    font-size: 0.9rem;
-  }
-  
-  .mod-info p {
-    margin: 0.3em 0;
-    font-size: 0.95em;
-  }
-  
-  /* Better issue tracker button on mobile */
-  .issue-tracker-button {
-    padding: 0.9rem 1rem;
-    gap: 0.7rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .issue-tracker-icon {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .issue-tracker-img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .issue-tracker-icon svg {
-    width: 22px;
-    height: 22px;
-  }
-  
-  .issue-tracker-title {
-    font-size: 0.95rem;
-  }
-  
-  .issue-tracker-subtitle {
-    font-size: 0.75rem;
-  }
-  
-  /* Compact video on mobile */
-  .mod-video {
-    margin-top: 0.8rem;
-  }
-  
-  .video-slideshow iframe {
-    width: 280px;
-    height: 158px;
-  }
-  
-  .arrow {
-    font-size: 1em;
-    padding: 0.4em 0.4em;
-    width: 2em;
-  }
-  
-  .mobile-hint {
-    display: block;
-    font-size: 0.8rem;
-    margin-top: 0.3rem;
-  }
-  
-  /* Compact extra panel */
-  .extra-panel {
-    width: 100%;
-    max-width: 100%;
-    padding: 1.2rem;
-    gap: 0.6rem;
-  }
-  
-  .panel-profile {
-    padding: 1.2rem;
-  }
-  
-  .panel-profile * {
-    font-size: 1.15em;
-  }
-  
-  .panel-profile img {
-    width: 70px !important;
-  }
-  
-  .panel-profile h2 {
-    font-size: 1.2em !important;
-  }
-  
-  .panel-profile p {
-    font-size: 0.95em !important;
-  }
-  
-  /* Hide dust on mobile - cleaner */
-  .dust-container {
-    display: none;
-  }
-}
-
-/* === Reduced Motion === */
-@media (prefers-reduced-motion: reduce) {
-  .vinyl-record, .dust, .neon-text, .card, .tonearm {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* === Data Update Watermark === */
+/* === Data Watermark === */
 .data-watermark {
   position: fixed;
   bottom: 8px;
@@ -758,12 +426,6 @@ body {
   gap: 6px;
   z-index: 50;
   backdrop-filter: blur(4px);
-  transition: opacity 0.3s ease;
-}
-
-.data-watermark:hover {
-  opacity: 1;
-  color: var(--cream);
 }
 
 .data-watermark::before {
@@ -773,15 +435,122 @@ body {
   line-height: 1;
 }
 
+/* === Tablet Layout === */
+@media (min-width: 900px) {
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  .sidebar {
+    margin-top: 0;
+    padding: 0;
+  }
+}
+
+/* === Mobile === */
 @media (max-width: 700px) {
+  .site-title {
+    font-size: 1.8rem;
+  }
+  
+  .pz-logo {
+    width: 90px;
+  }
+  
+  .total-subs {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .turntable-background {
+    width: 500px;
+    height: 500px;
+    opacity: 0.08;
+  }
+  
+  .mod-card {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .card-carousel {
+    height: 110px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-stack {
+    height: 100px;
+  }
+  
+  .mod-details {
+    padding: 1.5rem;
+  }
+  
+  .mod-name {
+    font-size: 1.5rem;
+  }
+  
+  .mod-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .stat-value {
+    font-size: 1.1rem;
+  }
+  
+  .mod-links {
+    flex-direction: column;
+  }
+  
+  .mod-link {
+    width: 100%;
+  }
+  
+  .video-container iframe {
+    height: 200px;
+  }
+  
+  .video-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .issue-tracker-button {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .issue-tracker-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .issue-tracker-title {
+    font-size: 1rem;
+  }
+  
   .data-watermark {
     font-size: 0.6rem;
     padding: 4px 8px;
     bottom: 4px;
     right: 4px;
     max-width: calc(100vw - 16px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  }
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .bg-vinyl-record,
+  .mod-card,
+  .mod-link,
+  .video-arrow,
+  .issue-tracker-button {
+    animation: none !important;
+    transition: none !important;
   }
 }
