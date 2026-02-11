@@ -27,14 +27,17 @@
 
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Mod Showcase -->
+    <!-- Mod Showcase (Carousel) - Full Width -->
     <section class="mod-showcase">
       <!-- Card Carousel -->
       <div class="card-carousel">
         <div class="card-stack" id="cardStack" role="listbox" aria-label="Mod selection" tabindex="0"></div>
       </div>
+    </section>
 
-      <!-- Mod Details Card -->
+    <!-- Content Grid - Two Columns Below -->
+    <div class="content-grid">
+      <!-- Left Column: Mod Details -->
       <article class="mod-details" id="modDetails">
         <div class="mod-header">
           <h2 class="mod-name" id="modName">Loading mods...</h2>
@@ -58,43 +61,43 @@
         <!-- Video -->
         <div class="mod-video" id="modVideo"></div>
       </article>
-    </section>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <!-- Issue Tracker -->
-      <a href="issues/" class="issue-tracker-button">
-        <div class="issue-tracker-icon">
-          <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/spifforoach.png" alt="Report Issue" class="issue-tracker-img">
-        </div>
-        <div class="issue-tracker-content">
-          <div class="issue-tracker-title">Report Issues & Request Features</div>
-          <div class="issue-tracker-subtitle">Help improve the mods →</div>
-        </div>
-      </a>
+      <!-- Right Column: Sidebar -->
+      <aside class="sidebar">
+        <!-- Issue Tracker -->
+        <a href="issues/" class="issue-tracker-button">
+          <div class="issue-tracker-icon">
+            <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/spifforoach.png" alt="Report Issue" class="issue-tracker-img">
+          </div>
+          <div class="issue-tracker-content">
+            <div class="issue-tracker-title">Report Issues & Request Features</div>
+            <div class="issue-tracker-subtitle">Help improve the mods →</div>
+          </div>
+        </a>
 
-      <!-- GitHub Profile -->
-      <div class="profile-panel" id="github-profile">
-        <script src="js/githubProfile.js" defer></script>
-      </div>
+        <!-- GitHub Profile -->
+        <div class="profile-panel" id="github-profile">
+          <script src="js/githubProfile.js" defer></script>
+        </div>
 
-      <!-- Support Links -->
-      <div class="support-links">
-        <div class="support-link">
-          <script src="https://apis.google.com/js/platform.js" async defer></script>
-          <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
+        <!-- Support Links -->
+        <div class="support-links">
+          <div class="support-link">
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+            <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
+          </div>
+          <div class="support-link">
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+            <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
+          </div>
+          <div class="support-link">
+            <a href="https://discord.gg/pGWr5TucHn">
+              <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png" alt="PZ Modding Community" style="width: 100%; border-radius: 6px;" loading="lazy">
+            </a>
+          </div>
         </div>
-        <div class="support-link">
-          <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-          <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
-        </div>
-        <div class="support-link">
-          <a href="https://discord.gg/pGWr5TucHn">
-            <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png" alt="PZ Modding Community" style="width: 100%; border-radius: 6px;" loading="lazy">
-          </a>
-        </div>
-      </div>
-    </aside>
+      </aside>
+    </div>
   </main>
 
   <!-- Atmospheric Turntable Background -->
