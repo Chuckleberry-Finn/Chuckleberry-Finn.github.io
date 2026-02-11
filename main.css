@@ -101,15 +101,16 @@ body {
   width: 500px;
   height: 500px;
   transform: rotateZ(-40deg) rotateX(20deg);
-  opacity: 0.15;
-  filter: blur(1px);
+  opacity: 0.8; /* TESTING: Very visible */
+  filter: blur(0px); /* TESTING: No blur */
   pointer-events: none;
   z-index: 2;
   transition: opacity 0.3s ease;
+  border: 3px solid red; /* TESTING: Red border to see position */
 }
 
 .turntable-background:hover {
-  opacity: 0.25;
+  opacity: 0.9;
 }
 
 /* Vinyl record in background */
@@ -249,6 +250,9 @@ body {
 
 .mod-link svg {
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
 }
 
 .link-stats {
@@ -464,10 +468,11 @@ body {
   
   /* Turntable positioned to overlap right side of carousel */
   .turntable-background {
-    top: 200px;
-    right: 10%;
-    width: 500px;
-    height: 500px;
+    top: 160px;
+    right: 8%;
+    width: 520px;
+    height: 520px;
+    opacity: 0.9; /* TESTING: Very visible */
   }
 }
 
@@ -487,9 +492,11 @@ body {
   }
   
   .turntable-background {
-    width: 500px;
-    height: 500px;
-    opacity: 0.08;
+    width: 400px;
+    height: 400px;
+    opacity: 0.12;
+    top: 150px;
+    right: 5%;
   }
   
   .content-grid {
