@@ -96,15 +96,15 @@ body {
 /* === ATMOSPHERIC TURNTABLE BACKGROUND === */
 .turntable-background {
   position: fixed;
-  top: 50%;
-  right: -10%;
-  width: 700px;
-  height: 700px;
-  transform: translateY(-50%) rotateZ(-40deg) rotateX(20deg);
+  top: 180px;
+  right: 8%;
+  width: 500px;
+  height: 500px;
+  transform: rotateZ(-40deg) rotateX(20deg);
   opacity: 0.15;
   filter: blur(1px);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   transition: opacity 0.3s ease;
 }
 
@@ -136,8 +136,8 @@ body {
 .mod-showcase {
   position: relative;
   z-index: 5;
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0 auto 2rem;
 }
 
 /* === Card Carousel === */
@@ -148,6 +148,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .card-stack {
@@ -198,59 +199,33 @@ body {
   font-size: 2rem;
   font-weight: 600;
   color: var(--cream);
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.5rem 0;
   line-height: 1.2;
 }
 
-/* Stats Grid */
+/* Remove old stats grid */
 .mod-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  display: none;
 }
 
-.stat-item {
-  background: rgba(255, 191, 71, 0.05);
-  border: 1px solid rgba(255, 191, 71, 0.15);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  text-align: center;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(245, 230, 200, 0.6);
-  margin-bottom: 0.25rem;
-}
-
-.stat-value {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--amber);
-  text-shadow: 0 0 10px rgba(255, 191, 71, 0.2);
-}
-
-.stat-icon {
-  font-size: 0.9rem;
-  margin-right: 0.25rem;
-  opacity: 0.8;
-}
-
-/* Links */
+/* Links with stats underneath */
 .mod-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
-.mod-link {
+.link-with-stats {
   flex: 1;
-  min-width: 140px;
-  padding: 0.75rem 1.5rem;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mod-link {
+  padding: 0.875rem 1.5rem;
   background: rgba(255, 191, 71, 0.1);
   border: 1px solid rgba(255, 191, 71, 0.25);
   border-radius: 8px;
@@ -270,6 +245,22 @@ body {
   border-color: rgba(255, 191, 71, 0.4);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 191, 71, 0.2);
+}
+
+.mod-link svg {
+  flex-shrink: 0;
+}
+
+.link-stats {
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(245, 230, 200, 0.8);
+  padding: 0.25rem;
+}
+
+.gh-stat {
+  display: inline-block;
+  margin: 0 0.25rem;
 }
 
 /* Video Section */
@@ -323,6 +314,10 @@ body {
 }
 
 /* === SIDEBAR === */
+.content-grid {
+  display: block;
+}
+
 .sidebar {
   position: relative;
   z-index: 5;
@@ -440,15 +435,39 @@ body {
 /* === Tablet Layout === */
 @media (min-width: 900px) {
   .main-content {
+    display: block;
+  }
+  
+  /* Carousel spans full width */
+  .mod-showcase {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  /* Create two-column grid below carousel */
+  .content-grid {
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: 2rem;
     align-items: start;
   }
   
+  .mod-details {
+    grid-column: 1;
+  }
+  
   .sidebar {
+    grid-column: 2;
     margin-top: 0;
     padding: 0;
+  }
+  
+  /* Turntable positioned to overlap right side of carousel */
+  .turntable-background {
+    top: 200px;
+    right: 10%;
+    width: 500px;
+    height: 500px;
   }
 }
 
@@ -473,6 +492,10 @@ body {
     opacity: 0.08;
   }
   
+  .content-grid {
+    display: block;
+  }
+  
   .mod-card {
     width: 90px;
     height: 90px;
@@ -495,21 +518,20 @@ body {
     font-size: 1.5rem;
   }
   
-  .mod-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-  
-  .stat-value {
-    font-size: 1.1rem;
-  }
-  
   .mod-links {
     flex-direction: column;
   }
   
+  .link-with-stats {
+    width: 100%;
+  }
+  
   .mod-link {
     width: 100%;
+  }
+  
+  .link-stats {
+    font-size: 0.85rem;
   }
   
   .video-container iframe {
