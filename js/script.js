@@ -373,8 +373,8 @@ function initModUI(mods) {
   function updateCarouselPositions(drag = 0) {
     if (!isMobile) return;
     const center = stack.offsetWidth / 2;
-    const mobileCardWidth = 120; // Updated to match new mobile card size
-    const spacing = 99;
+    const mobileCardWidth = 90; // Updated to match smaller mobile card size
+    const spacing = 75; // Tighter spacing for smaller cards
 
     cards.forEach((card, i) => {
       const offset = i - selectedIndex;
@@ -383,7 +383,7 @@ function initModUI(mods) {
       const scale = 1 - Math.min(dist / (spacing * 2), 1) * 0.15;
       // Removed opacity fade - all cards now fully opaque
       
-      card.style.top = '15px';
+      card.style.top = '5px'; // Reduced from 15px to center better in smaller container
       card.style.left = `${x}px`;
       card.style.transform = `scale(${scale})`;
       card.style.opacity = '1'; // Always fully opaque
