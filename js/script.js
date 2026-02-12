@@ -149,6 +149,46 @@ function initModCarousel(mods) {
     selectMod(newIndex);
   });
 
+  // Mouse wheel scrolling (desktop only)
+  let lastWheelTime = 0;
+  const wheelThrottle = 200; // ms between wheel actions (faster response)
+  
+  // Get the carousel section - try both selectors
+  const carouselSection = document.querySelector('.card-carousel') || document.querySelector('.mod-showcase');
+  
+  if (carouselSection && window.innerWidth > 700) {
+    carouselSection.addEventListener('wheel', (e) => {
+      const now = Date.now();
+      
+      // Throttle wheel events
+      if (now - lastWheelTime < wheelThrottle) {
+        e.preventDefault();
+        return;
+      }
+      
+      // Prevent default page scroll when over carousel
+      e.preventDefault();
+      
+      lastWheelTime = now;
+      
+      // Determine direction: wheel down = next (right), wheel up = previous (left)
+      const direction = e.deltaY > 0 ? 1 : -1;
+      let newIndex = selectedIndex + direction;
+      
+      // Wrap around
+      if (newIndex < 0) {
+        newIndex = mods.length - 1;
+      } else if (newIndex >= mods.length) {
+        newIndex = 0;
+      }
+      
+      console.log('Wheel scroll:', direction > 0 ? 'down/next' : 'up/previous', 'Index:', newIndex);
+      selectMod(newIndex);
+    }, { passive: false });
+    
+    console.log('Mouse wheel scrolling enabled on carousel');
+  }
+
   // Touch handlers
   stack.addEventListener('touchstart', (e) => {
     isDragging = true;

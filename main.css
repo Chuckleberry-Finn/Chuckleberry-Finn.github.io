@@ -93,84 +93,7 @@ body {
   padding: 0 1rem 2rem;
 }
 
-/* === ATMOSPHERIC TURNTABLE BACKGROUND === */
-.turntable-background {
-  display: none; /* Hidden for now */
-  position: absolute;
-  top: -40px;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  transform: rotateZ(-30deg) rotateX(20deg);
-  opacity: 1;
-  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.6));
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Vinyl record in background */
-.bg-vinyl-record {
-  position: absolute;
-  top: 61%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 220px;
-  height: 220px;
-  animation: spin-record 8s linear infinite;
-}
-
-.bg-vinyl-record svg {
-  width: 100%;
-  height: 100%;
-}
-
-@keyframes spin-record {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Center label on vinyl - shows mod banner */
-.bg-record-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--amber);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bg-record-label img {
-  width: 142%;
-  height: 142%;
-  object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.bg-record-label::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(circle at 30% 30%, #ddd 0%, #999 30%, #555 60%, #333 100%);
-  border-radius: 50%;
-  box-shadow: 
-    inset 1px 1px 2px rgba(255,255,255,0.6),
-    inset -1px -1px 2px rgba(0,0,0,0.8),
-    0 1px 3px rgba(0,0,0,0.6);
-  z-index: 2;
-}
+/* === TURNTABLE REMOVED === */
 
 /* === MOD SHOWCASE SECTION === */
 .mod-showcase {
@@ -532,26 +455,6 @@ body {
     margin-top: 0;
     padding: 0;
   }
-  
-  /* Turntable positioned to overlap left side of carousel */
-  .turntable-background {
-    top: -60px;
-    left: 20px;
-    width: 420px;
-    height: 420px;
-    opacity: 1;
-    transform: rotateZ(-30deg) rotateX(22deg);
-  }
-  
-  .bg-record-label {
-    width: 90px;
-    height: 90px;
-  }
-  
-  .bg-vinyl-record {
-    width: 230px;
-    height: 230px;
-  }
 }
 
 /* === Mobile === */
@@ -569,24 +472,6 @@ body {
     padding: 0.5rem 1rem;
   }
   
-  .turntable-background {
-    width: 320px;
-    height: 320px;
-    opacity: 1;
-    top: -30px;
-    left: -10px;
-    transform: rotateZ(-30deg) rotateX(20deg);
-  }
-  
-  .bg-record-label {
-    width: 65px;
-    height: 65px;
-  }
-  
-  .bg-vinyl-record {
-    width: 170px;
-    height: 170px;
-  }
   
   .content-grid {
     display: block;
@@ -665,7 +550,6 @@ body {
 
 /* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
-  .bg-vinyl-record,
   .mod-card,
   .mod-link,
   .video-arrow,
