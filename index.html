@@ -31,6 +31,85 @@
     <section class="mod-showcase">
       <!-- Card Carousel -->
       <div class="card-carousel">
+        <!-- Turntable Background -->
+        <div class="turntable-background" aria-hidden="true">
+          <svg class="turntable-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="caseInside" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#cd7f5a"/>
+                <stop offset="100%" stop-color="#a8664a"/>
+              </linearGradient>
+              <linearGradient id="bodyTop" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#4a4a4a"/>
+                <stop offset="100%" stop-color="#2d2d2d"/>
+              </linearGradient>
+              <linearGradient id="bodySide" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#3a3a3a"/>
+                <stop offset="100%" stop-color="#1f1f1f"/>
+              </linearGradient>
+              <linearGradient id="platterShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#3a3a3a"/>
+                <stop offset="50%" stop-color="#2a2a2a"/>
+                <stop offset="100%" stop-color="#1a1a1a"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Cabinet Side (depth) -->
+            <path d="M50,300 L50,380 L420,380 L420,300 Z" fill="url(#bodySide)"/>
+            
+            <!-- Cabinet Front -->
+            <rect x="50" y="280" width="370" height="20" fill="#1a1a1a"/>
+            
+            <!-- Cabinet Top Surface -->
+            <path d="M50,200 L50,280 L420,280 L420,200 Z" fill="url(#bodyTop)"/>
+            
+            <!-- Inner rim -->
+            <rect x="60" y="210" width="350" height="60" rx="4" fill="#0f0f0f"/>
+            
+            <!-- Open Case/Lid -->
+            <!-- Lid back edge -->
+            <path d="M50,200 L80,80 L390,80 L420,200 Z" fill="url(#caseInside)"/>
+            <!-- Lid thickness -->
+            <path d="M80,80 L90,70 L400,70 L390,80 Z" fill="#a0583d"/>
+            
+            <!-- "Chuck's" text on lid -->
+            <text x="220" y="140" text-anchor="middle" font-family="'Lobster', cursive" font-size="42" fill="#7a4a3a" opacity="0.3" transform="skewY(-8)">Chuck's</text>
+
+            <!-- Platter/Turntable surface -->
+            <ellipse cx="250" cy="245" rx="110" ry="55" fill="url(#platterShine)"/>
+            <ellipse cx="250" cy="245" rx="105" ry="52" fill="#1a1a1a"/>
+            
+            <!-- Center spindle -->
+            <ellipse cx="250" cy="245" rx="4" ry="2" fill="#666"/>
+            
+            <!-- Tonearm base -->
+            <rect x="350" y="230" width="20" height="30" rx="2" fill="#2a2a2a"/>
+            <circle cx="360" cy="245" r="8" fill="#3a3a3a"/>
+            
+            <!-- Control knobs -->
+            <circle cx="100" cy="265" r="6" fill="#2a2a2a"/>
+            <circle cx="130" cy="265" r="6" fill="#2a2a2a"/>
+          </svg>
+
+          <!-- Spinning Vinyl -->
+          <div class="bg-vinyl-record">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="98" fill="#0d0d0d"/>
+              <circle cx="100" cy="100" r="96" fill="#1a1a1a"/>
+              <circle cx="100" cy="100" r="88" fill="none" stroke="#222" stroke-width="0.3"/>
+              <circle cx="100" cy="100" r="78" fill="none" stroke="#252525" stroke-width="0.3"/>
+              <circle cx="100" cy="100" r="68" fill="none" stroke="#222" stroke-width="0.3"/>
+              <circle cx="100" cy="100" r="58" fill="none" stroke="#252525" stroke-width="0.3"/>
+              <circle cx="100" cy="100" r="48" fill="none" stroke="#222" stroke-width="0.3"/>
+            </svg>
+            
+            <!-- Center label showing mod banner -->
+            <div class="bg-record-label">
+              <img id="bgModPreview" src="" alt="Mod">
+            </div>
+          </div>
+        </div>
+        
         <div class="card-stack" id="cardStack" role="listbox" aria-label="Mod selection" tabindex="0"></div>
       </div>
     </section>
@@ -41,6 +120,9 @@
       <article class="mod-details" id="modDetails">
         <div class="mod-header">
           <h2 class="mod-name" id="modName">Loading mods...</h2>
+          
+          <!-- Repository Description -->
+          <div class="mod-description" id="modDescription"></div>
           
           <!-- Stats Grid -->
           <div class="mod-stats" id="modStats">
@@ -82,13 +164,16 @@
 
         <!-- Support Links -->
         <div class="support-links">
-          <div class="support-link">
-            <script src="https://apis.google.com/js/platform.js" async defer></script>
-            <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
-          </div>
-          <div class="support-link">
-            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-            <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
+          <!-- YouTube and Ko-fi on same line -->
+          <div class="support-link support-link-row">
+            <div class="support-button">
+              <script src="https://apis.google.com/js/platform.js" async defer></script>
+              <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
+            </div>
+            <div class="support-button">
+              <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+              <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
+            </div>
           </div>
           <div class="support-link">
             <a href="https://discord.gg/pGWr5TucHn">
@@ -99,57 +184,6 @@
       </aside>
     </div>
   </main>
-
-  <!-- Atmospheric Turntable Background -->
-  <div class="turntable-background" aria-hidden="true">
-    <svg class="turntable-svg" viewBox="0 0 418 352" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="bodyTop" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#2d2d2d"/>
-          <stop offset="100%" stop-color="#1a1a1a"/>
-        </linearGradient>
-        <linearGradient id="bodyFront" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#1a1a1a"/>
-          <stop offset="100%" stop-color="#0f0f0f"/>
-        </linearGradient>
-        <linearGradient id="platterFelt" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#2a2a2a"/>
-          <stop offset="100%" stop-color="#1a1a1a"/>
-        </linearGradient>
-      </defs>
-
-      <!-- Cabinet -->
-      <path d="M17,308 L17,325 Q17,336 28,336 L390,336 Q401,336 401,325 L401,308 L17,308 Z" fill="url(#bodyFront)"/>
-      <rect x="17" y="17" width="385" height="297" rx="7" fill="url(#bodyTop)"/>
-      <rect x="28" y="28" width="363" height="275" rx="4" fill="#141414"/>
-      
-      <!-- "Chuck's" text on lid -->
-      <text x="120" y="120" font-family="'Lobster', cursive" font-size="52" fill="#3a3a3a" opacity="0.25" transform="rotate(-3 120 120)">Chuck's</text>
-
-      <!-- Platter -->
-      <circle cx="176" cy="165" r="116" fill="#0a0a0a"/>
-      <circle cx="176" cy="165" r="108" fill="url(#platterFelt)"/>
-      <circle cx="176" cy="165" r="4" fill="#444"/>
-    </svg>
-
-    <!-- Spinning Vinyl -->
-    <div class="bg-vinyl-record">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="98" fill="#0d0d0d"/>
-        <circle cx="100" cy="100" r="96" fill="#1a1a1a"/>
-        <circle cx="100" cy="100" r="88" fill="none" stroke="#222" stroke-width="0.3"/>
-        <circle cx="100" cy="100" r="78" fill="none" stroke="#252525" stroke-width="0.3"/>
-        <circle cx="100" cy="100" r="68" fill="none" stroke="#222" stroke-width="0.3"/>
-        <circle cx="100" cy="100" r="58" fill="none" stroke="#252525" stroke-width="0.3"/>
-        <circle cx="100" cy="100" r="48" fill="none" stroke="#222" stroke-width="0.3"/>
-      </svg>
-      
-      <!-- Center label showing mod banner -->
-      <div class="bg-record-label">
-        <img id="bgModPreview" src="" alt="Mod">
-      </div>
-    </div>
-  </div>
 
   <!-- Data Watermark -->
   <div class="data-watermark">
