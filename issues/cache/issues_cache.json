@@ -71,11 +71,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:17.283881Z"
+    "timestamp": "2026-06-01T22:10:33.433218Z"
   },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:17.753115Z"
+    "timestamp": "2026-06-01T22:10:33.658135Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
     "issues": [
@@ -220,7 +220,7 @@
         ]
       }
     ],
-    "timestamp": "2026-06-01T18:24:18.288324Z"
+    "timestamp": "2026-06-01T22:10:34.044896Z"
   },
   "Chuckleberry-Finn/SwapIt": {
     "issues": [
@@ -235,15 +235,15 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:18.758248Z"
+    "timestamp": "2026-06-01T22:10:34.303254Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:19.152736Z"
+    "timestamp": "2026-06-01T22:10:34.530994Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:19.507684Z"
+    "timestamp": "2026-06-01T22:10:34.776904Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
     "issues": [
@@ -358,10 +358,25 @@
         ]
       }
     ],
-    "timestamp": "2026-06-01T18:24:20.035565Z"
+    "timestamp": "2026-06-01T22:10:35.181402Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
+      {
+        "number": 47,
+        "title": "Stuck items after interaction",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/47",
+        "created_at": "2026-06-01T19:36:04Z",
+        "user": {
+          "login": "rogueasd099"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
       {
         "number": 46,
         "title": "Checkers Bug",
@@ -496,28 +511,13 @@
             "color": "d73a4a"
           }
         ]
-      },
-      {
-        "number": 16,
-        "title": "Spectate Feature",
-        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/16",
-        "created_at": "2023-09-21T22:55:44Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
       }
     ],
-    "timestamp": "2026-06-01T18:24:20.484705Z"
+    "timestamp": "2026-06-01T22:10:35.578992Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:20.833874Z"
+    "timestamp": "2026-06-01T22:10:35.796524Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -627,11 +627,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:21.309354Z"
+    "timestamp": "2026-06-01T22:10:36.261274Z"
   },
   "Chuckleberry-Finn/zone-api-chucked": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:21.666772Z"
+    "timestamp": "2026-06-01T22:10:36.527153Z"
   },
   "Chuckleberry-Finn/ZombieZones": {
     "issues": [
@@ -646,7 +646,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:22.123031Z"
+    "timestamp": "2026-06-01T22:10:36.831778Z"
   },
   "Chuckleberry-Finn/interactive-tailoring": {
     "issues": [
@@ -661,59 +661,59 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:22.508953Z"
+    "timestamp": "2026-06-01T22:10:37.096152Z"
   },
   "Chuckleberry-Finn/Tuck-and-Roll": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:22.871426Z"
+    "timestamp": "2026-06-01T22:10:37.340637Z"
   },
   "Chuckleberry-Finn/zombies-trip-over-zombies": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:23.332366Z"
+    "timestamp": "2026-06-01T22:10:37.587530Z"
   },
   "Chuckleberry-Finn/aprilFoolsPZ2024": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:23.738135Z"
+    "timestamp": "2026-06-01T22:10:37.810452Z"
   },
   "Chuckleberry-Finn/gameNightDominos": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:24.091213Z"
+    "timestamp": "2026-06-01T22:10:38.026078Z"
   },
   "Chuckleberry-Finn/zomboidPaper": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:24.435582Z"
+    "timestamp": "2026-06-01T22:10:38.266775Z"
   },
   "Chuckleberry-Finn/GameNight-OneBulletGame": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:24.773758Z"
+    "timestamp": "2026-06-01T22:10:38.503592Z"
   },
   "Chuckleberry-Finn/gameNightDND": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:25.185852Z"
+    "timestamp": "2026-06-01T22:10:38.730512Z"
   },
   "Chuckleberry-Finn/gameNight-Whodunit": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:25.653315Z"
+    "timestamp": "2026-06-01T22:10:38.954424Z"
   },
   "Chuckleberry-Finn/gameNightCyberPunk": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:25.998084Z"
+    "timestamp": "2026-06-01T22:10:39.172604Z"
   },
   "Chuckleberry-Finn/ZombiesDropGames": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:26.393645Z"
+    "timestamp": "2026-06-01T22:10:39.448184Z"
   },
   "Chuckleberry-Finn/Carjacking": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:26.723571Z"
+    "timestamp": "2026-06-01T22:10:39.667413Z"
   },
   "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:27.109558Z"
+    "timestamp": "2026-06-01T22:10:39.888282Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:27.471842Z"
+    "timestamp": "2026-06-01T22:10:40.236376Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -728,15 +728,15 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:27.886964Z"
+    "timestamp": "2026-06-01T22:10:40.504074Z"
   },
   "Chuckleberry-Finn/gameNight-covertNames": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:28.225425Z"
+    "timestamp": "2026-06-01T22:10:40.802769Z"
   },
   "Chuckleberry-Finn/gameNight-americana": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:28.562566Z"
+    "timestamp": "2026-06-01T22:10:41.027690Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
     "issues": [
@@ -751,23 +751,23 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:29.045317Z"
+    "timestamp": "2026-06-01T22:10:41.329551Z"
   },
   "Chuckleberry-Finn/roll-command-plus": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:29.404782Z"
+    "timestamp": "2026-06-01T22:10:41.542737Z"
   },
   "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:29.763366Z"
+    "timestamp": "2026-06-01T22:10:41.852867Z"
   },
   "Chuckleberry-Finn/containerLockout": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:30.106643Z"
+    "timestamp": "2026-06-01T22:10:42.058946Z"
   },
   "Chuckleberry-Finn/Named-Literature": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:30.463411Z"
+    "timestamp": "2026-06-01T22:10:42.290179Z"
   },
   "Chuckleberry-Finn/moddingAlertSystem": {
     "issues": [
@@ -782,7 +782,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:30.922816Z"
+    "timestamp": "2026-06-01T22:10:42.662079Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -797,26 +797,26 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-06-01T18:24:31.440135Z"
+    "timestamp": "2026-06-01T22:10:42.918608Z"
   },
   "Chuckleberry-Finn/NoDamageFromTrees": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:31.848781Z"
+    "timestamp": "2026-06-01T22:10:43.186310Z"
   },
   "Chuckleberry-Finn/Display-Roles-In-Chat": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:32.237336Z"
+    "timestamp": "2026-06-01T22:10:43.410795Z"
   },
   "Chuckleberry-Finn/AutoEat": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:32.582996Z"
+    "timestamp": "2026-06-01T22:10:43.639714Z"
   },
   "Chuckleberry-Finn/big-bad-beavers-berserk": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:33.191001Z"
+    "timestamp": "2026-06-01T22:10:43.957809Z"
   },
   "Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier": {
     "issues": [],
-    "timestamp": "2026-06-01T18:24:33.528348Z"
+    "timestamp": "2026-06-01T22:10:44.159980Z"
   }
 }
