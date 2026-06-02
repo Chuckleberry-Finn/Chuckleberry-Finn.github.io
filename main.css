@@ -3,54 +3,54 @@
 /* Design tokens */
 
 :root {
-  --color-primary:     #7ecec4;
-  --color-primary-dim: #4aa89e;
-  --color-accent:      #a8d5b5;
-  --color-text:        #e8f0ee;
-  --color-text-muted:  rgba(232, 240, 238, 0.65);
+  --color-primary:     #e8607a;
+  --color-primary-dim: #c44860;
+  --color-accent:      #f0907a;
+  --color-text:        #f0e0c8;
+  --color-text-muted:  rgba(240, 224, 200, 0.65);
 
-  --bg-page:    #0d1a17;
-  --bg-base:    #060f0d;
-  --bg-surface: #0f1e1a;
-  --bg-raised:  #111f1c;
+  --bg-page:    #12100f;
+  --bg-base:    #0a0908;
+  --bg-surface: #161412;
+  --bg-raised:  #1c1917;
 
-  --primary-05:  rgba(126, 206, 196, 0.05);
-  --primary-08:  rgba(126, 206, 196, 0.08);
-  --primary-10:  rgba(126, 206, 196, 0.10);
-  --primary-15:  rgba(126, 206, 196, 0.15);
-  --primary-20:  rgba(126, 206, 196, 0.20);
-  --primary-25:  rgba(126, 206, 196, 0.25);
-  --primary-30:  rgba(126, 206, 196, 0.30);
-  --primary-35:  rgba(126, 206, 196, 0.35);
-  --primary-40:  rgba(126, 206, 196, 0.40);
-  --primary-50:  rgba(126, 206, 196, 0.50);
-  --primary-60:  rgba(126, 206, 196, 0.60);
+  --primary-05:  rgba(232, 96, 122, 0.05);
+  --primary-08:  rgba(232, 96, 122, 0.08);
+  --primary-10:  rgba(232, 96, 122, 0.10);
+  --primary-15:  rgba(232, 96, 122, 0.15);
+  --primary-20:  rgba(232, 96, 122, 0.20);
+  --primary-25:  rgba(232, 96, 122, 0.25);
+  --primary-30:  rgba(232, 96, 122, 0.30);
+  --primary-35:  rgba(232, 96, 122, 0.35);
+  --primary-40:  rgba(232, 96, 122, 0.40);
+  --primary-50:  rgba(232, 96, 122, 0.50);
+  --primary-60:  rgba(232, 96, 122, 0.60);
 
-  --dim-10: rgba(74, 168, 158, 0.10);
-  --dim-15: rgba(74, 168, 158, 0.15);
+  --dim-10: rgba(196, 72, 96, 0.10);
+  --dim-15: rgba(196, 72, 96, 0.15);
 
-  --text-60: rgba(232, 240, 238, 0.60);
-  --text-70: rgba(232, 240, 238, 0.70);
-  --text-80: rgba(232, 240, 238, 0.80);
+  --text-60: rgba(240, 224, 200, 0.60);
+  --text-70: rgba(240, 224, 200, 0.70);
+  --text-80: rgba(240, 224, 200, 0.80);
 
-  --surface-85: rgba(13,  26, 23, 0.85);
-  --surface-90: rgba(15,  30, 26, 0.90);
-  --surface-95: rgba(15,  30, 26, 0.95);
-  --raised-90:  rgba(17,  31, 28, 0.90);
-  --raised-95:  rgba(17,  31, 28, 0.95);
-  --raised-98:  rgba(17,  31, 28, 0.98);
+  --surface-85: rgba(18, 16, 15, 0.85);
+  --surface-90: rgba(22, 20, 18, 0.90);
+  --surface-95: rgba(22, 20, 18, 0.95);
+  --raised-90:  rgba(28, 25, 23, 0.90);
+  --raised-95:  rgba(28, 25, 23, 0.95);
+  --raised-98:  rgba(28, 25, 23, 0.98);
 
   --shadow-sm: rgba(0, 0, 0, 0.30);
   --shadow-md: rgba(0, 0, 0, 0.40);
   --shadow-lg: rgba(0, 0, 0, 0.50);
   --shadow-xl: rgba(0, 0, 0, 0.60);
 
-  --bounce-1: #7ecec4;
-  --bounce-2: #a8d5b5;
-  --bounce-3: #c9a84c;
-  --bounce-4: #e07b6a;
-  --bounce-5: #9b7ecb;
-  --bounce-6: #5aadcc;
+  --bounce-1: #e8607a;
+  --bounce-2: #f0907a;
+  --bounce-3: #e8607a;
+  --bounce-4: #c44860;
+  --bounce-5: #f0907a;
+  --bounce-6: #e8607a;
 }
 
 
@@ -89,12 +89,12 @@ body {
 .site-title {
   font-family: 'Lobster', cursive;
   font-size: 2.5rem;
-  color: var(--color-accent);
+  color: var(--color-primary);
   text-shadow:
     0 0 2px #000,
-    0 0 5px  var(--color-primary),
-    0 0 10px var(--color-primary),
-    0 0 20px var(--color-primary-dim);
+    0 0 8px  var(--color-primary),
+    0 0 18px var(--color-primary),
+    0 0 35px var(--color-primary-dim);
   margin: 0 0 0.3rem;
   display: flex;
   align-items: center;
@@ -411,7 +411,7 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 6px 25px var(--primary-35);
   background: linear-gradient(135deg, var(--primary-25) 0%, var(--dim-15) 100%);
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
 }
 
 .issue-tracker-icon {
@@ -535,11 +535,12 @@ body {
   background: var(--surface-95);
   backdrop-filter: blur(8px);
   cursor: pointer;
-  animation: kofi-color-shift 2s linear infinite;
+  animation: kofi-color-shift 1.6s linear infinite;
 }
 
 #kofi-flying-inner:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  animation-duration: 0.8s;
 }
 
 #kofi-flying-close {
@@ -566,14 +567,24 @@ body {
   background: var(--primary-20);
 }
 
+#kofi-flying-inner {
+  animation-duration: 1.6s;
+  transition: transform 0.2s;
+}
+
+#kofi-flying-inner:hover {
+  animation-duration: 0.8s;
+}
+
 @keyframes kofi-color-shift {
-  0%   { color: var(--bounce-1); box-shadow: 0 0 20px 6px var(--bounce-1); }
-  16%  { color: var(--bounce-2); box-shadow: 0 0 20px 6px var(--bounce-2); }
-  33%  { color: var(--bounce-3); box-shadow: 0 0 20px 6px var(--bounce-3); }
-  50%  { color: var(--bounce-4); box-shadow: 0 0 20px 6px var(--bounce-4); }
-  66%  { color: var(--bounce-5); box-shadow: 0 0 20px 6px var(--bounce-5); }
-  83%  { color: var(--bounce-6); box-shadow: 0 0 20px 6px var(--bounce-6); }
-  100% { color: var(--bounce-1); box-shadow: 0 0 20px 6px var(--bounce-1); }
+  0%   { box-shadow: 0 0 12px 4px #ff3366, 0 0 30px 10px #ff336688, 0 0 55px 18px #ff336644; }
+  14%  { box-shadow: 0 0 12px 4px #ff8800, 0 0 30px 10px #ff880088, 0 0 55px 18px #ff880044; }
+  28%  { box-shadow: 0 0 12px 4px #ffe000, 0 0 30px 10px #ffe00088, 0 0 55px 18px #ffe00044; }
+  42%  { box-shadow: 0 0 12px 4px #00e060, 0 0 30px 10px #00e06088, 0 0 55px 18px #00e06044; }
+  57%  { box-shadow: 0 0 12px 4px #00b4ff, 0 0 30px 10px #00b4ff88, 0 0 55px 18px #00b4ff44; }
+  71%  { box-shadow: 0 0 12px 4px #8844ff, 0 0 30px 10px #8844ff88, 0 0 55px 18px #8844ff44; }
+  85%  { box-shadow: 0 0 12px 4px #ff44cc, 0 0 30px 10px #ff44cc88, 0 0 55px 18px #ff44cc44; }
+  100% { box-shadow: 0 0 12px 4px #ff3366, 0 0 30px 10px #ff336688, 0 0 55px 18px #ff336644; }
 }
 
 

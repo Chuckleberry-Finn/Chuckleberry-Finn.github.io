@@ -46,8 +46,11 @@ fetch(`mods.json?t=${Date.now()}`)
     }
     initModCarousel(highlighted);
   })
-  .catch(() => {
-    document.getElementById('modName').textContent = 'Error loading mods';
+  .catch(err => {
+    const el = document.getElementById('modName');
+    if (el) el.textContent = window.location.protocol === 'file:'
+      ? 'Run via a local server (e.g. IntelliJ built-in) to load mods'
+      : 'Error loading mods';
   });
 
 function initModCarousel(mods) {
@@ -78,7 +81,8 @@ function initModCarousel(mods) {
   });
 
   selectMod(0);
-  updatePositions();
+  // Defer first position update so the DOM has laid out and offsetWidth is real
+  requestAnimationFrame(() => updatePositions());
 
   // Expose API for scrollbar and other consumers
   window.carouselAPI = {
@@ -232,9 +236,14 @@ function initModCarousel(mods) {
   }
 
   function updatePositions(drag = 0) {
-    const center    = isMobile ? window.innerWidth / 2 : stack.offsetWidth / 2;
+    const containerWidth = stack.offsetWidth || document.querySelector('.card-carousel')?.offsetWidth || window.innerWidth;
+    const center    = isMobile ? window.innerWidth / 2 : containerWidth / 2;
     const cardWidth = isMobile ? 90 : 110;
     const spacing   = isMobile ? 75 : 95;
+
+    const cs = getComputedStyle(document.documentElement);
+    const colorSelected   = cs.getPropertyValue('--primary-60').trim() || 'rgba(232,96,122,0.6)';
+    const colorUnselected = cs.getPropertyValue('--primary-15').trim() || 'rgba(232,96,122,0.15)';
 
     cards.forEach((card, i) => {
       const offset  = i - selectedIndex;
@@ -250,10 +259,10 @@ function initModCarousel(mods) {
       card.style.zIndex    = 100 - Math.abs(offset);
 
       if (i === selectedIndex) {
-        card.style.borderColor = 'rgba(126, 206, 196, 0.6)';
-        card.style.boxShadow   = '0 6px 20px rgba(126, 206, 196, 0.3)';
+        card.style.borderColor = colorSelected;
+        card.style.boxShadow   = '0 6px 20px var(--primary-30)';
       } else {
-        card.style.borderColor = 'rgba(126, 206, 196, 0.15)';
+        card.style.borderColor = colorUnselected;
         card.style.boxShadow   = '0 4px 15px rgba(0,0,0,0.6)';
       }
     });

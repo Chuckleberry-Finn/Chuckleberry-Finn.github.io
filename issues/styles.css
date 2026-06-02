@@ -7,51 +7,51 @@
 /* Design tokens (mirrors main.css :root — keep in sync) */
 
 :root {
-  --color-primary:     #7ecec4;
-  --color-primary-dim: #4aa89e;
-  --color-accent:      #a8d5b5;
-  --color-text:        #e8f0ee;
-  --color-text-muted:  rgba(232, 240, 238, 0.65);
+  --color-primary:     #e8607a;
+  --color-primary-dim: #c44860;
+  --color-accent:      #f0907a;
+  --color-text:        #f0e0c8;
+  --color-text-muted:  rgba(240, 224, 200, 0.65);
 
-  --bg-page:    #0d1a17;
-  --bg-base:    #060f0d;
-  --bg-surface: #0f1e1a;
-  --bg-raised:  #111f1c;
+  --bg-page:    #12100f;
+  --bg-base:    #0a0908;
+  --bg-surface: #161412;
+  --bg-raised:  #1c1917;
 
-  --primary-05:  rgba(126, 206, 196, 0.05);
-  --primary-08:  rgba(126, 206, 196, 0.08);
-  --primary-10:  rgba(126, 206, 196, 0.10);
-  --primary-12:  rgba(126, 206, 196, 0.12);
-  --primary-15:  rgba(126, 206, 196, 0.15);
-  --primary-20:  rgba(126, 206, 196, 0.20);
-  --primary-25:  rgba(126, 206, 196, 0.25);
-  --primary-30:  rgba(126, 206, 196, 0.30);
-  --primary-40:  rgba(126, 206, 196, 0.40);
-  --primary-60:  rgba(126, 206, 196, 0.60);
+  --primary-05:  rgba(232, 96, 122, 0.05);
+  --primary-08:  rgba(232, 96, 122, 0.08);
+  --primary-10:  rgba(232, 96, 122, 0.10);
+  --primary-12:  rgba(232, 96, 122, 0.12);
+  --primary-15:  rgba(232, 96, 122, 0.15);
+  --primary-20:  rgba(232, 96, 122, 0.20);
+  --primary-25:  rgba(232, 96, 122, 0.25);
+  --primary-30:  rgba(232, 96, 122, 0.30);
+  --primary-40:  rgba(232, 96, 122, 0.40);
+  --primary-60:  rgba(232, 96, 122, 0.60);
 
-  --text-50: rgba(232, 240, 238, 0.50);
-  --text-60: rgba(232, 240, 238, 0.60);
-  --text-70: rgba(232, 240, 238, 0.70);
-  --text-80: rgba(232, 240, 238, 0.80);
+  --text-50: rgba(240, 224, 200, 0.50);
+  --text-60: rgba(240, 224, 200, 0.60);
+  --text-70: rgba(240, 224, 200, 0.70);
+  --text-80: rgba(240, 224, 200, 0.80);
 
-  --surface-85: rgba(13,  26, 23, 0.85);
-  --surface-90: rgba(15,  30, 26, 0.90);
-  --surface-95: rgba(15,  30, 26, 0.95);
-  --raised-70:  rgba(17,  31, 28, 0.70);
-  --raised-85:  rgba(17,  31, 28, 0.85);
-  --raised-95:  rgba(17,  31, 28, 0.95);
-  --raised-solid: #111f1c;
+  --surface-85: rgba(18, 16, 15, 0.85);
+  --surface-90: rgba(22, 20, 18, 0.90);
+  --surface-95: rgba(22, 20, 18, 0.95);
+  --raised-70:  rgba(28, 25, 23, 0.70);
+  --raised-85:  rgba(28, 25, 23, 0.85);
+  --raised-95:  rgba(28, 25, 23, 0.95);
+  --raised-solid: #1c1917;
 
-  --input-bg: rgba(6, 15, 13, 0.80);
+  --input-bg: rgba(10, 9, 8, 0.80);
   --shadow-md: rgba(0, 0, 0, 0.40);
   --shadow-lg: rgba(0, 0, 0, 0.50);
   --shadow-xl: rgba(0, 0, 0, 0.60);
 
   /* Tracker-specific semantic colours */
-  --color-green:     #6e9a2a;
-  --color-green-txt: #a8c256;
+  --color-green:     #7ecfd0;
+  --color-green-txt: #a8dfe0;
   --color-red:       #c0392b;
-  --color-steam:     #66c0f4;
+  --color-steam:     #7ecfd0;
 
   --radius:    4px;
   --radius-lg: 8px;
@@ -239,8 +239,8 @@ body {
   align-items: center;
   gap: 8px;
   padding: 5px 11px;
-  background: rgba(102, 192, 244, 0.08);
-  border: 1px solid rgba(102, 192, 244, 0.25);
+  background: var(--primary-08);
+  border: 1px solid var(--primary-25);
   border-radius: var(--radius);
   font-size: 0.78rem;
   color: var(--color-steam);
@@ -462,7 +462,7 @@ body {
 }
 
 .form-mod-info a:hover {
-  color: #fff;
+  color: var(--color-text);
 }
 
 
@@ -531,27 +531,27 @@ body {
 
 .quality-bar-fill.terrible {
   background: linear-gradient(90deg, #8b0000, var(--color-red));
-  box-shadow: 0 0 12px rgba(139, 0, 0, 0.7);
+  box-shadow: 0 0 12px var(--primary-40);
 }
 
 .quality-bar-fill.poor {
-  background: linear-gradient(90deg, var(--color-red), #e67e22);
-  box-shadow: 0 0 12px rgba(192, 57, 43, 0.6);
+  background: linear-gradient(90deg, var(--color-red), var(--color-accent));
+  box-shadow: 0 0 12px var(--primary-30);
 }
 
 .quality-bar-fill.fair {
-  background: linear-gradient(90deg, #e67e22, #f39c12);
-  box-shadow: 0 0 12px rgba(230, 126, 34, 0.6);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  box-shadow: 0 0 12px var(--primary-30);
 }
 
 .quality-bar-fill.good {
-  background: linear-gradient(90deg, #f39c12, #c9a84c);
-  box-shadow: 0 0 12px rgba(243, 156, 18, 0.6);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  box-shadow: 0 0 12px var(--primary-40);
 }
 
 .quality-bar-fill.great {
-  background: linear-gradient(90deg, #c9a84c, var(--color-accent));
-  box-shadow: 0 0 12px rgba(168, 213, 181, 0.6);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  box-shadow: 0 0 12px var(--primary-40);
 }
 
 .quality-bar-fill.excellent {
@@ -565,10 +565,10 @@ body {
   text-align: center;
 }
 
-.quality-text.terrible { color: #ff6b6b; }
-.quality-text.poor     { color: #ff8787; }
-.quality-text.fair     { color: #ffa94d; }
-.quality-text.good     { color: #ffd43b; }
+.quality-text.terrible { color: var(--color-red); }
+.quality-text.poor     { color: var(--color-primary-dim); }
+.quality-text.fair     { color: var(--color-accent); }
+.quality-text.good     { color: var(--color-primary); }
 .quality-text.great    { color: var(--color-accent); }
 .quality-text.excellent{ color: var(--color-primary); }
 
@@ -578,8 +578,8 @@ body {
 .info-banner {
   display: flex;
   gap: 14px;
-  background: rgba(110, 154, 42, 0.08);
-  border: 1px solid rgba(110, 154, 42, 0.2);
+  background: var(--primary-08);
+  border: 1px solid var(--primary-20);
   border-radius: var(--radius-lg);
   padding: 16px 20px;
   margin-bottom: 16px;
@@ -804,7 +804,7 @@ textarea.form-input {
 }
 
 .btn-github {
-  background: rgba(110, 154, 42, 0.08);
+  background: var(--primary-08);
   border-color: var(--color-green);
   color: var(--color-green-txt);
 }
@@ -815,13 +815,13 @@ textarea.form-input {
 }
 
 .btn-github.enabled:not(:disabled):hover {
-  background: rgba(110, 154, 42, 0.18);
+  background: var(--primary-15);
   transform: translateY(-2px);
-  box-shadow: 0 5px 18px rgba(110, 154, 42, 0.2);
+  box-shadow: 0 5px 18px var(--primary-20);
 }
 
 .btn-steam {
-  background: rgba(102, 192, 244, 0.08);
+  background: var(--primary-08);
   border-color: var(--color-steam);
   color: var(--color-steam);
 }
@@ -832,9 +832,9 @@ textarea.form-input {
 }
 
 .btn-steam.enabled:not(:disabled):hover {
-  background: rgba(102, 192, 244, 0.18);
+  background: var(--primary-15);
   transform: translateY(-2px);
-  box-shadow: 0 5px 18px rgba(102, 192, 244, 0.2);
+  box-shadow: 0 5px 18px var(--primary-20);
 }
 
 .btn-icon {
@@ -879,8 +879,8 @@ textarea.form-input {
 
 .toast.error {
   border-color: var(--color-red);
-  background: rgba(192, 57, 43, 0.15);
-  color: #ff6b6b;
+  background: var(--primary-08);
+  color: var(--color-red);
 }
 
 
