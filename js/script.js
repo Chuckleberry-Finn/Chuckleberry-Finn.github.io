@@ -1,107 +1,71 @@
-// Utility function to format subscriber numbers
 function formatNumber(n) {
   if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
   if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
   return n.toLocaleString();
 }
 
-// Utility function to format timestamp for watermark
-function formatTimestamp(isoString) {
-  const date = new Date(isoString);
-  const now = new Date();
-  const diffMs = now - date;
-  const diffMins = Math.floor(diffMs / 60000);
+function formatTimeAgo(isoString) {
+  const diffMs    = Date.now() - new Date(isoString);
+  const diffMins  = Math.floor(diffMs / 60000);
   const diffHours = Math.floor(diffMins / 60);
-  const diffDays = Math.floor(diffHours / 24);
-  
-  if (diffMins < 60) {
-    return `${diffMins}m ago`;
-  } else if (diffHours < 24) {
-    return `${diffHours}h ago`;
-  } else if (diffDays === 1) {
-    return '1 day ago';
-  } else if (diffDays < 7) {
-    return `${diffDays} days ago`;
-  } else {
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  }
+  const diffDays  = Math.floor(diffHours / 24);
+
+  if (diffMins  <  1) return 'just now';
+  if (diffMins  < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays  ===1) return '1 day ago';
+  if (diffDays  <  7) return `${diffDays} days ago`;
+  return new Date(isoString).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
-// Fetch and display last update time
 fetch(`github_stats_queue.json?t=${Date.now()}`)
-  .then(res => res.ok ? res.json() : Promise.reject())
+  .then(r => r.ok ? r.json() : Promise.reject())
   .then(data => {
-    const watermarkEl = document.getElementById('watermark-text');
-    if (watermarkEl && data.timestamp) {
-      watermarkEl.textContent = `Data updated ${formatTimestamp(data.timestamp)}`;
-    }
+    const el = document.getElementById('watermark-text');
+    if (el && data.timestamp) el.textContent = `Data updated ${formatTimeAgo(data.timestamp)}`;
   })
   .catch(() => {
-    const watermarkEl = document.getElementById('watermark-text');
-    if (watermarkEl) {
-      watermarkEl.textContent = 'Data updated recently';
-    }
+    const el = document.getElementById('watermark-text');
+    if (el) el.textContent = 'Data updated recently';
   });
 
-// Load and display mods
 fetch(`mods.json?t=${Date.now()}`)
-  .then(res => {
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-    return res.json();
+  .then(r => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
   })
   .then(data => {
-    console.log('Loaded mods:', data.length);
-    
-    // Calculate total subs from ALL mods
     const totalSubs = data.reduce((sum, mod) => sum + (mod.subs || 0), 0);
-    const totalSubsEl = document.getElementById('totalSubsCount');
-    if (totalSubsEl) {
-      totalSubsEl.textContent = formatNumber(totalSubs);
-    }
-    
-    // Filter to only show highlights
-    const highlightedMods = data.filter(mod => mod.highlight === true);
-    console.log('Highlighted mods:', highlightedMods.length);
-    
-    if (highlightedMods.length === 0) {
-      console.error('No highlighted mods found!');
+    const totalEl = document.getElementById('totalSubsCount');
+    if (totalEl) totalEl.textContent = formatNumber(totalSubs);
+
+    const highlighted = data.filter(mod => mod.highlight === true);
+    if (!highlighted.length) {
       document.getElementById('modName').textContent = 'No mods available';
       return;
     }
-    
-    initModCarousel(highlightedMods);
+    initModCarousel(highlighted);
   })
-  .catch(err => {
-    console.error("Failed to load mods.json", err);
+  .catch(() => {
     document.getElementById('modName').textContent = 'Error loading mods';
-    document.getElementById('modStats').innerHTML = '<div class="stat-item"><div class="stat-label">Error</div><div class="stat-value">Could not load data</div></div>';
   });
 
 function initModCarousel(mods) {
-  console.log('Initializing carousel with', mods.length, 'mods');
-  
-  const stack = document.getElementById('cardStack');
+  const stack   = document.getElementById('cardStack');
   const modName = document.getElementById('modName');
   const modStats = document.getElementById('modStats');
   const modLinks = document.getElementById('modLinks');
   const modVideo = document.getElementById('modVideo');
 
-  if (!stack) {
-    console.error('cardStack element not found!');
-    return;
-  }
+  if (!stack) return;
 
   const cards = [];
   let selectedIndex = 0;
   let isMobile = window.innerWidth <= 700;
-
   let touchStartX = 0;
   let touchDeltaX = 0;
-  let isDragging = false;
+  let isDragging  = false;
 
-  // Create cards
   mods.forEach((mod, index) => {
     const card = document.createElement('div');
     card.className = 'mod-card';
@@ -109,287 +73,188 @@ function initModCarousel(mods) {
     card.setAttribute('role', 'option');
     card.setAttribute('aria-label', mod.name);
     card.dataset.index = index;
-    
     stack.appendChild(card);
     cards.push(card);
   });
 
-  console.log('Created', cards.length, 'cards');
-
-  // Select first mod immediately
   selectMod(0);
-  updateCarouselPositions();
+  updatePositions();
 
-  // Click handler
-  stack.addEventListener('click', (e) => {
+  // Expose API for scrollbar and other consumers
+  window.carouselAPI = {
+    getIndex: () => selectedIndex,
+    getTotal: () => mods.length,
+    selectMod,
+  };
+
+  stack.addEventListener('click', e => {
     const card = e.target.closest('.mod-card');
-    if (card) {
-      const index = parseInt(card.dataset.index);
-      selectMod(index);
-    }
+    if (card) selectMod(parseInt(card.dataset.index));
   });
 
-  // Keyboard navigation
-  stack.addEventListener('keydown', (e) => {
-    let newIndex = selectedIndex;
-    switch (e.key) {
-      case 'ArrowUp':
-      case 'ArrowLeft':
-        e.preventDefault();
-        newIndex = (selectedIndex - 1 + mods.length) % mods.length;
-        break;
-      case 'ArrowDown':
-      case 'ArrowRight':
-        e.preventDefault();
-        newIndex = (selectedIndex + 1) % mods.length;
-        break;
-      default:
-        return;
-    }
-    selectMod(newIndex);
-  });
-
-  // Mouse wheel scrolling (desktop only)
-  let lastWheelTime = 0;
-  const wheelThrottle = 200; // ms between wheel actions (faster response)
-  
-  // Get the carousel section - try both selectors
-  const carouselSection = document.querySelector('.card-carousel') || document.querySelector('.mod-showcase');
-  
-  if (carouselSection && window.innerWidth > 700) {
-    carouselSection.addEventListener('wheel', (e) => {
-      const now = Date.now();
-      
-      // Throttle wheel events
-      if (now - lastWheelTime < wheelThrottle) {
-        e.preventDefault();
-        return;
-      }
-      
-      // Prevent default page scroll when over carousel
+  stack.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
       e.preventDefault();
-      
-      lastWheelTime = now;
-      
-      // Determine direction: wheel down = next (right), wheel up = previous (left)
-      const direction = e.deltaY > 0 ? 1 : -1;
-      let newIndex = selectedIndex + direction;
-      
-      // Wrap around
-      if (newIndex < 0) {
-        newIndex = mods.length - 1;
-      } else if (newIndex >= mods.length) {
-        newIndex = 0;
-      }
-      
-      console.log('Wheel scroll:', direction > 0 ? 'down/next' : 'up/previous', 'Index:', newIndex);
-      selectMod(newIndex);
+      selectMod((selectedIndex - 1 + mods.length) % mods.length);
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      selectMod((selectedIndex + 1) % mods.length);
+    }
+  });
+
+  let lastWheel = 0;
+  const carousel = document.querySelector('.card-carousel');
+  if (carousel && window.innerWidth > 700) {
+    carousel.addEventListener('wheel', e => {
+      const now = Date.now();
+      if (now - lastWheel < 200) { e.preventDefault(); return; }
+      e.preventDefault();
+      lastWheel = now;
+      selectMod((selectedIndex + (e.deltaY > 0 ? 1 : -1) + mods.length) % mods.length);
     }, { passive: false });
-    
-    console.log('Mouse wheel scrolling enabled on carousel');
   }
 
-  // Touch handlers
-  stack.addEventListener('touchstart', (e) => {
-    isDragging = true;
+  stack.addEventListener('touchstart', e => {
+    isDragging  = true;
     touchStartX = e.touches[0].clientX;
     touchDeltaX = 0;
   }, { passive: true });
 
-  stack.addEventListener('touchmove', (e) => {
+  stack.addEventListener('touchmove', e => {
     if (!isDragging) return;
-    const deltaX = e.touches[0].clientX - touchStartX;
-    if (Math.abs(deltaX) > 10) {
-      touchDeltaX = deltaX;
-      updateCarouselPositions(touchDeltaX);
+    const delta = e.touches[0].clientX - touchStartX;
+    if (Math.abs(delta) > 10) {
+      touchDeltaX = delta;
+      updatePositions(touchDeltaX);
     }
   }, { passive: true });
 
   stack.addEventListener('touchend', () => {
     if (!isDragging) return;
     isDragging = false;
-    const threshold = 40;
-    if (touchDeltaX < -threshold && selectedIndex < mods.length - 1) {
-      selectMod(selectedIndex + 1);
-    } else if (touchDeltaX > threshold && selectedIndex > 0) {
-      selectMod(selectedIndex - 1);
-    }
+    if      (touchDeltaX < -40 && selectedIndex < mods.length - 1) selectMod(selectedIndex + 1);
+    else if (touchDeltaX >  40 && selectedIndex > 0)                selectMod(selectedIndex - 1);
     touchDeltaX = 0;
-    updateCarouselPositions();
+    updatePositions();
   }, { passive: true });
 
-  // Resize handler
   window.addEventListener('resize', () => {
-    const wasMobile = isMobile;
+    const was = isMobile;
     isMobile = window.innerWidth <= 700;
-    if (isMobile !== wasMobile) {
-      updateCarouselPositions();
-    }
+    if (isMobile !== was) updatePositions();
   });
 
   function selectMod(index) {
     selectedIndex = index;
-    updateModDetails(mods[index]);
-    updateCarouselPositions();
+    updateDetails(mods[index]);
+    updatePositions();
+    document.dispatchEvent(new CustomEvent('carouselChange', { detail: { index } }));
   }
 
-  function updateModDetails(mod) {
-    // Update name
+  function updateDetails(mod) {
     modName.textContent = mod.name;
 
-    // Update description
-    const modDescription = document.getElementById('modDescription');
-    if (modDescription) {
-      if (mod.github && mod.github.description) {
-        modDescription.textContent = mod.github.description;
-        modDescription.style.display = 'block';
+    const descEl = document.getElementById('modDescription');
+    if (descEl) {
+      if (mod.github?.description) {
+        descEl.textContent = mod.github.description;
+        descEl.style.display = 'block';
       } else {
-        modDescription.style.display = 'none';
+        descEl.style.display = 'none';
       }
     }
 
-    // Update background vinyl label
-    const bgModPreview = document.getElementById('bgModPreview');
-    if (bgModPreview) {
-      bgModPreview.src = mod.banner || '';
-      bgModPreview.alt = mod.name;
-    }
+    const bgPreview = document.getElementById('bgModPreview');
+    if (bgPreview) { bgPreview.src = mod.banner || ''; bgPreview.alt = mod.name; }
 
-    // Clear stats - we'll show them under the buttons instead
     modStats.innerHTML = '';
 
-    // Build links with stats underneath
-    const linksHTML = [];
-    
-    // Steam Workshop link with subscribers
-    const steamStats = mod.subs !== undefined 
-      ? `<div class="link-stats">${formatNumber(mod.subs)} subscribers</div>` 
+    const steamStats = mod.subs !== undefined
+      ? `<div class="link-stats">${formatNumber(mod.subs)} subscribers</div>`
       : '';
-    
-    linksHTML.push(`
+
+    const ghParts = [];
+    if (mod.github?.stars    !== undefined) ghParts.push(`<span class="gh-stat">★ ${formatNumber(mod.github.stars)} stars</span>`);
+    if (mod.github?.forks    !== undefined) ghParts.push(`<span class="gh-stat">⑂ ${formatNumber(mod.github.forks)} forks</span>`);
+    if (mod.github?.openIssues !== undefined) ghParts.push(`<span class="gh-stat">⚠ ${mod.github.openIssues} issues</span>`);
+    const ghStats = ghParts.length ? `<div class="link-stats">${ghParts.join(' · ')}</div>` : '';
+
+    modLinks.innerHTML = `
       <div class="link-with-stats">
         <a href="${mod.steam_url}" target="_blank" rel="noopener" class="mod-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663.001 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/>
-          </svg>
-          View on Steam Workshop
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663.001 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
+          Steam Workshop
         </a>
         ${steamStats}
       </div>
-    `);
-
-    // GitHub Repository link with stats
-    const githubStatsHTML = [];
-    if (mod.github) {
-      if (mod.github.stars !== undefined) {
-        githubStatsHTML.push(`<span class="gh-stat">★ ${formatNumber(mod.github.stars)} stars</span>`);
-      }
-      if (mod.github.forks !== undefined) {
-        githubStatsHTML.push(`<span class="gh-stat">⑂ ${formatNumber(mod.github.forks)} forks</span>`);
-      }
-      if (mod.github.openIssues !== undefined) {
-        githubStatsHTML.push(`<span class="gh-stat">⚠ ${mod.github.openIssues} issues</span>`);
-      }
-    }
-    
-    const githubStats = githubStatsHTML.length > 0
-      ? `<div class="link-stats">${githubStatsHTML.join(' · ')}</div>`
-      : '';
-
-    linksHTML.push(`
       <div class="link-with-stats">
         <a href="${mod.repo_url}" target="_blank" rel="noopener" class="mod-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-          </svg>
-          View GitHub Repository
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub Repository
         </a>
-        ${githubStats}
+        ${ghStats}
       </div>
-    `);
+    `;
 
-    modLinks.innerHTML = linksHTML.join('');
-
-    // Update video
     updateVideo(mod);
   }
 
   function updateVideo(mod) {
     const videos = mod.videos || [];
-    
-    if (videos.length === 0) {
-      modVideo.innerHTML = '';
-      return;
-    }
+    modVideo.innerHTML = '';
+    if (!videos.length) return;
 
-    let currentVideoIndex = 0;
-
-    const container = document.createElement('div');
+    let currentIndex = 0;
+    const container  = document.createElement('div');
     container.className = 'video-container';
 
-    // Left arrow
-    const leftArrow = document.createElement('button');
-    leftArrow.className = 'video-arrow' + (videos.length <= 1 ? ' hidden' : '');
-    leftArrow.textContent = '◀';
-    leftArrow.setAttribute('aria-label', 'Previous video');
+    const makeArrow = (label, symbol) => {
+      const btn = document.createElement('button');
+      btn.className = `video-arrow${videos.length <= 1 ? ' hidden' : ''}`;
+      btn.textContent = symbol;
+      btn.setAttribute('aria-label', label);
+      return btn;
+    };
 
-    // Video iframe
+    const left   = makeArrow('Previous video', '◀');
     const iframe = document.createElement('iframe');
+    const right  = makeArrow('Next video', '▶');
+
     iframe.src = videos[0].replace('watch?v=', 'embed/');
     iframe.allowFullscreen = true;
     iframe.loading = 'lazy';
 
-    // Right arrow
-    const rightArrow = document.createElement('button');
-    rightArrow.className = 'video-arrow' + (videos.length <= 1 ? ' hidden' : '');
-    rightArrow.textContent = '▶';
-    rightArrow.setAttribute('aria-label', 'Next video');
+    left.onclick  = () => { currentIndex = (currentIndex - 1 + videos.length) % videos.length; iframe.src = videos[currentIndex].replace('watch?v=', 'embed/'); };
+    right.onclick = () => { currentIndex = (currentIndex + 1) % videos.length; iframe.src = videos[currentIndex].replace('watch?v=', 'embed/'); };
 
-    // Arrow handlers
-    leftArrow.onclick = () => {
-      currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-      iframe.src = videos[currentVideoIndex].replace('watch?v=', 'embed/');
-    };
-
-    rightArrow.onclick = () => {
-      currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-      iframe.src = videos[currentVideoIndex].replace('watch?v=', 'embed/');
-    };
-
-    container.appendChild(leftArrow);
-    container.appendChild(iframe);
-    container.appendChild(rightArrow);
-    modVideo.innerHTML = '';
+    container.append(left, iframe, right);
     modVideo.appendChild(container);
   }
 
-  function updateCarouselPositions(drag = 0) {
-    const center = window.innerWidth <= 700 
-      ? window.innerWidth / 2 
-      : stack.offsetWidth / 2;
+  function updatePositions(drag = 0) {
+    const center    = isMobile ? window.innerWidth / 2 : stack.offsetWidth / 2;
     const cardWidth = isMobile ? 90 : 110;
-    const spacing = isMobile ? 75 : 95;
+    const spacing   = isMobile ? 75 : 95;
 
     cards.forEach((card, i) => {
-      const offset = i - selectedIndex;
-      const x = center - cardWidth / 2 + offset * spacing + drag;
-      const dist = Math.abs(offset * spacing + drag);
-      const scale = 1 - Math.min(dist / (spacing * 3), 1) * 0.2;
+      const offset  = i - selectedIndex;
+      const x       = center - cardWidth / 2 + offset * spacing + drag;
+      const dist    = Math.abs(offset * spacing + drag);
+      const scale   = 1 - Math.min(dist / (spacing * 3), 1) * 0.2;
       const opacity = 1 - Math.min(dist / (spacing * 2), 1) * 0.5;
-      
-      card.style.top = '10px';
-      card.style.left = `${x}px`;
-      card.style.transform = `scale(${scale})`;
-      card.style.opacity = opacity;
-      card.style.zIndex = 100 - Math.abs(offset);
 
-      // Highlight selected card
+      card.style.top       = '10px';
+      card.style.left      = `${x}px`;
+      card.style.transform = `scale(${scale})`;
+      card.style.opacity   = opacity;
+      card.style.zIndex    = 100 - Math.abs(offset);
+
       if (i === selectedIndex) {
-        card.style.borderColor = 'rgba(255, 191, 71, 0.6)';
-        card.style.boxShadow = '0 6px 20px rgba(255, 191, 71, 0.3)';
+        card.style.borderColor = 'rgba(126, 206, 196, 0.6)';
+        card.style.boxShadow   = '0 6px 20px rgba(126, 206, 196, 0.3)';
       } else {
-        card.style.borderColor = 'rgba(255, 191, 71, 0.15)';
-        card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.6)';
+        card.style.borderColor = 'rgba(126, 206, 196, 0.15)';
+        card.style.boxShadow   = '0 4px 15px rgba(0,0,0,0.6)';
       }
     });
   }

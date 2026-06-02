@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chuckleberry Finn - Project Zomboid Mods</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional portfolio of Project Zomboid mods by Chuckleberry Finn">
+  <meta name="description" content="Project Zomboid mods by Chuckleberry Finn">
+  <title>Chuckleberry Finn — Project Zomboid Mods</title>
   <link rel="stylesheet" href="main.css">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- Header -->
+
   <header class="site-header">
     <h1 class="site-title">
       <span>Chuck's</span>
@@ -20,98 +20,231 @@
     <p class="site-subtitle">Project Zomboid Mod Developer</p>
   </header>
 
-  <!-- Total Subscriber Count -->
   <div class="total-subs">
     <span class="total-subs-count" id="totalSubsCount">-</span> total subscribers across all mods
   </div>
 
-  <!-- Main Content -->
   <main class="main-content">
-    <!-- Mod Showcase (Carousel) - Full Width -->
+
     <section class="mod-showcase">
-      <!-- Card Carousel -->
       <div class="card-carousel">
-        
         <div class="card-stack" id="cardStack" role="listbox" aria-label="Mod selection" tabindex="0"></div>
+      </div>
+      <div class="card-carousel-scroll-track" id="carouselScrollTrack">
+        <div class="card-carousel-scroll-thumb" id="carouselScrollThumb"></div>
       </div>
     </section>
 
-    <!-- Content Grid - Two Columns Below -->
     <div class="content-grid">
-      <!-- Left Column: Mod Details -->
+
       <article class="mod-details" id="modDetails">
         <div class="mod-header">
           <h2 class="mod-name" id="modName">Loading mods...</h2>
-          
-          <!-- Repository Description -->
           <div class="mod-description" id="modDescription"></div>
-          
-          <!-- Stats Grid -->
-          <div class="mod-stats" id="modStats">
-            <div class="stat-item">
-              <div class="stat-label">Loading</div>
-              <div class="stat-value">...</div>
-            </div>
-          </div>
+          <div class="mod-stats" id="modStats"></div>
         </div>
-
-        <!-- Links -->
         <div class="mod-links" id="modLinks">
-          <div style="text-align: center; opacity: 0.5; padding: 2rem;">
-            Loading mod data...
-          </div>
+          <div style="text-align: center; opacity: 0.5; padding: 2rem;">Loading mod data...</div>
         </div>
-
-        <!-- Video -->
         <div class="mod-video" id="modVideo"></div>
       </article>
 
-      <!-- Right Column: Sidebar -->
       <aside class="sidebar">
-        <!-- Issue Tracker -->
+
         <a href="issues/" class="issue-tracker-button">
           <div class="issue-tracker-icon">
-            <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/spifforoach.png" alt="Report Issue" class="issue-tracker-img">
+            <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/spifforoach.png" alt="Spiffo" class="issue-tracker-img">
           </div>
           <div class="issue-tracker-content">
-            <div class="issue-tracker-title">Report Issues & Request Features</div>
+            <div class="issue-tracker-title">Report Issues &amp; Request Features</div>
             <div class="issue-tracker-subtitle">Help improve the mods →</div>
           </div>
         </a>
 
-        <!-- GitHub Profile -->
         <div class="profile-panel" id="github-profile">
           <script src="js/githubProfile.js" defer></script>
         </div>
 
-        <!-- Support Links -->
         <div class="support-links">
-          <!-- YouTube and Ko-fi on same line -->
           <div class="support-link support-link-row">
             <div class="support-button">
               <script src="https://apis.google.com/js/platform.js" async defer></script>
               <div class="g-ytsubscribe" data-channelid="UCbyCLrQbsztxHamlZyCGgTQ" data-layout="default" data-theme="dark" data-count="default"></div>
             </div>
             <div class="support-button">
-              <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-              <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'Y8Y551NJ2');kofiwidget2.draw();</script>
+              <script src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+              <script>kofiwidget2.init('Support me on Ko-fi', '#7ecec4', 'Y8Y551NJ2'); kofiwidget2.draw();</script>
             </div>
           </div>
           <div class="support-link">
-            <a href="https://discord.gg/pGWr5TucHn">
-              <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png" alt="PZ Modding Community" style="width: 100%; border-radius: 6px;" loading="lazy">
+            <a href="https://discord.gg/pGWr5TucHn" target="_blank" rel="noopener">
+              <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/PZmodCommBanner3.png" alt="PZ Modding Community Discord" style="width: 100%; border-radius: 6px;" loading="lazy">
+            </a>
+          </div>
+          <div class="support-link">
+            <a href="https://indifferentbroccoli.com/?fpr=chuckleberry" target="_blank" rel="noopener">
+              <img src="https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/refs/heads/main/IB_BANNER/IB_BANNER.gif" alt="Indifferent Broccoli" style="width: 100%; display: block;" loading="lazy">
             </a>
           </div>
         </div>
+
       </aside>
     </div>
   </main>
 
-  <!-- Data Watermark -->
   <div class="data-watermark">
     <span id="watermark-text">Loading...</span>
   </div>
 
+  <div id="kofi-flying-wrapper">
+    <div id="kofi-flying-inner">
+      <span id="kofi-flying-close" title="Dismiss">✕</span>
+      <script src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+      <script>kofiwidget2.init('Support me on Ko-fi', '#4aa89e', 'Y8Y551NJ2'); kofiwidget2.draw();</script>
+    </div>
+  </div>
+
   <script src="js/script.js"></script>
+  <script>
+    (function () {
+      // Carousel scrollbar — syncs thumb position with selected card
+      const track = document.getElementById('carouselScrollTrack');
+      const thumb = document.getElementById('carouselScrollThumb');
+
+      function updateThumb(index, total) {
+        if (!track || !thumb || total <= 1) return;
+        const trackW = track.offsetWidth;
+        const thumbW = Math.max(40, trackW / total);
+        const maxLeft = trackW - thumbW;
+        thumb.style.width = thumbW + 'px';
+        thumb.style.left  = (index / (total - 1)) * maxLeft + 'px';
+      }
+
+      // carouselAPI is set by script.js once cards are ready
+      function tryBind() {
+        if (!window.carouselAPI) { setTimeout(tryBind, 100); return; }
+        const { getIndex, getTotal, selectMod } = window.carouselAPI;
+
+        updateThumb(getIndex(), getTotal());
+
+        // Listen for carousel changes
+        document.addEventListener('carouselChange', () =>
+          updateThumb(getIndex(), getTotal())
+        );
+
+        // Click on track → jump to that position
+        track.addEventListener('click', e => {
+          if (e.target === thumb) return;
+          const rect  = track.getBoundingClientRect();
+          const thumbW = thumb.offsetWidth;
+          const pct   = Math.max(0, Math.min(1,
+            (e.clientX - rect.left - thumbW / 2) / (rect.width - thumbW)
+          ));
+          selectMod(Math.round(pct * (getTotal() - 1)));
+        });
+
+        // Drag thumb
+        let dragging = false;
+        let dragStartX = 0;
+        let dragStartLeft = 0;
+
+        thumb.addEventListener('pointerdown', e => {
+          dragging = true;
+          dragStartX    = e.clientX;
+          dragStartLeft = parseFloat(thumb.style.left) || 0;
+          thumb.setPointerCapture(e.pointerId);
+          e.preventDefault();
+        });
+
+        thumb.addEventListener('pointermove', e => {
+          if (!dragging) return;
+          const trackW = track.offsetWidth;
+          const thumbW = thumb.offsetWidth;
+          const maxLeft = trackW - thumbW;
+          const newLeft = Math.max(0, Math.min(maxLeft,
+            dragStartLeft + (e.clientX - dragStartX)
+          ));
+          thumb.style.left = newLeft + 'px';
+          const index = Math.round((newLeft / maxLeft) * (getTotal() - 1));
+          if (index !== getIndex()) selectMod(index);
+        });
+
+        thumb.addEventListener('pointerup', () => { dragging = false; });
+      }
+
+      tryBind();
+    })();
+
+    (function () {
+      // Ko-fi flying widget — launches after 3 seconds of inactivity
+      const wrapper  = document.getElementById('kofi-flying-wrapper');
+      const inner    = document.getElementById('kofi-flying-inner');
+      const closeBtn = document.getElementById('kofi-flying-close');
+      if (!wrapper || !inner) return;
+
+      const SPEED = 2.2;
+      const INACTIVITY_MS = 3000;
+      const EVENTS = ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'];
+
+      let launched = false;
+      let timer    = null;
+      let frame    = null;
+      let x, y, vx, vy;
+
+      const W  = () => window.innerWidth;
+      const H  = () => window.innerHeight;
+      const bw = () => inner.offsetWidth  || 180;
+      const bh = () => inner.offsetHeight || 60;
+
+      function launch() {
+        if (launched) return;
+        launched = true;
+        x = W() / 2 - bw() / 2;
+        y = H() / 2 - bh() / 2;
+        const angle = Math.random() * Math.PI * 2;
+        vx = Math.cos(angle) * SPEED;
+        vy = Math.sin(angle) * SPEED;
+        wrapper.style.left = x + 'px';
+        wrapper.style.top  = y + 'px';
+        wrapper.classList.add('active');
+        frame = requestAnimationFrame(animate);
+      }
+
+      function animate() {
+        x += vx; y += vy;
+        const maxX = W() - bw();
+        const maxY = H() - bh();
+        if (x <= 0)    { x = 0;    vx =  Math.abs(vx); }
+        if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
+        if (y <= 0)    { y = 0;    vy =  Math.abs(vy); }
+        if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
+        wrapper.style.left = x + 'px';
+        wrapper.style.top  = y + 'px';
+        frame = requestAnimationFrame(animate);
+      }
+
+      function dismiss() {
+        launched = false;
+        wrapper.classList.remove('active');
+        cancelAnimationFrame(frame);
+      }
+
+      function resetTimer() {
+        if (launched) return;
+        clearTimeout(timer);
+        timer = setTimeout(launch, INACTIVITY_MS);
+      }
+
+      EVENTS.forEach(evt => document.addEventListener(evt, resetTimer, { passive: true }));
+      timer = setTimeout(launch, INACTIVITY_MS);
+
+      closeBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        dismiss();
+        EVENTS.forEach(evt => document.removeEventListener(evt, resetTimer));
+      });
+    })();
+  </script>
+
 </body>
 </html>
