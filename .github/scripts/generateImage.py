@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 
 # Load mod data - filter only highlights for the banner
-with open("mods.json", "r", encoding="utf-8") as f:
+with open("../../mods.json", "r", encoding="utf-8") as f:
     all_mods = json.load(f)
     mods = [mod for mod in all_mods if mod.get("highlight", False)]
 

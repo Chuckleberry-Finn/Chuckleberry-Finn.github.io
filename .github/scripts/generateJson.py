@@ -12,8 +12,14 @@ from collections import deque
 # CONFIG
 GITHUB_USERNAME = "Chuckleberry-Finn"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
-OUTPUT_FILE = "mods.json"
-QUEUE_FILE = "github_stats_queue.json"
+
+# Resolve paths relative to the repo root (two levels up from this script)
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", ".."))
+
+OUTPUT_FILE = os.path.join(_REPO_ROOT, "mods.json")
+QUEUE_FILE = os.path.join(_REPO_ROOT, "github_stats_queue.json")
+STEAM_RETRY_FILE = os.path.join(_REPO_ROOT, "steam_retry_queue.json")
 
 # GitHub API Rate Limiting
 GITHUB_API_LIMIT = 55  # Conservative limit (actual is 60/hour)
@@ -25,8 +31,12 @@ IS_GITHUB_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
 STEAM_MAX_WORKERS = 1  # For Steam requests (rate limited)
 
 # Rate limiting - PROACTIVE from the start
-STEAM_REQUESTS_PER_MINUTE = 9
+STEAM_REQUESTS_PER_MINUTE = 6   # Reduced from 9 to be gentler on Steam
 RATE_WINDOW = 65  # seconds
+
+# Maximum total time (seconds) to keep retrying a single mod before giving up.
+# Prevents an infinite loop if Steam throttles indefinitely.
+STEAM_MAX_RETRY_SECONDS = 600  # 10 minutes per mod
 
 # GitHub Actions logging helpers
 def gh_group(title):
@@ -105,6 +115,16 @@ steam_limiter = RateLimiter(STEAM_REQUESTS_PER_MINUTE, RATE_WINDOW)
 # QUEUE MANAGEMENT
 # ============================================================
 
+def validate_banner_url(url):
+    """Check if a banner URL is still reachable. Returns True if valid."""
+    if not url:
+        return False
+    try:
+        r = requests.head(url, timeout=8, allow_redirects=True)
+        return r.status_code == 200
+    except Exception:
+        return False
+
 def load_existing_stats():
     """Load existing GitHub stats from mods.json"""
     stats_cache = {}
@@ -122,6 +142,37 @@ def load_existing_stats():
             gh_warning(f"Could not load existing stats: {e}")
     
     return stats_cache
+
+def load_existing_banners():
+    """Load existing banner URLs from mods.json, validating each one.
+    Returns a dict of repo_url -> banner_url for banners that are still live.
+    Mods with empty or broken banners are excluded so they get re-fetched."""
+    banner_cache = {}
+
+    if not os.path.exists(OUTPUT_FILE):
+        return banner_cache
+
+    try:
+        with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
+            existing_mods = json.load(f)
+    except Exception as e:
+        gh_warning(f"Could not load existing banners: {e}")
+        return banner_cache
+
+    needs_validation = [(mod['repo_url'], mod['banner'])
+                        for mod in existing_mods
+                        if mod.get('repo_url') and mod.get('banner')]
+
+    gh_notice(f"Validating {len(needs_validation)} existing banner URLs...")
+
+    for repo_url, banner_url in needs_validation:
+        if validate_banner_url(banner_url):
+            banner_cache[repo_url] = banner_url
+        else:
+            gh_warning(f"Stale/broken banner for {repo_url.split('/')[-1]}, will re-fetch")
+
+    gh_notice(f"  {len(banner_cache)}/{len(needs_validation)} banners are still valid")
+    return banner_cache
 
 def load_queue():
     """Load the queue of repos pending stats fetch"""
@@ -146,6 +197,27 @@ def save_queue(pending_repos):
     }
     
     with open(QUEUE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(queue_data, f, indent=2, ensure_ascii=False)
+
+def load_steam_retry_queue():
+    """Load steam URLs that failed to scrape (missing banner or subs) last run."""
+    if not os.path.exists(STEAM_RETRY_FILE):
+        return [], None
+    try:
+        with open(STEAM_RETRY_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get('pending', []), data.get('timestamp')
+    except Exception as e:
+        gh_warning(f"Could not load steam retry queue: {e}")
+        return [], None
+
+def save_steam_retry_queue(steam_urls):
+    """Save steam URLs that need to be retried next run."""
+    queue_data = {
+        'pending': steam_urls,
+        'timestamp': datetime.utcnow().isoformat() + 'Z'
+    }
+    with open(STEAM_RETRY_FILE, 'w', encoding='utf-8') as f:
         json.dump(queue_data, f, indent=2, ensure_ascii=False)
 
 # ============================================================
@@ -294,32 +366,55 @@ def extract_youtube_videos(steam_url):
     except Exception:
         return []
 
-def get_workshop_data(steam_url, max_retries=3):
-    """Fetch workshop data with proactive rate limiting"""
-    for attempt in range(max_retries):
+def get_workshop_data(steam_url):
+    """Fetch workshop data with proactive rate limiting and persistent 429 backoff.
+
+    On a 429 we keep retrying with exponential backoff (capped at 5 min per
+    wait) until STEAM_MAX_RETRY_SECONDS have elapsed in total, then give up.
+    Non-429 errors get up to 3 fast retries before giving up.
+    """
+    deadline = time.time() + STEAM_MAX_RETRY_SECONDS
+    attempt = 0
+    backoff = 30  # initial 429 backoff in seconds
+
+    while time.time() < deadline:
         try:
             # ALWAYS rate limit before making request
             steam_limiter.acquire()
-            
+
             headers = {
                 "User-Agent": "Mozilla/5.0",
                 "Accept-Language": "en-US,en;q=0.9"
             }
             r = requests.get(steam_url, headers=headers, timeout=15)
-            
+
             if r.status_code == 429:
-                # If we still get rate limited, back off exponentially
-                wait_time = 30 * (attempt + 1)
-                gh_warning(f"Got 429 despite rate limiting, backing off {wait_time}s...")
-                time.sleep(wait_time)
+                elapsed = time.time() - (deadline - STEAM_MAX_RETRY_SECONDS)
+                remaining = deadline - time.time()
+                wait = min(backoff, remaining - 1)  # never wait past deadline
+                if wait <= 0:
+                    gh_warning(f"429 and deadline reached for {steam_url}, giving up")
+                    return "?", None, None, None
+                gh_warning(
+                    f"429 from Steam (attempt {attempt + 1}), "
+                    f"backing off {wait:.0f}s "
+                    f"({remaining:.0f}s remaining before timeout)..."
+                )
+                time.sleep(wait)
+                backoff = min(backoff * 2, 300)  # double each time, cap at 5 min
+                attempt += 1
                 continue
-                
+
             if r.status_code != 200:
-                if attempt < max_retries - 1:
+                # Non-throttle errors: give up quickly (3 fast retries)
+                if attempt < 3:
                     time.sleep(5 * (attempt + 1))
+                    attempt += 1
                     continue
+                gh_warning(f"HTTP {r.status_code} for {steam_url} after {attempt} attempts, giving up")
                 return "?", None, None, None
 
+            # Success — parse the page
             soup = BeautifulSoup(r.text, "html.parser")
 
             sub_count = "?"
@@ -337,22 +432,32 @@ def get_workshop_data(steam_url, max_retries=3):
             return sub_count, title, image, video_links
 
         except requests.exceptions.Timeout:
-            if attempt < max_retries - 1:
+            if attempt < 3:
                 time.sleep(5 * (attempt + 1))
+                attempt += 1
                 continue
+            gh_warning(f"Timeout fetching {steam_url} after {attempt} attempts, giving up")
+            return "?", None, None, None
         except Exception as e:
-            if attempt < max_retries - 1:
+            if attempt < 3:
                 time.sleep(5 * (attempt + 1))
+                attempt += 1
                 continue
-    
+            gh_warning(f"Error fetching {steam_url}: {e}, giving up")
+            return "?", None, None, None
+
+    gh_warning(f"Deadline exceeded for {steam_url} ({STEAM_MAX_RETRY_SECONDS}s), giving up")
     return "?", None, None, None
 
 # ============================================================
 # PROCESS SINGLE MOD
 # ============================================================
 
-def process_mod(repo, is_second_pass=False):
+def process_mod(repo, is_second_pass=False, existing_banners=None):
     """Process a single mod - used for concurrent execution"""
+    if existing_banners is None:
+        existing_banners = {}
+
     workshop_id, is_highlight, steam_url = get_workshop_id_from_repo(repo)
     
     if not workshop_id:
@@ -363,8 +468,14 @@ def process_mod(repo, is_second_pass=False):
     
     github_url = repo["html_url"]
     repo_name = repo["name"]
-    
+
+    # If we already have a valid (validated) banner cached, skip re-fetching it
+    cached_banner = existing_banners.get(github_url)
+
     subs_str, title, banner, video_links = get_workshop_data(steam_url)
+
+    # Prefer freshly scraped banner; fall back to validated cache if scraping returned nothing
+    resolved_banner = banner or cached_banner or ""
     
     # For highlights, always include
     if is_highlight:
@@ -373,14 +484,14 @@ def process_mod(repo, is_second_pass=False):
             "name": project_name,
             "steam_url": steam_url,
             "repo_url": github_url,
-            "banner": banner or "",
+            "banner": resolved_banner,
             "videos": video_links or [],
             "highlight": True,
             "workshop_id": workshop_id,
             "repo_obj": repo  # Store for GitHub stats fetching
         }
         
-        if subs_str != "?" and title and banner:
+        if subs_str != "?" and title:
             try:
                 mod_data["subs"] = int(subs_str)
             except ValueError:
@@ -396,14 +507,14 @@ def process_mod(repo, is_second_pass=False):
         "name": title,
         "steam_url": steam_url,
         "repo_url": github_url,
-        "banner": banner or "",
+        "banner": resolved_banner,
         "videos": video_links or [],
         "highlight": False,
         "workshop_id": workshop_id,
         "repo_obj": repo  # Store for GitHub stats fetching
     }
     
-    if subs_str != "?" and banner:
+    if subs_str != "?":
         try:
             mod_data["subs"] = int(subs_str)
         except ValueError:
@@ -424,6 +535,11 @@ def generate_json(repos):
     existing_github_stats = load_existing_stats()
     print(f"Found {len(existing_github_stats)} existing GitHub stats in cache")
     gh_endgroup()
+
+    # Validate existing banner URLs
+    gh_group("Validating Existing Banner URLs")
+    existing_banners = load_existing_banners()
+    gh_endgroup()
     
     # Load queue
     gh_group("Loading GitHub Stats Queue")
@@ -433,9 +549,26 @@ def generate_json(repos):
         print(f"Queue last updated: {queue_timestamp}")
     gh_endgroup()
     
+    # Load steam retry queue (last resort: mods that failed scraping previously)
+    gh_group("Loading Steam Retry Queue")
+    steam_retry_queue, steam_retry_timestamp = load_steam_retry_queue()
+    print(f"Steam URLs pending retry: {len(steam_retry_queue)}")
+    if steam_retry_timestamp:
+        print(f"Queue last updated: {steam_retry_timestamp}")
+    gh_endgroup()
+
     # FIRST PASS: Process highlights concurrently (but rate limited)
     gh_group("FIRST PASS: Processing highlighted mods")
     highlight_repos = [repo for repo in repos if repo.get("homepage", "") and "steamcommunity.com" in repo.get("homepage", "")]
+
+    # Reorder: queued (previously failed) highlights go first as last-resort retry
+    def highlight_sort_key(repo):
+        homepage = repo.get("homepage", "")
+        return 0 if homepage in steam_retry_queue else 1
+    highlight_repos = sorted(highlight_repos, key=highlight_sort_key)
+    queued_highlight_count = sum(1 for r in highlight_repos if r.get("homepage", "") in steam_retry_queue)
+    if queued_highlight_count:
+        print(f"Prioritising {queued_highlight_count} previously-failed highlights from retry queue")
     
     total_highlights = len(highlight_repos)
     print(f"Found {total_highlights} highlighted repos to process")
@@ -446,7 +579,7 @@ def generate_json(repos):
     success_count = 0
     
     with ThreadPoolExecutor(max_workers=STEAM_MAX_WORKERS) as executor:
-        future_to_repo = {executor.submit(process_mod, repo): repo for repo in highlight_repos}
+        future_to_repo = {executor.submit(process_mod, repo, False, existing_banners): repo for repo in highlight_repos}
         
         for idx, future in enumerate(as_completed(future_to_repo), 1):
             repo = future_to_repo[future]
@@ -486,7 +619,7 @@ def generate_json(repos):
     total_remaining = len(remaining_repos)
     
     with ThreadPoolExecutor(max_workers=STEAM_MAX_WORKERS) as executor:
-        future_to_repo = {executor.submit(process_mod, repo, True): repo for repo in remaining_repos}
+        future_to_repo = {executor.submit(process_mod, repo, True, existing_banners): repo for repo in remaining_repos}
         
         for future in as_completed(future_to_repo):
             repo = future_to_repo[future]
@@ -508,6 +641,24 @@ def generate_json(repos):
                 pass
     
     gh_notice(f"Completed second pass: {added} standard mods added")
+    gh_endgroup()
+
+    # Build steam retry queue: any mod still missing banner or subs gets queued for next run
+    gh_group("Updating Steam Retry Queue")
+    new_steam_retry = []
+    for mod in mods:
+        incomplete = not mod.get('banner') or 'subs' not in mod
+        if incomplete:
+            new_steam_retry.append(mod['steam_url'])
+
+    # Always save (even if empty, to clear stale entries)
+    save_steam_retry_queue(new_steam_retry)
+    if new_steam_retry:
+        gh_warning(f"{len(new_steam_retry)} mod(s) still incomplete after this run, queued for priority retry next run:")
+        for url in new_steam_retry:
+            print(f"  • {url}")
+    else:
+        gh_notice("All mods have banners and subscriber counts — steam retry queue cleared")
     gh_endgroup()
     
     # ============================================================

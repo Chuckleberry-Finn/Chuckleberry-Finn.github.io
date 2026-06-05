@@ -10,7 +10,7 @@ import requests
 from datetime import datetime
 
 # Read mods.json to get all repos
-with open('mods.json', 'r') as f:
+with open('../../mods.json', 'r') as f:
     mods = json.load(f)
 
 # GitHub token from environment (for higher rate limits in Actions)
