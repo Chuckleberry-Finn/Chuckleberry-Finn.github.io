@@ -562,13 +562,16 @@ def generate_json(repos):
     highlight_repos = [repo for repo in repos if repo.get("homepage", "") and "steamcommunity.com" in repo.get("homepage", "")]
 
     # Reorder: queued (previously failed) highlights go first as last-resort retry
+    steam_retry_set = set(u.rstrip('/') for u in steam_retry_queue)
+
     def highlight_sort_key(repo):
-        homepage = repo.get("homepage", "")
-        return 0 if homepage in steam_retry_queue else 1
+        return 0 if repo.get("html_url", "").rstrip('/') in steam_retry_set else 1
     highlight_repos = sorted(highlight_repos, key=highlight_sort_key)
-    queued_highlight_count = sum(1 for r in highlight_repos if r.get("homepage", "") in steam_retry_queue)
+    queued_highlight_count = sum(1 for r in highlight_repos if r.get("html_url", "").rstrip('/') in steam_retry_set)
     if queued_highlight_count:
-        print(f"Prioritising {queued_highlight_count} previously-failed highlights from retry queue")
+        print(f"Prioritising {queued_highlight_count} previously-failed highlights from retry queue:")
+        for r in highlight_repos[:queued_highlight_count]:
+            print(f"  • {r['name']}")
     
     total_highlights = len(highlight_repos)
     print(f"Found {total_highlights} highlighted repos to process")
@@ -611,6 +614,15 @@ def generate_json(repos):
     # SECOND PASS: Process remaining repos
     gh_group("SECOND PASS: Processing standard mods")
     remaining_repos = [repo for repo in repos if repo not in highlight_repos]
+
+    # Reorder: previously-failed mods go first
+    def remaining_sort_key(repo):
+        return 0 if repo.get("html_url", "").rstrip('/') in steam_retry_set else 1
+    remaining_repos = sorted(remaining_repos, key=remaining_sort_key)
+    queued_remaining_count = sum(1 for r in remaining_repos if remaining_sort_key(r) == 0)
+    if queued_remaining_count:
+        print(f"Prioritising {queued_remaining_count} previously-failed standard mods from retry queue")
+
     print(f"Checking {len(remaining_repos)} repos for workshop.txt...")
     print(f"Processing with {STEAM_MAX_WORKERS} concurrent workers...\n")
     
@@ -649,7 +661,7 @@ def generate_json(repos):
     for mod in mods:
         incomplete = not mod.get('banner') or 'subs' not in mod
         if incomplete:
-            new_steam_retry.append(mod['steam_url'])
+            new_steam_retry.append(mod['repo_url'])  # use repo_url — always consistent
 
     # Always save (even if empty, to clear stale entries)
     save_steam_retry_queue(new_steam_retry)

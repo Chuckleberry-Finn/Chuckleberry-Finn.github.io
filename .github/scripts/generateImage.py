@@ -4,8 +4,15 @@ import requests
 from PIL import Image
 from io import BytesIO
 
+# Resolve paths relative to repo root regardless of working directory
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", ".."))
+
+MODS_FILE = os.path.join(_REPO_ROOT, "mods.json")
+OUTPUT_FILE = os.path.join(_REPO_ROOT, "mod_stack_preview.png")
+
 # Load mod data - filter only highlights for the banner
-with open("../../mods.json", "r", encoding="utf-8") as f:
+with open(MODS_FILE, "r", encoding="utf-8") as f:
     all_mods = json.load(f)
     mods = [mod for mod in all_mods if mod.get("highlight", False)]
 
@@ -57,5 +64,5 @@ for i in range(num_images - 1, -1, -1):
     output.paste(images[i], (positions[i], 0), images[i])
 
 # Save output
-output.save("mod_stack_preview.png")
-print(f"Saved: mod_stack_preview.png (with {num_images} highlighted mods)")
+output.save(OUTPUT_FILE)
+print(f"Saved: {OUTPUT_FILE} (with {num_images} highlighted mods)")

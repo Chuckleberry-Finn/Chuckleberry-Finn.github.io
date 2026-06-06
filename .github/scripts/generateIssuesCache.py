@@ -9,8 +9,16 @@ import os
 import requests
 from datetime import datetime
 
+# Resolve paths relative to repo root regardless of working directory
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", ".."))
+
+MODS_FILE = os.path.join(_REPO_ROOT, "mods.json")
+CACHE_DIR = os.path.join(_REPO_ROOT, "issues", "cache")
+CACHE_FILE = os.path.join(CACHE_DIR, "issues_cache.json")
+
 # Read mods.json to get all repos
-with open('../../mods.json', 'r') as f:
+with open(MODS_FILE, 'r') as f:
     mods = json.load(f)
 
 # GitHub token from environment (for higher rate limits in Actions)
@@ -23,7 +31,7 @@ if GITHUB_TOKEN:
     headers['Authorization'] = f'token {GITHUB_TOKEN}'
 
 # Create issues cache directory
-os.makedirs('issues/cache', exist_ok=True)
+os.makedirs(CACHE_DIR, exist_ok=True)
 
 issues_cache = {}
 
@@ -108,9 +116,8 @@ for mod in mods:
         }
 
 # Write cache file
-cache_file = 'issues/cache/issues_cache.json'
-with open(cache_file, 'w') as f:
+with open(CACHE_FILE, 'w') as f:
     json.dump(issues_cache, f, indent=2)
 
 print(f"\n✓ Cached issues for {len(issues_cache)} repos")
-print(f"✓ Cache written to {cache_file}")
+print(f"✓ Cache written to {CACHE_FILE}")
