@@ -38,6 +38,9 @@ RATE_WINDOW = 65  # seconds
 # Prevents an infinite loop if Steam throttles indefinitely.
 STEAM_MAX_RETRY_SECONDS = 600  # 10 minutes per mod
 
+# Deliberate pause between each mod to avoid looking like a burst to Steam
+INTER_MOD_SLEEP = 30  # seconds
+
 # GitHub Actions logging helpers
 def gh_group(title):
     """Start a collapsible group in GitHub Actions"""
@@ -607,6 +610,10 @@ def generate_json(repos):
             except Exception as e:
                 gh_error(f"Failed to process {repo['name']}: {e}")
                 print(f"ERROR - {e}")
+
+            # Pause between mods to avoid Steam seeing bursts
+            if idx < total_highlights:
+                time.sleep(INTER_MOD_SLEEP)
     
     gh_notice(f"Completed first pass: {success_count}/{total_highlights} highlights added")
     gh_endgroup()
@@ -651,6 +658,10 @@ def generate_json(repos):
                     print(f"[+] {repo['name']}: {status}")
             except Exception:
                 pass
+
+            # Pause between mods to avoid Steam seeing bursts
+            if completed < total_remaining:
+                time.sleep(INTER_MOD_SLEEP)
     
     gh_notice(f"Completed second pass: {added} standard mods added")
     gh_endgroup()
