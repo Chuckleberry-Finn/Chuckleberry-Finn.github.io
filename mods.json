@@ -8,7 +8,7 @@
       "https://www.youtube.com/watch?v=nI8_eijwkhs"
     ],
     "highlight": true,
-    "subs": 2732893,
+    "subs": 2733501,
     "github": {
       "openIssues": 2,
       "stars": 40,
@@ -22,11 +22,25 @@
     "banner": "https://images.steamusercontent.com/ugc/2006946285955965520/F1B969816DF9BDB7EF43BDD2345BA1045BEA895F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 2261667,
+    "subs": 2262775,
     "github": {
       "openIssues": 0,
       "stars": 1,
       "forks": 1
+    }
+  },
+  {
+    "name": "Easy Config Chucked",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2529746725",
+    "repo_url": "https://github.com/Chuckleberry-Finn/EasyConfigChucked",
+    "banner": "https://images.steamusercontent.com/ugc/2309850777980786564/F2B3856AFCDF92497DA9AA75094739B9BEEC9656/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 2078430,
+    "github": {
+      "openIssues": 0,
+      "stars": 4,
+      "forks": 2
     }
   },
   {
@@ -36,7 +50,7 @@
     "banner": "https://images.steamusercontent.com/ugc/13646860439632559513/57112E1D3441586768CECC75B31676F07E2C5EB8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1424303,
+    "subs": 1424108,
     "github": {
       "openIssues": 22,
       "stars": 31,
@@ -50,11 +64,28 @@
     "banner": "https://images.steamusercontent.com/ugc/1764816200834819970/142FBDDE34D5DEBFD6C4D914910ACD4F15399EE4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1160389,
+    "subs": 1160533,
     "github": {
       "openIssues": 1,
       "stars": 4,
       "forks": 5
+    }
+  },
+  {
+    "name": "Mod Update and Alert System",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3077900375",
+    "repo_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem",
+    "banner": "https://images.steamusercontent.com/ugc/24307035126317491/0578D28193C22EBCECD677A4253ACE6426BD842D/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [
+      "https://www.youtube.com/watch?v=71Lr4EvoS0A",
+      "https://www.youtube.com/watch?v=oTNDb6TEG-Q"
+    ],
+    "highlight": true,
+    "subs": 1138145,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
     }
   },
   {
@@ -64,7 +95,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1921366611159145148/AC5B41FA2A2C33C059D93F24CA980E43EDDE48BA/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 426698,
+    "subs": 426626,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -78,7 +109,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861691636112312841/533F7686E786B637AD0E92965F87BA061BE297D8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 422391,
+    "subs": 422444,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -92,11 +123,25 @@
     "banner": "https://images.steamusercontent.com/ugc/1758065677814333406/0633DAD118CAF53A10331E00D973B2F22EA1B6A0/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 279062,
+    "subs": 279052,
     "github": {
       "openIssues": 11,
       "stars": 14,
       "forks": 24
+    }
+  },
+  {
+    "name": "Military Grid Reference System For Map Callouts Cause You And Your Friends Get Lost Easily",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2928660831",
+    "repo_url": "https://github.com/Chuckleberry-Finn/MGRS-FMCCYAYFGLE",
+    "banner": "https://images.steamusercontent.com/ugc/2033973595274656190/CF275949E8F421EC80A5CF634139E25288C4F36F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "subs": 245283,
+    "github": {
+      "openIssues": 1,
+      "stars": 1,
+      "forks": 1
     }
   },
   {
@@ -106,7 +151,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2145461285230376569/AA3CF1A8351673341BA002CE10B1D52FE2C3124C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 157639,
+    "subs": 157636,
     "github": {
       "openIssues": 13,
       "stars": 5,
@@ -120,7 +165,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861691636111443323/447D1DE74A50805E16EBAADA2EF499505B931CA2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 115686,
+    "subs": 115690,
     "github": {
       "openIssues": 0,
       "stars": 3,
@@ -136,7 +181,7 @@
       "https://www.youtube.com/watch?v=zV8ekZ4jKnA"
     ],
     "highlight": true,
-    "subs": 97342,
+    "subs": 97343,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -150,11 +195,25 @@
     "banner": "https://images.steamusercontent.com/ugc/1768246627212185205/D5ADEC6150B8ABA2AAD3CAC8486E8BE3EA727415/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 68616,
+    "subs": 68606,
     "github": {
       "openIssues": 10,
       "stars": 3,
       "forks": 5
+    }
+  },
+  {
+    "name": "Rebalanced Calorie Burning",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2840487215",
+    "repo_url": "https://github.com/Chuckleberry-Finn/RebalancedCalorieBurning",
+    "banner": "https://images.steamusercontent.com/ugc/1751357494167700890/88AF0DB98E332AB7F16AA8DA242254164BD1CD9A/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 61652,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 2
     }
   },
   {
@@ -164,7 +223,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2052005325260678921/31414A1C0F18D2B625C2A7F9882C7C70116CF4E4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 50604,
+    "subs": 50587,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -178,9 +237,39 @@
     "banner": "https://images.steamusercontent.com/ugc/2309845613228087388/5A6E1A5C64483A8233E67C2EC8E40414A52B8AD6/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 43598,
+    "subs": 43584,
     "github": {
       "openIssues": 1,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Display Roles In Chat",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2968026253",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 40628,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Interactive Tailoring",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3522680786",
+    "repo_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring",
+    "banner": "https://images.steamusercontent.com/ugc/15740638325387721115/65402CA3AE401663EDF8B7A072E3C5106C0CAF75/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [
+      "https://www.youtube.com/watch?v=FlZOy0uUjR0"
+    ],
+    "highlight": true,
+    "subs": 37331,
+    "github": {
+      "openIssues": 2,
       "stars": 0,
       "forks": 0
     }
@@ -192,7 +281,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 36533,
+    "subs": 36520,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -206,7 +295,7 @@
     "banner": "https://images.steamusercontent.com/ugc/18249310082115717911/C8679F4BAF2074DCDDBFBE8D49DC6DB656BB35A9/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 33024,
+    "subs": 33029,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -220,7 +309,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2460727253391088653/857BC2B75A843E978E54BE9D0CBADE33178D46A4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 28007,
+    "subs": 28050,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -234,7 +323,7 @@
     "banner": "https://images.steamusercontent.com/ugc/24308212284279713/2F3DFA7C03697A6A5D347108271ACF612FA9D035/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 26755,
+    "subs": 26753,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -248,7 +337,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2308722341792467910/82FCC838F60CD883CA6E4731C3581E2B43023A2F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 21628,
+    "subs": 21619,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -262,7 +351,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2533907488990539423/F760F5AB72DDB51B5AA8A54CBFF9D92DA4C461DC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 20272,
+    "subs": 20266,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -278,7 +367,7 @@
       "https://www.youtube.com/watch?v=JfpBsauROfQ"
     ],
     "highlight": false,
-    "subs": 19167,
+    "subs": 19165,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -292,7 +381,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2372903075419608712/269EC1B0406B407ABF3E458E0645B241AF6ECF3C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 18815,
+    "subs": 18812,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -308,7 +397,7 @@
       "https://www.youtube.com/watch?v=hzeNp6pneh4"
     ],
     "highlight": false,
-    "subs": 9567,
+    "subs": 9565,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -322,7 +411,35 @@
     "banner": "https://images.steamusercontent.com/ugc/2533907488983612331/BA28B22383CFE1F2D22344886F55B31CFF649E03/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 8120,
+    "subs": 8126,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Game Night: Spiffo's Trading Cards",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3271303304",
+    "repo_url": "https://github.com/Chuckleberry-Finn/game-night-spiffoTC",
+    "banner": "https://images.steamusercontent.com/ugc/2491134695819138510/C793FB05D6A42F5B1F7BC00AE38D3016E831CB76/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 7352,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Big Bad Beaver's Berserk",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2954181035",
+    "repo_url": "https://github.com/Chuckleberry-Finn/big-bad-beavers-berserk",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 7311,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -336,7 +453,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2547430415543462780/F616FD889BD0BA84332C4A2C7171B4523DF6E9C2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 6502,
+    "subs": 6501,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -350,7 +467,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861692057097606619/BC9494D53DB71680D52DB2635C9D062053464C96/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 6180,
+    "subs": 6177,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -364,7 +481,21 @@
     "banner": "https://images.steamusercontent.com/ugc/2493397190882990463/50C9E164E4A0A685A6ADE69F88DD72703FF09223/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 5934,
+    "subs": 5935,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "No Damage From Trees",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2972504692",
+    "repo_url": "https://github.com/Chuckleberry-Finn/NoDamageFromTrees",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 5737,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -381,7 +512,7 @@
       "https://www.youtube.com/watch?v=W9Rju0MTJuQ"
     ],
     "highlight": true,
-    "subs": 5561,
+    "subs": 5566,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -398,11 +529,25 @@
       "https://www.youtube.com/watch?v=hv0u9myHIVU"
     ],
     "highlight": true,
-    "subs": 4352,
+    "subs": 4355,
     "github": {
       "openIssues": 1,
       "stars": 1,
       "forks": 0
+    }
+  },
+  {
+    "name": "Auto Eat (Old)",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2365757229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/AutoEat",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 4245,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 1
     }
   },
   {
@@ -417,6 +562,20 @@
       "openIssues": 0,
       "stars": 0,
       "forks": 0
+    }
+  },
+  {
+    "name": "Shops and Traders: Faction Banking",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2906926438",
+    "repo_url": "https://github.com/Chuckleberry-Finn/pz-factionBanking",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 3491,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 1
     }
   },
   {
@@ -440,11 +599,39 @@
     "banner": "https://images.steamusercontent.com/ugc/24305856412147452/905BBB945C211E0020C6AE88218D1741E29AF71F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1847,
+    "subs": 1849,
     "github": {
       "openIssues": 1,
       "stars": 1,
       "forks": 1
+    }
+  },
+  {
+    "name": "Proximity Invitations",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2959226140",
+    "repo_url": "https://github.com/Chuckleberry-Finn/proximity-invites",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 1623,
+    "github": {
+      "openIssues": 1,
+      "stars": 0,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Roll-Command-Plus",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3003095456",
+    "repo_url": "https://github.com/Chuckleberry-Finn/roll-command-plus",
+    "banner": "https://images.steamusercontent.com/ugc/2052001304437082129/AFD12138A05EE37617A2B90201EF994DD05DE2BB/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 1284,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
     }
   },
   {
@@ -455,6 +642,20 @@
     "videos": [],
     "highlight": false,
     "subs": 366,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Dynamic-Weapon-Endurance-Modifier",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2970229240",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 264,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -473,110 +674,6 @@
       "openIssues": 0,
       "stars": 1,
       "forks": 1
-    }
-  },
-  {
-    "name": "moddingAlertSystem",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3077900375",
-    "repo_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem",
-    "banner": "",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "MGRS-FMCCYAYFGLE",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2928660831",
-    "repo_url": "https://github.com/Chuckleberry-Finn/MGRS-FMCCYAYFGLE",
-    "banner": "",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 1,
-      "stars": 1,
-      "forks": 1
-    }
-  },
-  {
-    "name": "interactive-tailoring",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3522680786",
-    "repo_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring",
-    "banner": "",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 2,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Shops and Traders: Faction Banking",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2906926438",
-    "repo_url": "https://github.com/Chuckleberry-Finn/pz-factionBanking",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 1
-    }
-  },
-  {
-    "name": "No Damage From Trees",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2972504692",
-    "repo_url": "https://github.com/Chuckleberry-Finn/NoDamageFromTrees",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Auto Eat (Old)",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2365757229",
-    "repo_url": "https://github.com/Chuckleberry-Finn/AutoEat",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "github": {
-      "openIssues": 0,
-      "stars": 2,
-      "forks": 1
-    }
-  },
-  {
-    "name": "Big Bad Beaver's Berserk",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2954181035",
-    "repo_url": "https://github.com/Chuckleberry-Finn/big-bad-beavers-berserk",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Dynamic-Weapon-Endurance-Modifier",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2970229240",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
     }
   }
 ]
