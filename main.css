@@ -528,6 +528,68 @@ body {
   pointer-events: auto;
 }
 
+/* Multi-instance flying widgets */
+.kofi-flying-widget {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.kofi-flying-inner {
+  position: relative;
+  border-radius: 12px;
+  padding: 4px;
+  background: var(--surface-95);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  animation: kofi-color-shift 1.6s linear infinite;
+  transition: transform 0.2s, animation-duration 0.3s;
+  /* Larger invisible hit area via outline trick — use padding+negative margin instead */
+}
+
+/* Expanded pointer hit area without visual change */
+.kofi-flying-inner::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.kofi-flying-widget:hover .kofi-flying-inner,
+.kofi-flying-inner:hover {
+  transform: scale(1.08);
+  animation-duration: 3s; /* slow the glow cycle on hover */
+}
+
+/* Slow the widget movement on hover — handled in JS via isHovered flag */
+
+.kofi-flying-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 26px;
+  height: 26px;
+  background: var(--bg-raised);
+  border: 1px solid var(--primary-40);
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 2;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.kofi-flying-close:hover {
+  background: var(--primary-20);
+  transform: scale(1.2);
+}
+
+/* Legacy single-instance selectors kept for backward compat */
 #kofi-flying-inner {
   position: relative;
   border-radius: 12px;
@@ -536,44 +598,46 @@ body {
   backdrop-filter: blur(8px);
   cursor: pointer;
   animation: kofi-color-shift 1.6s linear infinite;
+  animation-duration: 1.6s;
+  transition: transform 0.2s;
+}
+
+#kofi-flying-inner::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 20px;
+  z-index: -1;
 }
 
 #kofi-flying-inner:hover {
-  transform: scale(1.1);
-  animation-duration: 0.8s;
+  transform: scale(1.08);
+  animation-duration: 3s;
 }
 
 #kofi-flying-close {
   position: absolute;
   top: -8px;
   right: -8px;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   background: var(--bg-raised);
   border: 1px solid var(--primary-40);
   border-radius: 50%;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   line-height: 1;
   z-index: 2;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 
 #kofi-flying-close:hover {
   background: var(--primary-20);
-}
-
-#kofi-flying-inner {
-  animation-duration: 1.6s;
-  transition: transform 0.2s;
-}
-
-#kofi-flying-inner:hover {
-  animation-duration: 0.8s;
+  transform: scale(1.2);
 }
 
 @keyframes kofi-color-shift {
