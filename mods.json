@@ -8,7 +8,7 @@
       "https://www.youtube.com/watch?v=nI8_eijwkhs"
     ],
     "highlight": true,
-    "subs": 2780930,
+    "subs": 2781077,
     "github": {
       "openIssues": 2,
       "stars": 40,
@@ -22,11 +22,25 @@
     "banner": "https://images.steamusercontent.com/ugc/2006946285955965520/F1B969816DF9BDB7EF43BDD2345BA1045BEA895F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 2349681,
+    "subs": 2349948,
     "github": {
       "openIssues": 0,
       "stars": 1,
       "forks": 1
+    }
+  },
+  {
+    "name": "Easy Config Chucked",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2529746725",
+    "repo_url": "https://github.com/Chuckleberry-Finn/EasyConfigChucked",
+    "banner": "https://images.steamusercontent.com/ugc/2309850777980786564/F2B3856AFCDF92497DA9AA75094739B9BEEC9656/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 2075098,
+    "github": {
+      "openIssues": 0,
+      "stars": 4,
+      "forks": 2
     }
   },
   {
@@ -36,7 +50,7 @@
     "banner": "https://images.steamusercontent.com/ugc/13646860439632559513/57112E1D3441586768CECC75B31676F07E2C5EB8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1410526,
+    "subs": 1410474,
     "github": {
       "openIssues": 22,
       "stars": 31,
@@ -53,7 +67,7 @@
       "https://www.youtube.com/watch?v=71Lr4EvoS0A"
     ],
     "highlight": true,
-    "subs": 1245346,
+    "subs": 1245666,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -67,7 +81,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1764816200834819970/142FBDDE34D5DEBFD6C4D914910ACD4F15399EE4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1170272,
+    "subs": 1170323,
     "github": {
       "openIssues": 1,
       "stars": 4,
@@ -95,7 +109,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1921366611159145148/AC5B41FA2A2C33C059D93F24CA980E43EDDE48BA/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 422554,
+    "subs": 422533,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -123,7 +137,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2033973595274656190/CF275949E8F421EC80A5CF634139E25288C4F36F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 244549,
+    "subs": 244558,
     "github": {
       "openIssues": 1,
       "stars": 1,
@@ -137,7 +151,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2145461285230376569/AA3CF1A8351673341BA002CE10B1D52FE2C3124C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 157742,
+    "subs": 157732,
     "github": {
       "openIssues": 13,
       "stars": 5,
@@ -151,7 +165,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861691636111443323/447D1DE74A50805E16EBAADA2EF499505B931CA2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 114150,
+    "subs": 114145,
     "github": {
       "openIssues": 0,
       "stars": 3,
@@ -167,7 +181,7 @@
       "https://www.youtube.com/watch?v=zV8ekZ4jKnA"
     ],
     "highlight": true,
-    "subs": 96916,
+    "subs": 96923,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -181,7 +195,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1768246627212185205/D5ADEC6150B8ABA2AAD3CAC8486E8BE3EA727415/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 67951,
+    "subs": 67944,
     "github": {
       "openIssues": 10,
       "stars": 3,
@@ -195,7 +209,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1751357494167700890/88AF0DB98E332AB7F16AA8DA242254164BD1CD9A/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 60724,
+    "subs": 60720,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -237,7 +251,7 @@
     "banner": "",
     "videos": [],
     "highlight": false,
-    "subs": 40410,
+    "subs": 40411,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -253,7 +267,7 @@
       "https://www.youtube.com/watch?v=FlZOy0uUjR0"
     ],
     "highlight": true,
-    "subs": 39616,
+    "subs": 39607,
     "github": {
       "openIssues": 2,
       "stars": 0,
@@ -267,7 +281,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 35922,
+    "subs": 35918,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -281,7 +295,7 @@
     "banner": "https://images.steamusercontent.com/ugc/18249310082115717911/C8679F4BAF2074DCDDBFBE8D49DC6DB656BB35A9/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 32764,
+    "subs": 32770,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -295,7 +309,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2460727253391088653/857BC2B75A843E978E54BE9D0CBADE33178D46A4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 29678,
+    "subs": 29674,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -309,7 +323,7 @@
     "banner": "https://images.steamusercontent.com/ugc/24308212284279713/2F3DFA7C03697A6A5D347108271ACF612FA9D035/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 26681,
+    "subs": 26675,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -323,7 +337,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2308722341792467910/82FCC838F60CD883CA6E4731C3581E2B43023A2F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 21356,
+    "subs": 21351,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -337,7 +351,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2533907488990539423/F760F5AB72DDB51B5AA8A54CBFF9D92DA4C461DC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 20411,
+    "subs": 20412,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -353,7 +367,7 @@
       "https://www.youtube.com/watch?v=JfpBsauROfQ"
     ],
     "highlight": false,
-    "subs": 18850,
+    "subs": 18849,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -367,7 +381,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2372903075419608712/269EC1B0406B407ABF3E458E0645B241AF6ECF3C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 18610,
+    "subs": 18609,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -383,7 +397,7 @@
       "https://www.youtube.com/watch?v=hzeNp6pneh4"
     ],
     "highlight": false,
-    "subs": 9512,
+    "subs": 9510,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -397,7 +411,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2533907488983612331/BA28B22383CFE1F2D22344886F55B31CFF649E03/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 8072,
+    "subs": 8074,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -411,7 +425,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2491134695819138510/C793FB05D6A42F5B1F7BC00AE38D3016E831CB76/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 7451,
+    "subs": 7449,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -439,21 +453,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2547430415543462780/F616FD889BD0BA84332C4A2C7171B4523DF6E9C2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 6516,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Game Night: Yu-Spiff-Oh",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3350997307",
-    "repo_url": "https://github.com/Chuckleberry-Finn/game-night-Yu-Spiff-oh",
-    "banner": "https://images.steamusercontent.com/ugc/2493397190882990463/50C9E164E4A0A685A6ADE69F88DD72703FF09223/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 6040,
+    "subs": 6514,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -475,13 +475,27 @@
     }
   },
   {
+    "name": "Game Night: Yu-Spiff-Oh",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3350997307",
+    "repo_url": "https://github.com/Chuckleberry-Finn/game-night-Yu-Spiff-oh",
+    "banner": "https://images.steamusercontent.com/ugc/2493397190882990463/50C9E164E4A0A685A6ADE69F88DD72703FF09223/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 6037,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
     "name": "Last Stand Together",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
     "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
     "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [
-      "https://www.youtube.com/watch?v=W9Rju0MTJuQ",
-      "https://www.youtube.com/watch?v=Wt_a9fv_0N0"
+      "https://www.youtube.com/watch?v=Wt_a9fv_0N0",
+      "https://www.youtube.com/watch?v=W9Rju0MTJuQ"
     ],
     "highlight": true,
     "subs": 5776,
@@ -511,11 +525,11 @@
     "repo_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone",
     "banner": "https://images.steamusercontent.com/ugc/14270926302866287195/5B88B381A6A5EF21D97BED831C8919D8A7A4D1DE/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [
-      "https://www.youtube.com/watch?v=SFABv7L3oRQ",
-      "https://www.youtube.com/watch?v=hv0u9myHIVU"
+      "https://www.youtube.com/watch?v=hv0u9myHIVU",
+      "https://www.youtube.com/watch?v=SFABv7L3oRQ"
     ],
     "highlight": true,
-    "subs": 4322,
+    "subs": 4323,
     "github": {
       "openIssues": 1,
       "stars": 1,
@@ -529,7 +543,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2512529879888375410/875A7EE973CDD40A281226E1FB3F513A6BF2DDEC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 4219,
+    "subs": 4218,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -543,7 +557,7 @@
     "banner": "",
     "videos": [],
     "highlight": false,
-    "subs": 4186,
+    "subs": 4185,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -571,7 +585,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2512530513864867928/62DFCAEDDC6C145FD504D91B682913B870C15F5C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 3440,
+    "subs": 3439,
     "github": {
       "openIssues": 0,
       "stars": 1,
