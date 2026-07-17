@@ -1,93 +1,773 @@
 {
   "Chuckleberry-Finn/Skill-Recovery-Journal": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:08.813052Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Skill-Recovery-Journal/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 133,
+        "title": "[Bug] [MP] XP Journal being marked as complete before refunding all skills.",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/133",
+        "created_at": "2026-06-25T15:53:41Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 131,
+        "title": "[Bug] skill journal does not give skills",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/131",
+        "created_at": "2026-06-20T05:45:42Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 130,
+        "title": "[Bug] strength and fitness exp not correctly recorded",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/130",
+        "created_at": "2026-06-13T02:55:21Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 129,
+        "title": "[Bug] not getting all exp recorded",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/129",
+        "created_at": "2026-06-02T19:58:34Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 128,
+        "title": "[Bug] When trying to write to the journal, it gives an error related to recipes.",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/128",
+        "created_at": "2026-05-11T01:33:13Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 120,
+        "title": "[Feature] saved modData should not be an exact override",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
+        "created_at": "2026-02-21T15:52:20Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 118,
+        "title": "[Bug] XP Duplication Glitch When Re-reading Skill Recovery Journal After Learning Skill Books",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/118",
+        "created_at": "2026-02-16T18:05:54Z",
+        "user": {
+          "login": "KaiserFahim"
+        },
+        "labels": [
+          {
+            "name": "mod-conflict",
+            "color": "97b648"
+          },
+          {
+            "name": "need-info",
+            "color": "a7a6e1"
+          }
+        ]
+      },
+      {
+        "number": 103,
+        "title": "Queuing Read/Write in Multiplayer",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/103",
+        "created_at": "2025-12-20T23:25:04Z",
+        "user": {
+          "login": "MassCraxx"
+        },
+        "labels": []
+      },
+      {
+        "number": 102,
+        "title": "Auto Learned Recipes",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/102",
+        "created_at": "2025-12-20T22:40:50Z",
+        "user": {
+          "login": "MassCraxx"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:29.713068Z"
   },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:09.287034Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/errorMagnifier/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:30.104401Z"
   },
   "Chuckleberry-Finn/EasyConfigChucked": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:09.810016Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/EasyConfigChucked/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:30.428693Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:10.151377Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/TEHE-Studios/ExpandedHelicopterEvents/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 413,
+        "title": "Adding Items to the Loot",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
+        "created_at": "2026-06-03T04:57:33Z",
+        "user": {
+          "login": "Bayrain"
+        },
+        "labels": []
+      },
+      {
+        "number": 412,
+        "title": "[Bug] Mod won't show up on Modlist",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
+        "created_at": "2026-05-13T11:51:53Z",
+        "user": {
+          "login": "PleaseHelpMeILuvZomboid"
+        },
+        "labels": []
+      },
+      {
+        "number": 411,
+        "title": "Mod does not work on multiplayer at all",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
+        "created_at": "2026-05-01T16:38:46Z",
+        "user": {
+          "login": "ChucklingWizzard"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 407,
+        "title": "Abandoned Heli",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
+        "created_at": "2026-02-02T11:00:15Z",
+        "user": {
+          "login": "GrayWizard26"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 406,
+        "title": "Like 50 jets spawning at once",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
+        "created_at": "2026-02-01T02:20:36Z",
+        "user": {
+          "login": "meowapocalypse"
+        },
+        "labels": []
+      },
+      {
+        "number": 405,
+        "title": "This Mod for B42+",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/405",
+        "created_at": "2026-01-21T14:29:10Z",
+        "user": {
+          "login": "nopethehope1104-ctrl"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 404,
+        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
+        "created_at": "2025-12-14T06:52:51Z",
+        "user": {
+          "login": "boltyboi"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 402,
+        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
+        "created_at": "2025-11-07T17:46:56Z",
+        "user": {
+          "login": "marinara2245"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 401,
+        "title": "Dropping the MRE ration food on the floor makes its model to fill the screen",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/401",
+        "created_at": "2025-11-04T12:13:54Z",
+        "user": {
+          "login": "durso69"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 400,
+        "title": "Helicopter crash icon and supply drop icon should persist until you get close to it",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/400",
+        "created_at": "2025-10-17T17:55:25Z",
+        "user": {
+          "login": "sharkgorawr"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:30.987646Z"
   },
   "Chuckleberry-Finn/moddingAlertSystem": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:10.667819Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/moddingAlertSystem/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 1,
+        "title": "[Bug] Simply Wont Restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
+        "created_at": "2026-04-22T14:50:56Z",
+        "user": {
+          "login": "rhametic-dev"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:31.377581Z"
   },
   "Chuckleberry-Finn/SwapIt": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:11.041180Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/SwapIt/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 6,
+        "title": "[Bug] Items return to the inventory when changing hands.",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
+        "created_at": "2026-06-23T13:52:39Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 1,
+        "title": "Add Controller Support",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
+        "created_at": "2021-06-04T12:02:05Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:31.743166Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:11.418266Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/You-Drive-I-Sleep/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:32.115351Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:11.716237Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Night-Vision-Chucked/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:32.474067Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:12.065340Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/zomboid-cnd-speech/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 63,
+        "title": "[Bug] bug or broken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
+        "created_at": "2026-04-04T18:25:34Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 62,
+        "title": "Wrong encoding UA Translation B41",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
+        "created_at": "2025-07-02T18:39:26Z",
+        "user": {
+          "login": "AlximikXD"
+        },
+        "labels": []
+      },
+      {
+        "number": 37,
+        "title": "BUG? Speak to Mutch \"HavyLoad\"",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
+        "created_at": "2022-01-28T11:58:09Z",
+        "user": {
+          "login": "duhnunes"
+        },
+        "labels": []
+      },
+      {
+        "number": 34,
+        "title": "Problem in encoding (TR)",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
+        "created_at": "2021-11-09T10:19:06Z",
+        "user": {
+          "login": "Batur123"
+        },
+        "labels": []
+      },
+      {
+        "number": 31,
+        "title": "Idea: wimpering and forcefully shutting self up.",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/31",
+        "created_at": "2021-11-01T12:02:55Z",
+        "user": {
+          "login": "TiberianErin"
+        },
+        "labels": []
+      },
+      {
+        "number": 27,
+        "title": "Have players respond to clothing (item) damage",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
+        "created_at": "2021-06-11T17:54:43Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "title": "Idea : TTS",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
+        "created_at": "2021-03-14T12:26:52Z",
+        "user": {
+          "login": "Mewroh"
+        },
+        "labels": []
+      },
+      {
+        "number": 6,
+        "title": "Trait: Soft Spoken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
+        "created_at": "2021-02-15T16:49:32Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Add personality based speech",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
+        "created_at": "2021-02-14T21:24:44Z",
+        "user": {
+          "login": "matshou"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:32.931315Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:12.366612Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/MGRS-FMCCYAYFGLE/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 2,
+        "title": "Sandbox vars not changing.",
+        "html_url": "https://github.com/Chuckleberry-Finn/MGRS-FMCCYAYFGLE/issues/2",
+        "created_at": "2024-01-18T00:09:52Z",
+        "user": {
+          "login": "HousehusbandWorkshop"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:33.305330Z"
   },
   "Chuckleberry-Finn/game-night": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:12.748245Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/game-night/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 49,
+        "title": "[Bug] Cards merging/becoming uninteractable",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/49",
+        "created_at": "2026-07-12T19:07:06Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 48,
+        "title": "[Bug] Inventory conflict",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/48",
+        "created_at": "2026-06-05T12:10:16Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 47,
+        "title": "Stuck items after interaction",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/47",
+        "created_at": "2026-06-01T19:36:04Z",
+        "user": {
+          "login": "rogueasd099"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 46,
+        "title": "Checkers Bug",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/46",
+        "created_at": "2025-10-14T23:30:16Z",
+        "user": {
+          "login": "therealspongy"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 45,
+        "title": "Chess pieces stay under the board",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/45",
+        "created_at": "2025-05-19T20:17:45Z",
+        "user": {
+          "login": "ShredderARG"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 39,
+        "title": "Make hand UI scale to 1 row",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/39",
+        "created_at": "2024-04-14T15:43:52Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 38,
+        "title": "Enhancement Ideas",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/38",
+        "created_at": "2024-04-14T13:51:35Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 37,
+        "title": "Item UI vs Table UI scale to size",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/37",
+        "created_at": "2024-02-27T02:55:47Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 36,
+        "title": "Add information window + QoL",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/36",
+        "created_at": "2024-01-23T14:45:34Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 35,
+        "title": "Make window render relative to player position",
+        "html_url": "https://github.com/Chuckleberry-Finn/game-night/issues/35",
+        "created_at": "2024-01-22T14:11:41Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:33.771702Z"
   },
   "Chuckleberry-Finn/Named-Literature": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:13.096624Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Named-Literature/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:34.115282Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:13.524191Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Zombies-Hear-Your-Microphone/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:34.460385Z"
   },
   "Chuckleberry-Finn/pz-shops": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:13.894447Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/pz-shops/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 62,
+        "title": "[Bug] Shops don't save after restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/62",
+        "created_at": "2026-07-16T10:44:44Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 61,
+        "title": "[Bug] zombie dropping money",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/61",
+        "created_at": "2026-05-24T21:25:45Z",
+        "user": {
+          "login": "victhetick"
+        },
+        "labels": []
+      },
+      {
+        "number": 60,
+        "title": "Sort and filtering items",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/60",
+        "created_at": "2025-10-25T03:48:39Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      },
+      {
+        "number": 59,
+        "title": "Ui issue with wallets, store fund issue with disabled wallet, faction banking outdated",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/59",
+        "created_at": "2025-10-25T03:48:11Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      },
+      {
+        "number": 58,
+        "title": "Sandbox option to toggle markers",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/58",
+        "created_at": "2025-10-25T03:46:38Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      },
+      {
+        "number": 57,
+        "title": "Inventory Listing is offset when Category or ItemTypes included",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/57",
+        "created_at": "2025-09-03T12:32:12Z",
+        "user": {
+          "login": "jonathanjacobs"
+        },
+        "labels": []
+      },
+      {
+        "number": 56,
+        "title": "Error when buying VHS tapes",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/56",
+        "created_at": "2025-06-11T21:13:21Z",
+        "user": {
+          "login": "Stephocke"
+        },
+        "labels": []
+      },
+      {
+        "number": 49,
+        "title": "CS Localization",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/49",
+        "created_at": "2024-04-16T06:36:44Z",
+        "user": {
+          "login": "tomek852"
+        },
+        "labels": []
+      },
+      {
+        "number": 41,
+        "title": "Car Shop",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/41",
+        "created_at": "2023-12-29T21:28:41Z",
+        "user": {
+          "login": "PgRusher"
+        },
+        "labels": []
+      },
+      {
+        "number": 22,
+        "title": "Auction House functionality?",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/22",
+        "created_at": "2023-08-29T00:31:27Z",
+        "user": {
+          "login": "jonathanjacobs"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:34.880447Z"
   },
   "Chuckleberry-Finn/RebalancedCalorieBurning": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:14.270217Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/RebalancedCalorieBurning/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:35.215479Z"
   },
   "Chuckleberry-Finn/zone-api-chucked": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:14.720618Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/zone-api-chucked/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:35.528663Z"
   },
   "Chuckleberry-Finn/ZombieZones": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:15.059078Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/ZombieZones/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 1,
+        "title": "Add indicator to alert players when entering/inside of zones.",
+        "html_url": "https://github.com/Chuckleberry-Finn/ZombieZones/issues/1",
+        "created_at": "2024-10-09T13:46:54Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:35.996719Z"
   },
   "Chuckleberry-Finn/Display-Roles-In-Chat": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:15.377567Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Display-Roles-In-Chat/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:36.298535Z"
   },
   "Chuckleberry-Finn/interactive-tailoring": {
     "issues": [
@@ -102,146 +782,162 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-07-16T23:46:17.743273Z"
+    "timestamp": "2026-07-17T04:01:36.732563Z"
   },
   "Chuckleberry-Finn/Tuck-and-Roll": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:18.217230Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Tuck-and-Roll/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:37.107281Z"
   },
   "Chuckleberry-Finn/zombies-trip-over-zombies": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:18.501433Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/zombies-trip-over-zombies/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:37.446717Z"
   },
   "Chuckleberry-Finn/aprilFoolsPZ2024": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:24.984139Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/aprilFoolsPZ2024/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:37.775724Z"
   },
   "Chuckleberry-Finn/Game-night---Battleship": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:25.265232Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Game-night---Battleship/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:38.091955Z"
   },
   "Chuckleberry-Finn/gameNightDominos": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:25.774971Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/gameNightDominos/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:38.424078Z"
   },
   "Chuckleberry-Finn/zomboidPaper": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:26.276845Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/zomboidPaper/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:38.747514Z"
   },
   "Chuckleberry-Finn/GameNight-OneBulletGame": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:26.668423Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/GameNight-OneBulletGame/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:39.036655Z"
   },
   "Chuckleberry-Finn/gameNightDND": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:26.998330Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/gameNightDND/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:39.348169Z"
   },
   "Chuckleberry-Finn/gameNight-Whodunit": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:27.419034Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/gameNight-Whodunit/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:39.659271Z"
   },
   "Chuckleberry-Finn/gameNightCyberPunk": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:27.773920Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/gameNightCyberPunk/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:39.998889Z"
   },
   "Chuckleberry-Finn/game-night-spiffoTC": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:28.104855Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/game-night-spiffoTC/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:40.350350Z"
   },
   "Chuckleberry-Finn/big-bad-beavers-berserk": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:28.496443Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/big-bad-beavers-berserk/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:40.670253Z"
   },
   "Chuckleberry-Finn/ZombiesDropGames": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:28.943358Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/ZombiesDropGames/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:41.005809Z"
   },
   "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:29.517090Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/game-night-Yu-Spiff-oh/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:41.340663Z"
   },
   "Chuckleberry-Finn/Carjacking": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:29.829625Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Carjacking/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:41.691460Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:30.219355Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/PZLastStandTogether/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 1,
+        "title": "[Bug] Not working in MP",
+        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
+        "created_at": "2026-06-09T12:01:15Z",
+        "user": {
+          "login": "thehalfmann"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:42.072126Z"
   },
   "Chuckleberry-Finn/NoDamageFromTrees": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:30.590296Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/NoDamageFromTrees/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:42.413590Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:31.060419Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Bard-To-The-Bone/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 1,
+        "title": "TODO: Art, Models, Animations, Sounds, and more",
+        "html_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone/issues/1",
+        "created_at": "2025-04-25T20:22:38Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:42.776073Z"
   },
   "Chuckleberry-Finn/gameNight-covertNames": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:31.507003Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/gameNight-covertNames/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:43.113181Z"
   },
   "Chuckleberry-Finn/AutoEat": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:31.862835Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/AutoEat/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:43.447524Z"
   },
   "Chuckleberry-Finn/pz-factionBanking": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:32.337141Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/pz-factionBanking/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:43.770092Z"
   },
   "Chuckleberry-Finn/gameNight-americana": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:32.769195Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/gameNight-americana/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:44.116322Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:33.119806Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 1,
+        "title": "Fix In-Hand Orientation For Some Weapons",
+        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
+        "created_at": "2021-06-04T12:04:56Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:44.481001Z"
   },
   "Chuckleberry-Finn/proximity-invites": {
-    "issues": [],
-    "timestamp": "2026-07-16T23:46:33.626371Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/proximity-invites/issues?state=open&sort=created&direction=desc&per_page=30"
+    "issues": [
+      {
+        "number": 1,
+        "title": "Invite Distance",
+        "html_url": "https://github.com/Chuckleberry-Finn/proximity-invites/issues/1",
+        "created_at": "2024-12-31T00:29:47Z",
+        "user": {
+          "login": "RegulaPlayer"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-07-17T04:01:44.902352Z"
   },
   "Chuckleberry-Finn/roll-command-plus": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:34.199725Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/roll-command-plus/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:45.276535Z"
   },
   "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:34.535670Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Aint-Trippin-Just-Sprintin/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:45.569256Z"
   },
   "Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:35.017928Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:45.894581Z"
   },
   "Chuckleberry-Finn/containerLockout": {
     "issues": [],
-    "timestamp": "2026-07-16T23:46:35.250840Z",
-    "error": "503 Server Error: Service Unavailable for url: https://api.github.com/repos/Chuckleberry-Finn/containerLockout/issues?state=open&sort=created&direction=desc&per_page=30"
+    "timestamp": "2026-07-17T04:01:46.224907Z"
   }
 }
