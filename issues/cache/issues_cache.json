@@ -151,36 +151,15 @@
         ]
       }
     ],
-    "timestamp": "2026-08-13T15:44:15.348533Z"
+    "timestamp": "2026-08-13T17:42:39.035040Z"
   },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:15.687147Z"
+    "timestamp": "2026-08-13T17:42:39.294475Z"
   },
-  "Chuckleberry-Finn/moddingAlertSystem": {
-    "issues": [
-      {
-        "number": 2,
-        "title": "[Bug] Error 2",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
-        "created_at": "2026-08-01T15:08:03Z",
-        "user": {
-          "login": "takuyakii15"
-        },
-        "labels": []
-      },
-      {
-        "number": 1,
-        "title": "[Bug] Simply Wont Restart",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
-        "created_at": "2026-04-22T14:50:56Z",
-        "user": {
-          "login": "rhametic-dev"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-13T15:44:16.075955Z"
+  "Chuckleberry-Finn/EasyConfigChucked": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:39.591228Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
     "issues": [
@@ -320,45 +299,15 @@
         ]
       }
     ],
-    "timestamp": "2026-08-13T15:44:16.610836Z"
-  },
-  "Chuckleberry-Finn/SwapIt": {
-    "issues": [
-      {
-        "number": 6,
-        "title": "[Bug] Items return to the inventory when changing hands.",
-        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
-        "created_at": "2026-06-23T13:52:39Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 1,
-        "title": "Add Controller Support",
-        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
-        "created_at": "2021-06-04T12:02:05Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-13T15:44:17.021997Z"
+    "timestamp": "2026-08-13T17:42:40.088359Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:17.356908Z"
+    "timestamp": "2026-08-13T17:42:40.372733Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:17.724801Z"
+    "timestamp": "2026-08-13T17:42:40.645107Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
     "issues": [
@@ -473,7 +422,7 @@
         ]
       }
     ],
-    "timestamp": "2026-08-13T15:44:18.252805Z"
+    "timestamp": "2026-08-13T17:42:41.135107Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -488,7 +437,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-13T15:44:18.648915Z"
+    "timestamp": "2026-08-13T17:42:41.473097Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -643,15 +592,11 @@
         ]
       }
     ],
-    "timestamp": "2026-08-13T15:44:19.215549Z"
-  },
-  "Chuckleberry-Finn/Named-Literature": {
-    "issues": [],
-    "timestamp": "2026-08-13T15:44:19.555066Z"
+    "timestamp": "2026-08-13T17:42:41.894731Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:19.866859Z"
+    "timestamp": "2026-08-13T17:42:42.261121Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -766,70 +711,66 @@
         ]
       }
     ],
-    "timestamp": "2026-08-13T15:44:20.321177Z"
+    "timestamp": "2026-08-13T17:42:42.735709Z"
   },
   "Chuckleberry-Finn/RebalancedCalorieBurning": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:20.687216Z"
+    "timestamp": "2026-08-13T17:42:43.020525Z"
   },
-  "Chuckleberry-Finn/interactive-tailoring": {
+  "Chuckleberry-Finn/zone-api-chucked": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:43.253569Z"
+  },
+  "Chuckleberry-Finn/ZombieZones": {
     "issues": [
       {
         "number": 1,
-        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
-        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
-        "created_at": "2025-07-13T08:38:13Z",
+        "title": "Add indicator to alert players when entering/inside of zones.",
+        "html_url": "https://github.com/Chuckleberry-Finn/ZombieZones/issues/1",
+        "created_at": "2024-10-09T13:46:54Z",
         "user": {
-          "login": "elislavkat"
+          "login": "Chuckleberry-Finn"
         },
         "labels": []
       }
     ],
-    "timestamp": "2026-08-13T15:44:21.063456Z"
+    "timestamp": "2026-08-13T17:42:43.563826Z"
+  },
+  "Chuckleberry-Finn/Display-Roles-In-Chat": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:43.850868Z"
   },
   "Chuckleberry-Finn/Tuck-and-Roll": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:21.355009Z"
+    "timestamp": "2026-08-13T17:42:44.168688Z"
+  },
+  "Chuckleberry-Finn/zomboidPaper": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:44.417506Z"
+  },
+  "Chuckleberry-Finn/zombies-trip-over-zombies": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:44.715591Z"
   },
   "Chuckleberry-Finn/aprilFoolsPZ2024": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:21.680407Z"
+    "timestamp": "2026-08-13T17:42:44.987494Z"
   },
   "Chuckleberry-Finn/Game-night---Battleship": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:22.046038Z"
+    "timestamp": "2026-08-13T17:42:45.261669Z"
   },
-  "Chuckleberry-Finn/gameNightDominos": {
+  "Chuckleberry-Finn/big-bad-beavers-berserk": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:22.374794Z"
+    "timestamp": "2026-08-13T17:42:45.510778Z"
   },
-  "Chuckleberry-Finn/GameNight-OneBulletGame": {
+  "Chuckleberry-Finn/ZombiesDropGames": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:22.706540Z"
-  },
-  "Chuckleberry-Finn/gameNightDND": {
-    "issues": [],
-    "timestamp": "2026-08-13T15:44:23.034734Z"
-  },
-  "Chuckleberry-Finn/gameNight-Whodunit": {
-    "issues": [],
-    "timestamp": "2026-08-13T15:44:23.383144Z"
-  },
-  "Chuckleberry-Finn/gameNightCyberPunk": {
-    "issues": [],
-    "timestamp": "2026-08-13T15:44:23.743405Z"
-  },
-  "Chuckleberry-Finn/game-night-spiffoTC": {
-    "issues": [],
-    "timestamp": "2026-08-13T15:44:24.022310Z"
-  },
-  "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
-    "issues": [],
-    "timestamp": "2026-08-13T15:44:24.336219Z"
+    "timestamp": "2026-08-13T17:42:45.803717Z"
   },
   "Chuckleberry-Finn/Carjacking": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:24.648156Z"
+    "timestamp": "2026-08-13T17:42:46.084821Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
     "issues": [
@@ -844,30 +785,19 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-13T15:44:25.062074Z"
+    "timestamp": "2026-08-13T17:42:46.518778Z"
   },
-  "Chuckleberry-Finn/Bard-To-The-Bone": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "TODO: Art, Models, Animations, Sounds, and more",
-        "html_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone/issues/1",
-        "created_at": "2025-04-25T20:22:38Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-13T15:44:25.432362Z"
-  },
-  "Chuckleberry-Finn/gameNight-covertNames": {
+  "Chuckleberry-Finn/AutoEat": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:25.779731Z"
+    "timestamp": "2026-08-13T17:42:46.798934Z"
+  },
+  "Chuckleberry-Finn/pz-factionBanking": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:47.067674Z"
   },
   "Chuckleberry-Finn/gameNight-americana": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:26.064220Z"
+    "timestamp": "2026-08-13T17:42:47.490710Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
     "issues": [
@@ -882,22 +812,126 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-13T15:44:26.425239Z"
+    "timestamp": "2026-08-13T17:42:47.805151Z"
+  },
+  "Chuckleberry-Finn/proximity-invites": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Invite Distance",
+        "html_url": "https://github.com/Chuckleberry-Finn/proximity-invites/issues/1",
+        "created_at": "2024-12-31T00:29:47Z",
+        "user": {
+          "login": "RegulaPlayer"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-13T17:42:48.094952Z"
   },
   "Chuckleberry-Finn/roll-command-plus": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:26.749948Z"
+    "timestamp": "2026-08-13T17:42:48.385251Z"
   },
   "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:27.077234Z"
+    "timestamp": "2026-08-13T17:42:48.649743Z"
   },
   "Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:27.399085Z"
+    "timestamp": "2026-08-13T17:42:48.968871Z"
   },
   "Chuckleberry-Finn/containerLockout": {
     "issues": [],
-    "timestamp": "2026-08-13T15:44:27.677593Z"
+    "timestamp": "2026-08-13T17:42:49.278704Z"
+  },
+  "Chuckleberry-Finn/Named-Literature": {
+    "issues": [],
+    "timestamp": "2026-08-13T17:42:49.552237Z"
+  },
+  "Chuckleberry-Finn/moddingAlertSystem": {
+    "issues": [
+      {
+        "number": 2,
+        "title": "[Bug] Error 2",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
+        "created_at": "2026-08-01T15:08:03Z",
+        "user": {
+          "login": "takuyakii15"
+        },
+        "labels": []
+      },
+      {
+        "number": 1,
+        "title": "[Bug] Simply Wont Restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
+        "created_at": "2026-04-22T14:50:56Z",
+        "user": {
+          "login": "rhametic-dev"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-13T17:42:49.871888Z"
+  },
+  "Chuckleberry-Finn/interactive-tailoring": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
+        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
+        "created_at": "2025-07-13T08:38:13Z",
+        "user": {
+          "login": "elislavkat"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-13T17:42:50.210016Z"
+  },
+  "Chuckleberry-Finn/Bard-To-The-Bone": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "TODO: Art, Models, Animations, Sounds, and more",
+        "html_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone/issues/1",
+        "created_at": "2025-04-25T20:22:38Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-13T17:42:50.468106Z"
+  },
+  "Chuckleberry-Finn/SwapIt": {
+    "issues": [
+      {
+        "number": 6,
+        "title": "[Bug] Items return to the inventory when changing hands.",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
+        "created_at": "2026-06-23T13:52:39Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 1,
+        "title": "Add Controller Support",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
+        "created_at": "2021-06-04T12:02:05Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-13T17:42:50.798036Z"
   }
 }
