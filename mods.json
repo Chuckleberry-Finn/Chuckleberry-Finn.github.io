@@ -6,7 +6,7 @@
     "banner": "https://images.steamusercontent.com/ugc/14380086584376552796/8391C9CC390A0FA349F1343BB1C03E3A5B397CC7/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 2755860,
+    "subs": 2755958,
     "github": {
       "openIssues": 2,
       "stars": 40,
@@ -14,27 +14,55 @@
     }
   },
   {
-    "name": "Rebalanced Calorie Burning",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2840487215",
-    "repo_url": "https://github.com/Chuckleberry-Finn/RebalancedCalorieBurning",
-    "banner": "https://images.steamusercontent.com/ugc/1751357494167700890/88AF0DB98E332AB7F16AA8DA242254164BD1CD9A/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Conditional-Speech",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2398253681",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech",
+    "banner": "https://images.steamusercontent.com/ugc/1758065677814333406/0633DAD118CAF53A10331E00D973B2F22EA1B6A0/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
-    "highlight": false,
-    "subs": 57238,
+    "highlight": true,
+    "subs": 263741,
     "github": {
-      "openIssues": 0,
-      "stars": 2,
-      "forks": 2
+      "openIssues": 11,
+      "stars": 14,
+      "forks": 24
     }
   },
   {
-    "name": "Display Roles In Chat",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2968026253",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
-    "banner": "",
+    "name": "Zombies Hear Your Microphone",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3004111200",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Zombies-Hear-Your-Microphone",
+    "banner": "https://images.steamusercontent.com/ugc/24304572099780612/05CEF6D21891CD07571D21F15656BA16D3033BBF/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "subs": 91607,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Shops and Traders",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2853615523",
+    "repo_url": "https://github.com/Chuckleberry-Finn/pz-shops",
+    "banner": "https://images.steamusercontent.com/ugc/1768246627212185205/D5ADEC6150B8ABA2AAD3CAC8486E8BE3EA727415/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "subs": 64582,
+    "github": {
+      "openIssues": 10,
+      "stars": 3,
+      "forks": 5
+    }
+  },
+  {
+    "name": "-# [B43] you're trial of Chuckleberry Finn's Error Fixifier™ have expired. please renew $1 per year plan or else. (REAL) #-",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3196111875",
+    "repo_url": "https://github.com/Chuckleberry-Finn/aprilFoolsPZ2024",
+    "banner": "https://images.steamusercontent.com/ugc/2460727253391088653/857BC2B75A843E978E54BE9D0CBADE33178D46A4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 38580,
+    "subs": 28258,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -42,59 +70,101 @@
     }
   },
   {
-    "name": "Tuck and Roll",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832401837",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Tuck-and-Roll",
-    "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Game Night: Battleship",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3287846094",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Game-night---Battleship",
+    "banner": "https://images.steamusercontent.com/ugc/24308212284279713/2F3DFA7C03697A6A5D347108271ACF612FA9D035/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 33252,
-    "github": {
-      "openIssues": 0,
-      "stars": 2,
-      "forks": 1
-    }
-  },
-  {
-    "name": "Carjacking",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832564154",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Carjacking",
-    "banner": "https://images.steamusercontent.com/ugc/1861692057097606619/BC9494D53DB71680D52DB2635C9D062053464C96/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 5716,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 1
-    }
-  },
-  {
-    "name": "Proximity Invitations",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2959226140",
-    "repo_url": "https://github.com/Chuckleberry-Finn/proximity-invites",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "subs": 1507,
-    "github": {
-      "openIssues": 1,
-      "stars": 0,
-      "forks": 1
-    }
-  },
-  {
-    "name": "Roll-Command-Plus",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3003095456",
-    "repo_url": "https://github.com/Chuckleberry-Finn/roll-command-plus",
-    "banner": "https://images.steamusercontent.com/ugc/2052001304437082129/AFD12138A05EE37617A2B90201EF994DD05DE2BB/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 1093,
+    "subs": 24914,
     "github": {
       "openIssues": 0,
       "stars": 0,
       "forks": 0
+    }
+  },
+  {
+    "name": "Big Bad Beaver's Berserk",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2954181035",
+    "repo_url": "https://github.com/Chuckleberry-Finn/big-bad-beavers-berserk",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 6627,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Last Stand Together",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
+    "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "subs": 5418,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Auto Eat (Old)",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2365757229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/AutoEat",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 4053,
+    "github": {
+      "openIssues": 0,
+      "stars": 3,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Game Night: Americana",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3289537326",
+    "repo_url": "https://github.com/Chuckleberry-Finn/gameNight-americana",
+    "banner": "https://images.steamusercontent.com/ugc/2512530513864867928/62DFCAEDDC6C145FD504D91B682913B870C15F5C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 3201,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Dynamic-Weapon-Endurance-Modifier",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2970229240",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 249,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Container Lockout API",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909984178",
+    "repo_url": "https://github.com/Chuckleberry-Finn/containerLockout",
+    "banner": "https://images.steamusercontent.com/ugc/5099795232532326102/832EEF359D4CE2E12FB43FE317B3DB1911B249E4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 125,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 1
     }
   },
   {
@@ -251,58 +321,6 @@
       "openIssues": 1,
       "stars": 1,
       "forks": 1
-    }
-  },
-  {
-    "name": "Zombies-Hear-Your-Microphone",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3004111200",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Zombies-Hear-Your-Microphone",
-    "banner": "https://images.steamusercontent.com/ugc/24304572099780612/05CEF6D21891CD07571D21F15656BA16D3033BBF/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "pz-shops",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2853615523",
-    "repo_url": "https://github.com/Chuckleberry-Finn/pz-shops",
-    "banner": "https://images.steamusercontent.com/ugc/1768246627212185205/D5ADEC6150B8ABA2AAD3CAC8486E8BE3EA727415/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 10,
-      "stars": 3,
-      "forks": 5
-    }
-  },
-  {
-    "name": "PZLastStandTogether",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
-    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
-    "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 0,
-      "stars": 1,
-      "forks": 0
-    }
-  },
-  {
-    "name": "zomboid-cnd-speech",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2398253681",
-    "repo_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech",
-    "banner": "https://images.steamusercontent.com/ugc/1758065677814333406/0633DAD118CAF53A10331E00D973B2F22EA1B6A0/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "github": {
-      "openIssues": 11,
-      "stars": 14,
-      "forks": 24
     }
   }
 ]
