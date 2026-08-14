@@ -1,15 +1,100 @@
 [
   {
-    "name": "Skill-Recovery-Journal",
+    "name": "Skill Recovery Journal",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437",
     "repo_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal",
     "banner": "https://images.steamusercontent.com/ugc/14380086584376552796/8391C9CC390A0FA349F1343BB1C03E3A5B397CC7/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
+    "subs": 2755860,
     "github": {
       "openIssues": 2,
       "stars": 40,
       "forks": 36
+    }
+  },
+  {
+    "name": "Rebalanced Calorie Burning",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2840487215",
+    "repo_url": "https://github.com/Chuckleberry-Finn/RebalancedCalorieBurning",
+    "banner": "https://images.steamusercontent.com/ugc/1751357494167700890/88AF0DB98E332AB7F16AA8DA242254164BD1CD9A/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 57238,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 2
+    }
+  },
+  {
+    "name": "Display Roles In Chat",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2968026253",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 38580,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Tuck and Roll",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832401837",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Tuck-and-Roll",
+    "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 33252,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Carjacking",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832564154",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Carjacking",
+    "banner": "https://images.steamusercontent.com/ugc/1861692057097606619/BC9494D53DB71680D52DB2635C9D062053464C96/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 5716,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Proximity Invitations",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2959226140",
+    "repo_url": "https://github.com/Chuckleberry-Finn/proximity-invites",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 1507,
+    "github": {
+      "openIssues": 1,
+      "stars": 0,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Roll-Command-Plus",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3003095456",
+    "repo_url": "https://github.com/Chuckleberry-Finn/roll-command-plus",
+    "banner": "https://images.steamusercontent.com/ugc/2052001304437082129/AFD12138A05EE37617A2B90201EF994DD05DE2BB/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 1093,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
     }
   },
   {
