@@ -1,11 +1,12 @@
 [
   {
-    "name": "Skill-Recovery-Journal",
+    "name": "Skill Recovery Journal",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437",
     "repo_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal",
     "banner": "https://images.steamusercontent.com/ugc/14380086584376552796/8391C9CC390A0FA349F1343BB1C03E3A5B397CC7/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
+    "subs": 2757701,
     "github": {
       "openIssues": 2,
       "stars": 40,
@@ -13,25 +14,27 @@
     }
   },
   {
-    "name": "PZLastStandTogether",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
-    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
-    "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Easy Config Chucked",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2529746725",
+    "repo_url": "https://github.com/Chuckleberry-Finn/EasyConfigChucked",
+    "banner": "https://images.steamusercontent.com/ugc/2309850777980786564/F2B3856AFCDF92497DA9AA75094739B9BEEC9656/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
-    "highlight": true,
+    "highlight": false,
+    "subs": 1971613,
     "github": {
       "openIssues": 0,
-      "stars": 1,
-      "forks": 0
+      "stars": 4,
+      "forks": 2
     }
   },
   {
-    "name": "ExpandedHelicopterEvents",
+    "name": "[B41] Expanded Helicopter Events",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2458631365",
     "repo_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents",
     "banner": "https://images.steamusercontent.com/ugc/13646860439632559513/57112E1D3441586768CECC75B31676F07E2C5EB8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
+    "subs": 1323670,
     "github": {
       "openIssues": 22,
       "stars": 31,
@@ -39,16 +42,185 @@
     }
   },
   {
-    "name": "game-night",
+    "name": "Game Night",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3058279917",
     "repo_url": "https://github.com/Chuckleberry-Finn/game-night",
     "banner": "https://images.steamusercontent.com/ugc/2145461285230376569/AA3CF1A8351673341BA002CE10B1D52FE2C3124C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
+    "subs": 149801,
     "github": {
       "openIssues": 13,
       "stars": 5,
       "forks": 3
+    }
+  },
+  {
+    "name": "Rebalanced Calorie Burning",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2840487215",
+    "repo_url": "https://github.com/Chuckleberry-Finn/RebalancedCalorieBurning",
+    "banner": "https://images.steamusercontent.com/ugc/1751357494167700890/88AF0DB98E332AB7F16AA8DA242254164BD1CD9A/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 57114,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 2
+    }
+  },
+  {
+    "name": "Zone API Chucked",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3020685151",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zone-api-chucked",
+    "banner": "https://images.steamusercontent.com/ugc/2052005325260678921/31414A1C0F18D2B625C2A7F9882C7C70116CF4E4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 46227,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 1
+    }
+  },
+  {
+    "name": "ZombieZones",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3098029974",
+    "repo_url": "https://github.com/Chuckleberry-Finn/ZombieZones",
+    "banner": "https://images.steamusercontent.com/ugc/2309845613228087388/5A6E1A5C64483A8233E67C2EC8E40414A52B8AD6/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 39926,
+    "github": {
+      "openIssues": 1,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Display Roles In Chat",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2968026253",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 38482,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Tuck and Roll",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832401837",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Tuck-and-Roll",
+    "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 33135,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Zomboid Paper API",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3155647374",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zomboidPaper",
+    "banner": "https://images.steamusercontent.com/ugc/2533907488990539423/F760F5AB72DDB51B5AA8A54CBFF9D92DA4C461DC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 32996,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Zombies Trip Over Zombies",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013923320",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zombies-trip-over-zombies",
+    "banner": "https://images.steamusercontent.com/ugc/18249310082115717911/C8679F4BAF2074DCDDBFBE8D49DC6DB656BB35A9/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 30060,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Game Night: Zombies Drop Games",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3281767964",
+    "repo_url": "https://github.com/Chuckleberry-Finn/ZombiesDropGames",
+    "banner": "https://images.steamusercontent.com/ugc/2547430415543462780/F616FD889BD0BA84332C4A2C7171B4523DF6E9C2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 6062,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Carjacking",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832564154",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Carjacking",
+    "banner": "https://images.steamusercontent.com/ugc/1861692057097606619/BC9494D53DB71680D52DB2635C9D062053464C96/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 5695,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Last Stand Together",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
+    "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "subs": 5406,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Proximity Invitations",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2959226140",
+    "repo_url": "https://github.com/Chuckleberry-Finn/proximity-invites",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 1503,
+    "github": {
+      "openIssues": 1,
+      "stars": 0,
+      "forks": 1
+    }
+  },
+  {
+    "name": "Roll-Command-Plus",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3003095456",
+    "repo_url": "https://github.com/Chuckleberry-Finn/roll-command-plus",
+    "banner": "https://images.steamusercontent.com/ugc/2052001304437082129/AFD12138A05EE37617A2B90201EF994DD05DE2BB/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 1079,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
     }
   },
   {
