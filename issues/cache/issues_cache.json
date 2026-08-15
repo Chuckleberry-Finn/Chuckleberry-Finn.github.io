@@ -1,41 +1,16 @@
 {
-  "Chuckleberry-Finn/EasyConfigChucked": {
-    "issues": [],
-    "timestamp": "2026-08-15T05:18:07.961236Z"
-  },
-  "Chuckleberry-Finn/zone-api-chucked": {
-    "issues": [],
-    "timestamp": "2026-08-15T05:18:08.249554Z"
-  },
-  "Chuckleberry-Finn/ZombieZones": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Add indicator to alert players when entering/inside of zones.",
-        "html_url": "https://github.com/Chuckleberry-Finn/ZombieZones/issues/1",
-        "created_at": "2024-10-09T13:46:54Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-15T05:18:08.506051Z"
-  },
-  "Chuckleberry-Finn/zomboidPaper": {
-    "issues": [],
-    "timestamp": "2026-08-15T05:18:08.760901Z"
-  },
-  "Chuckleberry-Finn/zombies-trip-over-zombies": {
-    "issues": [],
-    "timestamp": "2026-08-15T05:18:09.022232Z"
-  },
-  "Chuckleberry-Finn/ZombiesDropGames": {
-    "issues": [],
-    "timestamp": "2026-08-15T05:18:09.243819Z"
-  },
   "Chuckleberry-Finn/Skill-Recovery-Journal": {
     "issues": [
+      {
+        "number": 137,
+        "title": "[Bug] TV/VHS XP duplication",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/137",
+        "created_at": "2026-08-15T06:39:35Z",
+        "user": {
+          "login": "EeveesEyes"
+        },
+        "labels": []
+      },
       {
         "number": 136,
         "title": "[Bug] Recipes not appearing in crafting menu (42.20)",
@@ -165,43 +140,17 @@
             "color": "a2eeef"
           }
         ]
-      },
-      {
-        "number": 118,
-        "title": "[Bug] XP Duplication Glitch When Re-reading Skill Recovery Journal After Learning Skill Books",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/118",
-        "created_at": "2026-02-16T18:05:54Z",
-        "user": {
-          "login": "KaiserFahim"
-        },
-        "labels": [
-          {
-            "name": "mod-conflict",
-            "color": "97b648"
-          },
-          {
-            "name": "need-info",
-            "color": "a7a6e1"
-          }
-        ]
       }
     ],
-    "timestamp": "2026-08-15T05:18:09.569153Z"
+    "timestamp": "2026-08-15T07:28:57.948064Z"
   },
-  "Chuckleberry-Finn/PZLastStandTogether": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "[Bug] Not working in MP",
-        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
-        "created_at": "2026-06-09T12:01:15Z",
-        "user": {
-          "login": "thehalfmann"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-15T05:18:09.812918Z"
+  "Chuckleberry-Finn/errorMagnifier": {
+    "issues": [],
+    "timestamp": "2026-08-15T07:28:58.150414Z"
+  },
+  "Chuckleberry-Finn/EasyConfigChucked": {
+    "issues": [],
+    "timestamp": "2026-08-15T07:28:58.378520Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
     "issues": [
@@ -341,7 +290,11 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T05:18:10.228720Z"
+    "timestamp": "2026-08-15T07:28:58.697668Z"
+  },
+  "Chuckleberry-Finn/You-Drive-I-Sleep": {
+    "issues": [],
+    "timestamp": "2026-08-15T07:28:58.876300Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -496,15 +449,53 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T05:18:10.576461Z"
+    "timestamp": "2026-08-15T07:28:59.189471Z"
   },
-  "Chuckleberry-Finn/errorMagnifier": {
+  "Chuckleberry-Finn/zone-api-chucked": {
     "issues": [],
-    "timestamp": "2026-08-15T05:18:10.791816Z"
+    "timestamp": "2026-08-15T07:28:59.355572Z"
   },
-  "Chuckleberry-Finn/You-Drive-I-Sleep": {
+  "Chuckleberry-Finn/ZombieZones": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Add indicator to alert players when entering/inside of zones.",
+        "html_url": "https://github.com/Chuckleberry-Finn/ZombieZones/issues/1",
+        "created_at": "2024-10-09T13:46:54Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-15T07:28:59.587093Z"
+  },
+  "Chuckleberry-Finn/zomboidPaper": {
     "issues": [],
-    "timestamp": "2026-08-15T05:18:11.039566Z"
+    "timestamp": "2026-08-15T07:28:59.772543Z"
+  },
+  "Chuckleberry-Finn/zombies-trip-over-zombies": {
+    "issues": [],
+    "timestamp": "2026-08-15T07:28:59.951559Z"
+  },
+  "Chuckleberry-Finn/ZombiesDropGames": {
+    "issues": [],
+    "timestamp": "2026-08-15T07:29:00.139189Z"
+  },
+  "Chuckleberry-Finn/PZLastStandTogether": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "[Bug] Not working in MP",
+        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
+        "created_at": "2026-06-09T12:01:15Z",
+        "user": {
+          "login": "thehalfmann"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-15T07:29:00.365894Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
     "issues": [
@@ -519,15 +510,15 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T05:18:11.314799Z"
+    "timestamp": "2026-08-15T07:29:00.577143Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [],
-    "timestamp": "2026-08-15T05:18:11.540522Z"
+    "timestamp": "2026-08-15T07:29:00.794069Z"
   },
   "Chuckleberry-Finn/Named-Literature": {
     "issues": [],
-    "timestamp": "2026-08-15T05:18:11.787838Z"
+    "timestamp": "2026-08-15T07:29:01.012866Z"
   },
   "Chuckleberry-Finn/moddingAlertSystem": {
     "issues": [
@@ -552,7 +543,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T05:18:12.050986Z"
+    "timestamp": "2026-08-15T07:29:01.255511Z"
   },
   "Chuckleberry-Finn/interactive-tailoring": {
     "issues": [
@@ -567,7 +558,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T05:18:12.331315Z"
+    "timestamp": "2026-08-15T07:29:01.526120Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -582,7 +573,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T05:18:12.581634Z"
+    "timestamp": "2026-08-15T07:29:01.776099Z"
   },
   "Chuckleberry-Finn/SwapIt": {
     "issues": [
@@ -612,7 +603,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T05:18:12.866087Z"
+    "timestamp": "2026-08-15T07:29:02.052052Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -627,11 +618,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T05:18:13.129013Z"
+    "timestamp": "2026-08-15T07:29:02.290565Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-08-15T05:18:13.386170Z"
+    "timestamp": "2026-08-15T07:29:02.503435Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -746,7 +737,7 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T05:18:13.726602Z"
+    "timestamp": "2026-08-15T07:29:02.794308Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
     "issues": [
@@ -861,6 +852,6 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T05:18:14.088838Z"
+    "timestamp": "2026-08-15T07:29:03.128409Z"
   }
 }
