@@ -1,152 +1,7 @@
 {
-  "Chuckleberry-Finn/Skill-Recovery-Journal": {
-    "issues": [
-      {
-        "number": 137,
-        "title": "[Bug] TV/VHS XP duplication",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/137",
-        "created_at": "2026-08-15T06:39:35Z",
-        "user": {
-          "login": "EeveesEyes"
-        },
-        "labels": []
-      },
-      {
-        "number": 136,
-        "title": "[Bug] Recipes not appearing in crafting menu (42.20)",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/136",
-        "created_at": "2026-08-12T20:23:05Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 135,
-        "title": "[Bug] Infinite book reading",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/135",
-        "created_at": "2026-08-02T19:34:32Z",
-        "user": {
-          "login": "SANTOrick"
-        },
-        "labels": []
-      },
-      {
-        "number": 134,
-        "title": "[Bug] Strength/Fitness Bonuses From Occupations/Traits being Transcribed",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/134",
-        "created_at": "2026-07-27T05:38:55Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 133,
-        "title": "[Bug] [MP] XP Journal being marked as complete before refunding all skills.",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/133",
-        "created_at": "2026-06-25T15:53:41Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 131,
-        "title": "[Bug] skill journal does not give skills",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/131",
-        "created_at": "2026-06-20T05:45:42Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 130,
-        "title": "[Bug] strength and fitness exp not correctly recorded",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/130",
-        "created_at": "2026-06-13T02:55:21Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 129,
-        "title": "[Bug] not getting all exp recorded",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/129",
-        "created_at": "2026-06-02T19:58:34Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 128,
-        "title": "[Bug] When trying to write to the journal, it gives an error related to recipes.",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/128",
-        "created_at": "2026-05-11T01:33:13Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 120,
-        "title": "[Feature] saved modData should not be an exact override",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
-        "created_at": "2026-02-21T15:52:20Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-08-15T23:09:23.968270Z"
-  },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-08-15T23:09:24.169457Z"
+    "timestamp": "2026-08-16T02:23:37.351766Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
     "issues": [
@@ -286,7 +141,7 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T23:09:24.596539Z"
+    "timestamp": "2026-08-16T02:23:37.744777Z"
   },
   "Chuckleberry-Finn/SwapIt": {
     "issues": [
@@ -316,126 +171,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T23:09:24.946974Z"
+    "timestamp": "2026-08-16T02:23:38.076923Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-08-15T23:09:25.204593Z"
-  },
-  "Chuckleberry-Finn/zomboid-cnd-speech": {
-    "issues": [
-      {
-        "number": 63,
-        "title": "[Bug] bug or broken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
-        "created_at": "2026-04-04T18:25:34Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 62,
-        "title": "Wrong encoding UA Translation B41",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
-        "created_at": "2025-07-02T18:39:26Z",
-        "user": {
-          "login": "AlximikXD"
-        },
-        "labels": []
-      },
-      {
-        "number": 37,
-        "title": "BUG? Speak to Mutch \"HavyLoad\"",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
-        "created_at": "2022-01-28T11:58:09Z",
-        "user": {
-          "login": "duhnunes"
-        },
-        "labels": []
-      },
-      {
-        "number": 34,
-        "title": "Problem in encoding (TR)",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
-        "created_at": "2021-11-09T10:19:06Z",
-        "user": {
-          "login": "Batur123"
-        },
-        "labels": []
-      },
-      {
-        "number": 31,
-        "title": "Idea: wimpering and forcefully shutting self up.",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/31",
-        "created_at": "2021-11-01T12:02:55Z",
-        "user": {
-          "login": "TiberianErin"
-        },
-        "labels": []
-      },
-      {
-        "number": 27,
-        "title": "Have players respond to clothing (item) damage",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
-        "created_at": "2021-06-11T17:54:43Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 18,
-        "title": "Idea : TTS",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
-        "created_at": "2021-03-14T12:26:52Z",
-        "user": {
-          "login": "Mewroh"
-        },
-        "labels": []
-      },
-      {
-        "number": 6,
-        "title": "Trait: Soft Spoken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
-        "created_at": "2021-02-15T16:49:32Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 5,
-        "title": "Add personality based speech",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
-        "created_at": "2021-02-14T21:24:44Z",
-        "user": {
-          "login": "matshou"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-08-15T23:09:25.552019Z"
+    "timestamp": "2026-08-16T02:23:38.350167Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -450,7 +190,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-15T23:09:25.855052Z"
+    "timestamp": "2026-08-16T02:23:38.690469Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -605,11 +345,285 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T23:09:26.208526Z"
+    "timestamp": "2026-08-16T02:23:39.071775Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-08-15T23:09:26.433769Z"
+    "timestamp": "2026-08-16T02:23:39.350961Z"
+  },
+  "Chuckleberry-Finn/aprilFoolsPZ2024": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:39.592017Z"
+  },
+  "Chuckleberry-Finn/gameNightDominos": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:39.874880Z"
+  },
+  "Chuckleberry-Finn/GameNight-OneBulletGame": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:40.129619Z"
+  },
+  "Chuckleberry-Finn/gameNight-Whodunit": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:40.385462Z"
+  },
+  "Chuckleberry-Finn/gameNightCyberPunk": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:40.671161Z"
+  },
+  "Chuckleberry-Finn/game-night-spiffoTC": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:40.919573Z"
+  },
+  "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:41.186362Z"
+  },
+  "Chuckleberry-Finn/PZLastStandTogether": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "[Bug] Not working in MP",
+        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
+        "created_at": "2026-06-09T12:01:15Z",
+        "user": {
+          "login": "thehalfmann"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T02:23:41.485121Z"
+  },
+  "Chuckleberry-Finn/Bard-To-The-Bone": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "TODO: Art, Models, Animations, Sounds, and more",
+        "html_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone/issues/1",
+        "created_at": "2025-04-25T20:22:38Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T02:23:41.806690Z"
+  },
+  "Chuckleberry-Finn/gameNight-covertNames": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:42.118087Z"
+  },
+  "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:42.372002Z"
+  },
+  "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Fix In-Hand Orientation For Some Weapons",
+        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
+        "created_at": "2021-06-04T12:04:56Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T02:23:42.686195Z"
+  },
+  "Chuckleberry-Finn/Night-Vision-Chucked": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:43.015155Z"
+  },
+  "Chuckleberry-Finn/Named-Literature": {
+    "issues": [],
+    "timestamp": "2026-08-16T02:23:43.284310Z"
+  },
+  "Chuckleberry-Finn/moddingAlertSystem": {
+    "issues": [
+      {
+        "number": 2,
+        "title": "[Bug] Error 2",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
+        "created_at": "2026-08-01T15:08:03Z",
+        "user": {
+          "login": "takuyakii15"
+        },
+        "labels": []
+      },
+      {
+        "number": 1,
+        "title": "[Bug] Simply Wont Restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
+        "created_at": "2026-04-22T14:50:56Z",
+        "user": {
+          "login": "rhametic-dev"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T02:23:43.715349Z"
+  },
+  "Chuckleberry-Finn/interactive-tailoring": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
+        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
+        "created_at": "2025-07-13T08:38:13Z",
+        "user": {
+          "login": "elislavkat"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T02:23:44.018758Z"
+  },
+  "Chuckleberry-Finn/Skill-Recovery-Journal": {
+    "issues": [
+      {
+        "number": 137,
+        "title": "[Bug] TV/VHS XP duplication",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/137",
+        "created_at": "2026-08-15T06:39:35Z",
+        "user": {
+          "login": "EeveesEyes"
+        },
+        "labels": []
+      },
+      {
+        "number": 136,
+        "title": "[Bug] Recipes not appearing in crafting menu (42.20)",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/136",
+        "created_at": "2026-08-12T20:23:05Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 135,
+        "title": "[Bug] Infinite book reading",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/135",
+        "created_at": "2026-08-02T19:34:32Z",
+        "user": {
+          "login": "SANTOrick"
+        },
+        "labels": []
+      },
+      {
+        "number": 134,
+        "title": "[Bug] Strength/Fitness Bonuses From Occupations/Traits being Transcribed",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/134",
+        "created_at": "2026-07-27T05:38:55Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 133,
+        "title": "[Bug] [MP] XP Journal being marked as complete before refunding all skills.",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/133",
+        "created_at": "2026-06-25T15:53:41Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 131,
+        "title": "[Bug] skill journal does not give skills",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/131",
+        "created_at": "2026-06-20T05:45:42Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 130,
+        "title": "[Bug] strength and fitness exp not correctly recorded",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/130",
+        "created_at": "2026-06-13T02:55:21Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 129,
+        "title": "[Bug] not getting all exp recorded",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/129",
+        "created_at": "2026-06-02T19:58:34Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 128,
+        "title": "[Bug] When trying to write to the journal, it gives an error related to recipes.",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/128",
+        "created_at": "2026-05-11T01:33:13Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 120,
+        "title": "[Feature] saved modData should not be an exact override",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
+        "created_at": "2026-02-21T15:52:20Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-08-16T02:23:44.412347Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -724,143 +738,121 @@
         ]
       }
     ],
-    "timestamp": "2026-08-15T23:09:26.791144Z"
+    "timestamp": "2026-08-16T02:23:44.763843Z"
   },
-  "Chuckleberry-Finn/gameNightDominos": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:27.011989Z"
-  },
-  "Chuckleberry-Finn/GameNight-OneBulletGame": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:27.230537Z"
-  },
-  "Chuckleberry-Finn/gameNightDND": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:27.412941Z"
-  },
-  "Chuckleberry-Finn/gameNight-Whodunit": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:27.666294Z"
-  },
-  "Chuckleberry-Finn/gameNightCyberPunk": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:27.889055Z"
-  },
-  "Chuckleberry-Finn/game-night-spiffoTC": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:28.117626Z"
-  },
-  "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:28.371421Z"
-  },
-  "Chuckleberry-Finn/PZLastStandTogether": {
+  "Chuckleberry-Finn/zomboid-cnd-speech": {
     "issues": [
       {
-        "number": 1,
-        "title": "[Bug] Not working in MP",
-        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
-        "created_at": "2026-06-09T12:01:15Z",
+        "number": 63,
+        "title": "[Bug] bug or broken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
+        "created_at": "2026-04-04T18:25:34Z",
         "user": {
-          "login": "thehalfmann"
+          "login": "chucks-issue-tracker[bot]"
         },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-15T23:09:28.626928Z"
-  },
-  "Chuckleberry-Finn/NoDamageFromTrees": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:28.848564Z"
-  },
-  "Chuckleberry-Finn/Bard-To-The-Bone": {
-    "issues": [
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
       {
-        "number": 1,
-        "title": "TODO: Art, Models, Animations, Sounds, and more",
-        "html_url": "https://github.com/Chuckleberry-Finn/Bard-To-The-Bone/issues/1",
-        "created_at": "2025-04-25T20:22:38Z",
+        "number": 62,
+        "title": "Wrong encoding UA Translation B41",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
+        "created_at": "2025-07-02T18:39:26Z",
         "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-15T23:09:29.122249Z"
-  },
-  "Chuckleberry-Finn/gameNight-covertNames": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:29.380753Z"
-  },
-  "Chuckleberry-Finn/pz-factionBanking": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:29.641510Z"
-  },
-  "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:29.863338Z"
-  },
-  "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Fix In-Hand Orientation For Some Weapons",
-        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
-        "created_at": "2021-06-04T12:04:56Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-15T23:09:30.159787Z"
-  },
-  "Chuckleberry-Finn/Night-Vision-Chucked": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:30.386785Z"
-  },
-  "Chuckleberry-Finn/Named-Literature": {
-    "issues": [],
-    "timestamp": "2026-08-15T23:09:30.602737Z"
-  },
-  "Chuckleberry-Finn/moddingAlertSystem": {
-    "issues": [
-      {
-        "number": 2,
-        "title": "[Bug] Error 2",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
-        "created_at": "2026-08-01T15:08:03Z",
-        "user": {
-          "login": "takuyakii15"
+          "login": "AlximikXD"
         },
         "labels": []
       },
       {
-        "number": 1,
-        "title": "[Bug] Simply Wont Restart",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
-        "created_at": "2026-04-22T14:50:56Z",
+        "number": 37,
+        "title": "BUG? Speak to Mutch \"HavyLoad\"",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
+        "created_at": "2022-01-28T11:58:09Z",
         "user": {
-          "login": "rhametic-dev"
+          "login": "duhnunes"
         },
         "labels": []
-      }
-    ],
-    "timestamp": "2026-08-15T23:09:30.896455Z"
-  },
-  "Chuckleberry-Finn/interactive-tailoring": {
-    "issues": [
+      },
       {
-        "number": 1,
-        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
-        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
-        "created_at": "2025-07-13T08:38:13Z",
+        "number": 34,
+        "title": "Problem in encoding (TR)",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
+        "created_at": "2021-11-09T10:19:06Z",
         "user": {
-          "login": "elislavkat"
+          "login": "Batur123"
         },
         "labels": []
+      },
+      {
+        "number": 31,
+        "title": "Idea: wimpering and forcefully shutting self up.",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/31",
+        "created_at": "2021-11-01T12:02:55Z",
+        "user": {
+          "login": "TiberianErin"
+        },
+        "labels": []
+      },
+      {
+        "number": 27,
+        "title": "Have players respond to clothing (item) damage",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
+        "created_at": "2021-06-11T17:54:43Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "title": "Idea : TTS",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
+        "created_at": "2021-03-14T12:26:52Z",
+        "user": {
+          "login": "Mewroh"
+        },
+        "labels": []
+      },
+      {
+        "number": 6,
+        "title": "Trait: Soft Spoken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
+        "created_at": "2021-02-15T16:49:32Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Add personality based speech",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
+        "created_at": "2021-02-14T21:24:44Z",
+        "user": {
+          "login": "matshou"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
       }
     ],
-    "timestamp": "2026-08-15T23:09:31.193820Z"
+    "timestamp": "2026-08-16T02:23:45.115201Z"
   }
 }
