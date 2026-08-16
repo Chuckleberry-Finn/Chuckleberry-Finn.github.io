@@ -1,28 +1,26 @@
 [
   {
-    "name": "Skill Recovery Journal",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal",
-    "banner": "https://images.steamusercontent.com/ugc/14380086584376552796/8391C9CC390A0FA349F1343BB1C03E3A5B397CC7/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=nI8_eijwkhs"
-    ],
-    "highlight": true,
-    "subs": 2758449,
+    "name": "Easy Config Chucked",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2529746725",
+    "repo_url": "https://github.com/Chuckleberry-Finn/EasyConfigChucked",
+    "banner": "https://images.steamusercontent.com/ugc/2309850777980786564/F2B3856AFCDF92497DA9AA75094739B9BEEC9656/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 1968831,
     "github": {
-      "openIssues": 2,
-      "stars": 40,
-      "forks": 36
+      "openIssues": 0,
+      "stars": 4,
+      "forks": 2
     }
   },
   {
-    "name": "errorMagnifier",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179",
-    "repo_url": "https://github.com/Chuckleberry-Finn/errorMagnifier",
-    "banner": "https://images.steamusercontent.com/ugc/2006946285955965520/F1B969816DF9BDB7EF43BDD2345BA1045BEA895F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Zone API Chucked",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3020685151",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zone-api-chucked",
+    "banner": "https://images.steamusercontent.com/ugc/2052005325260678921/31414A1C0F18D2B625C2A7F9882C7C70116CF4E4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
-    "highlight": true,
-    "subs": 2431515,
+    "highlight": false,
+    "subs": 46159,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -30,83 +28,27 @@
     }
   },
   {
-    "name": "[B41] Expanded Helicopter Events",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2458631365",
-    "repo_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents",
-    "banner": "https://images.steamusercontent.com/ugc/13646860439632559513/57112E1D3441586768CECC75B31676F07E2C5EB8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "subs": 1321892,
-    "github": {
-      "openIssues": 22,
-      "stars": 31,
-      "forks": 23
-    }
-  },
-  {
-    "name": "You drive, I sleep",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2830570280",
-    "repo_url": "https://github.com/Chuckleberry-Finn/You-Drive-I-Sleep",
-    "banner": "https://images.steamusercontent.com/ugc/1861691636112312841/533F7686E786B637AD0E92965F87BA061BE297D8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "subs": 409624,
-    "github": {
-      "openIssues": 0,
-      "stars": 2,
-      "forks": 1
-    }
-  },
-  {
-    "name": "Game Night",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3058279917",
-    "repo_url": "https://github.com/Chuckleberry-Finn/game-night",
-    "banner": "https://images.steamusercontent.com/ugc/2145461285230376569/AA3CF1A8351673341BA002CE10B1D52FE2C3124C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": true,
-    "subs": 149709,
-    "github": {
-      "openIssues": 13,
-      "stars": 5,
-      "forks": 3
-    }
-  },
-  {
-    "name": "Tuck and Roll",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832401837",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Tuck-and-Roll",
-    "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "ZombieZones",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3098029974",
+    "repo_url": "https://github.com/Chuckleberry-Finn/ZombieZones",
+    "banner": "https://images.steamusercontent.com/ugc/2309845613228087388/5A6E1A5C64483A8233E67C2EC8E40414A52B8AD6/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 33061,
+    "subs": 39870,
     "github": {
-      "openIssues": 0,
-      "stars": 2,
-      "forks": 1
-    }
-  },
-  {
-    "name": "Game Night: Dominos",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3120162128",
-    "repo_url": "https://github.com/Chuckleberry-Finn/gameNightDominos",
-    "banner": "https://images.steamusercontent.com/ugc/2308722341792467910/82FCC838F60CD883CA6E4731C3581E2B43023A2F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 19781,
-    "github": {
-      "openIssues": 0,
+      "openIssues": 1,
       "stars": 0,
-      "forks": 1
+      "forks": 0
     }
   },
   {
-    "name": "Game Night: One-Bullet Game",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3305459666",
-    "repo_url": "https://github.com/Chuckleberry-Finn/GameNight-OneBulletGame",
-    "banner": "https://images.steamusercontent.com/ugc/2512531148919733617/3A724C142E9C1A20FB337ADACE1CB0244AFFDEDD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Zomboid Paper API",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3155647374",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zomboidPaper",
+    "banner": "https://images.steamusercontent.com/ugc/2533907488990539423/F760F5AB72DDB51B5AA8A54CBFF9D92DA4C461DC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 17980,
+    "subs": 33351,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -114,13 +56,13 @@
     }
   },
   {
-    "name": "Game Night: D&D",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3155647614",
-    "repo_url": "https://github.com/Chuckleberry-Finn/gameNightDND",
-    "banner": "https://images.steamusercontent.com/ugc/2372903075419608712/269EC1B0406B407ABF3E458E0645B241AF6ECF3C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Zombies Trip Over Zombies",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013923320",
+    "repo_url": "https://github.com/Chuckleberry-Finn/zombies-trip-over-zombies",
+    "banner": "https://images.steamusercontent.com/ugc/18249310082115717911/C8679F4BAF2074DCDDBFBE8D49DC6DB656BB35A9/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 17347,
+    "subs": 30009,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -128,114 +70,13 @@
     }
   },
   {
-    "name": "Game Night: Whodunit",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3296804841",
-    "repo_url": "https://github.com/Chuckleberry-Finn/gameNight-Whodunit",
-    "banner": "https://images.steamusercontent.com/ugc/2512529879888376348/00FA7B92F25C4E7E3208DC7D814A6E5C1C9E2D69/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "name": "Game Night: Zombies Drop Games",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3281767964",
+    "repo_url": "https://github.com/Chuckleberry-Finn/ZombiesDropGames",
+    "banner": "https://images.steamusercontent.com/ugc/2547430415543462780/F616FD889BD0BA84332C4A2C7171B4523DF6E9C2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 8813,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Game Night: Cyberpunk 2020",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3161992240",
-    "repo_url": "https://github.com/Chuckleberry-Finn/gameNightCyberPunk",
-    "banner": "https://images.steamusercontent.com/ugc/2533907488983612331/BA28B22383CFE1F2D22344886F55B31CFF649E03/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 7515,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Game Night: Spiffo's Trading Cards",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3271303304",
-    "repo_url": "https://github.com/Chuckleberry-Finn/game-night-spiffoTC",
-    "banner": "https://images.steamusercontent.com/ugc/2491134695819138510/C793FB05D6A42F5B1F7BC00AE38D3016E831CB76/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 6900,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Game Night: Yu-Spiff-Oh",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3350997307",
-    "repo_url": "https://github.com/Chuckleberry-Finn/game-night-Yu-Spiff-oh",
-    "banner": "https://images.steamusercontent.com/ugc/2493397190882990463/50C9E164E4A0A685A6ADE69F88DD72703FF09223/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 5706,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Last Stand Together",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
-    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
-    "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=W9Rju0MTJuQ",
-      "https://www.youtube.com/watch?v=Wt_a9fv_0N0"
-    ],
-    "highlight": true,
-    "subs": 5404,
-    "github": {
-      "openIssues": 0,
-      "stars": 1,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Game Night: Covert Names",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3296804646",
-    "repo_url": "https://github.com/Chuckleberry-Finn/gameNight-covertNames",
-    "banner": "https://images.steamusercontent.com/ugc/2512529879888375410/875A7EE973CDD40A281226E1FB3F513A6BF2DDEC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 3962,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Roll-Command-Plus",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3003095456",
-    "repo_url": "https://github.com/Chuckleberry-Finn/roll-command-plus",
-    "banner": "https://images.steamusercontent.com/ugc/2052001304437082129/AFD12138A05EE37617A2B90201EF994DD05DE2BB/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 1080,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Ain't Trippin' Just Sprintin'",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2973043640",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Aint-Trippin-Just-Sprintin",
-    "banner": "https://images.steamusercontent.com/ugc/2053126773768868475/FA93DA8E062B9B1A103696E1BA5D9751DDE663B4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 330,
+    "subs": 6070,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -383,6 +224,84 @@
       "openIssues": 11,
       "stars": 14,
       "forks": 24
+    }
+  },
+  {
+    "name": "Skill-Recovery-Journal",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal",
+    "banner": "https://images.steamusercontent.com/ugc/14380086584376552796/8391C9CC390A0FA349F1343BB1C03E3A5B397CC7/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "github": {
+      "openIssues": 2,
+      "stars": 40,
+      "forks": 36
+    }
+  },
+  {
+    "name": "PZLastStandTogether",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
+    "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 0
+    }
+  },
+  {
+    "name": "ExpandedHelicopterEvents",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2458631365",
+    "repo_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents",
+    "banner": "https://images.steamusercontent.com/ugc/13646860439632559513/57112E1D3441586768CECC75B31676F07E2C5EB8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "github": {
+      "openIssues": 22,
+      "stars": 31,
+      "forks": 23
+    }
+  },
+  {
+    "name": "game-night",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3058279917",
+    "repo_url": "https://github.com/Chuckleberry-Finn/game-night",
+    "banner": "https://images.steamusercontent.com/ugc/2145461285230376569/AA3CF1A8351673341BA002CE10B1D52FE2C3124C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "github": {
+      "openIssues": 13,
+      "stars": 5,
+      "forks": 3
+    }
+  },
+  {
+    "name": "errorMagnifier",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179",
+    "repo_url": "https://github.com/Chuckleberry-Finn/errorMagnifier",
+    "banner": "https://images.steamusercontent.com/ugc/2006946285955965520/F1B969816DF9BDB7EF43BDD2345BA1045BEA895F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 1
+    }
+  },
+  {
+    "name": "You-Drive-I-Sleep",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2830570280",
+    "repo_url": "https://github.com/Chuckleberry-Finn/You-Drive-I-Sleep",
+    "banner": "https://images.steamusercontent.com/ugc/1861691636112312841/533F7686E786B637AD0E92965F87BA061BE297D8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": true,
+    "github": {
+      "openIssues": 0,
+      "stars": 2,
+      "forks": 1
     }
   }
 ]
