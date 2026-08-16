@@ -1,303 +1,7 @@
 {
-  "Chuckleberry-Finn/Skill-Recovery-Journal": {
-    "issues": [
-      {
-        "number": 137,
-        "title": "[Bug] TV/VHS XP duplication in Multiplayer",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/137",
-        "created_at": "2026-08-15T06:39:35Z",
-        "user": {
-          "login": "EeveesEyes"
-        },
-        "labels": []
-      },
-      {
-        "number": 136,
-        "title": "[Bug] Recipes not appearing in crafting menu (42.20)",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/136",
-        "created_at": "2026-08-12T20:23:05Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 135,
-        "title": "[Bug] Infinite book reading",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/135",
-        "created_at": "2026-08-02T19:34:32Z",
-        "user": {
-          "login": "SANTOrick"
-        },
-        "labels": []
-      },
-      {
-        "number": 134,
-        "title": "[Bug] Strength/Fitness Bonuses From Occupations/Traits being Transcribed",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/134",
-        "created_at": "2026-07-27T05:38:55Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 133,
-        "title": "[Bug] [MP] XP Journal being marked as complete before refunding all skills.",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/133",
-        "created_at": "2026-06-25T15:53:41Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 131,
-        "title": "[Bug] skill journal does not give skills",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/131",
-        "created_at": "2026-06-20T05:45:42Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 130,
-        "title": "[Bug] strength and fitness exp not correctly recorded",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/130",
-        "created_at": "2026-06-13T02:55:21Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 129,
-        "title": "[Bug] not getting all exp recorded",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/129",
-        "created_at": "2026-06-02T19:58:34Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 128,
-        "title": "[Bug] When trying to write to the journal, it gives an error related to recipes.",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/128",
-        "created_at": "2026-05-11T01:33:13Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 120,
-        "title": "[Feature] saved modData should not be an exact override",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
-        "created_at": "2026-02-21T15:52:20Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-08-16T21:10:03.044639Z"
-  },
-  "Chuckleberry-Finn/PZLastStandTogether": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "[Bug] Not working in MP",
-        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
-        "created_at": "2026-06-09T12:01:15Z",
-        "user": {
-          "login": "thehalfmann"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-16T21:10:03.455027Z"
-  },
-  "TEHE-Studios/ExpandedHelicopterEvents": {
-    "issues": [
-      {
-        "number": 419,
-        "title": "Item Issues",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/419",
-        "created_at": "2026-08-13T19:01:40Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 417,
-        "title": "Helicopter Cow Attack Error",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/417",
-        "created_at": "2026-08-09T09:41:35Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 414,
-        "title": "Helicopter Attacks No Longer Damaging Zombies",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/414",
-        "created_at": "2026-08-03T09:23:01Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 413,
-        "title": "Adding Items to the Loot",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
-        "created_at": "2026-06-03T04:57:33Z",
-        "user": {
-          "login": "Bayrain"
-        },
-        "labels": []
-      },
-      {
-        "number": 412,
-        "title": "[Bug] Mod won't show up on Modlist",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
-        "created_at": "2026-05-13T11:51:53Z",
-        "user": {
-          "login": "PleaseHelpMeILuvZomboid"
-        },
-        "labels": []
-      },
-      {
-        "number": 411,
-        "title": "Mod does not work on multiplayer at all",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
-        "created_at": "2026-05-01T16:38:46Z",
-        "user": {
-          "login": "ChucklingWizzard"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 407,
-        "title": "Abandoned Heli",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
-        "created_at": "2026-02-02T11:00:15Z",
-        "user": {
-          "login": "GrayWizard26"
-        },
-        "labels": [
-          {
-            "name": "idea",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 406,
-        "title": "Like 50 jets spawning at once",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
-        "created_at": "2026-02-01T02:20:36Z",
-        "user": {
-          "login": "meowapocalypse"
-        },
-        "labels": []
-      },
-      {
-        "number": 404,
-        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
-        "created_at": "2025-12-14T06:52:51Z",
-        "user": {
-          "login": "boltyboi"
-        },
-        "labels": [
-          {
-            "name": "idea",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 402,
-        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
-        "created_at": "2025-11-07T17:46:56Z",
-        "user": {
-          "login": "marinara2245"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-08-16T21:10:03.911366Z"
+  "Chuckleberry-Finn/zone-api-chucked": {
+    "issues": [],
+    "timestamp": "2026-08-16T23:08:10.564176Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -452,15 +156,315 @@
         ]
       }
     ],
-    "timestamp": "2026-08-16T21:10:04.363492Z"
+    "timestamp": "2026-08-16T23:08:10.914802Z"
+  },
+  "Chuckleberry-Finn/Skill-Recovery-Journal": {
+    "issues": [
+      {
+        "number": 137,
+        "title": "[Bug] TV/VHS XP duplication in Multiplayer",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/137",
+        "created_at": "2026-08-15T06:39:35Z",
+        "user": {
+          "login": "EeveesEyes"
+        },
+        "labels": []
+      },
+      {
+        "number": 136,
+        "title": "[Bug] Recipes not appearing in crafting menu (42.20)",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/136",
+        "created_at": "2026-08-12T20:23:05Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 135,
+        "title": "[Bug] Infinite book reading",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/135",
+        "created_at": "2026-08-02T19:34:32Z",
+        "user": {
+          "login": "SANTOrick"
+        },
+        "labels": []
+      },
+      {
+        "number": 134,
+        "title": "[Bug] Strength/Fitness Bonuses From Occupations/Traits being Transcribed",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/134",
+        "created_at": "2026-07-27T05:38:55Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 133,
+        "title": "[Bug] [MP] XP Journal being marked as complete before refunding all skills.",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/133",
+        "created_at": "2026-06-25T15:53:41Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 131,
+        "title": "[Bug] skill journal does not give skills",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/131",
+        "created_at": "2026-06-20T05:45:42Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 130,
+        "title": "[Bug] strength and fitness exp not correctly recorded",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/130",
+        "created_at": "2026-06-13T02:55:21Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 129,
+        "title": "[Bug] not getting all exp recorded",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/129",
+        "created_at": "2026-06-02T19:58:34Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 128,
+        "title": "[Bug] When trying to write to the journal, it gives an error related to recipes.",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/128",
+        "created_at": "2026-05-11T01:33:13Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 120,
+        "title": "[Feature] saved modData should not be an exact override",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
+        "created_at": "2026-02-21T15:52:20Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-08-16T23:08:11.288170Z"
+  },
+  "Chuckleberry-Finn/PZLastStandTogether": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "[Bug] Not working in MP",
+        "html_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether/issues/1",
+        "created_at": "2026-06-09T12:01:15Z",
+        "user": {
+          "login": "thehalfmann"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T23:08:11.589935Z"
+  },
+  "TEHE-Studios/ExpandedHelicopterEvents": {
+    "issues": [
+      {
+        "number": 419,
+        "title": "Item Issues",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/419",
+        "created_at": "2026-08-13T19:01:40Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 417,
+        "title": "Helicopter Cow Attack Error",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/417",
+        "created_at": "2026-08-09T09:41:35Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 414,
+        "title": "Helicopter Attacks No Longer Damaging Zombies",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/414",
+        "created_at": "2026-08-03T09:23:01Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 413,
+        "title": "Adding Items to the Loot",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
+        "created_at": "2026-06-03T04:57:33Z",
+        "user": {
+          "login": "Bayrain"
+        },
+        "labels": []
+      },
+      {
+        "number": 412,
+        "title": "[Bug] Mod won't show up on Modlist",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
+        "created_at": "2026-05-13T11:51:53Z",
+        "user": {
+          "login": "PleaseHelpMeILuvZomboid"
+        },
+        "labels": []
+      },
+      {
+        "number": 411,
+        "title": "Mod does not work on multiplayer at all",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
+        "created_at": "2026-05-01T16:38:46Z",
+        "user": {
+          "login": "ChucklingWizzard"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 407,
+        "title": "Abandoned Heli",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
+        "created_at": "2026-02-02T11:00:15Z",
+        "user": {
+          "login": "GrayWizard26"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 406,
+        "title": "Like 50 jets spawning at once",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
+        "created_at": "2026-02-01T02:20:36Z",
+        "user": {
+          "login": "meowapocalypse"
+        },
+        "labels": []
+      },
+      {
+        "number": 404,
+        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
+        "created_at": "2025-12-14T06:52:51Z",
+        "user": {
+          "login": "boltyboi"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 402,
+        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
+        "created_at": "2025-11-07T17:46:56Z",
+        "user": {
+          "login": "marinara2245"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-08-16T23:08:12.029289Z"
   },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-08-16T21:10:04.667590Z"
+    "timestamp": "2026-08-16T23:08:12.303146Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-08-16T21:10:05.057788Z"
+    "timestamp": "2026-08-16T23:08:12.555972Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
     "issues": [
@@ -475,15 +479,15 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T21:10:05.390141Z"
+    "timestamp": "2026-08-16T23:08:12.900422Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [],
-    "timestamp": "2026-08-16T21:10:05.680499Z"
+    "timestamp": "2026-08-16T23:08:13.169542Z"
   },
   "Chuckleberry-Finn/Named-Literature": {
     "issues": [],
-    "timestamp": "2026-08-16T21:10:05.983197Z"
+    "timestamp": "2026-08-16T23:08:13.466220Z"
   },
   "Chuckleberry-Finn/moddingAlertSystem": {
     "issues": [
@@ -508,7 +512,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T21:10:06.358176Z"
+    "timestamp": "2026-08-16T23:08:13.796323Z"
   },
   "Chuckleberry-Finn/interactive-tailoring": {
     "issues": [
@@ -523,7 +527,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T21:10:06.744114Z"
+    "timestamp": "2026-08-16T23:08:14.179946Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -538,7 +542,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T21:10:07.065530Z"
+    "timestamp": "2026-08-16T23:08:14.501631Z"
   },
   "Chuckleberry-Finn/SwapIt": {
     "issues": [
@@ -568,7 +572,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T21:10:07.461575Z"
+    "timestamp": "2026-08-16T23:08:14.831569Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -583,11 +587,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T21:10:07.922603Z"
+    "timestamp": "2026-08-16T23:08:15.137536Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-08-16T21:10:08.235285Z"
+    "timestamp": "2026-08-16T23:08:15.434118Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -702,7 +706,7 @@
         ]
       }
     ],
-    "timestamp": "2026-08-16T21:10:08.614493Z"
+    "timestamp": "2026-08-16T23:08:15.840320Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
     "issues": [
@@ -817,6 +821,6 @@
         ]
       }
     ],
-    "timestamp": "2026-08-16T21:10:08.997742Z"
+    "timestamp": "2026-08-16T23:08:16.226101Z"
   }
 }
