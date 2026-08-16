@@ -1,59 +1,4 @@
 {
-  "Chuckleberry-Finn/RebalancedCalorieBurning": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:40.298538Z"
-  },
-  "Chuckleberry-Finn/Display-Roles-In-Chat": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:40.571029Z"
-  },
-  "Chuckleberry-Finn/Tuck-and-Roll": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:40.858062Z"
-  },
-  "Chuckleberry-Finn/gameNightDominos": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:41.107344Z"
-  },
-  "Chuckleberry-Finn/gameNightDND": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:41.374637Z"
-  },
-  "Chuckleberry-Finn/gameNight-Whodunit": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:41.643592Z"
-  },
-  "Chuckleberry-Finn/Carjacking": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:41.873412Z"
-  },
-  "Chuckleberry-Finn/NoDamageFromTrees": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:42.142429Z"
-  },
-  "Chuckleberry-Finn/pz-factionBanking": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:42.375423Z"
-  },
-  "Chuckleberry-Finn/proximity-invites": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Invite Distance",
-        "html_url": "https://github.com/Chuckleberry-Finn/proximity-invites/issues/1",
-        "created_at": "2024-12-31T00:29:47Z",
-        "user": {
-          "login": "RegulaPlayer"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-16T03:46:42.689111Z"
-  },
-  "Chuckleberry-Finn/roll-command-plus": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:42.939272Z"
-  },
   "Chuckleberry-Finn/Skill-Recovery-Journal": {
     "issues": [
       {
@@ -197,300 +142,7 @@
         ]
       }
     ],
-    "timestamp": "2026-08-16T03:46:43.272826Z"
-  },
-  "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Fix In-Hand Orientation For Some Weapons",
-        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
-        "created_at": "2021-06-04T12:04:56Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-16T03:46:43.546161Z"
-  },
-  "Chuckleberry-Finn/Night-Vision-Chucked": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:43.785567Z"
-  },
-  "Chuckleberry-Finn/Named-Literature": {
-    "issues": [],
-    "timestamp": "2026-08-16T03:46:44.046317Z"
-  },
-  "Chuckleberry-Finn/moddingAlertSystem": {
-    "issues": [
-      {
-        "number": 2,
-        "title": "[Bug] Error 2",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
-        "created_at": "2026-08-01T15:08:03Z",
-        "user": {
-          "login": "takuyakii15"
-        },
-        "labels": []
-      },
-      {
-        "number": 1,
-        "title": "[Bug] Simply Wont Restart",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
-        "created_at": "2026-04-22T14:50:56Z",
-        "user": {
-          "login": "rhametic-dev"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-16T03:46:44.342614Z"
-  },
-  "Chuckleberry-Finn/interactive-tailoring": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
-        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
-        "created_at": "2025-07-13T08:38:13Z",
-        "user": {
-          "login": "elislavkat"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-08-16T03:46:44.651979Z"
-  },
-  "Chuckleberry-Finn/pz-shops": {
-    "issues": [
-      {
-        "number": 62,
-        "title": "[Bug] Shops don't save after restart",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/62",
-        "created_at": "2026-07-16T10:44:44Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 61,
-        "title": "[Bug] zombie dropping money",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/61",
-        "created_at": "2026-05-24T21:25:45Z",
-        "user": {
-          "login": "victhetick"
-        },
-        "labels": []
-      },
-      {
-        "number": 60,
-        "title": "Sort and filtering items",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/60",
-        "created_at": "2025-10-25T03:48:39Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      },
-      {
-        "number": 59,
-        "title": "Ui issue with wallets, store fund issue with disabled wallet, faction banking outdated",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/59",
-        "created_at": "2025-10-25T03:48:11Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      },
-      {
-        "number": 58,
-        "title": "Sandbox option to toggle markers",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/58",
-        "created_at": "2025-10-25T03:46:38Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      },
-      {
-        "number": 57,
-        "title": "Inventory Listing is offset when Category or ItemTypes included",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/57",
-        "created_at": "2025-09-03T12:32:12Z",
-        "user": {
-          "login": "jonathanjacobs"
-        },
-        "labels": []
-      },
-      {
-        "number": 56,
-        "title": "Error when buying VHS tapes",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/56",
-        "created_at": "2025-06-11T21:13:21Z",
-        "user": {
-          "login": "Stephocke"
-        },
-        "labels": []
-      },
-      {
-        "number": 49,
-        "title": "CS Localization",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/49",
-        "created_at": "2024-04-16T06:36:44Z",
-        "user": {
-          "login": "tomek852"
-        },
-        "labels": []
-      },
-      {
-        "number": 41,
-        "title": "Car Shop",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/41",
-        "created_at": "2023-12-29T21:28:41Z",
-        "user": {
-          "login": "PgRusher"
-        },
-        "labels": []
-      },
-      {
-        "number": 22,
-        "title": "Auction House functionality?",
-        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/22",
-        "created_at": "2023-08-29T00:31:27Z",
-        "user": {
-          "login": "jonathanjacobs"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-08-16T03:46:45.057065Z"
-  },
-  "Chuckleberry-Finn/zomboid-cnd-speech": {
-    "issues": [
-      {
-        "number": 63,
-        "title": "[Bug] bug or broken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
-        "created_at": "2026-04-04T18:25:34Z",
-        "user": {
-          "login": "chucks-issue-tracker[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 62,
-        "title": "Wrong encoding UA Translation B41",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
-        "created_at": "2025-07-02T18:39:26Z",
-        "user": {
-          "login": "AlximikXD"
-        },
-        "labels": []
-      },
-      {
-        "number": 37,
-        "title": "BUG? Speak to Mutch \"HavyLoad\"",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
-        "created_at": "2022-01-28T11:58:09Z",
-        "user": {
-          "login": "duhnunes"
-        },
-        "labels": []
-      },
-      {
-        "number": 34,
-        "title": "Problem in encoding (TR)",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
-        "created_at": "2021-11-09T10:19:06Z",
-        "user": {
-          "login": "Batur123"
-        },
-        "labels": []
-      },
-      {
-        "number": 31,
-        "title": "Idea: wimpering and forcefully shutting self up.",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/31",
-        "created_at": "2021-11-01T12:02:55Z",
-        "user": {
-          "login": "TiberianErin"
-        },
-        "labels": []
-      },
-      {
-        "number": 27,
-        "title": "Have players respond to clothing (item) damage",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
-        "created_at": "2021-06-11T17:54:43Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 18,
-        "title": "Idea : TTS",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
-        "created_at": "2021-03-14T12:26:52Z",
-        "user": {
-          "login": "Mewroh"
-        },
-        "labels": []
-      },
-      {
-        "number": 6,
-        "title": "Trait: Soft Spoken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
-        "created_at": "2021-02-15T16:49:32Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 5,
-        "title": "Add personality based speech",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
-        "created_at": "2021-02-14T21:24:44Z",
-        "user": {
-          "login": "matshou"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-08-16T03:46:45.467882Z"
+    "timestamp": "2026-08-16T05:22:25.581629Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
     "issues": [
@@ -505,7 +157,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T03:46:45.781197Z"
+    "timestamp": "2026-08-16T05:22:25.936130Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
     "issues": [
@@ -645,7 +297,7 @@
         ]
       }
     ],
-    "timestamp": "2026-08-16T03:46:46.217615Z"
+    "timestamp": "2026-08-16T05:22:26.374276Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -800,15 +452,78 @@
         ]
       }
     ],
-    "timestamp": "2026-08-16T03:46:46.593162Z"
+    "timestamp": "2026-08-16T05:22:26.754370Z"
   },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-08-16T03:46:46.836083Z"
+    "timestamp": "2026-08-16T05:22:27.063672Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-08-16T03:46:47.043777Z"
+    "timestamp": "2026-08-16T05:22:27.371761Z"
+  },
+  "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Fix In-Hand Orientation For Some Weapons",
+        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
+        "created_at": "2021-06-04T12:04:56Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T05:22:27.814597Z"
+  },
+  "Chuckleberry-Finn/Night-Vision-Chucked": {
+    "issues": [],
+    "timestamp": "2026-08-16T05:22:28.114330Z"
+  },
+  "Chuckleberry-Finn/Named-Literature": {
+    "issues": [],
+    "timestamp": "2026-08-16T05:22:28.489917Z"
+  },
+  "Chuckleberry-Finn/moddingAlertSystem": {
+    "issues": [
+      {
+        "number": 2,
+        "title": "[Bug] Error 2",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
+        "created_at": "2026-08-01T15:08:03Z",
+        "user": {
+          "login": "takuyakii15"
+        },
+        "labels": []
+      },
+      {
+        "number": 1,
+        "title": "[Bug] Simply Wont Restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
+        "created_at": "2026-04-22T14:50:56Z",
+        "user": {
+          "login": "rhametic-dev"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T05:22:28.863566Z"
+  },
+  "Chuckleberry-Finn/interactive-tailoring": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
+        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
+        "created_at": "2025-07-13T08:38:13Z",
+        "user": {
+          "login": "elislavkat"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-08-16T05:22:29.272448Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -823,7 +538,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T03:46:47.293395Z"
+    "timestamp": "2026-08-16T05:22:29.583581Z"
   },
   "Chuckleberry-Finn/SwapIt": {
     "issues": [
@@ -853,7 +568,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T03:46:47.601897Z"
+    "timestamp": "2026-08-16T05:22:29.990823Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -868,10 +583,240 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-08-16T03:46:47.949205Z"
+    "timestamp": "2026-08-16T05:22:30.351470Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-08-16T03:46:48.206609Z"
+    "timestamp": "2026-08-16T05:22:30.651547Z"
+  },
+  "Chuckleberry-Finn/pz-shops": {
+    "issues": [
+      {
+        "number": 62,
+        "title": "[Bug] Shops don't save after restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/62",
+        "created_at": "2026-07-16T10:44:44Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 61,
+        "title": "[Bug] zombie dropping money",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/61",
+        "created_at": "2026-05-24T21:25:45Z",
+        "user": {
+          "login": "victhetick"
+        },
+        "labels": []
+      },
+      {
+        "number": 60,
+        "title": "Sort and filtering items",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/60",
+        "created_at": "2025-10-25T03:48:39Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      },
+      {
+        "number": 59,
+        "title": "Ui issue with wallets, store fund issue with disabled wallet, faction banking outdated",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/59",
+        "created_at": "2025-10-25T03:48:11Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      },
+      {
+        "number": 58,
+        "title": "Sandbox option to toggle markers",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/58",
+        "created_at": "2025-10-25T03:46:38Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      },
+      {
+        "number": 57,
+        "title": "Inventory Listing is offset when Category or ItemTypes included",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/57",
+        "created_at": "2025-09-03T12:32:12Z",
+        "user": {
+          "login": "jonathanjacobs"
+        },
+        "labels": []
+      },
+      {
+        "number": 56,
+        "title": "Error when buying VHS tapes",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/56",
+        "created_at": "2025-06-11T21:13:21Z",
+        "user": {
+          "login": "Stephocke"
+        },
+        "labels": []
+      },
+      {
+        "number": 49,
+        "title": "CS Localization",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/49",
+        "created_at": "2024-04-16T06:36:44Z",
+        "user": {
+          "login": "tomek852"
+        },
+        "labels": []
+      },
+      {
+        "number": 41,
+        "title": "Car Shop",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/41",
+        "created_at": "2023-12-29T21:28:41Z",
+        "user": {
+          "login": "PgRusher"
+        },
+        "labels": []
+      },
+      {
+        "number": 22,
+        "title": "Auction House functionality?",
+        "html_url": "https://github.com/Chuckleberry-Finn/pz-shops/issues/22",
+        "created_at": "2023-08-29T00:31:27Z",
+        "user": {
+          "login": "jonathanjacobs"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-08-16T05:22:31.037209Z"
+  },
+  "Chuckleberry-Finn/zomboid-cnd-speech": {
+    "issues": [
+      {
+        "number": 63,
+        "title": "[Bug] bug or broken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
+        "created_at": "2026-04-04T18:25:34Z",
+        "user": {
+          "login": "chucks-issue-tracker[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 62,
+        "title": "Wrong encoding UA Translation B41",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
+        "created_at": "2025-07-02T18:39:26Z",
+        "user": {
+          "login": "AlximikXD"
+        },
+        "labels": []
+      },
+      {
+        "number": 37,
+        "title": "BUG? Speak to Mutch \"HavyLoad\"",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
+        "created_at": "2022-01-28T11:58:09Z",
+        "user": {
+          "login": "duhnunes"
+        },
+        "labels": []
+      },
+      {
+        "number": 34,
+        "title": "Problem in encoding (TR)",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
+        "created_at": "2021-11-09T10:19:06Z",
+        "user": {
+          "login": "Batur123"
+        },
+        "labels": []
+      },
+      {
+        "number": 31,
+        "title": "Idea: wimpering and forcefully shutting self up.",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/31",
+        "created_at": "2021-11-01T12:02:55Z",
+        "user": {
+          "login": "TiberianErin"
+        },
+        "labels": []
+      },
+      {
+        "number": 27,
+        "title": "Have players respond to clothing (item) damage",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
+        "created_at": "2021-06-11T17:54:43Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "title": "Idea : TTS",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
+        "created_at": "2021-03-14T12:26:52Z",
+        "user": {
+          "login": "Mewroh"
+        },
+        "labels": []
+      },
+      {
+        "number": 6,
+        "title": "Trait: Soft Spoken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
+        "created_at": "2021-02-15T16:49:32Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Add personality based speech",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
+        "created_at": "2021-02-14T21:24:44Z",
+        "user": {
+          "login": "matshou"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-08-16T05:22:31.486521Z"
   }
 }
