@@ -1,13 +1,12 @@
 {
   "pending": [
-    "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech",
+    "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
     "https://github.com/Chuckleberry-Finn/proximity-invites",
+    "https://github.com/Chuckleberry-Finn/pz-factionBanking",
+    "https://github.com/Chuckleberry-Finn/NoDamageFromTrees",
     "https://github.com/Chuckleberry-Finn/AutoEat",
     "https://github.com/Chuckleberry-Finn/big-bad-beavers-berserk",
-    "https://github.com/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier",
-    "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
-    "https://github.com/Chuckleberry-Finn/pz-factionBanking",
-    "https://github.com/Chuckleberry-Finn/NoDamageFromTrees"
+    "https://github.com/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier"
   ],
-  "timestamp": "2026-08-20T03:43:29.861982Z"
+  "timestamp": "2026-08-20T05:27:08.125637Z"
 }
