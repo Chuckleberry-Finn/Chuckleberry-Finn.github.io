@@ -4,11 +4,9 @@
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437",
     "repo_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal",
     "banner": "https://images.steamusercontent.com/ugc/14380086584376552796/8391C9CC390A0FA349F1343BB1C03E3A5B397CC7/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=nI8_eijwkhs"
-    ],
+    "videos": [],
     "highlight": true,
-    "subs": 2771025,
+    "subs": 2771127,
     "github": {
       "openIssues": 2,
       "stars": 40,
@@ -22,7 +20,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2006946285955965520/F1B969816DF9BDB7EF43BDD2345BA1045BEA895F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 2486360,
+    "subs": 2486969,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -30,30 +28,13 @@
     }
   },
   {
-    "name": "Easy Config Chucked",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2529746725",
-    "repo_url": "https://github.com/Chuckleberry-Finn/EasyConfigChucked",
-    "banner": "https://images.steamusercontent.com/ugc/2309850777980786564/F2B3856AFCDF92497DA9AA75094739B9BEEC9656/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 1941374,
-    "github": {
-      "openIssues": 0,
-      "stars": 4,
-      "forks": 2
-    }
-  },
-  {
     "name": "Mod Update and Alert System",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3077900375",
     "repo_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem",
     "banner": "https://images.steamusercontent.com/ugc/24307035126317491/0578D28193C22EBCECD677A4253ACE6426BD842D/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=oTNDb6TEG-Q",
-      "https://www.youtube.com/watch?v=71Lr4EvoS0A"
-    ],
+    "videos": [],
     "highlight": true,
-    "subs": 1478160,
+    "subs": 1479014,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -67,7 +48,7 @@
     "banner": "https://images.steamusercontent.com/ugc/13646860439632559513/57112E1D3441586768CECC75B31676F07E2C5EB8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1300574,
+    "subs": 1300288,
     "github": {
       "openIssues": 22,
       "stars": 31,
@@ -81,7 +62,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1764816200834819970/142FBDDE34D5DEBFD6C4D914910ACD4F15399EE4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 1154554,
+    "subs": 1154540,
     "github": {
       "openIssues": 1,
       "stars": 4,
@@ -95,7 +76,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861691636112312841/533F7686E786B637AD0E92965F87BA061BE297D8/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 409470,
+    "subs": 409510,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -109,7 +90,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1921366611159145148/AC5B41FA2A2C33C059D93F24CA980E43EDDE48BA/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 392597,
+    "subs": 392526,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -123,7 +104,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1758065677814333406/0633DAD118CAF53A10331E00D973B2F22EA1B6A0/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 259997,
+    "subs": 259974,
     "github": {
       "openIssues": 11,
       "stars": 14,
@@ -137,7 +118,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2033973595274656190/CF275949E8F421EC80A5CF634139E25288C4F36F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 234537,
+    "subs": 234518,
     "github": {
       "openIssues": 1,
       "stars": 1,
@@ -151,7 +132,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2145461285230376569/AA3CF1A8351673341BA002CE10B1D52FE2C3124C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 149331,
+    "subs": 149334,
     "github": {
       "openIssues": 13,
       "stars": 5,
@@ -165,7 +146,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861691636111443323/447D1DE74A50805E16EBAADA2EF499505B931CA2/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 101158,
+    "subs": 101129,
     "github": {
       "openIssues": 0,
       "stars": 3,
@@ -179,7 +160,7 @@
     "banner": "https://images.steamusercontent.com/ugc/24304572099780612/05CEF6D21891CD07571D21F15656BA16D3033BBF/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 90883,
+    "subs": 90881,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -193,7 +174,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1768246627212185205/D5ADEC6150B8ABA2AAD3CAC8486E8BE3EA727415/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": true,
-    "subs": 63637,
+    "subs": 63626,
     "github": {
       "openIssues": 10,
       "stars": 3,
@@ -207,7 +188,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1751357494167700890/88AF0DB98E332AB7F16AA8DA242254164BD1CD9A/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 56131,
+    "subs": 56124,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -219,27 +200,11 @@
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3522680786",
     "repo_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring",
     "banner": "https://images.steamusercontent.com/ugc/15740638325387721115/65402CA3AE401663EDF8B7A072E3C5106C0CAF75/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=FlZOy0uUjR0"
-    ],
+    "videos": [],
     "highlight": true,
-    "subs": 46853,
+    "subs": 46940,
     "github": {
       "openIssues": 2,
-      "stars": 0,
-      "forks": 0
-    }
-  },
-  {
-    "name": "Display Roles In Chat",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2968026253",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Display-Roles-In-Chat",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "subs": 37764,
-    "github": {
-      "openIssues": 0,
       "stars": 0,
       "forks": 0
     }
@@ -251,7 +216,7 @@
     "banner": "https://images.steamusercontent.com/ugc/1861692057096074506/D2F9C5A8FD0DA70EE4855865E73AA02D39A8D7BD/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 32386,
+    "subs": 32380,
     "github": {
       "openIssues": 0,
       "stars": 2,
@@ -265,7 +230,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2460727253391088653/857BC2B75A843E978E54BE9D0CBADE33178D46A4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 29098,
+    "subs": 29109,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -279,7 +244,7 @@
     "banner": "https://images.steamusercontent.com/ugc/24308212284279713/2F3DFA7C03697A6A5D347108271ACF612FA9D035/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 24771,
+    "subs": 24764,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -293,7 +258,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2308722341792467910/82FCC838F60CD883CA6E4731C3581E2B43023A2F/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 19605,
+    "subs": 19599,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -309,7 +274,7 @@
       "https://www.youtube.com/watch?v=JfpBsauROfQ"
     ],
     "highlight": false,
-    "subs": 18024,
+    "subs": 18026,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -323,7 +288,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2372903075419608712/269EC1B0406B407ABF3E458E0645B241AF6ECF3C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 17229,
+    "subs": 17225,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -335,11 +300,9 @@
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3296804841",
     "repo_url": "https://github.com/Chuckleberry-Finn/gameNight-Whodunit",
     "banner": "https://images.steamusercontent.com/ugc/2512529879888376348/00FA7B92F25C4E7E3208DC7D814A6E5C1C9E2D69/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=hzeNp6pneh4"
-    ],
+    "videos": [],
     "highlight": false,
-    "subs": 9008,
+    "subs": 9005,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -353,7 +316,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2533907488983612331/BA28B22383CFE1F2D22344886F55B31CFF649E03/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 7444,
+    "subs": 7440,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -367,7 +330,21 @@
     "banner": "https://images.steamusercontent.com/ugc/2491134695819138510/C793FB05D6A42F5B1F7BC00AE38D3016E831CB76/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 6906,
+    "subs": 6902,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Big Bad Beaver's Berserk",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2954181035",
+    "repo_url": "https://github.com/Chuckleberry-Finn/big-bad-beavers-berserk",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 6503,
     "github": {
       "openIssues": 0,
       "stars": 0,
@@ -381,25 +358,11 @@
     "banner": "https://images.steamusercontent.com/ugc/2493397190882990463/50C9E164E4A0A685A6ADE69F88DD72703FF09223/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 5711,
+    "subs": 5706,
     "github": {
       "openIssues": 0,
       "stars": 0,
       "forks": 0
-    }
-  },
-  {
-    "name": "Carjacking",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2832564154",
-    "repo_url": "https://github.com/Chuckleberry-Finn/Carjacking",
-    "banner": "https://images.steamusercontent.com/ugc/1861692057097606619/BC9494D53DB71680D52DB2635C9D062053464C96/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [],
-    "highlight": false,
-    "subs": 5590,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 1
     }
   },
   {
@@ -407,29 +370,12 @@
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3534542229",
     "repo_url": "https://github.com/Chuckleberry-Finn/PZLastStandTogether",
     "banner": "https://images.steamusercontent.com/ugc/16266610305618195764/D30F244DD0155D56464682C7D425AC6B87091F34/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-    "videos": [
-      "https://www.youtube.com/watch?v=Wt_a9fv_0N0",
-      "https://www.youtube.com/watch?v=W9Rju0MTJuQ"
-    ],
+    "videos": [],
     "highlight": true,
-    "subs": 5371,
+    "subs": 5369,
     "github": {
       "openIssues": 0,
       "stars": 1,
-      "forks": 0
-    }
-  },
-  {
-    "name": "No Damage From Trees",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2972504692",
-    "repo_url": "https://github.com/Chuckleberry-Finn/NoDamageFromTrees",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "subs": 5122,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
       "forks": 0
     }
   },
@@ -448,31 +394,31 @@
     }
   },
   {
+    "name": "Auto Eat (Old)",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2365757229",
+    "repo_url": "https://github.com/Chuckleberry-Finn/AutoEat",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 3969,
+    "github": {
+      "openIssues": 0,
+      "stars": 3,
+      "forks": 1
+    }
+  },
+  {
     "name": "Game Night: Covert Names",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3296804646",
     "repo_url": "https://github.com/Chuckleberry-Finn/gameNight-covertNames",
     "banner": "https://images.steamusercontent.com/ugc/2512529879888375410/875A7EE973CDD40A281226E1FB3F513A6BF2DDEC/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 3955,
+    "subs": 3954,
     "github": {
       "openIssues": 0,
       "stars": 0,
       "forks": 0
-    }
-  },
-  {
-    "name": "Shops and Traders: Faction Banking",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2906926438",
-    "repo_url": "https://github.com/Chuckleberry-Finn/pz-factionBanking",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "subs": 3236,
-    "github": {
-      "openIssues": 0,
-      "stars": 0,
-      "forks": 1
     }
   },
   {
@@ -482,7 +428,7 @@
     "banner": "https://images.steamusercontent.com/ugc/2512530513864867928/62DFCAEDDC6C145FD504D91B682913B870C15F5C/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
     "videos": [],
     "highlight": false,
-    "subs": 3185,
+    "subs": 3182,
     "github": {
       "openIssues": 0,
       "stars": 1,
@@ -504,20 +450,6 @@
     }
   },
   {
-    "name": "Proximity Invitations",
-    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2959226140",
-    "repo_url": "https://github.com/Chuckleberry-Finn/proximity-invites",
-    "banner": "",
-    "videos": [],
-    "highlight": false,
-    "subs": 1477,
-    "github": {
-      "openIssues": 1,
-      "stars": 0,
-      "forks": 1
-    }
-  },
-  {
     "name": "Ain't Trippin' Just Sprintin'",
     "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2973043640",
     "repo_url": "https://github.com/Chuckleberry-Finn/Aint-Trippin-Just-Sprintin",
@@ -529,6 +461,34 @@
       "openIssues": 0,
       "stars": 0,
       "forks": 0
+    }
+  },
+  {
+    "name": "Dynamic-Weapon-Endurance-Modifier",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2970229240",
+    "repo_url": "https://github.com/Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier",
+    "banner": "",
+    "videos": [],
+    "highlight": false,
+    "subs": 243,
+    "github": {
+      "openIssues": 0,
+      "stars": 0,
+      "forks": 0
+    }
+  },
+  {
+    "name": "Container Lockout API",
+    "steam_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2909984178",
+    "repo_url": "https://github.com/Chuckleberry-Finn/containerLockout",
+    "banner": "https://images.steamusercontent.com/ugc/5099795232532326102/832EEF359D4CE2E12FB43FE317B3DB1911B249E4/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+    "videos": [],
+    "highlight": false,
+    "subs": 120,
+    "github": {
+      "openIssues": 0,
+      "stars": 1,
+      "forks": 1
     }
   }
 ]
