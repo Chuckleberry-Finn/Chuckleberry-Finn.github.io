@@ -490,7 +490,9 @@ async function handleTranslationPR(request, env, cors) {
     return json({
       error: 'Could not open pull request',
       message: isPermissionIssue
-        ? `The translation bot isn't installed on ${owner}/${repo} (or lacks write access). Ask the repo owner to install it, or use the Download option instead.`
+        ? `The translation bot can't access ${owner}/${repo} for this call. If you've already granted it PR read/write, ` +
+          `double-check the App's "Repository access" list (not just its permissions) includes this repo — ` +
+          `https://github.com/settings/installations. Underlying error: ${err.message}`
         : err.message,
     }, 502, cors);
   }
