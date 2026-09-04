@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Dust particles -->
   <div class="dust-container">
     <div class="dust"></div>
     <div class="dust"></div>
@@ -19,7 +18,6 @@
   </div>
 
   <div class="page">
-    <!-- Top bar -->
     <div class="topbar">
       <div class="topbar-content">
         <div class="topbar-left">
@@ -35,7 +33,7 @@
           </div>
         </div>
         
-        <!-- Quality Indicator (inline, only visible on bug reports) -->
+        <!-- only shown while a bug-report tab is active -->
         <div class="topbar-quality-bar hidden" id="quality-indicator-wrapper">
           <div class="quality-bar" id="quality-bar">
             <div class="quality-bar-fill" id="quality-bar-fill"></div>
@@ -55,7 +53,6 @@
       </div>
     </div>
 
-    <!-- Hub view (mod selection) -->
     <div id="view-hub" class="active">
       <div class="container">
         <div class="hub-header">
@@ -67,12 +64,10 @@
       </div>
     </div>
 
-    <!-- Form view (issue submission) -->
     <div id="view-form">
       <div class="container">
         <div class="form-layout">
           <div class="form-content">
-            <!-- Mod header -->
             <div class="form-mod-header" id="form-mod-header">
               <div class="form-mod-banner" id="form-mod-banner"></div>
               <div class="form-mod-info">
@@ -87,10 +82,8 @@
               </div>
             </div>
 
-            <!-- Tabs -->
             <div class="tabs" id="tabs-mount"></div>
 
-            <!-- Helpful Info Banner -->
             <div class="info-banner">
               <div class="info-banner-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -111,12 +104,10 @@
               </div>
             </div>
 
-            <!-- Form -->
             <div class="form-panel">
               <form id="issue-form">
                 <div id="fields-mount"></div>
 
-                <!-- Submit buttons -->
                 <div class="submit-section">
                   <div>
                     <button type="button" class="submit-btn btn-github" id="btn-github-submit" disabled>
@@ -141,19 +132,15 @@
             </div>
           </div>
           
-          <!-- Issues Sidebar -->
           <aside class="issues-sidebar" id="issues-sidebar">
-            <!-- Issues will be loaded here by issuesList.js -->
           </aside>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Toast notifications -->
   <div class="toast" id="toast"></div>
 
-  <!-- Scripts -->
   <script src="config.js"></script>
   <script src="formBuilder.js"></script>
   <script src="formValidator.js"></script>

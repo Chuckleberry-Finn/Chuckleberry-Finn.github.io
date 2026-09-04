@@ -1,19 +1,16 @@
 /**
- * ============================================================
- *  STEAM ISSUE TRACKER — Cloudflare Worker (GitHub App Auth)
- * ============================================================
- *  Uses GitHub App authentication so issues appear as created
- *  by a bot instead of a personal account.
+ * Steam Issue Tracker — Cloudflare Worker (GitHub App auth)
+ * Uses GitHub App authentication so issues appear as created by a bot
+ * instead of a personal account.
  *
- *  ENVIRONMENT VARIABLES:
- *    GITHUB_APP_ID          — Your GitHub App ID
- *    GITHUB_APP_PRIVATE_KEY — Your GitHub App private key (.pem contents)
- *    GITHUB_INSTALLATION_ID — Installation ID for your repos
- *    GITHUB_OWNER           — Your GitHub username / org
- *    ALLOWED_REPOS          — Comma-separated list of allowed repo names
- *    SESSION_SECRET         — Random string for HMAC session tokens
- *    ALLOWED_ORIGINS        — Comma-separated CORS origins
- * ============================================================
+ * Environment variables:
+ *   GITHUB_APP_ID          — Your GitHub App ID
+ *   GITHUB_APP_PRIVATE_KEY — Your GitHub App private key (.pem contents)
+ *   GITHUB_INSTALLATION_ID — Installation ID for your repos
+ *   GITHUB_OWNER           — Your GitHub username / org
+ *   ALLOWED_REPOS          — Comma-separated list of allowed repo names
+ *   SESSION_SECRET         — Random string for HMAC session tokens
+ *   ALLOWED_ORIGINS        — Comma-separated CORS origins
  */
 
 export default {
@@ -30,6 +27,9 @@ export default {
       if (url.pathname === '/auth/steam/callback')  return handleSteamCallback(url, env);
       if (url.pathname === '/api/issues' && request.method === 'POST') {
         return await handleCreateIssue(request, env, cors);
+      }
+      if (url.pathname === '/api/translate/pr' && request.method === 'POST') {
+        return await handleTranslationPR(request, env, cors);
       }
       if (url.pathname === '/health') {
         return json({ status: 'ok', time: new Date().toISOString() }, 200, cors);
@@ -48,9 +48,7 @@ export default {
 };
 
 
-/* ═══════════════════════════════════════════════════════════
-   STEAM OPENID
-   ═══════════════════════════════════════════════════════════ */
+// STEAM OPENID
 
 function handleSteamStart(url, env) {
   const returnUrl = url.searchParams.get('return_url');
@@ -75,7 +73,6 @@ async function handleSteamCallback(url, env) {
   const returnUrl = url.searchParams.get('return_url');
   const redirect = new URL(returnUrl);
 
-  // Verify with Steam
   const verify = new URLSearchParams(url.search);
   verify.set('openid.mode', 'check_authentication');
 
@@ -91,7 +88,6 @@ async function handleSteamCallback(url, env) {
     return Response.redirect(redirect.toString(), 302);
   }
 
-  // Extract Steam ID
   const claimed = url.searchParams.get('openid.claimed_id') || '';
   const match = claimed.match(/(\d{17})$/);
   if (!match) {
@@ -100,7 +96,6 @@ async function handleSteamCallback(url, env) {
   }
   const steamId = match[1];
 
-  // Fetch display name and avatar
   let steamName = `Steam User ${steamId}`;
   let steamAvatar = '';
   try {
@@ -122,7 +117,6 @@ async function handleSteamCallback(url, env) {
     console.error('Profile fetch failed:', e); 
   }
 
-  // Session token
   const token = await hmacToken(steamId, env.SESSION_SECRET);
 
   redirect.searchParams.set('steam_auth', 'success');
@@ -135,22 +129,18 @@ async function handleSteamCallback(url, env) {
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   GITHUB APP AUTHENTICATION
-   ═══════════════════════════════════════════════════════════ */
+// GITHUB APP AUTHENTICATION
 
 async function getGitHubAppToken(env) {
-  // Generate JWT for GitHub App authentication
   const now = Math.floor(Date.now() / 1000);
   const payload = {
-    iat: now - 60,  // Issued 60 seconds in the past to account for clock drift
-    exp: now + 600, // Expires in 10 minutes
+    iat: now - 60, // account for clock drift
+    exp: now + 600,
     iss: env.GITHUB_APP_ID
   };
 
   const jwt = await generateJWT(payload, env.GITHUB_APP_PRIVATE_KEY);
 
-  // Exchange JWT for installation access token
   const resp = await fetch(
     `https://api.github.com/app/installations/${env.GITHUB_INSTALLATION_ID}/access_tokens`,
     {
@@ -174,15 +164,13 @@ async function getGitHubAppToken(env) {
 }
 
 async function generateJWT(payload, privateKeyPem) {
-  // Parse PEM private key
   const pemContents = privateKeyPem
     .replace('-----BEGIN RSA PRIVATE KEY-----', '')
     .replace('-----END RSA PRIVATE KEY-----', '')
     .replace(/\s/g, '');
   
   const binaryKey = base64ToArrayBuffer(pemContents);
-  
-  // Import the key
+
   const cryptoKey = await crypto.subtle.importKey(
     'pkcs8',
     binaryKey,
@@ -191,15 +179,11 @@ async function generateJWT(payload, privateKeyPem) {
     ['sign']
   );
 
-  // Create JWT header
   const header = { alg: 'RS256', typ: 'JWT' };
-  
-  // Encode header and payload
   const encodedHeader = base64UrlEncode(JSON.stringify(header));
   const encodedPayload = base64UrlEncode(JSON.stringify(payload));
   const data = `${encodedHeader}.${encodedPayload}`;
 
-  // Sign
   const signature = await crypto.subtle.sign(
     'RSASSA-PKCS1-v1_5',
     cryptoKey,
@@ -211,9 +195,7 @@ async function generateJWT(payload, privateKeyPem) {
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ISSUE CREATION (WITH GITHUB APP)
-   ═══════════════════════════════════════════════════════════ */
+// ISSUE CREATION (WITH GITHUB APP)
 
 async function handleCreateIssue(request, env, cors) {
   const body = await request.json();
@@ -232,7 +214,6 @@ async function handleCreateIssue(request, env, cors) {
     steamId: steam_id
   });
 
-  // Validate input
   if (!title || !issueBody) {
     console.error('Missing title or body');
     return json({ error: 'Missing title or body' }, 400, cors);
@@ -246,7 +227,6 @@ async function handleCreateIssue(request, env, cors) {
     return json({ error: 'Not authenticated', details: 'Missing session_token or steam_id' }, 401, cors);
   }
 
-  // Verify session
   if (!env.SESSION_SECRET) {
     console.error('SESSION_SECRET not configured in worker!');
     return json({ error: 'Server configuration error', details: 'SESSION_SECRET not set' }, 500, cors);
@@ -268,14 +248,12 @@ async function handleCreateIssue(request, env, cors) {
     }, 403, cors);
   }
 
-  // Check repo allowlist
   const allowed = (env.ALLOWED_REPOS || '*').split(',').map(s => s.trim());
   if (!allowed.includes('*') && !allowed.includes(repo)) {
     console.error('Repo not allowed:', { repo, allowed });
     return json({ error: `Repo "${repo}" is not in the allowed list` }, 403, cors);
   }
 
-  // Get GitHub App token
   console.log('Getting GitHub App token...');
   let githubToken;
   try {
@@ -289,7 +267,6 @@ async function handleCreateIssue(request, env, cors) {
     }, 500, cors);
   }
 
-  // Create issue via GitHub API
   console.log('Creating GitHub issue:', { owner: env.GITHUB_OWNER, repo });
   
   const owner = env.GITHUB_OWNER;
@@ -372,12 +349,10 @@ async function handleCreateIssue(request, env, cors) {
     });
     
     try {
-      // Decode base64 to binary
       const binaryData = base64ToArrayBuffer(file_attachment.content);
       
-      // Create a comment with the file attachment
-      // Note: GitHub doesn't support direct file upload via API for issue comments
-      // We'll include the file data as a downloadable attachment in the comment
+      // GitHub's API doesn't support direct file uploads in issue comments,
+      // so just note that and point the user at drag-and-drop instead.
       const commentBody = `### File Attachment\n\n**Filename:** ${file_attachment.name}\n**Size:** ${(file_attachment.size / 1024).toFixed(1)} KB\n\n` +
         `_Note: The file was uploaded but GitHub's API doesn't support direct attachments in comments. ` +
         `Please ask the user to drag-and-drop the file here, or they can share it via an external service._`;
@@ -404,9 +379,138 @@ async function handleCreateIssue(request, env, cors) {
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   UTILS
-   ═══════════════════════════════════════════════════════════ */
+// TRANSLATION — PULL REQUEST (WITH GITHUB APP)
+
+async function handleTranslationPR(request, env, cors) {
+  const body = await request.json();
+  const {
+    owner, repo, base_branch, translate_root,
+    source_lang, target_lang, files,
+    session_token, steam_id, steam_name,
+  } = body;
+
+  if (!owner || !repo) return json({ error: 'Missing owner or repo' }, 400, cors);
+  if (!target_lang) return json({ error: 'Missing target_lang' }, 400, cors);
+  if (!Array.isArray(files) || files.length === 0) return json({ error: 'No files to submit' }, 400, cors);
+  if (!session_token || !steam_id) return json({ error: 'Not authenticated' }, 401, cors);
+  if (!env.SESSION_SECRET) return json({ error: 'Server configuration error' }, 500, cors);
+
+  const expected = await hmacToken(steam_id, env.SESSION_SECRET);
+  if (session_token !== expected) {
+    return json({ error: 'Invalid session', details: 'Please sign in again.' }, 403, cors);
+  }
+
+  const allowed = (env.ALLOWED_REPOS || '*').split(',').map(s => s.trim());
+  if (!allowed.includes('*') && !allowed.includes(repo)) {
+    return json({ error: `Repo "${repo}" is not in the allowed list` }, 403, cors);
+  }
+
+  for (const f of files) {
+    if (!f.path || typeof f.content !== 'string') {
+      return json({ error: 'Malformed file entry' }, 400, cors);
+    }
+    if (!/\.json$/i.test(f.path) || f.path.includes('..')) {
+      return json({ error: `Refusing to write non-JSON or unsafe path: ${f.path}` }, 400, cors);
+    }
+  }
+
+  let githubToken;
+  try {
+    githubToken = await getGitHubAppToken(env);
+  } catch (err) {
+    return json({ error: 'GitHub authentication failed', message: err.message }, 500, cors);
+  }
+
+  const ghHeaders = {
+    'Authorization': `Bearer ${githubToken}`,
+    'Accept': 'application/vnd.github+json',
+    'User-Agent': 'PZTranslationBot',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+
+  try {
+    const branch = base_branch || (await ghJson(`https://api.github.com/repos/${owner}/${repo}`, ghHeaders)).default_branch;
+    const refData = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}`, ghHeaders);
+    const baseSha = refData.object.sha;
+    const baseCommit = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/commits/${baseSha}`, ghHeaders);
+    const baseTreeSha = baseCommit.tree.sha;
+
+    const treeEntries = [];
+    for (const f of files) {
+      const fullPath = translate_root ? `${translate_root}/${target_lang}/${f.path}` : f.path;
+      const blob = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/blobs`, ghHeaders, 'POST', {
+        content: f.content,
+        encoding: 'utf-8',
+      });
+      treeEntries.push({ path: fullPath, mode: '100644', type: 'blob', sha: blob.sha });
+    }
+
+    const newTree = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/trees`, ghHeaders, 'POST', {
+      base_tree: baseTreeSha,
+      tree: treeEntries,
+    });
+
+    const committerName = steam_name || 'PZ Translation Bot';
+    const commitMessage = `Add ${target_lang} translation${files.length > 1 ? 's' : ''} (${source_lang || 'EN'} → ${target_lang})\n\nSubmitted via the translation tool by Steam user ${committerName} (${steam_id}).`;
+
+    const newCommit = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/commits`, ghHeaders, 'POST', {
+      message: commitMessage,
+      tree: newTree.sha,
+      parents: [baseSha],
+    });
+
+    const branchName = `translate/${target_lang.toLowerCase()}-${Date.now()}`;
+    await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/refs`, ghHeaders, 'POST', {
+      ref: `refs/heads/${branchName}`,
+      sha: newCommit.sha,
+    });
+
+    const langLabel = target_lang;
+    const prBody = [
+      `Adds/updates the **${langLabel}** translation, submitted through the translation tool.`,
+      '',
+      `> **Submitted by Steam user:** [${committerName}](https://steamcommunity.com/profiles/${steam_id}) (ID: \`${steam_id}\`)`,
+      '',
+      `Source language: \`${source_lang || 'EN'}\` · Files changed: ${files.length}`,
+      '',
+      '_Machine-assisted translations should be spot-checked by a native speaker before merging._',
+    ].join('\n');
+
+    const pr = await ghJson(`https://api.github.com/repos/${owner}/${repo}/pulls`, ghHeaders, 'POST', {
+      title: `Translation: ${langLabel}`,
+      head: branchName,
+      base: branch,
+      body: prBody,
+    });
+
+    return json({ success: true, pr_number: pr.number, pr_url: pr.html_url }, 201, cors);
+  } catch (err) {
+    console.error('Translation PR error:', err);
+    const isPermissionIssue = /404|403/.test(err.message || '');
+    return json({
+      error: 'Could not open pull request',
+      message: isPermissionIssue
+        ? `The translation bot isn't installed on ${owner}/${repo} (or lacks write access). Ask the repo owner to install it, or use the Download option instead.`
+        : err.message,
+    }, 502, cors);
+  }
+}
+
+async function ghJson(url, headers, method = 'GET', body = null) {
+  const resp = await fetch(url, {
+    method,
+    headers: body ? { ...headers, 'Content-Type': 'application/json' } : headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!resp.ok) {
+    const text = await resp.text().catch(() => '');
+    throw new Error(`${resp.status} ${url} — ${text.substring(0, 300)}`);
+  }
+  return resp.json();
+}
+
+
+// UTILS
 
 async function hmacToken(data, secret) {
   const enc = new TextEncoder();

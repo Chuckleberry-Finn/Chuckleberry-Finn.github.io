@@ -11,14 +11,12 @@
   const SIZE_BONUS    = 0.10;
   const EVENTS = ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'];
 
-  // ── Widget registry ──────────────────────────────────────
-  // Each entry: { el, x, y, vx, vy, scale, isHovered, dead }
+  // widgets entry shape: { el, x, y, vx, vy, scale, isHovered, dead }
   const widgets = [];
 
   let inactivityTimer = null;
   let rafId           = null;
 
-  // ── Inactivity → launch first widget ─────────────────────
   function resetTimer() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(launch, INACTIVITY_MS);
@@ -29,7 +27,7 @@
   function launch() {
     EVENTS.forEach(ev => document.removeEventListener(ev, resetTimer));
     wrapper.classList.add('active');
-    // Reuse the existing wrapper as the first widget entry
+    // the static wrapper element becomes the first widget instead of a clone
     const startX = Math.random() * (window.innerWidth  - 240);
     const startY = Math.random() * (window.innerHeight - 100);
     const angle  = Math.random() * Math.PI * 2;
@@ -52,7 +50,7 @@
     wrapper.addEventListener('mouseenter', () => { state.isHovered = true;  });
     wrapper.addEventListener('mouseleave', () => { state.isHovered = false; });
 
-    // ── X button → CLONE, don't close ──────────────────────
+    // clicking the X spawns a clone rather than closing the widget
     closeBtn.addEventListener('click', e => {
       e.stopPropagation();
       spawnClone(state);
@@ -61,7 +59,6 @@
     if (!rafId) startLoop();
   }
 
-  // ── Spawn a clone of an existing widget ───────────────────
   function spawnClone(source) {
     const clone = source.el.cloneNode(true);
     clone.style.left  = (source.x + 50) + 'px';
@@ -87,10 +84,9 @@
     clone.addEventListener('mouseenter', () => { state.isHovered = true;  });
     clone.addEventListener('mouseleave', () => { state.isHovered = false; });
 
-    // Wire up the cloned X button
     const cloneClose = clone.querySelector('#kofi-flying-close') || clone.querySelector('.kofi-flying-close');
     if (cloneClose) {
-      // Remove id to avoid duplicate IDs, switch to class
+      // avoid duplicate ids across clones
       cloneClose.removeAttribute('id');
       cloneClose.classList.add('kofi-flying-close');
       cloneClose.addEventListener('click', e => {
@@ -100,7 +96,6 @@
     }
   }
 
-  // ── Animation loop ────────────────────────────────────────
   function startLoop() {
     function tick() {
       step();
@@ -137,7 +132,6 @@
       w.el.style.top  = w.y + 'px';
     }
 
-    // Collision / merge check
     for (let i = 0; i < widgets.length; i++) {
       for (let j = i + 1; j < widgets.length; j++) {
         if (widgets[i].dead || widgets[j].dead) continue;
@@ -148,7 +142,6 @@
       }
     }
 
-    // Remove dead
     for (let i = widgets.length - 1; i >= 0; i--) {
       if (widgets[i].dead) {
         widgets[i].el.remove();
@@ -176,7 +169,7 @@
     a.dead = true;
     b.dead = true;
 
-    // Spawn merged clone from whichever isn't the original wrapper
+    // clone from whichever widget isn't the static wrapper, so the wrapper element persists
     const src = (b.el !== wrapper) ? b : a;
     const merged = src.el.cloneNode(true);
     merged.style.left = mx + 'px';
@@ -207,7 +200,6 @@
       mc.addEventListener('click', e => { e.stopPropagation(); spawnClone(state); });
     }
 
-    // Merge flash
     merged.style.transition = 'transform 0.25s ease-out';
     merged.style.transform  = `scale(${newScale * 1.3})`;
     setTimeout(() => {

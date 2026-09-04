@@ -1,9 +1,3 @@
-/**
- * ============================================================
- *  MAIN APP — Coordinates all modules
- * ============================================================
- */
-
 let mods = [];
 let currentMod = null;
 let currentTab = 'bug';
@@ -14,10 +8,8 @@ let steamState = {
   token: null
 };
 
-// Cache for GitHub stats
 let githubStatsCache = {};
 
-// Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
   initUI();
   restoreSteam();
@@ -25,7 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadMods();
   updateSteamUI();
   
-  // Check if we should auto-open a specific repo
   const params = new URLSearchParams(window.location.search);
   const repoParam = params.get('repo');
   const workshopIdParam = params.get('workshop_id');
@@ -37,15 +28,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       showForm(mod);
     }
   } else if (workshopIdParam && mods.length > 0) {
-    // Workshop ID parameter (works even through Steam's link filter)
+    // works even through Steam's link filter, which strips repo params
     const mod = mods.find(m => m.steam_url && m.steam_url.includes(`id=${workshopIdParam}`));
     if (mod) {
       console.log('Auto-detected mod from workshop_id parameter:', mod.name);
       showForm(mod);
     }
   } else {
-    // Try to detect from referer (Steam Workshop link)
-    // This may not work if link goes through Steam's filter
+    // may not work if the referer link goes through Steam's filter
     const detectedMod = detectModFromReferer();
     if (detectedMod) {
       showForm(detectedMod);
@@ -53,26 +43,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-/**
- * Initialize UI elements
- */
 function initUI() {
-  // Set up back to hub link
   document.getElementById('back-to-hub').addEventListener('click', (e) => {
     e.preventDefault();
     showHub();
   });
 
-  // Set up sign out link
   const signOutLink = document.getElementById('sign-out-link');
   if (signOutLink) {
     signOutLink.addEventListener('click', signOutSteam);
   }
 }
 
-/**
- * Load mods from JSON
- */
 async function loadMods() {
   const loadingMsg = document.getElementById('loading-msg');
   const modGrid = document.getElementById('mod-grid');
@@ -81,7 +63,6 @@ async function loadMods() {
     const response = await fetch(CONFIG.modsJsonPath);
     mods = await response.json();
     
-    // Fetch GitHub stats for all repos
     await fetchGitHubStats();
     
     loadingMsg.style.display = 'none';
@@ -92,11 +73,7 @@ async function loadMods() {
   }
 }
 
-/**
- * Fetch GitHub stats for all mods
- */
 async function fetchGitHubStats() {
-  // Try to load from cache (valid for 30 minutes)
   const cacheKey = 'github_stats_cache';
   const cacheTimeKey = 'github_stats_cache_time';
   const cacheMaxAge = 30 * 60 * 1000; // 30 minutes
@@ -119,7 +96,6 @@ async function fetchGitHubStats() {
     console.warn('Cache read failed:', e);
   }
   
-  // Fetch fresh data
   console.log('Fetching GitHub stats for', mods.length, 'repositories...');
   const fetchPromises = mods.map(async (mod) => {
     const { owner, repo } = parseRepoUrl(mod.repo_url);
@@ -145,7 +121,6 @@ async function fetchGitHubStats() {
   
   await Promise.all(fetchPromises);
   
-  // Save to cache if we got any data
   if (Object.keys(githubStatsCache).length > 0) {
     try {
       localStorage.setItem(cacheKey, JSON.stringify(githubStatsCache));
@@ -156,7 +131,6 @@ async function fetchGitHubStats() {
     }
   }
   
-  // Log rate limit status
   fetch('https://api.github.com/rate_limit')
     .then(r => r.json())
     .then(data => {
@@ -168,9 +142,6 @@ async function fetchGitHubStats() {
     .catch(() => {});
 }
 
-/**
- * Render mod grid
- */
 function renderModGrid() {
   const grid = document.getElementById('mod-grid');
   grid.innerHTML = '';
@@ -181,9 +152,6 @@ function renderModGrid() {
   });
 }
 
-/**
- * Create a mod card element
- */
 function createModCard(mod) {
   const card = document.createElement('div');
   card.className = 'mod-card';
@@ -205,7 +173,6 @@ function createModCard(mod) {
   const meta = document.createElement('div');
   meta.className = 'mod-card-meta';
   
-  // Only show subscriber count if available
   if (mod.subs !== undefined) {
     const subs = document.createElement('span');
     subs.className = 'mod-card-subs';
@@ -218,7 +185,6 @@ function createModCard(mod) {
     meta.appendChild(subs);
   }
   
-  // Add GitHub stats if available
   const stats = githubStatsCache[mod.repo_url];
   if (stats && stats.openIssues !== undefined) {
     const issues = document.createElement('span');
@@ -246,30 +212,20 @@ function createModCard(mod) {
   return card;
 }
 
-/**
- * Show hub view
- */
 function showHub() {
   document.getElementById('view-hub').classList.add('active');
   document.getElementById('view-form').classList.remove('active');
   currentMod = null;
-  
-  // Update URL
+
   window.history.pushState({}, '', window.location.pathname);
-  
-  // Update topbar
   document.getElementById('topbar-sub').textContent = 'Report bugs & request features';
 }
 
-/**
- * Show form view for selected mod
- */
 function showForm(mod) {
   currentMod = mod;
   document.getElementById('view-hub').classList.remove('active');
   document.getElementById('view-form').classList.add('active');
   
-  // Update mod header
   const banner = document.getElementById('form-mod-banner');
   if (mod.banner) {
     banner.style.backgroundImage = `url(${mod.banner})`;
@@ -281,36 +237,25 @@ function showForm(mod) {
   document.getElementById('form-mod-steam').href = mod.steam_url;
   document.getElementById('form-mod-github').href = mod.repo_url;
   
-  // Update topbar subtitle
   document.getElementById('topbar-sub').textContent = mod.name;
-  
-  // Render tabs
+
   renderTabs();
-  
-  // Render fields for current tab
   renderFields();
-  
-  // Setup submit buttons
   setupSubmitButtons();
-  
-  // Initialize issues sidebar
+
   const repoMatch2 = mod.repo_url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
   if (repoMatch2 && typeof IssuesList !== 'undefined') {
     const owner = repoMatch2[1];
-    const repo = repoMatch2[2].replace(/\.git$/, ''); // Remove .git if present
+    const repo = repoMatch2[2].replace(/\.git$/, '');
     IssuesList.init(owner, repo);
   }
   
-  // Update URL
   const repoMatch = mod.repo_url.match(/github\.com\/[^\/]+\/([^\/]+)/);
   if (repoMatch) {
     window.history.pushState({}, '', `?repo=${repoMatch[1]}`);
   }
 }
 
-/**
- * Render tabs (Bug / Feature)
- */
 function renderTabs() {
   const tabsMount = document.getElementById('tabs-mount');
   tabsMount.innerHTML = '';
@@ -346,9 +291,6 @@ let tabFormData = {
   feature: {}
 };
 
-/**
- * Switch to a different tab
- */
 function switchTab(typeKey) {
   if (currentTab === typeKey) return;
   
@@ -403,21 +345,17 @@ function restoreTabData() {
       const input = form.querySelector(`[name="${fieldName}"]`);
       if (input) {
         input.value = savedData[fieldName];
-        // Trigger input event to update validation
+        // dispatch so validation picks up the restored value
         input.dispatchEvent(new Event('input', { bubbles: true }));
       }
     });
   }, 50);
 }
 
-/**
- * Render form fields for current tab
- */
 function renderFields() {
   const fieldsMount = document.getElementById('fields-mount');
   const issueTypeConfig = CONFIG.issueTypes[currentTab];
   
-  // Build form using FormBuilder
   fieldsMount.innerHTML = '';
   
   issueTypeConfig.fields.forEach(fieldConfig => {
@@ -425,7 +363,6 @@ function renderFields() {
     fieldsMount.appendChild(fieldGroup);
   });
   
-  // Initialize validation
   const form = document.getElementById('issue-form');
   FormValidator.initValidation(form, issueTypeConfig.fields);
   
@@ -436,8 +373,7 @@ function renderFields() {
   }
   
   restoreTabData();
-  
-  // Disable both submit buttons initially
+
   const githubBtn = document.getElementById('btn-github-submit');
   const steamBtn = document.getElementById('btn-steam-submit');
   if (githubBtn) {
@@ -450,9 +386,6 @@ function renderFields() {
   }
 }
 
-/**
- * Setup submit button handlers
- */
 function setupSubmitButtons() {
   const githubBtn = document.getElementById('btn-github-submit');
   const steamBtn = document.getElementById('btn-steam-submit');
@@ -461,9 +394,6 @@ function setupSubmitButtons() {
   steamBtn.onclick = handleSteamSubmit;
 }
 
-/**
- * Submit via GitHub (direct redirect)
- */
 function submitViaGitHub() {
   if (!currentMod) return;
   
@@ -480,7 +410,6 @@ function submitViaGitHub() {
   const prefix = currentTab === 'bug' ? 'Bug' : 'Feature';
   const title = `[${prefix}] ${data.title}`;
   
-  // Check if there's a file attachment
   const fileInput = document.getElementById('f-attachment');
   const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
   
@@ -505,15 +434,9 @@ function submitViaGitHub() {
   }
 }
 
-/**
- * Handle Steam submit button click
- */
 function handleSteamSubmit() {
   if (!steamState.token) {
-    // Save form state before redirect
     saveFormState();
-    
-    // Redirect to Steam login
     const returnUrl = encodeURIComponent(window.location.href);
     window.location.href = `${CONFIG.worker.url}/auth/steam?return_url=${returnUrl}`;
     return;
@@ -522,9 +445,6 @@ function handleSteamSubmit() {
   submitViaSteam();
 }
 
-/**
- * Submit via Steam (POST to worker)
- */
 async function submitViaSteam() {
   if (!currentMod) return;
   
@@ -550,7 +470,6 @@ async function submitViaSteam() {
     const title = `[${prefix}] ${data.title}`;
     let body = buildIssueBody(data, issueTypeConfig, true);
     
-    // Handle file attachment
     const fileInput = document.getElementById('f-attachment');
     let fileData = null;
     
@@ -559,7 +478,6 @@ async function submitViaSteam() {
       btnLabel.textContent = 'Uploading file...';
       
       try {
-        // Convert file to base64
         const base64 = await fileToBase64(file);
         fileData = {
           name: file.name,
@@ -613,8 +531,7 @@ async function submitViaSteam() {
       }
       
       console.error('Worker error:', err);
-      
-      // Check if this is an auth error
+
       if (resp.status === 401 || resp.status === 403) {
         console.log('Auth error detected:', {
           status: resp.status,
@@ -622,13 +539,10 @@ async function submitViaSteam() {
           currentSteamId: steamState.steamId,
           currentTokenLength: steamState.token?.length
         });
-        
-        // Clear invalid session
+
         steamState = { username: null, steamId: null, token: null };
         localStorage.removeItem('cfi_steam');
         updateSteamUI();
-        
-        // Save form and retry login
         saveFormState();
         
         const errorMsg = err.error || err.message || 'Session expired';
@@ -647,23 +561,19 @@ async function submitViaSteam() {
     const result = await resp.json();
     console.log('✅ Success:', result);
     showToast(`Issue #${result.issue_number} created successfully!`);
-    
-    // Clear form
+
     form.reset();
     FormValidator.clearValidation(form);
-    
-    // Clear file input display
+
     const fileInfo = document.getElementById('f-attachment-info');
     if (fileInfo) fileInfo.textContent = '';
     const fileLabel = document.querySelector('.file-input-text');
     if (fileLabel) fileLabel.textContent = 'Choose file...';
-    
-    // Open the created issue in new tab
+
     if (result.issue_url) {
       window.open(result.issue_url, '_blank');
     }
-    
-    // Return to hub after a short delay
+
     setTimeout(() => {
       showHub();
     }, 2000);
@@ -677,14 +587,11 @@ async function submitViaSteam() {
   }
 }
 
-/**
- * Convert file to base64
- */
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
-      // Remove data URL prefix (e.g., "data:image/png;base64,")
+      // data URLs are "data:<mime>;base64,<data>" — keep only the data part
       const base64 = reader.result.split(',')[1];
       resolve(base64);
     };
@@ -693,9 +600,6 @@ function fileToBase64(file) {
   });
 }
 
-/**
- * Build issue body from form data
- */
 function buildIssueBody(data, issueTypeConfig, isSteam) {
   const lines = [];
   
@@ -729,9 +633,6 @@ function buildIssueBody(data, issueTypeConfig, isSteam) {
   return lines.join('\n');
 }
 
-/**
- * Check for Steam callback
- */
 function checkSteamCallback() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('steam_auth') === 'success') {
@@ -753,14 +654,12 @@ function checkSteamCallback() {
     });
     
     saveSteam();
-    
-    // Clean auth params, keep ?repo=
+
+    // preserve ?repo= while dropping the steam_* callback params
     const repo = params.get('repo');
     window.history.replaceState({}, '', window.location.pathname + (repo ? `?repo=${repo}` : ''));
     showToast(`Signed in as Steam user: ${steamState.username}`);
     updateSteamUI();
-    
-    // Restore form state after successful login
     restoreFormState();
   } else if (params.get('steam_auth') === 'error') {
     const repo = params.get('repo');
@@ -770,9 +669,6 @@ function checkSteamCallback() {
   }
 }
 
-/**
- * Restore Steam state from localStorage
- */
 function restoreSteam() {
   try {
     const s = localStorage.getItem('cfi_steam');
@@ -780,16 +676,10 @@ function restoreSteam() {
   } catch (e) {}
 }
 
-/**
- * Save Steam state to localStorage
- */
 function saveSteam() {
   localStorage.setItem('cfi_steam', JSON.stringify(steamState));
 }
 
-/**
- * Save form state before redirect
- */
 function saveFormState() {
   const form = document.getElementById('issue-form');
   if (!form || !currentMod) return;
@@ -804,32 +694,25 @@ function saveFormState() {
   localStorage.setItem('cfi_form_state', JSON.stringify(formState));
 }
 
-/**
- * Restore form state after redirect
- */
 function restoreFormState() {
   try {
     const saved = localStorage.getItem('cfi_form_state');
     if (!saved) return;
     
     const formState = JSON.parse(saved);
-    // Only restore if less than 10 minutes old
     if (Date.now() - formState.timestamp > 600000) {
       localStorage.removeItem('cfi_form_state');
       return;
     }
     
-    // Find the mod
     const mod = mods.find(m => m.repo_url === formState.modRepo);
     if (!mod) {
       localStorage.removeItem('cfi_form_state');
       return;
     }
     
-    // Show the form for this mod
     showForm(mod);
-    
-    // Switch to saved tab
+
     if (formState.tab) {
       currentTab = formState.tab;
       document.querySelectorAll('#tabs-mount .tab').forEach(t =>
@@ -837,7 +720,6 @@ function restoreFormState() {
       );
     }
     
-    // Restore form data
     setTimeout(() => {
       const form = document.getElementById('issue-form');
       if (form && formState.data) {
@@ -847,8 +729,7 @@ function restoreFormState() {
             input.value = value;
           }
         });
-        // Re-validate to enable submit button if form is complete
-        FormValidator.initValidation(form);
+        FormValidator.initValidation(form); // re-enables the submit button once fields are filled
       }
       localStorage.removeItem('cfi_form_state');
     }, 100);
@@ -859,9 +740,6 @@ function restoreFormState() {
   }
 }
 
-/**
- * Sign out of Steam
- */
 function signOutSteam() {
   steamState = { username: null, steamId: null, avatar: null, token: null };
   localStorage.removeItem('cfi_steam');
@@ -869,9 +747,6 @@ function signOutSteam() {
   showToast('Signed out of Steam.');
 }
 
-/**
- * Update Steam UI based on login state
- */
 function updateSteamUI() {
   const badge = document.getElementById('steam-user-badge');
   const nameEl = document.getElementById('steam-user-name');
@@ -904,28 +779,22 @@ function showToast(msg, isError = false) {
   toastTimer = setTimeout(() => el.className = 'toast', 4000);
 }
 
-/**
- * Detect which mod to show based on referer (Steam Workshop link)
- */
 function detectModFromReferer() {
   const referer = document.referrer;
   
   if (!referer) return null;
   
-  // Check if referer is from Steam Workshop
   if (!referer.includes('steamcommunity.com')) return null;
   
   console.log('Detected Steam Workshop referer:', referer);
   
-  // Extract Steam Workshop ID from referer
-  // Format: https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437
+  // e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437
   const idMatch = referer.match(/[?&]id=(\d+)/);
   if (!idMatch) return null;
   
   const workshopId = idMatch[1];
   console.log('Workshop ID:', workshopId);
   
-  // Find mod with matching Steam URL
   const mod = mods.find(m => m.steam_url && m.steam_url.includes(`id=${workshopId}`));
   
   if (mod) {
@@ -937,17 +806,11 @@ function detectModFromReferer() {
   return mod;
 }
 
-/**
- * Parse GitHub repo URL
- */
 function parseRepoUrl(url) {
   const m = url.match(/github\.com\/([^/]+)\/([^/]+)/);
   return m ? { owner: m[1], repo: m[2] } : { owner: CONFIG.defaultOwner, repo: 'unknown' };
 }
 
-/**
- * Format number (1000 -> 1K, etc)
- */
 function formatNumber(n) {
   if (!n) return '0';
   if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';

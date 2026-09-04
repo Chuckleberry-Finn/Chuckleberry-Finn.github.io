@@ -1,22 +1,10 @@
-/**
- * ============================================================
- *  ISSUES LIST — Display cached issues (no live API calls)
- * ============================================================
- *  Reads from pre-generated cache file instead of hitting
- *  GitHub API directly. Cache is updated hourly by GitHub Action.
- * ============================================================
- */
-
+// Reads from a pre-generated cache file (updated hourly by a GitHub
+// Action) instead of hitting the GitHub API directly from the browser.
 const IssuesList = {
   currentRepo: null,
   currentOwner: null,
   issuesCache: null,
   
-  /**
-   * Initialize the issues list for a specific repo
-   * @param {string} owner - GitHub username
-   * @param {string} repo - Repository name
-   */
   async init(owner, repo) {
     this.currentOwner = owner;
     this.currentRepo = repo;
@@ -27,7 +15,6 @@ const IssuesList = {
       return;
     }
     
-    // Show loading state
     container.innerHTML = `
       <div class="issues-sidebar-header">
         <h3>Recent Issues</h3>
@@ -42,7 +29,6 @@ const IssuesList = {
     `;
     
     try {
-      // Load cache if not already loaded
       if (!this.issuesCache) {
         await this.loadCache();
       }
@@ -55,13 +41,9 @@ const IssuesList = {
     }
   },
   
-  /**
-   * Load the issues cache file
-   * @returns {Promise<void>}
-   */
   async loadCache() {
     const cacheUrl = 'cache/issues_cache.json';
-    const response = await fetch(cacheUrl + '?t=' + Date.now()); // Cache bust
+    const response = await fetch(cacheUrl + '?t=' + Date.now()); // bust any browser/CDN caching of the static file
     
     if (!response.ok) {
       throw new Error(`Failed to load issues cache (${response.status})`);
@@ -70,12 +52,6 @@ const IssuesList = {
     this.issuesCache = await response.json();
   },
   
-  /**
-   * Get issues for a specific repo from cache
-   * @param {string} owner - GitHub username
-   * @param {string} repo - Repository name
-   * @returns {Array} Array of issue objects
-   */
   getIssuesForRepo(owner, repo) {
     if (!this.issuesCache) {
       return [];
@@ -96,11 +72,6 @@ const IssuesList = {
     return repoCache.issues || [];
   },
   
-  /**
-   * Render issues list
-   * @param {Array} issues - Array of issue objects
-   * @param {HTMLElement} container - Container element
-   */
   renderIssues(issues, container) {
     if (issues.length === 0) {
       container.innerHTML = `
@@ -137,19 +108,13 @@ const IssuesList = {
     `;
   },
   
-  /**
-   * Render a single issue card
-   * @param {Object} issue - Issue object from cache
-   * @returns {string} HTML string
-   */
   renderIssueCard(issue) {
     const createdDate = new Date(issue.created_at);
     const timeAgo = this.formatTimeAgo(createdDate);
     const isPinned = this.isPinnedIssue(issue);
     
-    // Extract labels
     const labels = issue.labels
-      .slice(0, 3) // Limit to 3 labels
+      .slice(0, 3)
       .map(label => {
         const color = `#${label.color}`;
         const isDark = this.isColorDark(label.color);
@@ -157,7 +122,6 @@ const IssuesList = {
       })
       .join('');
     
-    // Determine issue type icon
     const isBug = issue.labels.some(l => l.name.toLowerCase().includes('bug'));
     const isFeature = issue.labels.some(l => l.name.toLowerCase().includes('enhancement') || l.name.toLowerCase().includes('feature'));
     
@@ -182,7 +146,6 @@ const IssuesList = {
       `;
     }
     
-    // Pinned badge
     const pinnedBadge = isPinned ? '<span class="issue-pinned-badge" title="Pinned issue">📌</span>' : '';
     
     return `
@@ -202,11 +165,6 @@ const IssuesList = {
     `;
   },
   
-  /**
-   * Render error state
-   * @param {HTMLElement} container - Container element
-   * @param {Error} error - Error object
-   */
   renderError(container, error) {
     container.innerHTML = `
       <div class="issues-sidebar-header">
@@ -227,26 +185,15 @@ const IssuesList = {
     `;
   },
   
-  /**
-   * Check if an issue should be treated as pinned
-   * @param {Object} issue - Issue object
-   * @returns {boolean} True if issue is pinned
-   */
   isPinnedIssue(issue) {
     if (!issue.labels || !Array.isArray(issue.labels)) return false;
-    
-    // Check for labels that indicate a pinned/important issue
+
     const pinnedLabels = ['pinned', 'announcement', 'important', 'sticky'];
     return issue.labels.some(label => 
       pinnedLabels.includes(label.name.toLowerCase())
     );
   },
   
-  /**
-   * Format time ago string
-   * @param {Date} date - Date object
-   * @returns {string} Time ago string
-   */
   formatTimeAgo(date) {
     const now = new Date();
     const diffMs = now - date;
@@ -263,11 +210,6 @@ const IssuesList = {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   },
   
-  /**
-   * Check if a hex color is dark
-   * @param {string} hexColor - Hex color without #
-   * @returns {boolean} True if color is dark
-   */
   isColorDark(hexColor) {
     const r = parseInt(hexColor.substr(0, 2), 16);
     const g = parseInt(hexColor.substr(2, 2), 16);
@@ -276,11 +218,7 @@ const IssuesList = {
     return brightness < 128;
   },
   
-  /**
-   * Escape HTML to prevent XSS
-   * @param {string} str - String to escape
-   * @returns {string} Escaped string
-   */
+  // relies on the browser's own HTML escaping via textContent
   escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;

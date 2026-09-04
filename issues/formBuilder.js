@@ -1,24 +1,11 @@
-/**
- * ============================================================
- *  FORM BUILDER — Dynamically generates forms from config
- * ============================================================
- *  This module reads CONFIG.issueTypes and builds HTML forms.
- *  To add/remove/modify fields, edit config.js only.
- * ============================================================
- */
-
+// Reads CONFIG.issueTypes and builds the HTML form — to add/remove/modify
+// fields, edit config.js, not this file.
 const FormBuilder = {
 
-  /**
-   * Build a single form field
-   * @param {Object} fieldConfig - Field configuration from CONFIG
-   * @returns {HTMLDivElement} The field group element
-   */
   buildField(fieldConfig) {
     const fieldGroup = document.createElement('div');
     fieldGroup.className = 'form-group';
 
-    // Label container with required indicator
     const labelContainer = document.createElement('div');
     labelContainer.className = 'label-container';
     
@@ -37,7 +24,6 @@ const FormBuilder = {
     
     fieldGroup.appendChild(labelContainer);
 
-    // Input element
     let input;
     switch (fieldConfig.type) {
       case 'text':
@@ -59,7 +45,6 @@ const FormBuilder = {
 
     fieldGroup.appendChild(input);
 
-    // Error message placeholder
     const errorMsg = document.createElement('div');
     errorMsg.className = 'error-message';
     errorMsg.id = `f-${fieldConfig.id}-error`;
@@ -68,9 +53,6 @@ const FormBuilder = {
     return fieldGroup;
   },
 
-  /**
-   * Build a text input field
-   */
   buildTextInput(fieldConfig) {
     const input = document.createElement('input');
     input.type = 'text';
@@ -83,9 +65,6 @@ const FormBuilder = {
     return input;
   },
 
-  /**
-   * Build a textarea field
-   */
   buildTextarea(fieldConfig) {
     const textarea = document.createElement('textarea');
     textarea.id = 'f-' + fieldConfig.id;
@@ -98,9 +77,6 @@ const FormBuilder = {
     return textarea;
   },
 
-  /**
-   * Build a select dropdown field
-   */
   buildSelect(fieldConfig) {
     const select = document.createElement('select');
     select.id = 'f-' + fieldConfig.id;
@@ -109,7 +85,6 @@ const FormBuilder = {
     select.required = fieldConfig.required || false;
     select.dataset.required = fieldConfig.required || false;
 
-    // Add placeholder option
     const placeholderOption = document.createElement('option');
     placeholderOption.value = '';
     placeholderOption.textContent = `Select ${fieldConfig.label.toLowerCase()}...`;
@@ -117,7 +92,6 @@ const FormBuilder = {
     placeholderOption.selected = true;
     select.appendChild(placeholderOption);
 
-    // Add options
     if (fieldConfig.options && Array.isArray(fieldConfig.options)) {
       fieldConfig.options.forEach(optionText => {
         const option = document.createElement('option');
@@ -130,9 +104,6 @@ const FormBuilder = {
     return select;
   },
 
-  /**
-   * Build a file input field
-   */
   buildFileInput(fieldConfig) {
     const container = document.createElement('div');
     container.className = 'file-input-container';
@@ -150,7 +121,6 @@ const FormBuilder = {
       input.dataset.maxSize = fieldConfig.maxSize;
     }
     
-    // Create custom file input button
     const label = document.createElement('label');
     label.htmlFor = input.id;
     label.className = 'file-input-label';
@@ -163,25 +133,21 @@ const FormBuilder = {
       <span class="file-input-text">Choose file...</span>
     `;
     
-    // File info display
     const fileInfo = document.createElement('div');
     fileInfo.className = 'file-input-info';
     fileInfo.id = `f-${fieldConfig.id}-info`;
     
-    // Help text
     const helpText = document.createElement('div');
     helpText.className = 'file-input-help';
     const maxSizeMB = fieldConfig.maxSize ? (fieldConfig.maxSize / 1048576).toFixed(0) : 10;
     helpText.textContent = `Max ${maxSizeMB}MB. Supported: images, logs, text, zip files`;
     
-    // Handle file selection
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];
       const textSpan = label.querySelector('.file-input-text');
       
       if (file) {
-        // Check file size
-        const maxSize = fieldConfig.maxSize || 10485760; // 10MB default
+        const maxSize = fieldConfig.maxSize || 10485760;
         if (file.size > maxSize) {
           fileInfo.textContent = `!️ File too large (max ${(maxSize / 1048576).toFixed(0)}MB)`;
           fileInfo.className = 'file-input-info error';

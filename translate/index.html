@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Translate Project Zomboid mods (Build 42+) and submit a pull request">
+  <title>Translation Tool - Chuck's Mods</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Dust particles (matches issue tracker) -->
+  <div class="dust-container">
+    <div class="dust"></div>
+    <div class="dust"></div>
+    <div class="dust"></div>
+    <div class="dust"></div>
+  </div>
+
+  <div class="page">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="topbar-content">
+        <div class="topbar-left">
+          <a href="https://chuckleberry-finn.github.io" class="topbar-home">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Home
+          </a>
+          <div class="topbar-title-area">
+            <div class="topbar-title" id="topbar-title">Translation Tool</div>
+            <div class="topbar-sub" id="topbar-sub">Help translate mods for Build 42+</div>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="steam-user-badge hidden" id="steam-user-badge">
+            <svg viewBox="0 0 256 259" fill="currentColor"><path d="M127.778 0C70.366 0 22.47 42.714 14.107 98.13L68.45 119.82c5.52-3.77 12.176-5.978 19.35-5.978.684 0 1.362.022 2.033.063l24.375-35.343v-.5c0-26.125 21.25-47.375 47.375-47.375 26.124 0 47.374 21.25 47.374 47.375 0 26.124-21.25 47.374-47.374 47.374h-1.093l-34.719 24.844c0 .53.016 1.054.016 1.584 0 19.007-15.46 34.467-34.468 34.467-16.758 0-30.747-12.028-33.875-27.968L9.596 141.03C22.03 201.394 70.84 248.79 129.778 248.79c69.036 0 125-55.964 125-125s-55.964-125-125-125zm-67.53 176.03l-13.25-5.47c2.344 4.874 6.406 8.936 11.75 11.094 11.53 4.687 24.81-.906 29.5-12.468 2.28-5.594 2.28-11.688 0-17.25-2.282-5.563-6.72-9.875-12.313-12.156-5.53-2.28-11.47-2.25-16.78-.155l13.718 5.686c8.5 3.5 12.53 13.28 9.03 21.78-3.5 8.5-13.156 12.437-21.656 8.938z"/></svg>
+            <span class="steam-user-name" id="steam-user-name"></span>
+            <button class="sign-out-link" id="sign-out-link">sign out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- ============================================================
+           STEP 1 — CHOOSE A MOD
+      ============================================================ -->
+      <section class="panel" id="view-source">
+        <h2 class="panel-title">1. Choose a mod</h2>
+        <p class="panel-hint">
+          Pick one of Chuck's mods below. Only <code>.json</code> files under a
+          Build 42+ style <code>Translate/&lt;LANG&gt;/</code> layout are used.
+        </p>
+
+        <div class="source-panel active" data-panel="mods">
+          <label class="field-label" for="modsSelect">Mod</label>
+          <div class="input-row">
+            <select id="modsSelect"><option value="">Loading mods…</option></select>
+            <button class="btn btn-primary" id="loadModBtn" type="button">Fetch</button>
+          </div>
+        </div>
+
+        <div class="source-status" id="sourceStatus"></div>
+      </section>
+
+      <!-- ============================================================
+           STEP 2/3 — LANGUAGES + EDITOR
+      ============================================================ -->
+      <section class="panel hidden" id="view-editor">
+        <h2 class="panel-title">2. Choose languages</h2>
+        <div class="editor-meta" id="editorMeta"></div>
+
+        <div class="lang-row">
+          <div class="lang-field">
+            <label class="field-label" for="sourceLangSelect">Origin language</label>
+            <select id="sourceLangSelect"></select>
+          </div>
+          <div class="lang-field">
+            <label class="field-label" for="targetLangSelect">Target language</label>
+            <select id="targetLangSelect"></select>
+          </div>
+          <button class="btn btn-primary" id="loadFieldsBtn" type="button">Load fields</button>
+        </div>
+
+        <div id="fieldsSection" class="hidden">
+          <h2 class="panel-title">3. Fill out translations</h2>
+
+          <div class="fields-toolbar">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-bar-fill" id="fieldsProgressFill"></div></div>
+              <span class="progress-text" id="fieldsProgressText">0 / 0 translated</span>
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" id="onlyMissingToggle">
+              Only show missing
+            </label>
+          </div>
+
+          <div id="fieldsContainer" class="fields-container"></div>
+
+          <div class="actions-bar">
+            <button class="btn btn-secondary" id="downloadZipBtn" type="button">Download .zip</button>
+            <button class="btn btn-steam hidden" id="steamSignInBtn" type="button">
+              <svg viewBox="0 0 256 259" fill="currentColor" width="16" height="16"><path d="M127.778 0C70.366 0 22.47 42.714 14.107 98.13L68.45 119.82c5.52-3.77 12.176-5.978 19.35-5.978.684 0 1.362.022 2.033.063l24.375-35.343v-.5c0-26.125 21.25-47.375 47.375-47.375 26.124 0 47.374 21.25 47.374 47.375 0 26.124-21.25 47.374-47.374 47.374h-1.093l-34.719 24.844c0 .53.016 1.054.016 1.584 0 19.007-15.46 34.467-34.468 34.467-16.758 0-30.747-12.028-33.875-27.968L9.596 141.03C22.03 201.394 70.84 248.79 129.778 248.79c69.036 0 125-55.964 125-125s-55.964-125-125-125zm-67.53 176.03l-13.25-5.47c2.344 4.874 6.406 8.936 11.75 11.094 11.53 4.687 24.81-.906 29.5-12.468 2.28-5.594 2.28-11.688 0-17.25-2.282-5.563-6.72-9.875-12.313-12.156-5.53-2.28-11.47-2.25-16.78-.155l13.718 5.686c8.5 3.5 12.53 13.28 9.03 21.78-3.5 8.5-13.156 12.437-21.656 8.938z"/></svg>
+              Sign in with Steam to open a PR
+            </button>
+            <button class="btn btn-primary hidden" id="createPrBtn" type="button">Create pull request</button>
+          </div>
+
+          <div class="pr-result" id="prResult"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="pathRules.js"></script>
+  <script src="steamAuth.js"></script>
+  <script src="githubSource.js"></script>
+  <script src="editor.js"></script>
+  <script src="zipExport.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

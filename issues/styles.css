@@ -1,11 +1,4 @@
-/* =============================================================================
-   styles.css — Issue tracker
-   Shares the design token system from main.css (root page).
-   Additional tokens for tracker-specific needs are defined here.
-============================================================================= */
-
-/* Design tokens (mirrors main.css :root — keep in sync) */
-
+/* design tokens mirror main.css :root — keep the two in sync */
 :root {
   --color-primary:     #e8607a;
   --color-primary-dim: #c44860;
@@ -47,7 +40,6 @@
   --shadow-lg: rgba(0, 0, 0, 0.50);
   --shadow-xl: rgba(0, 0, 0, 0.60);
 
-  /* Tracker-specific semantic colours */
   --color-green:     #7ecfd0;
   --color-green-txt: #a8dfe0;
   --color-red:       #c0392b;
@@ -57,9 +49,6 @@
   --radius-lg: 8px;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
-
-/* Reset & base */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -84,9 +73,6 @@ body {
 .hidden {
   display: none !important;
 }
-
-
-/* Dust particles */
 
 .dust-container {
   position: fixed;
@@ -117,9 +103,6 @@ body {
   100% { transform: translateY(-50px); opacity: 0; }
 }
 
-
-/* Layout */
-
 .page {
   position: relative;
   z-index: 1;
@@ -131,9 +114,6 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
-
-
-/* Top bar */
 
 .topbar {
   position: sticky;
@@ -270,9 +250,6 @@ body {
   color: var(--color-primary);
 }
 
-
-/* Hub — project picker */
-
 #view-hub,
 #view-form {
   display: none;
@@ -407,9 +384,6 @@ body {
   color: var(--bg-page);
 }
 
-
-/* Form view */
-
 .form-content {
   padding: 24px 0 50px;
 }
@@ -465,9 +439,6 @@ body {
   color: var(--color-text);
 }
 
-
-/* Tabs */
-
 .tabs {
   display: flex;
   gap: 2px;
@@ -519,9 +490,6 @@ body {
   50%       { opacity: 0.6; transform: scale(1.2); }
 }
 
-
-/* Quality bar */
-
 .quality-bar-fill {
   height: 100%;
   width: 0;
@@ -571,9 +539,6 @@ body {
 .quality-text.good     { color: var(--color-primary); }
 .quality-text.great    { color: var(--color-accent); }
 .quality-text.excellent{ color: var(--color-primary); }
-
-
-/* Info banner */
 
 .info-banner {
   display: flex;
@@ -635,9 +600,6 @@ body {
   color: var(--color-green-txt);
   margin-right: 4px;
 }
-
-
-/* Form panel & inputs */
 
 .form-panel {
   background: var(--raised-85);
@@ -718,9 +680,6 @@ textarea.form-input {
   min-height: 1.2em;
 }
 
-
-/* File input */
-
 .file-input-container {
   margin-top: 8px;
 }
@@ -773,9 +732,6 @@ textarea.form-input {
   font-size: 0.78rem;
   color: var(--text-50);
 }
-
-
-/* Submit buttons */
 
 .submit-section {
   display: flex;
@@ -850,9 +806,6 @@ textarea.form-input {
   text-align: center;
 }
 
-
-/* Toast notification */
-
 .toast {
   position: fixed;
   bottom: 30px;
@@ -883,17 +836,11 @@ textarea.form-input {
   color: var(--color-red);
 }
 
-
-/* Responsive — tablet (≤ 1200px) */
-
 @media (max-width: 1200px) {
   .form-layout {
     grid-template-columns: 1fr;
   }
 }
-
-
-/* Responsive — mobile (≤ 768px) */
 
 @media (max-width: 768px) {
   .topbar {
@@ -976,9 +923,6 @@ textarea.form-input {
     margin-top: 4px;
   }
 }
-
-
-/* Responsive — small mobile (≤ 480px) */
 
 @media (max-width: 480px) {
   html {
