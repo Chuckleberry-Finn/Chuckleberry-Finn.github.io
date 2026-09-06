@@ -423,6 +423,23 @@ body {
   opacity: 0.9;
 }
 
+.issue-tracker-button.sage {
+  background: linear-gradient(135deg, rgba(156, 125, 136, 0.1) 0%, rgba(156, 125, 136, 0.05) 100%);
+  border-color: #9C9988;
+  box-shadow: 0 4px 15px rgba(156, 125, 136, 0.20);
+}
+
+.issue-tracker-button.sage:hover {
+  background: linear-gradient(135deg, rgba(156, 125, 136, 0.25) 0%, rgba(156, 125, 136, 0.10) 100%);
+  box-shadow: 0 6px 25px rgba(156, 125, 136, 0.35);
+  border-color: #9C9988;
+}
+
+.issue-tracker-button.sage .issue-tracker-title {
+  color: #9C9988;
+  text-shadow: 0 0 8px rgba(156, 125, 136, 0.30);
+}
+
 .profile-panel {
   background: linear-gradient(180deg, var(--surface-90) 0%, var(--raised-95) 100%);
   padding: 1.5rem;
