@@ -68,6 +68,7 @@ function renderFields(sourceData, targetData, sourceLang, targetLang) {
   applyMissingFilter();
   updateProgress();
   restoreDraft();
+  updateConflictBulkBar();
 }
 
 function escapeHtml(s) {
@@ -176,6 +177,7 @@ async function applyUploadedTranslationFolder(fileList) {
   applyMissingFilter();
   updateProgress();
   scheduleDraftSave();
+  updateConflictBulkBar();
 
   const parts = [];
   if (filled) parts.push(`${filled} blank field(s) filled in`);
@@ -212,13 +214,17 @@ function showFieldConflict(row, textarea, uploadedVal) {
     conflictEl.remove();
     updateProgress();
     scheduleDraftSave();
+    updateConflictBulkBar();
   });
 
   const keepBtn = document.createElement("button");
   keepBtn.type = "button";
   keepBtn.className = "btn-mini";
   keepBtn.textContent = "Discard";
-  keepBtn.addEventListener("click", () => conflictEl.remove());
+  keepBtn.addEventListener("click", () => {
+    conflictEl.remove();
+    updateConflictBulkBar();
+  });
 
   actions.appendChild(useBtn);
   actions.appendChild(keepBtn);
@@ -302,5 +308,21 @@ function clearCurrentDraft() {
   if (!editorDraftKey) return;
   localStorage.removeItem(editorDraftKey);
   setSourceStatus("Cleared the autosaved draft for this language pair.", "ok");
+}
+
+function updateConflictBulkBar() {
+  const bar = document.getElementById("conflictBulkActions");
+  if (!bar) return;
+  const count = document.querySelectorAll("#fieldsContainer .field-conflict").length;
+  document.getElementById("conflictBulkLabel").textContent = `${count} conflict(s) to review`;
+  bar.classList.toggle("hidden", count === 0);
+}
+
+function useAllUploadedConflicts() {
+  document.querySelectorAll("#fieldsContainer .field-conflict .btn-mini-primary").forEach(btn => btn.click());
+}
+
+function discardAllConflicts() {
+  document.querySelectorAll("#fieldsContainer .field-conflict .btn-mini:not(.btn-mini-primary)").forEach(btn => btn.click());
 }
 

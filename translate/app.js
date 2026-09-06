@@ -114,6 +114,8 @@ function initEditorActions() {
   });
 
   document.getElementById("clearDraftBtn").addEventListener("click", clearCurrentDraft);
+  document.getElementById("useAllUploadedBtn").addEventListener("click", useAllUploadedConflicts);
+  document.getElementById("discardAllBtn").addEventListener("click", discardAllConflicts);
 }
 
 async function handleLoadRepo(owner, repo, branch) {
