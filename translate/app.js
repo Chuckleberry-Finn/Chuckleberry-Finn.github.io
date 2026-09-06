@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const params = new URLSearchParams(window.location.search);
-  const repoParam = params.get("repo") || params.get("repo_url");
+  const repoParam = params.get("url") || params.get("repo") || params.get("repo_url");
   if (repoParam) {
     const parsed = parseRepoInput(repoParam);
     const match = parsed && MODS.find(m => {
@@ -32,7 +32,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     if (match) {
       document.getElementById("modsSelect").value = match.repo_url;
-      await handleLoadRepo(parsed.owner, parsed.repo, null);
+      await handleLoadRepo(parsed.owner, parsed.repo, params.get("branch"));
+    } else if (parsed) {
+      setSourceStatus(`"${parsed.owner}/${parsed.repo}" isn't one of the listed mods, so it can't be auto-loaded here.`, "error");
+    } else {
+      setSourceStatus(`Could not parse a repo from the URL parameter: "${repoParam}"`, "error");
     }
   }
 });
@@ -98,6 +102,18 @@ function initEditorActions() {
     startSteamSignIn(buildRedirectState());
   });
   document.getElementById("createPrBtn").addEventListener("click", handleCreatePR);
+
+  document.getElementById("uploadFolderBtn").addEventListener("click", () => {
+    document.getElementById("uploadFolderInput").click();
+  });
+  document.getElementById("uploadFolderInput").addEventListener("change", async (e) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    await applyUploadedTranslationFolder(files);
+    e.target.value = "";
+  });
+
+  document.getElementById("clearDraftBtn").addEventListener("click", clearCurrentDraft);
 }
 
 async function handleLoadRepo(owner, repo, branch) {
@@ -186,7 +202,7 @@ async function handleLoadFields() {
       ? await currentSource.readLanguageFiles(targetLang)
       : {};
 
-    renderFields(currentSourceData, targetData);
+    renderFields(currentSourceData, targetData, sourceLang, targetLang);
     document.getElementById("fieldsSection").classList.remove("hidden");
     document.getElementById("fieldsSection").scrollIntoView({ behavior: "smooth", block: "start" });
     setSourceStatus(`Loaded ${Object.keys(currentSourceData).length} file(s) for ${sourceLang} → ${targetLang}.`, "ok");

@@ -116,6 +116,11 @@ code {
   font-size: 0.75rem; text-decoration: underline; padding: 0;
 }
 .sign-out-link:hover { color: var(--color-accent); }
+.link-btn {
+  background: none; border: none; color: var(--text-60); cursor: pointer;
+  font-size: 0.8rem; text-decoration: underline; align-self: center;
+}
+.link-btn:hover { color: var(--color-accent); }
 .hidden { display: none !important; }
 
 .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
@@ -222,6 +227,23 @@ select { cursor: pointer; }
 .field-target textarea:focus { outline: none; border-color: var(--color-primary); }
 .field-target textarea.filled { border-color: rgba(126, 207, 208, 0.4); }
 .field-status { font-size: 1rem; align-self: center; }
+
+.field-conflict {
+  margin-top: 0.5rem; padding: 0.6rem 0.7rem;
+  background: rgba(224, 121, 107, 0.08); border: 1px solid rgba(224, 121, 107, 0.3);
+  border-radius: var(--radius);
+}
+.field-conflict-label { font-size: 0.72rem; font-weight: 600; color: var(--color-red); margin-bottom: 0.3rem; }
+.field-conflict-text { font-size: 0.85rem; color: var(--color-text); white-space: pre-wrap; margin-bottom: 0.5rem; }
+.field-conflict-actions { display: flex; gap: 0.5rem; }
+.btn-mini {
+  font-family: var(--font); font-size: 0.78rem; font-weight: 600;
+  border-radius: 6px; padding: 0.3rem 0.6rem; cursor: pointer;
+  border: 1px solid var(--primary-20); background: var(--raised-70); color: var(--color-text);
+}
+.btn-mini:hover { border-color: var(--color-primary); }
+.btn-mini-primary { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.btn-mini-primary:hover { background: var(--color-primary-dim); }
 
 @media (max-width: 640px) {
   .field-row { grid-template-columns: 1fr; }
