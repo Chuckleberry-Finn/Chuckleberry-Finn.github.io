@@ -381,6 +381,36 @@ async function handleCreateIssue(request, env, cors) {
 
 // TRANSLATION — PULL REQUEST (WITH GITHUB APP)
 
+async function resolveTargetBranch(owner, repo, targetLang, steamId, defaultBranch, ghHeaders) {
+  const baseBranchName = `translate/${targetLang.toLowerCase()}`;
+
+  for (let suffix = 0; suffix <= 5; suffix++) {
+    const candidate = suffix === 0 ? baseBranchName : `${baseBranchName}-${suffix + 1}`;
+
+    let existingRef = null;
+    try {
+      existingRef = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(candidate)}`, ghHeaders);
+    } catch (e) {
+      if (!/^404 /.test(e.message)) throw e;
+    }
+
+    if (!existingRef) {
+      const refData = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(defaultBranch)}`, ghHeaders);
+      const baseCommit = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/commits/${refData.object.sha}`, ghHeaders);
+      return { branchName: candidate, parentSha: refData.object.sha, baseTreeSha: baseCommit.tree.sha, isUpdate: false };
+    }
+
+    const openPRs = await ghJson(`https://api.github.com/repos/${owner}/${repo}/pulls?head=${encodeURIComponent(owner + ':' + candidate)}&state=open`, ghHeaders);
+    const ownedBySameUser = openPRs.some(pr => pr.body && pr.body.includes(`ID: \`${steamId}\``));
+    if (ownedBySameUser) {
+      const commit = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/commits/${existingRef.object.sha}`, ghHeaders);
+      return { branchName: candidate, parentSha: existingRef.object.sha, baseTreeSha: commit.tree.sha, isUpdate: true };
+    }
+  }
+
+  throw new Error(`Too many conflicting "${baseBranchName}*" branches — ask the repo owner to clean up stale translation branches.`);
+}
+
 async function handleTranslationPR(request, env, cors) {
   const body = await request.json();
   const {
@@ -430,10 +460,9 @@ async function handleTranslationPR(request, env, cors) {
 
   try {
     const branch = base_branch || (await ghJson(`https://api.github.com/repos/${owner}/${repo}`, ghHeaders)).default_branch;
-    const refData = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${encodeURIComponent(branch)}`, ghHeaders);
-    const baseSha = refData.object.sha;
-    const baseCommit = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/commits/${baseSha}`, ghHeaders);
-    const baseTreeSha = baseCommit.tree.sha;
+
+    const committerName = steam_name || 'PZ Translation Bot';
+    const target = await resolveTargetBranch(owner, repo, target_lang, steam_id, branch, ghHeaders);
 
     const treeEntries = [];
     for (const f of files) {
@@ -446,26 +475,38 @@ async function handleTranslationPR(request, env, cors) {
     }
 
     const newTree = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/trees`, ghHeaders, 'POST', {
-      base_tree: baseTreeSha,
+      base_tree: target.baseTreeSha,
       tree: treeEntries,
     });
 
-    const committerName = steam_name || 'PZ Translation Bot';
-    const commitMessage = `Add ${target_lang} translation${files.length > 1 ? 's' : ''} (${source_lang || 'EN'} → ${target_lang})\n\nSubmitted via the translation tool by Steam user ${committerName} (${steam_id}).`;
+    const commitMessage = `${target.isUpdate ? 'Update' : 'Add'} ${target_lang} translation${files.length > 1 ? 's' : ''} (${source_lang || 'EN'} → ${target_lang})\n\nSubmitted via the translation tool by Steam user ${committerName} (${steam_id}).`;
 
     const newCommit = await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/commits`, ghHeaders, 'POST', {
       message: commitMessage,
       tree: newTree.sha,
-      parents: [baseSha],
+      parents: [target.parentSha],
     });
 
-    const branchName = `translate/${target_lang.toLowerCase()}-${Date.now()}`;
-    await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/refs`, ghHeaders, 'POST', {
-      ref: `refs/heads/${branchName}`,
-      sha: newCommit.sha,
-    });
+    if (target.isUpdate) {
+      await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/refs/heads/${encodeURIComponent(target.branchName)}`, ghHeaders, 'PATCH', {
+        sha: newCommit.sha,
+      });
+    } else {
+      await ghJson(`https://api.github.com/repos/${owner}/${repo}/git/refs`, ghHeaders, 'POST', {
+        ref: `refs/heads/${target.branchName}`,
+        sha: newCommit.sha,
+      });
+    }
 
     const langLabel = target_lang;
+
+    if (target.isUpdate) {
+      const existingPRs = await ghJson(`https://api.github.com/repos/${owner}/${repo}/pulls?head=${encodeURIComponent(owner + ':' + target.branchName)}&state=open`, ghHeaders);
+      if (existingPRs.length > 0) {
+        return json({ success: true, pr_number: existingPRs[0].number, pr_url: existingPRs[0].html_url, updated: true }, 200, cors);
+      }
+    }
+
     const prBody = [
       `Adds/updates the **${langLabel}** translation, submitted through the translation tool.`,
       '',
@@ -476,7 +517,7 @@ async function handleTranslationPR(request, env, cors) {
 
     const pr = await ghJson(`https://api.github.com/repos/${owner}/${repo}/pulls`, ghHeaders, 'POST', {
       title: `Translation: ${langLabel}`,
-      head: branchName,
+      head: target.branchName,
       base: branch,
       body: prBody,
     });

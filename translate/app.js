@@ -242,7 +242,8 @@ async function handleCreatePR() {
       files,
     });
 
-    resultEl.innerHTML = `<span class="pr-success">Pull request opened:</span> <a href="${result.pr_url}" target="_blank" rel="noopener">${escapeHtml(result.pr_url)}</a>`;
+    const verb = result.updated ? "Updated existing pull request" : "Pull request opened";
+    resultEl.innerHTML = `<span class="pr-success">${verb}:</span> <a href="${result.pr_url}" target="_blank" rel="noopener">${escapeHtml(result.pr_url)}</a>`;
   } catch (err) {
     resultEl.innerHTML = `<span class="pr-error">${escapeHtml(err.message)}</span>`;
   } finally {
