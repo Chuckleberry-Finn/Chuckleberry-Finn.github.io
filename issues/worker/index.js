@@ -472,8 +472,6 @@ async function handleTranslationPR(request, env, cors) {
       `> **Submitted by Steam user:** [${committerName}](https://steamcommunity.com/profiles/${steam_id}) (ID: \`${steam_id}\`)`,
       '',
       `Source language: \`${source_lang || 'EN'}\` · Files changed: ${files.length}`,
-      '',
-      '_Machine-assisted translations should be spot-checked by a native speaker before merging._',
     ].join('\n');
 
     const pr = await ghJson(`https://api.github.com/repos/${owner}/${repo}/pulls`, ghHeaders, 'POST', {
