@@ -217,7 +217,7 @@ function showFieldConflict(row, textarea, uploadedVal) {
   const keepBtn = document.createElement("button");
   keepBtn.type = "button";
   keepBtn.className = "btn-mini";
-  keepBtn.textContent = "Keep mine";
+  keepBtn.textContent = "Discard";
   keepBtn.addEventListener("click", () => conflictEl.remove());
 
   actions.appendChild(useBtn);
