@@ -11,6 +11,11 @@ const CONFIG = {
     url: "https://steam-issue-tracker.chuckleberryfinn.workers.dev",
   },
 
+  githubOauth: {
+    clientId: "Ov23lisWAFMY0ViOn5vf",
+    workerUrl: "https://chuck-oauth.chuckleberryfinn.workers.dev",
+  },
+
   modsJsonPath: "../mods.json",
   languagesJsonPath: "languages.json",
   defaultSourceLang: "EN",

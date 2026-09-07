@@ -17,7 +17,7 @@ function saveSteam() {
 function signOutSteam() {
   steamState = { username: null, steamId: null, avatar: null, token: null };
   localStorage.removeItem(STEAM_STORAGE_KEY);
-  updateSteamUI();
+  updateAuthUI();
 }
 
 function isSteamSignedIn() {
@@ -56,36 +56,50 @@ function checkSteamCallback() {
     };
     saveSteam();
     window.history.replaceState({}, "", window.location.pathname);
-    updateSteamUI();
+    updateAuthUI();
     return restoreAppStateAfterRedirect();
   } else if (params.get("steam_auth") === "error") {
     window.history.replaceState({}, "", window.location.pathname);
-    updateSteamUI();
+    updateAuthUI();
     setSourceStatus("Steam authentication failed. You can still download translations without signing in.", "error");
   }
   return null;
 }
 
-function updateSteamUI() {
-  const badge = document.getElementById("steam-user-badge");
-  const nameEl = document.getElementById("steam-user-name");
-  const signInBtn = document.getElementById("steamSignInBtn");
+function updateAuthUI() {
+  const steamBadge = document.getElementById("steam-user-badge");
+  const steamName = document.getElementById("steam-user-name");
+  const steamBtn = document.getElementById("steamSignInBtn");
+  const githubBadge = document.getElementById("github-user-badge");
+  const githubName = document.getElementById("github-user-name");
+  const githubBtn = document.getElementById("githubSignInBtn");
+  const orDivider = document.getElementById("signInOrDivider");
   const createPrBtn = document.getElementById("createPrBtn");
 
+  const hasRepoSource = currentSource && currentSource.type === "repo";
+  const steamIn = isSteamSignedIn();
+  const githubIn = typeof isGithubSignedIn === "function" && isGithubSignedIn();
+
   if (steamState.token) {
-    badge.classList.remove("hidden");
-    nameEl.textContent = steamState.username;
-    if (signInBtn) signInBtn.classList.add("hidden");
-    if (createPrBtn && currentSource && currentSource.type === "repo") {
-      createPrBtn.classList.remove("hidden");
-    }
+    steamBadge.classList.remove("hidden");
+    steamName.textContent = steamState.username;
   } else {
-    badge.classList.add("hidden");
-    if (signInBtn && currentSource && currentSource.type === "repo") {
-      signInBtn.classList.remove("hidden");
-    }
-    if (createPrBtn) createPrBtn.classList.add("hidden");
+    steamBadge.classList.add("hidden");
   }
+
+  if (githubBadge) {
+    if (githubIn) {
+      githubBadge.classList.remove("hidden");
+      githubName.textContent = githubAuth.login;
+    } else {
+      githubBadge.classList.add("hidden");
+    }
+  }
+
+  if (steamBtn) steamBtn.classList.toggle("hidden", !hasRepoSource || steamIn || githubIn);
+  if (githubBtn) githubBtn.classList.toggle("hidden", !hasRepoSource || steamIn || githubIn);
+  if (orDivider) orDivider.classList.toggle("hidden", !hasRepoSource || steamIn || githubIn);
+  if (createPrBtn) createPrBtn.classList.toggle("hidden", !hasRepoSource || !(steamIn || githubIn));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

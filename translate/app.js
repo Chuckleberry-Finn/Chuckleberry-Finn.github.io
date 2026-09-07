@@ -11,9 +11,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!languagesOk || !modsOk) return;
 
   restoreSteam();
-  const resumedState = checkSteamCallback();
-  updateSteamUI();
+  const resumedSteamState = checkSteamCallback();
+  const wasGithubOAuthCallback = await checkGithubOAuthCallback();
+  if (!wasGithubOAuthCallback) await restoreAndVerifyGithubAuth();
+  updateAuthUI();
 
+  const resumedState = resumedSteamState;
   if (resumedState && resumedState.type === "repo") {
     await handleLoadRepo(resumedState.owner, resumedState.repo, resumedState.branch);
     if (resumedState.sourceLang) document.getElementById("sourceLangSelect").value = resumedState.sourceLang;
@@ -21,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (resumedState.sourceLang && resumedState.targetLang) await handleLoadFields();
     return;
   }
+  if (wasGithubOAuthCallback) return; // restoreAppStateAfterOAuth (called from githubAuth.js) already handled loading, if any
 
   const params = new URLSearchParams(window.location.search);
   const repoParam = params.get("url") || params.get("repo") || params.get("repo_url");
@@ -151,7 +155,7 @@ function onSourceLoaded() {
   document.getElementById("view-editor").classList.remove("hidden");
   document.getElementById("fieldsSection").classList.add("hidden");
 
-  updateSteamUI();
+  updateAuthUI();
   document.getElementById("view-editor").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -192,6 +196,18 @@ function buildRedirectState() {
   };
 }
 
+/** Called by githubAuth.js after a successful GitHub OAuth sign-in. */
+async function restoreAppStateAfterOAuth(state) {
+  if (!state || state.type !== "repo") return;
+  document.getElementById("modsSelect").value = MODS.find(m => {
+    const p = parseRepoInput(m.repo_url || "");
+    return p && p.owner.toLowerCase() === state.owner.toLowerCase() && p.repo.toLowerCase() === state.repo.toLowerCase();
+  })?.repo_url || "";
+  await handleLoadRepo(state.owner, state.repo, state.branch);
+  if (state.sourceLang) document.getElementById("sourceLangSelect").value = state.sourceLang;
+  if (state.targetLang) document.getElementById("targetLangSelect").value = state.targetLang;
+}
+
 async function handleLoadFields() {
   if (!currentSource) return;
   const sourceLang = document.getElementById("sourceLangSelect").value;
@@ -208,7 +224,7 @@ async function handleLoadFields() {
     document.getElementById("fieldsSection").classList.remove("hidden");
     document.getElementById("fieldsSection").scrollIntoView({ behavior: "smooth", block: "start" });
     setSourceStatus(`Loaded ${Object.keys(currentSourceData).length} file(s) for ${sourceLang} → ${targetLang}.`, "ok");
-    updateSteamUI();
+    updateAuthUI();
   } catch (err) {
     setSourceStatus(`Could not load fields: ${err.message}`, "error");
   }
@@ -234,18 +250,28 @@ async function handleCreatePR() {
       content: JSON.stringify(data, null, 4),
     }));
 
-    const result = await submitTranslationPR({
-      owner: currentSource.owner,
-      repo: currentSource.repo,
-      branch: currentSource.branch,
-      translateRoot: currentSource.translateRoot,
-      sourceLang,
-      targetLang,
-      files,
-    });
+    const result = isGithubSignedIn()
+      ? await submitTranslationPRSelf({
+          owner: currentSource.owner,
+          repo: currentSource.repo,
+          sourceLang,
+          targetLang,
+          files: files.map(f => ({ path: `${currentSource.translateRoot}/${targetLang}/${f.path}`, content: f.content })),
+          token: getGithubToken(),
+        })
+      : await submitTranslationPR({
+          owner: currentSource.owner,
+          repo: currentSource.repo,
+          branch: currentSource.branch,
+          translateRoot: currentSource.translateRoot,
+          sourceLang,
+          targetLang,
+          files,
+        });
 
+    const viaNote = result.via_fork ? " (via a fork, since you don't have push access to this repo)" : "";
     const verb = result.updated ? "Updated existing pull request" : "Pull request opened";
-    resultEl.innerHTML = `<span class="pr-success">${verb}:</span> <a href="${result.pr_url}" target="_blank" rel="noopener">${escapeHtml(result.pr_url)}</a>`;
+    resultEl.innerHTML = `<span class="pr-success">${verb}${viaNote}:</span> <a href="${result.pr_url}" target="_blank" rel="noopener">${escapeHtml(result.pr_url)}</a>`;
   } catch (err) {
     resultEl.innerHTML = `<span class="pr-error">${escapeHtml(err.message)}</span>`;
   } finally {

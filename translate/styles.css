@@ -183,6 +183,7 @@ select { cursor: pointer; }
 .btn-secondary { background: var(--raised-70); color: var(--color-text); border-color: var(--primary-20); }
 .btn-secondary:hover { border-color: var(--color-primary); }
 .btn-steam { background: rgba(126, 207, 208, 0.12); color: var(--color-steam); border-color: rgba(126, 207, 208, 0.4); }
+.or-divider { color: var(--text-50); font-size: 0.85rem; align-self: center; }
 .btn-steam:hover { background: rgba(126, 207, 208, 0.2); }
 
 .editor-meta { margin-bottom: 1.25rem; }
