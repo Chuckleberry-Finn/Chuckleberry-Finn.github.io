@@ -96,9 +96,9 @@ function updateAuthUI() {
     }
   }
 
-  if (steamBtn) steamBtn.classList.toggle("hidden", !hasRepoSource || steamIn || githubIn);
-  if (githubBtn) githubBtn.classList.toggle("hidden", !hasRepoSource || steamIn || githubIn);
-  if (orDivider) orDivider.classList.toggle("hidden", !hasRepoSource || steamIn || githubIn);
+  if (steamBtn) steamBtn.classList.toggle("hidden", steamIn || githubIn);
+  if (githubBtn) githubBtn.classList.toggle("hidden", steamIn || githubIn);
+  if (orDivider) orDivider.classList.toggle("hidden", steamIn || githubIn);
   if (createPrBtn) createPrBtn.classList.toggle("hidden", !hasRepoSource || !(steamIn || githubIn));
 }
 
