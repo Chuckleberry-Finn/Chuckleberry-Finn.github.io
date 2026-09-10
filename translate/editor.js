@@ -111,15 +111,19 @@ function getExportData() {
     const source = editorSourceData[fileName] || {};
     const fileOut = {};
 
-    for (const [key, value] of Object.entries(source)) {
-      if (typeof value !== "string") fileOut[key] = value;
-    }
-
+    const rowValues = new Map();
     group.querySelectorAll(".field-row").forEach(row => {
-      const key = row.dataset.key;
-      const val = row.querySelector("textarea").value.trim();
-      if (val.length > 0) fileOut[key] = val;
+      rowValues.set(row.dataset.key, row.querySelector("textarea").value.trim());
     });
+
+    for (const [key, value] of Object.entries(source)) {
+      if (typeof value !== "string") {
+        fileOut[key] = value;
+        continue;
+      }
+      const val = rowValues.get(key);
+      if (val) fileOut[key] = val;
+    }
 
     out[fileName] = fileOut;
   });
