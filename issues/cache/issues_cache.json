@@ -2,6 +2,21 @@
   "Chuckleberry-Finn/Skill-Recovery-Journal": {
     "issues": [
       {
+        "number": 155,
+        "title": "[Bug] red untranscribed xp bar is innacurate depending on profession or traits",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/155",
+        "created_at": "2026-09-10T09:24:10Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
         "number": 154,
         "title": "[Bug] Non-ASCII ledger IDs do not round-trip under Kahlua; duplicate JSON keys can overwrite XP",
         "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/154",
@@ -77,11 +92,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:49.174331Z"
+    "timestamp": "2026-09-10T11:41:32.080184Z"
   },
-  "Chuckleberry-Finn/errorMagnifier": {
+  "Chuckleberry-Finn/EasyConfigChucked": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:49.627653Z"
+    "timestamp": "2026-09-10T11:41:32.303953Z"
   },
   "Chuckleberry-Finn/moddingAlertSystem": {
     "issues": [
@@ -106,181 +121,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:50.032329Z"
-  },
-  "TEHE-Studios/ExpandedHelicopterEvents": {
-    "issues": [
-      {
-        "number": 419,
-        "title": "Item Issues",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/419",
-        "created_at": "2026-08-13T19:01:40Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 417,
-        "title": "Helicopter Cow Attack Error",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/417",
-        "created_at": "2026-08-09T09:41:35Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 414,
-        "title": "Helicopter Attacks No Longer Damaging Zombies",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/414",
-        "created_at": "2026-08-03T09:23:01Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 413,
-        "title": "Adding Items to the Loot",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
-        "created_at": "2026-06-03T04:57:33Z",
-        "user": {
-          "login": "Bayrain"
-        },
-        "labels": []
-      },
-      {
-        "number": 412,
-        "title": "[Bug] Mod won't show up on Modlist",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
-        "created_at": "2026-05-13T11:51:53Z",
-        "user": {
-          "login": "PleaseHelpMeILuvZomboid"
-        },
-        "labels": []
-      },
-      {
-        "number": 411,
-        "title": "Mod does not work on multiplayer at all",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
-        "created_at": "2026-05-01T16:38:46Z",
-        "user": {
-          "login": "ChucklingWizzard"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 407,
-        "title": "Abandoned Heli",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
-        "created_at": "2026-02-02T11:00:15Z",
-        "user": {
-          "login": "GrayWizard26"
-        },
-        "labels": [
-          {
-            "name": "idea",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 406,
-        "title": "Like 50 jets spawning at once",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
-        "created_at": "2026-02-01T02:20:36Z",
-        "user": {
-          "login": "meowapocalypse"
-        },
-        "labels": []
-      },
-      {
-        "number": 404,
-        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
-        "created_at": "2025-12-14T06:52:51Z",
-        "user": {
-          "login": "boltyboi"
-        },
-        "labels": [
-          {
-            "name": "idea",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 402,
-        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
-        "created_at": "2025-11-07T17:46:56Z",
-        "user": {
-          "login": "marinara2245"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-09-10T05:07:50.528475Z"
-  },
-  "Chuckleberry-Finn/SwapIt": {
-    "issues": [
-      {
-        "number": 6,
-        "title": "[Bug] Items return to the inventory when changing hands.",
-        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
-        "created_at": "2026-06-23T13:52:39Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 1,
-        "title": "Add Controller Support",
-        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
-        "created_at": "2021-06-04T12:02:05Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-09-10T05:07:50.933399Z"
-  },
-  "Chuckleberry-Finn/You-Drive-I-Sleep": {
-    "issues": [],
-    "timestamp": "2026-09-10T05:07:51.386112Z"
+    "timestamp": "2026-09-10T11:41:32.569354Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [
@@ -300,7 +141,7 @@
         ]
       }
     ],
-    "timestamp": "2026-09-10T05:07:51.777172Z"
+    "timestamp": "2026-09-10T11:41:32.847041Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
     "issues": [
@@ -405,7 +246,7 @@
         ]
       }
     ],
-    "timestamp": "2026-09-10T05:07:52.286086Z"
+    "timestamp": "2026-09-10T11:41:33.265859Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -420,7 +261,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:52.673915Z"
+    "timestamp": "2026-09-10T11:41:33.557861Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -575,15 +416,11 @@
         ]
       }
     ],
-    "timestamp": "2026-09-10T05:07:53.164886Z"
-  },
-  "Chuckleberry-Finn/Named-Literature": {
-    "issues": [],
-    "timestamp": "2026-09-10T05:07:53.581896Z"
+    "timestamp": "2026-09-10T11:41:33.926984Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:53.886321Z"
+    "timestamp": "2026-09-10T11:41:34.134664Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -698,7 +535,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:54.371942Z"
+    "timestamp": "2026-09-10T11:41:34.442519Z"
+  },
+  "Chuckleberry-Finn/RebalancedCalorieBurning": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:34.716500Z"
   },
   "Chuckleberry-Finn/interactive-tailoring": {
     "issues": [
@@ -713,43 +554,70 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:54.791223Z"
+    "timestamp": "2026-09-10T11:41:35.005103Z"
+  },
+  "Chuckleberry-Finn/zone-api-chucked": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:35.203591Z"
+  },
+  "Chuckleberry-Finn/ZombieZones": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Add indicator to alert players when entering/inside of zones.",
+        "html_url": "https://github.com/Chuckleberry-Finn/ZombieZones/issues/1",
+        "created_at": "2024-10-09T13:46:54Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-10T11:41:35.498682Z"
   },
   "Chuckleberry-Finn/Display-Roles-In-Chat": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:55.187818Z"
+    "timestamp": "2026-09-10T11:41:35.736034Z"
   },
-  "Chuckleberry-Finn/Game-night---Battleship": {
+  "Chuckleberry-Finn/zomboidPaper": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:55.547379Z"
+    "timestamp": "2026-09-10T11:41:35.962616Z"
+  },
+  "Chuckleberry-Finn/Tuck-and-Roll": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:36.147389Z"
+  },
+  "Chuckleberry-Finn/aprilFoolsPZ2024": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:36.332238Z"
+  },
+  "Chuckleberry-Finn/zombies-trip-over-zombies": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:36.598934Z"
   },
   "Chuckleberry-Finn/gameNightDominos": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:55.889008Z"
-  },
-  "Chuckleberry-Finn/GameNight-OneBulletGame": {
-    "issues": [],
-    "timestamp": "2026-09-10T05:07:56.341316Z"
+    "timestamp": "2026-09-10T11:41:36.809600Z"
   },
   "Chuckleberry-Finn/gameNightDND": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:56.659096Z"
+    "timestamp": "2026-09-10T11:41:36.987652Z"
   },
   "Chuckleberry-Finn/gameNight-Whodunit": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:56.982155Z"
+    "timestamp": "2026-09-10T11:41:37.179994Z"
   },
   "Chuckleberry-Finn/gameNightCyberPunk": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:57.288441Z"
+    "timestamp": "2026-09-10T11:41:37.454213Z"
   },
-  "Chuckleberry-Finn/game-night-spiffoTC": {
+  "Chuckleberry-Finn/ZombiesDropGames": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:57.677572Z"
+    "timestamp": "2026-09-10T11:41:37.653995Z"
   },
-  "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
+  "Chuckleberry-Finn/Carjacking": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:58.107201Z"
+    "timestamp": "2026-09-10T11:41:37.845259Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
     "issues": [
@@ -764,11 +632,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:58.490736Z"
+    "timestamp": "2026-09-10T11:41:38.089300Z"
   },
   "Chuckleberry-Finn/NoDamageFromTrees": {
     "issues": [],
-    "timestamp": "2026-09-10T05:07:58.780368Z"
+    "timestamp": "2026-09-10T11:41:38.328386Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -783,34 +651,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:07:59.200678Z"
-  },
-  "Chuckleberry-Finn/gameNight-covertNames": {
-    "issues": [],
-    "timestamp": "2026-09-10T05:07:59.517994Z"
-  },
-  "Chuckleberry-Finn/gameNight-americana": {
-    "issues": [],
-    "timestamp": "2026-09-10T05:07:59.815010Z"
+    "timestamp": "2026-09-10T11:41:38.541940Z"
   },
   "Chuckleberry-Finn/pz-factionBanking": {
     "issues": [],
-    "timestamp": "2026-09-10T05:08:00.210167Z"
-  },
-  "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Fix In-Hand Orientation For Some Weapons",
-        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
-        "created_at": "2021-06-04T12:04:56Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-09-10T05:08:00.554877Z"
+    "timestamp": "2026-09-10T11:41:38.727055Z"
   },
   "Chuckleberry-Finn/proximity-invites": {
     "issues": [
@@ -825,14 +670,207 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-10T05:08:00.897875Z"
+    "timestamp": "2026-09-10T11:41:39.002577Z"
   },
-  "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
+  "Chuckleberry-Finn/roll-command-plus": {
     "issues": [],
-    "timestamp": "2026-09-10T05:08:01.240740Z"
+    "timestamp": "2026-09-10T11:41:39.253418Z"
   },
-  "Chuckleberry-Finn/containerLockout": {
+  "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-09-10T05:08:01.544867Z"
+    "timestamp": "2026-09-10T11:41:39.447091Z"
+  },
+  "TEHE-Studios/ExpandedHelicopterEvents": {
+    "issues": [
+      {
+        "number": 419,
+        "title": "Item Issues",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/419",
+        "created_at": "2026-08-13T19:01:40Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 417,
+        "title": "Helicopter Cow Attack Error",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/417",
+        "created_at": "2026-08-09T09:41:35Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 414,
+        "title": "Helicopter Attacks No Longer Damaging Zombies",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/414",
+        "created_at": "2026-08-03T09:23:01Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 413,
+        "title": "Adding Items to the Loot",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
+        "created_at": "2026-06-03T04:57:33Z",
+        "user": {
+          "login": "Bayrain"
+        },
+        "labels": []
+      },
+      {
+        "number": 412,
+        "title": "[Bug] Mod won't show up on Modlist",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
+        "created_at": "2026-05-13T11:51:53Z",
+        "user": {
+          "login": "PleaseHelpMeILuvZomboid"
+        },
+        "labels": []
+      },
+      {
+        "number": 411,
+        "title": "Mod does not work on multiplayer at all",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
+        "created_at": "2026-05-01T16:38:46Z",
+        "user": {
+          "login": "ChucklingWizzard"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 407,
+        "title": "Abandoned Heli",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
+        "created_at": "2026-02-02T11:00:15Z",
+        "user": {
+          "login": "GrayWizard26"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 406,
+        "title": "Like 50 jets spawning at once",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
+        "created_at": "2026-02-01T02:20:36Z",
+        "user": {
+          "login": "meowapocalypse"
+        },
+        "labels": []
+      },
+      {
+        "number": 404,
+        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
+        "created_at": "2025-12-14T06:52:51Z",
+        "user": {
+          "login": "boltyboi"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 402,
+        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
+        "created_at": "2025-11-07T17:46:56Z",
+        "user": {
+          "login": "marinara2245"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-09-10T11:41:39.816206Z"
+  },
+  "Chuckleberry-Finn/SwapIt": {
+    "issues": [
+      {
+        "number": 6,
+        "title": "[Bug] Items return to the inventory when changing hands.",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
+        "created_at": "2026-06-23T13:52:39Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 1,
+        "title": "Add Controller Support",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
+        "created_at": "2021-06-04T12:02:05Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-10T11:41:40.174376Z"
+  },
+  "Chuckleberry-Finn/You-Drive-I-Sleep": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:40.380554Z"
+  },
+  "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Fix In-Hand Orientation For Some Weapons",
+        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
+        "created_at": "2021-06-04T12:04:56Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-10T11:41:40.625420Z"
+  },
+  "Chuckleberry-Finn/Named-Literature": {
+    "issues": [],
+    "timestamp": "2026-09-10T11:41:40.798555Z"
   }
 }
