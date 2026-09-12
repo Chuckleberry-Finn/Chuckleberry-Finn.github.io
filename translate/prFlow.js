@@ -10,7 +10,7 @@ async function ghApiCall(path, token, method = "GET", body = null) {
   });
   if (!resp.ok) {
     const text = await resp.text().catch(() => "");
-    const err = new Error(`${resp.status} ${path} — ${text.slice(0, 300)}`);
+    const err = new Error(`${resp.status} ${path} - ${text.slice(0, 300)}`);
     err.status = resp.status;
     throw err;
   }
@@ -50,7 +50,7 @@ async function ensureFork(owner, repo, token) {
       if (e.status !== 404) throw e;
     }
   }
-  throw new Error("Fork was created but isn't ready yet — try submitting again in a moment.");
+  throw new Error("Fork was created but isn't ready yet - try submitting again in a moment.");
 }
 
 async function commitFilesToNewBranch({ writeOwner, repo, baseBranch, files, targetLang, token }) {

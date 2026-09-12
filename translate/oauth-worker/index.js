@@ -1,10 +1,21 @@
 /**
- * Mod Translator OAuth relay — Cloudflare Worker
+ * Mod Translator OAuth relay - Cloudflare Worker
+ *
+ * The ONLY job this worker does: trade an OAuth "code" for an access
+ * token using the GitHub OAuth App's client secret. That secret can't
+ * be exposed to the browser, and GitHub's token endpoint has no CORS,
+ * so this one step can't happen client-side - everything else in the
+ * tool (reading repos, forking, committing, opening the PR) runs
+ * directly from the browser using the token this returns.
+ *
+ * No GitHub App, no private key, no installation IDs, no per-repo
+ * allowlist - this worker has no idea what repos exist or what the
+ * token gets used for afterwards.
  *
  * Environment variables:
- *   GITHUB_OAUTH_CLIENT_ID     — Client ID of the GitHub OAuth App
- *   GITHUB_OAUTH_CLIENT_SECRET — Client Secret of the GitHub OAuth App
- *   ALLOWED_ORIGINS            — comma-separated CORS origins
+ *   GITHUB_OAUTH_CLIENT_ID     - Client ID of the GitHub OAuth App
+ *   GITHUB_OAUTH_CLIENT_SECRET - Client Secret of the GitHub OAuth App
+ *   ALLOWED_ORIGINS            - comma-separated CORS origins
  */
 
 export default {

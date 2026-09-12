@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- Dust particles (matches issue tracker) -->
   <div class="dust-container">
     <div class="dust"></div>
     <div class="dust"></div>
@@ -22,7 +21,6 @@
 
   <div class="page">
 
-    <!-- Top bar -->
     <div class="topbar">
       <div class="topbar-content">
         <div class="topbar-left">
@@ -70,9 +68,6 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           STEP 1 — CHOOSE A MOD
-      ============================================================ -->
       <section class="panel" id="view-source">
         <h2 class="panel-title">1. Choose a mod</h2>
         <p class="panel-hint">
@@ -91,12 +86,16 @@
         <div class="source-status" id="sourceStatus"></div>
       </section>
 
-      <!-- ============================================================
-           STEP 2/3 — LANGUAGES + EDITOR
-      ============================================================ -->
       <section class="panel hidden" id="view-editor">
         <h2 class="panel-title">2. Choose languages</h2>
         <div class="editor-meta" id="editorMeta"></div>
+
+        <div class="lang-row hidden" id="modPickerRow">
+          <div class="lang-field">
+            <label class="field-label" for="modSelect">This repo has multiple mods - which one?</label>
+            <select id="modSelect"></select>
+          </div>
+        </div>
 
         <div class="lang-row">
           <div class="lang-field">

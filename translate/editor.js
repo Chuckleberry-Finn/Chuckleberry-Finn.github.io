@@ -186,7 +186,7 @@ async function applyUploadedTranslationFolder(fileList) {
   const parts = [];
   if (filled) parts.push(`${filled} blank field(s) filled in`);
   if (conflicts) parts.push(`${conflicts} conflict(s) to review below`);
-  setSourceStatus(parts.length ? parts.join(", ") + "." : "Nothing new found in that folder — everything already matched.", conflicts ? "loading" : "ok");
+  setSourceStatus(parts.length ? parts.join(", ") + "." : "Nothing new found in that folder - everything already matched.", conflicts ? "loading" : "ok");
 }
 
 function showFieldConflict(row, textarea, uploadedVal) {

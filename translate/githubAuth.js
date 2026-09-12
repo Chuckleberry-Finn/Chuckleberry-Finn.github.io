@@ -36,7 +36,7 @@ async function signInGithub(token) {
     headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" },
   });
   if (!resp.ok) {
-    if (resp.status === 401) throw new Error("That sign-in was rejected — the token is invalid or expired.");
+    if (resp.status === 401) throw new Error("That sign-in was rejected - the token is invalid or expired.");
     throw new Error(`Could not verify sign-in (HTTP ${resp.status}).`);
   }
   const user = await resp.json();
@@ -58,7 +58,7 @@ async function restoreAndVerifyGithubAuth() {
 
 function startGithubOAuth() {
   if (!CONFIG.githubOauth || !CONFIG.githubOauth.clientId || !CONFIG.githubOauth.workerUrl) {
-    setSourceStatus("GitHub sign-in isn't configured on this deployment yet — try Steam instead.", "error");
+    setSourceStatus("GitHub sign-in isn't configured on this deployment yet - try Steam instead.", "error");
     return;
   }
   const state = crypto.randomUUID();
@@ -91,7 +91,7 @@ async function checkGithubOAuthCallback() {
   const expectedState = sessionStorage.getItem(GH_OAUTH_STATE_KEY);
   sessionStorage.removeItem(GH_OAUTH_STATE_KEY);
   if (!state || state !== expectedState) {
-    setSourceStatus("GitHub sign-in failed a security check — please try again.", "error");
+    setSourceStatus("GitHub sign-in failed a security check - please try again.", "error");
     return true;
   }
 

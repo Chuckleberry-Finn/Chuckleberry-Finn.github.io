@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const resumedState = resumedSteamState;
   if (resumedState && resumedState.type === "repo") {
     await handleLoadRepo(resumedState.owner, resumedState.repo, resumedState.branch);
+    if (typeof resumedState.selectedModIndex === "number" && currentSource.mods && resumedState.selectedModIndex < currentSource.mods.length) {
+      currentSource.selectedModIndex = resumedState.selectedModIndex;
+      onSourceLoaded();
+    }
     if (resumedState.sourceLang) document.getElementById("sourceLangSelect").value = resumedState.sourceLang;
     if (resumedState.targetLang) document.getElementById("targetLangSelect").value = resumedState.targetLang;
     if (resumedState.sourceLang && resumedState.targetLang) await handleLoadFields();
@@ -92,6 +96,11 @@ function setSourceStatus(message, kind) {
 }
 
 function initEditorActions() {
+  document.getElementById("modSelect").addEventListener("change", (e) => {
+    currentSource.selectedModIndex = Number(e.target.value);
+    onSourceLoaded();
+  });
+
   document.getElementById("loadModBtn").addEventListener("click", async () => {
     const val = document.getElementById("modsSelect").value;
     if (!val) { setSourceStatus("Pick a mod first.", "error"); return; }
@@ -140,13 +149,29 @@ async function handleLoadRepo(owner, repo, branch) {
 }
 
 function onSourceLoaded() {
+  const modPickerRow = document.getElementById("modPickerRow");
+  const modSelect = document.getElementById("modSelect");
+
+  if (currentSource.mods && currentSource.mods.length > 1) {
+    modPickerRow.classList.remove("hidden");
+    modSelect.innerHTML = currentSource.mods
+      .map((m, i) => `<option value="${i}">${escapeHtml(m.label)} (${Object.keys(m.languages).length} language(s))</option>`)
+      .join("");
+    modSelect.value = currentSource.selectedModIndex;
+  } else {
+    modPickerRow.classList.add("hidden");
+  }
+
   const availableLangs = Object.keys(currentSource.languages).sort();
   if (availableLangs.length === 0) {
     setSourceStatus("Found a Translate folder, but no recognizable language subfolders.", "error");
     return;
   }
 
-  setSourceStatus(`Loaded ${currentSource.label} — found ${availableLangs.length} language folder(s).`, "ok");
+  const modNote = currentSource.mods && currentSource.mods.length > 1
+    ? ` - "${currentSource.mods[currentSource.selectedModIndex].label}"`
+    : "";
+  setSourceStatus(`Loaded ${currentSource.label}${modNote} - found ${availableLangs.length} language folder(s).`, "ok");
 
   const meta = document.getElementById("editorMeta");
   meta.innerHTML = `<span class="meta-name">${escapeHtml(currentSource.label)}</span>`;
@@ -176,7 +201,7 @@ function populateLangSelects(availableLangs) {
     const allCodes = Object.keys(LANGUAGES).filter(l => l !== source).sort();
     targetSelect.innerHTML = allCodes.map(l => {
       const has = availableLangs.includes(l);
-      const label = langOptionLabel(l) + (has ? " — has existing translation" : "");
+      const label = langOptionLabel(l) + (has ? " - has existing translation" : "");
       return `<option value="${l}">${escapeHtml(label)}</option>`;
     }).join("");
   };
@@ -191,6 +216,7 @@ function buildRedirectState() {
     owner: currentSource.owner,
     repo: currentSource.repo,
     branch: currentSource.branch,
+    selectedModIndex: currentSource.selectedModIndex,
     sourceLang: document.getElementById("sourceLangSelect").value,
     targetLang: document.getElementById("targetLangSelect").value,
   };
@@ -204,6 +230,10 @@ async function restoreAppStateAfterOAuth(state) {
     return p && p.owner.toLowerCase() === state.owner.toLowerCase() && p.repo.toLowerCase() === state.repo.toLowerCase();
   })?.repo_url || "";
   await handleLoadRepo(state.owner, state.repo, state.branch);
+  if (typeof state.selectedModIndex === "number" && currentSource.mods && state.selectedModIndex < currentSource.mods.length) {
+    currentSource.selectedModIndex = state.selectedModIndex;
+    onSourceLoaded();
+  }
   if (state.sourceLang) document.getElementById("sourceLangSelect").value = state.sourceLang;
   if (state.targetLang) document.getElementById("targetLangSelect").value = state.targetLang;
 }

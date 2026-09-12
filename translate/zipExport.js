@@ -1,6 +1,6 @@
 async function downloadTranslationZip(sourceLabel, targetLang) {
   if (typeof JSZip === "undefined") {
-    setSourceStatus("Zip library failed to load — check your connection and try again.", "error");
+    setSourceStatus("Zip library failed to load - check your connection and try again.", "error");
     return;
   }
 

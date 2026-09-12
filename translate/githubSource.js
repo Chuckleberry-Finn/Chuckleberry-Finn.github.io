@@ -15,7 +15,7 @@ async function ghApiGet(path) {
   });
   if (!resp.ok) {
     if (resp.status === 403) {
-      throw new Error("GitHub API rate limit reached — try again in a few minutes.");
+      throw new Error("GitHub API rate limit reached - try again in a few minutes.");
     }
     if (resp.status === 404) {
       throw new Error("Repository not found (it may be private or misspelled).");
@@ -51,7 +51,7 @@ async function loadGithubSource(owner, repo, branchInput) {
   const filePaths = await fetchRepoFileList(owner, repo, branch);
   const jsonPaths = filePaths.filter(p => /\.json$/i.test(p));
 
-  // No B41 filtering for repos — that heuristic is only meaningful for a
+  // No B41 filtering for repos - that heuristic is only meaningful for a
   // messy local Workshop cache, not a curated repo checkout.
   const roots = findTranslateRoots(jsonPaths, /* applyB41Filter */ false);
   if (roots.length === 0) {
@@ -59,22 +59,25 @@ async function loadGithubSource(owner, repo, branchInput) {
   }
   // Prefer the root with the most languages (usually the "real" mod content root).
   roots.sort((a, b) => Object.keys(b.languages).length - Object.keys(a.languages).length);
-  const chosen = roots[0];
 
   return {
     type: "repo",
     owner,
     repo,
     branch,
-    translateRoot: chosen.translateRoot,
-    languages: chosen.languages,
     label: `${owner}/${repo}`,
+    mods: roots.map(r => ({ label: guessModLabel(r.translateRoot), translateRoot: r.translateRoot, languages: r.languages })),
+    selectedModIndex: 0,
+
+    get translateRoot() { return this.mods[this.selectedModIndex].translateRoot; },
+    get languages() { return this.mods[this.selectedModIndex].languages; },
 
     async readLanguageFiles(langCode) {
-      const relPaths = chosen.languages[langCode] || [];
+      const mod = this.mods[this.selectedModIndex];
+      const relPaths = mod.languages[langCode] || [];
       const out = {};
       for (const relPath of relPaths) {
-        const fullPath = `${chosen.translateRoot}/${relPath}`;
+        const fullPath = `${mod.translateRoot}/${relPath}`;
         const withinLangPath = relPath.split("/").slice(1).join("/");
         try {
           const text = await fetchRawFile(owner, repo, branch, fullPath);
