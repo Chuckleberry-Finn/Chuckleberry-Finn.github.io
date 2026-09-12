@@ -1,445 +1,97 @@
 {
-  "Chuckleberry-Finn/Skill-Recovery-Journal": {
-    "issues": [
-      {
-        "number": 155,
-        "title": "[Bug] red untranscribed xp bar is innacurate depending on profession or traits",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/155",
-        "created_at": "2026-09-10T09:24:10Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 154,
-        "title": "[Bug] Non-ASCII ledger IDs do not round-trip under Kahlua; duplicate JSON keys can overwrite XP",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/154",
-        "created_at": "2026-09-09T17:29:57Z",
-        "user": {
-          "login": "Minidoracat"
-        },
-        "labels": []
-      },
-      {
-        "number": 152,
-        "title": "[Bug] Its multiplying my XP with every transcribe",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/152",
-        "created_at": "2026-09-07T10:21:24Z",
-        "user": {
-          "login": "Hotwire90"
-        },
-        "labels": []
-      },
-      {
-        "number": 149,
-        "title": "[Bug] Erro pequeno ao iniciar o jogo - N\u00e3o cr\u00edtico",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/149",
-        "created_at": "2026-09-03T03:34:34Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 142,
-        "title": "[Bug] Mod not in Sandbox Setting or Recipes",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/142",
-        "created_at": "2026-08-20T03:09:04Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 120,
-        "title": "[Feature] saved modData should not be an exact override",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
-        "created_at": "2026-02-21T15:52:20Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 102,
-        "title": "Auto Learned Recipes",
-        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/102",
-        "created_at": "2025-12-20T22:40:50Z",
-        "user": {
-          "login": "MassCraxx"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-09-12T05:06:58.023520Z"
-  },
-  "Chuckleberry-Finn/errorMagnifier": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:06:58.311306Z"
-  },
   "Chuckleberry-Finn/EasyConfigChucked": {
     "issues": [],
-    "timestamp": "2026-09-12T05:06:58.534913Z"
+    "timestamp": "2026-09-12T11:07:03.348071Z"
   },
-  "Chuckleberry-Finn/moddingAlertSystem": {
-    "issues": [
-      {
-        "number": 2,
-        "title": "[Bug] Error 2",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
-        "created_at": "2026-08-01T15:08:03Z",
-        "user": {
-          "login": "takuyakii15"
-        },
-        "labels": []
-      },
-      {
-        "number": 1,
-        "title": "[Bug] Simply Wont Restart",
-        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
-        "created_at": "2026-04-22T14:50:56Z",
-        "user": {
-          "login": "rhametic-dev"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-09-12T05:06:58.832363Z"
-  },
-  "TEHE-Studios/ExpandedHelicopterEvents": {
-    "issues": [
-      {
-        "number": 419,
-        "title": "Item Issues",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/419",
-        "created_at": "2026-08-13T19:01:40Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 417,
-        "title": "Helicopter Cow Attack Error",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/417",
-        "created_at": "2026-08-09T09:41:35Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 414,
-        "title": "Helicopter Attacks No Longer Damaging Zombies",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/414",
-        "created_at": "2026-08-03T09:23:01Z",
-        "user": {
-          "login": "Wall-Fin"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 413,
-        "title": "Adding Items to the Loot",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
-        "created_at": "2026-06-03T04:57:33Z",
-        "user": {
-          "login": "Bayrain"
-        },
-        "labels": []
-      },
-      {
-        "number": 412,
-        "title": "[Bug] Mod won't show up on Modlist",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
-        "created_at": "2026-05-13T11:51:53Z",
-        "user": {
-          "login": "PleaseHelpMeILuvZomboid"
-        },
-        "labels": []
-      },
-      {
-        "number": 411,
-        "title": "Mod does not work on multiplayer at all",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
-        "created_at": "2026-05-01T16:38:46Z",
-        "user": {
-          "login": "ChucklingWizzard"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 407,
-        "title": "Abandoned Heli",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
-        "created_at": "2026-02-02T11:00:15Z",
-        "user": {
-          "login": "GrayWizard26"
-        },
-        "labels": [
-          {
-            "name": "idea",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 406,
-        "title": "Like 50 jets spawning at once",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
-        "created_at": "2026-02-01T02:20:36Z",
-        "user": {
-          "login": "meowapocalypse"
-        },
-        "labels": []
-      },
-      {
-        "number": 404,
-        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
-        "created_at": "2025-12-14T06:52:51Z",
-        "user": {
-          "login": "boltyboi"
-        },
-        "labels": [
-          {
-            "name": "idea",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 402,
-        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
-        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
-        "created_at": "2025-11-07T17:46:56Z",
-        "user": {
-          "login": "marinara2245"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-09-12T05:06:59.208903Z"
-  },
-  "Chuckleberry-Finn/SwapIt": {
-    "issues": [
-      {
-        "number": 6,
-        "title": "[Bug] Items return to the inventory when changing hands.",
-        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
-        "created_at": "2026-06-23T13:52:39Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 1,
-        "title": "Add Controller Support",
-        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
-        "created_at": "2021-06-04T12:02:05Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-09-12T05:06:59.498436Z"
-  },
-  "Chuckleberry-Finn/You-Drive-I-Sleep": {
+  "Chuckleberry-Finn/RebalancedCalorieBurning": {
     "issues": [],
-    "timestamp": "2026-09-12T05:06:59.731465Z"
+    "timestamp": "2026-09-12T11:07:03.696460Z"
   },
-  "Chuckleberry-Finn/Night-Vision-Chucked": {
+  "Chuckleberry-Finn/zone-api-chucked": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:04.021721Z"
+  },
+  "Chuckleberry-Finn/ZombieZones": {
     "issues": [
       {
-        "number": 4,
-        "title": "[Bug] Unable to wear Luthex watch and Signet ring",
-        "html_url": "https://github.com/Chuckleberry-Finn/Night-Vision-Chucked/issues/4",
-        "created_at": "2026-09-06T15:13:30Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-09-12T05:07:00.062096Z"
-  },
-  "Chuckleberry-Finn/zomboid-cnd-speech": {
-    "issues": [
-      {
-        "number": 63,
-        "title": "[Bug] bug or broken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
-        "created_at": "2026-04-04T18:25:34Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 62,
-        "title": "Wrong encoding UA Translation B41",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
-        "created_at": "2025-07-02T18:39:26Z",
-        "user": {
-          "login": "AlximikXD"
-        },
-        "labels": []
-      },
-      {
-        "number": 37,
-        "title": "BUG? Speak to Mutch \"HavyLoad\"",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
-        "created_at": "2022-01-28T11:58:09Z",
-        "user": {
-          "login": "duhnunes"
-        },
-        "labels": []
-      },
-      {
-        "number": 34,
-        "title": "Problem in encoding (TR)",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
-        "created_at": "2021-11-09T10:19:06Z",
-        "user": {
-          "login": "Batur123"
-        },
-        "labels": []
-      },
-      {
-        "number": 27,
-        "title": "Have players respond to clothing (item) damage",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
-        "created_at": "2021-06-11T17:54:43Z",
+        "number": 1,
+        "title": "Add indicator to alert players when entering/inside of zones.",
+        "html_url": "https://github.com/Chuckleberry-Finn/ZombieZones/issues/1",
+        "created_at": "2024-10-09T13:46:54Z",
         "user": {
           "login": "Chuckleberry-Finn"
         },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 18,
-        "title": "Idea : TTS",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
-        "created_at": "2021-03-14T12:26:52Z",
-        "user": {
-          "login": "Mewroh"
-        },
         "labels": []
-      },
-      {
-        "number": 6,
-        "title": "Trait: Soft Spoken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
-        "created_at": "2021-02-15T16:49:32Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 5,
-        "title": "Add personality based speech",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
-        "created_at": "2021-02-14T21:24:44Z",
-        "user": {
-          "login": "matshou"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
       }
     ],
-    "timestamp": "2026-09-12T05:07:00.462796Z"
+    "timestamp": "2026-09-12T11:07:04.399369Z"
   },
-  "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
+  "Chuckleberry-Finn/Display-Roles-In-Chat": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:04.762179Z"
+  },
+  "Chuckleberry-Finn/zomboidPaper": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:05.124250Z"
+  },
+  "Chuckleberry-Finn/Tuck-and-Roll": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:05.472847Z"
+  },
+  "Chuckleberry-Finn/aprilFoolsPZ2024": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:05.800535Z"
+  },
+  "Chuckleberry-Finn/zombies-trip-over-zombies": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:06.138775Z"
+  },
+  "Chuckleberry-Finn/big-bad-beavers-berserk": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:06.463812Z"
+  },
+  "Chuckleberry-Finn/ZombiesDropGames": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:06.820346Z"
+  },
+  "Chuckleberry-Finn/Carjacking": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:07.156709Z"
+  },
+  "Chuckleberry-Finn/NoDamageFromTrees": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:07.460391Z"
+  },
+  "Chuckleberry-Finn/AutoEat": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:07.801431Z"
+  },
+  "Chuckleberry-Finn/pz-factionBanking": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:08.167863Z"
+  },
+  "Chuckleberry-Finn/proximity-invites": {
     "issues": [
       {
-        "number": 2,
-        "title": "Sandbox vars not changing.",
-        "html_url": "https://github.com/Chuckleberry-Finn/MGRS-FMCCYAYFGLE/issues/2",
-        "created_at": "2024-01-18T00:09:52Z",
+        "number": 1,
+        "title": "Invite Distance",
+        "html_url": "https://github.com/Chuckleberry-Finn/proximity-invites/issues/1",
+        "created_at": "2024-12-31T00:29:47Z",
         "user": {
-          "login": "HousehusbandWorkshop"
+          "login": "RegulaPlayer"
         },
         "labels": []
       }
     ],
-    "timestamp": "2026-09-12T05:07:00.744494Z"
+    "timestamp": "2026-09-12T11:07:08.549992Z"
+  },
+  "Chuckleberry-Finn/roll-command-plus": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:08.881465Z"
+  },
+  "Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier": {
+    "issues": [],
+    "timestamp": "2026-09-12T11:07:09.197825Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -594,15 +246,7 @@
         ]
       }
     ],
-    "timestamp": "2026-09-12T05:07:01.106926Z"
-  },
-  "Chuckleberry-Finn/Named-Literature": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:01.329777Z"
-  },
-  "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:01.539853Z"
+    "timestamp": "2026-09-12T11:07:09.693059Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -722,62 +366,122 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-12T05:07:01.823740Z"
+    "timestamp": "2026-09-12T11:07:10.090759Z"
   },
-  "Chuckleberry-Finn/interactive-tailoring": {
+  "Chuckleberry-Finn/Skill-Recovery-Journal": {
     "issues": [
       {
-        "number": 1,
-        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
-        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
-        "created_at": "2025-07-13T08:38:13Z",
+        "number": 155,
+        "title": "[Bug] red untranscribed xp bar is innacurate depending on profession or traits",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/155",
+        "created_at": "2026-09-10T09:24:10Z",
         "user": {
-          "login": "elislavkat"
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 154,
+        "title": "[Bug] Non-ASCII ledger IDs do not round-trip under Kahlua; duplicate JSON keys can overwrite XP",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/154",
+        "created_at": "2026-09-09T17:29:57Z",
+        "user": {
+          "login": "Minidoracat"
+        },
+        "labels": []
+      },
+      {
+        "number": 152,
+        "title": "[Bug] Its multiplying my XP with every transcribe",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/152",
+        "created_at": "2026-09-07T10:21:24Z",
+        "user": {
+          "login": "Hotwire90"
+        },
+        "labels": []
+      },
+      {
+        "number": 149,
+        "title": "[Bug] Erro pequeno ao iniciar o jogo - N\u00e3o cr\u00edtico",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/149",
+        "created_at": "2026-09-03T03:34:34Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 142,
+        "title": "[Bug] Mod not in Sandbox Setting or Recipes",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/142",
+        "created_at": "2026-08-20T03:09:04Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 120,
+        "title": "[Feature] saved modData should not be an exact override",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/120",
+        "created_at": "2026-02-21T15:52:20Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 102,
+        "title": "Auto Learned Recipes",
+        "html_url": "https://github.com/Chuckleberry-Finn/Skill-Recovery-Journal/issues/102",
+        "created_at": "2025-12-20T22:40:50Z",
+        "user": {
+          "login": "MassCraxx"
         },
         "labels": []
       }
     ],
-    "timestamp": "2026-09-12T05:07:02.119280Z"
+    "timestamp": "2026-09-12T11:07:10.534363Z"
   },
-  "Chuckleberry-Finn/aprilFoolsPZ2024": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:02.402385Z"
-  },
-  "Chuckleberry-Finn/Game-night---Battleship": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:02.621241Z"
-  },
-  "Chuckleberry-Finn/gameNightDominos": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:02.915703Z"
-  },
-  "Chuckleberry-Finn/GameNight-OneBulletGame": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:03.153531Z"
-  },
-  "Chuckleberry-Finn/gameNightDND": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:04.454152Z"
-  },
-  "Chuckleberry-Finn/gameNight-Whodunit": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:04.710288Z"
-  },
-  "Chuckleberry-Finn/gameNightCyberPunk": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:04.935862Z"
-  },
-  "Chuckleberry-Finn/game-night-spiffoTC": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:05.185803Z"
-  },
-  "Chuckleberry-Finn/big-bad-beavers-berserk": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:05.372456Z"
-  },
-  "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:05.605261Z"
+  "Chuckleberry-Finn/Night-Vision-Chucked": {
+    "issues": [
+      {
+        "number": 4,
+        "title": "[Bug] Unable to wear Luthex watch and Signet ring",
+        "html_url": "https://github.com/Chuckleberry-Finn/Night-Vision-Chucked/issues/4",
+        "created_at": "2026-09-06T15:13:30Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:10.926028Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
     "issues": [
@@ -792,11 +496,171 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-12T05:07:05.890736Z"
+    "timestamp": "2026-09-12T11:07:11.319910Z"
   },
-  "Chuckleberry-Finn/NoDamageFromTrees": {
+  "Chuckleberry-Finn/zomboid-cnd-speech": {
+    "issues": [
+      {
+        "number": 63,
+        "title": "[Bug] bug or broken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
+        "created_at": "2026-04-04T18:25:34Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 62,
+        "title": "Wrong encoding UA Translation B41",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
+        "created_at": "2025-07-02T18:39:26Z",
+        "user": {
+          "login": "AlximikXD"
+        },
+        "labels": []
+      },
+      {
+        "number": 37,
+        "title": "BUG? Speak to Mutch \"HavyLoad\"",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
+        "created_at": "2022-01-28T11:58:09Z",
+        "user": {
+          "login": "duhnunes"
+        },
+        "labels": []
+      },
+      {
+        "number": 34,
+        "title": "Problem in encoding (TR)",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
+        "created_at": "2021-11-09T10:19:06Z",
+        "user": {
+          "login": "Batur123"
+        },
+        "labels": []
+      },
+      {
+        "number": 27,
+        "title": "Have players respond to clothing (item) damage",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
+        "created_at": "2021-06-11T17:54:43Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "title": "Idea : TTS",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
+        "created_at": "2021-03-14T12:26:52Z",
+        "user": {
+          "login": "Mewroh"
+        },
+        "labels": []
+      },
+      {
+        "number": 6,
+        "title": "Trait: Soft Spoken",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
+        "created_at": "2021-02-15T16:49:32Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Add personality based speech",
+        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
+        "created_at": "2021-02-14T21:24:44Z",
+        "user": {
+          "login": "matshou"
+        },
+        "labels": [
+          {
+            "name": "enhancement",
+            "color": "a2eeef"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:11.773647Z"
+  },
+  "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-09-12T05:07:06.127425Z"
+    "timestamp": "2026-09-12T11:07:12.125955Z"
+  },
+  "Chuckleberry-Finn/moddingAlertSystem": {
+    "issues": [
+      {
+        "number": 2,
+        "title": "[Bug] Error 2",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/2",
+        "created_at": "2026-08-01T15:08:03Z",
+        "user": {
+          "login": "takuyakii15"
+        },
+        "labels": []
+      },
+      {
+        "number": 1,
+        "title": "[Bug] Simply Wont Restart",
+        "html_url": "https://github.com/Chuckleberry-Finn/moddingAlertSystem/issues/1",
+        "created_at": "2026-04-22T14:50:56Z",
+        "user": {
+          "login": "rhametic-dev"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:12.515751Z"
+  },
+  "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
+    "issues": [
+      {
+        "number": 2,
+        "title": "Sandbox vars not changing.",
+        "html_url": "https://github.com/Chuckleberry-Finn/MGRS-FMCCYAYFGLE/issues/2",
+        "created_at": "2024-01-18T00:09:52Z",
+        "user": {
+          "login": "HousehusbandWorkshop"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:12.895551Z"
+  },
+  "Chuckleberry-Finn/interactive-tailoring": {
+    "issues": [
+      {
+        "number": 1,
+        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
+        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
+        "created_at": "2025-07-13T08:38:13Z",
+        "user": {
+          "login": "elislavkat"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:13.278640Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -811,23 +675,185 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-12T05:07:06.466740Z"
+    "timestamp": "2026-09-12T11:07:13.658335Z"
   },
-  "Chuckleberry-Finn/gameNight-covertNames": {
+  "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-09-12T05:07:06.739398Z"
+    "timestamp": "2026-09-12T11:07:13.972653Z"
   },
-  "Chuckleberry-Finn/AutoEat": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:06.968713Z"
+  "TEHE-Studios/ExpandedHelicopterEvents": {
+    "issues": [
+      {
+        "number": 419,
+        "title": "Item Issues",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/419",
+        "created_at": "2026-08-13T19:01:40Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 417,
+        "title": "Helicopter Cow Attack Error",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/417",
+        "created_at": "2026-08-09T09:41:35Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 414,
+        "title": "Helicopter Attacks No Longer Damaging Zombies",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/414",
+        "created_at": "2026-08-03T09:23:01Z",
+        "user": {
+          "login": "Wall-Fin"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 413,
+        "title": "Adding Items to the Loot",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/413",
+        "created_at": "2026-06-03T04:57:33Z",
+        "user": {
+          "login": "Bayrain"
+        },
+        "labels": []
+      },
+      {
+        "number": 412,
+        "title": "[Bug] Mod won't show up on Modlist",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/412",
+        "created_at": "2026-05-13T11:51:53Z",
+        "user": {
+          "login": "PleaseHelpMeILuvZomboid"
+        },
+        "labels": []
+      },
+      {
+        "number": 411,
+        "title": "Mod does not work on multiplayer at all",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/411",
+        "created_at": "2026-05-01T16:38:46Z",
+        "user": {
+          "login": "ChucklingWizzard"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 407,
+        "title": "Abandoned Heli",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/407",
+        "created_at": "2026-02-02T11:00:15Z",
+        "user": {
+          "login": "GrayWizard26"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 406,
+        "title": "Like 50 jets spawning at once",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/406",
+        "created_at": "2026-02-01T02:20:36Z",
+        "user": {
+          "login": "meowapocalypse"
+        },
+        "labels": []
+      },
+      {
+        "number": 404,
+        "title": "Replace the imgur photographs on the Steam Page (for the Brits)",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/404",
+        "created_at": "2025-12-14T06:52:51Z",
+        "user": {
+          "login": "boltyboi"
+        },
+        "labels": [
+          {
+            "name": "idea",
+            "color": "a2eeef"
+          }
+        ]
+      },
+      {
+        "number": 402,
+        "title": "Expanded Helicopter Events Mod Does Not Spawn Events Properly",
+        "html_url": "https://github.com/TEHE-Studios/ExpandedHelicopterEvents/issues/402",
+        "created_at": "2025-11-07T17:46:56Z",
+        "user": {
+          "login": "marinara2245"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:14.445543Z"
   },
-  "Chuckleberry-Finn/gameNight-americana": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:07.215129Z"
+  "Chuckleberry-Finn/SwapIt": {
+    "issues": [
+      {
+        "number": 6,
+        "title": "[Bug] Items return to the inventory when changing hands.",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/6",
+        "created_at": "2026-06-23T13:52:39Z",
+        "user": {
+          "login": "chuck-s-assistant[bot]"
+        },
+        "labels": [
+          {
+            "name": "bug",
+            "color": "d73a4a"
+          }
+        ]
+      },
+      {
+        "number": 1,
+        "title": "Add Controller Support",
+        "html_url": "https://github.com/Chuckleberry-Finn/SwapIt/issues/1",
+        "created_at": "2021-06-04T12:02:05Z",
+        "user": {
+          "login": "Chuckleberry-Finn"
+        },
+        "labels": []
+      }
+    ],
+    "timestamp": "2026-09-12T11:07:14.858989Z"
   },
-  "Chuckleberry-Finn/pz-factionBanking": {
+  "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-09-12T05:07:07.433413Z"
+    "timestamp": "2026-09-12T11:07:15.154285Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
     "issues": [
@@ -842,37 +868,10 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-09-12T05:07:07.741562Z"
+    "timestamp": "2026-09-12T11:07:15.532854Z"
   },
-  "Chuckleberry-Finn/proximity-invites": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Invite Distance",
-        "html_url": "https://github.com/Chuckleberry-Finn/proximity-invites/issues/1",
-        "created_at": "2024-12-31T00:29:47Z",
-        "user": {
-          "login": "RegulaPlayer"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-09-12T05:07:07.991544Z"
-  },
-  "Chuckleberry-Finn/roll-command-plus": {
+  "Chuckleberry-Finn/Named-Literature": {
     "issues": [],
-    "timestamp": "2026-09-12T05:07:08.220930Z"
-  },
-  "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:08.424095Z"
-  },
-  "Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:08.613608Z"
-  },
-  "Chuckleberry-Finn/containerLockout": {
-    "issues": [],
-    "timestamp": "2026-09-12T05:07:08.815329Z"
+    "timestamp": "2026-09-12T11:07:15.908388Z"
   }
 }
