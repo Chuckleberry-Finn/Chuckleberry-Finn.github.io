@@ -127,15 +127,15 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:20.813881Z"
+    "timestamp": "2026-10-22T14:55:16.478001Z"
   },
   "Chuckleberry-Finn/errorMagnifier": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:21.193401Z"
+    "timestamp": "2026-10-22T14:55:17.195908Z"
   },
   "Chuckleberry-Finn/EasyConfigChucked": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:21.635193Z"
+    "timestamp": "2026-10-22T14:55:18.093488Z"
   },
   "Chuckleberry-Finn/moddingAlertSystem": {
     "issues": [
@@ -160,7 +160,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:22.120081Z"
+    "timestamp": "2026-10-22T14:55:19.504753Z"
   },
   "TEHE-Studios/ExpandedHelicopterEvents": {
     "issues": [
@@ -300,7 +300,7 @@
         ]
       }
     ],
-    "timestamp": "2026-10-22T08:03:22.809155Z"
+    "timestamp": "2026-10-22T14:55:22.308640Z"
   },
   "Chuckleberry-Finn/SwapIt": {
     "issues": [
@@ -345,11 +345,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:23.342735Z"
+    "timestamp": "2026-10-22T14:55:23.579050Z"
   },
   "Chuckleberry-Finn/You-Drive-I-Sleep": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:23.770786Z"
+    "timestamp": "2026-10-22T14:55:24.629210Z"
   },
   "Chuckleberry-Finn/Night-Vision-Chucked": {
     "issues": [
@@ -379,112 +379,11 @@
         ]
       }
     ],
-    "timestamp": "2026-10-22T08:03:24.299981Z"
+    "timestamp": "2026-10-22T14:55:25.599216Z"
   },
   "Chuckleberry-Finn/zomboid-cnd-speech": {
-    "issues": [
-      {
-        "number": 63,
-        "title": "[Bug] bug or broken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/63",
-        "created_at": "2026-04-04T18:25:34Z",
-        "user": {
-          "login": "chuck-s-assistant[bot]"
-        },
-        "labels": [
-          {
-            "name": "bug",
-            "color": "d73a4a"
-          }
-        ]
-      },
-      {
-        "number": 62,
-        "title": "Wrong encoding UA Translation B41",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/62",
-        "created_at": "2025-07-02T18:39:26Z",
-        "user": {
-          "login": "AlximikXD"
-        },
-        "labels": []
-      },
-      {
-        "number": 37,
-        "title": "BUG? Speak to Mutch \"HavyLoad\"",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/37",
-        "created_at": "2022-01-28T11:58:09Z",
-        "user": {
-          "login": "duhnunes"
-        },
-        "labels": []
-      },
-      {
-        "number": 34,
-        "title": "Problem in encoding (TR)",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/34",
-        "created_at": "2021-11-09T10:19:06Z",
-        "user": {
-          "login": "Batur123"
-        },
-        "labels": []
-      },
-      {
-        "number": 27,
-        "title": "Have players respond to clothing (item) damage",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/27",
-        "created_at": "2021-06-11T17:54:43Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 18,
-        "title": "Idea : TTS",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/18",
-        "created_at": "2021-03-14T12:26:52Z",
-        "user": {
-          "login": "Mewroh"
-        },
-        "labels": []
-      },
-      {
-        "number": 6,
-        "title": "Trait: Soft Spoken",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/6",
-        "created_at": "2021-02-15T16:49:32Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      },
-      {
-        "number": 5,
-        "title": "Add personality based speech",
-        "html_url": "https://github.com/Chuckleberry-Finn/zomboid-cnd-speech/issues/5",
-        "created_at": "2021-02-14T21:24:44Z",
-        "user": {
-          "login": "matshou"
-        },
-        "labels": [
-          {
-            "name": "enhancement",
-            "color": "a2eeef"
-          }
-        ]
-      }
-    ],
-    "timestamp": "2026-10-22T08:03:24.903442Z"
+    "issues": [],
+    "timestamp": "2026-10-22T14:55:26.633539Z"
   },
   "Chuckleberry-Finn/MGRS-FMCCYAYFGLE": {
     "issues": [
@@ -499,7 +398,7 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:25.399795Z"
+    "timestamp": "2026-10-22T14:55:27.438506Z"
   },
   "Chuckleberry-Finn/game-night": {
     "issues": [
@@ -654,15 +553,15 @@
         ]
       }
     ],
-    "timestamp": "2026-10-22T08:03:25.969092Z"
+    "timestamp": "2026-10-22T14:55:28.516551Z"
   },
   "Chuckleberry-Finn/Named-Literature": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:26.395242Z"
+    "timestamp": "2026-10-22T14:55:29.049181Z"
   },
   "Chuckleberry-Finn/Zombies-Hear-Your-Microphone": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:26.811147Z"
+    "timestamp": "2026-10-22T14:55:29.652140Z"
   },
   "Chuckleberry-Finn/pz-shops": {
     "issues": [
@@ -782,34 +681,23 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:27.312866Z"
+    "timestamp": "2026-10-22T14:55:30.795111Z"
   },
   "Chuckleberry-Finn/interactive-tailoring": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Cursor and buttons vanished after i pushed fast forward while removing all patches",
-        "html_url": "https://github.com/Chuckleberry-Finn/interactive-tailoring/issues/1",
-        "created_at": "2025-07-13T08:38:13Z",
-        "user": {
-          "login": "elislavkat"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-10-22T08:03:27.800738Z"
+    "issues": [],
+    "timestamp": "2026-10-22T14:55:31.788355Z"
   },
   "Chuckleberry-Finn/RebalancedCalorieBurning": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:28.303814Z"
+    "timestamp": "2026-10-22T14:55:32.472820Z"
   },
   "Chuckleberry-Finn/zone-api-chucked": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:28.754131Z"
+    "timestamp": "2026-10-22T14:55:32.827909Z"
   },
   "Chuckleberry-Finn/aprilFoolsPZ2024": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:29.212439Z"
+    "timestamp": "2026-10-22T14:55:33.271970Z"
   },
   "Chuckleberry-Finn/ZombieZones": {
     "issues": [
@@ -824,67 +712,67 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:29.653758Z"
+    "timestamp": "2026-10-22T14:55:33.794875Z"
   },
   "Chuckleberry-Finn/Display-Roles-In-Chat": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:30.024045Z"
+    "timestamp": "2026-10-22T14:55:34.522839Z"
   },
   "Chuckleberry-Finn/zomboidPaper": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:30.436477Z"
+    "timestamp": "2026-10-22T14:55:35.167212Z"
   },
   "Chuckleberry-Finn/Tuck-and-Roll": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:30.806542Z"
+    "timestamp": "2026-10-22T14:55:35.557108Z"
   },
   "Chuckleberry-Finn/zombies-trip-over-zombies": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:31.198103Z"
+    "timestamp": "2026-10-22T14:55:36.259417Z"
   },
   "Chuckleberry-Finn/Game-night---Battleship": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:31.567142Z"
+    "timestamp": "2026-10-22T14:55:37.288023Z"
   },
   "Chuckleberry-Finn/gameNightDominos": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:31.975639Z"
+    "timestamp": "2026-10-22T14:55:38.321350Z"
   },
   "Chuckleberry-Finn/GameNight-OneBulletGame": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:32.404899Z"
+    "timestamp": "2026-10-22T14:55:38.970066Z"
   },
   "Chuckleberry-Finn/gameNightDND": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:32.901453Z"
+    "timestamp": "2026-10-22T14:55:39.412800Z"
   },
   "Chuckleberry-Finn/gameNight-Whodunit": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:33.431150Z"
+    "timestamp": "2026-10-22T14:55:40.129464Z"
   },
   "Chuckleberry-Finn/gameNightCyberPunk": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:33.834285Z"
+    "timestamp": "2026-10-22T14:55:41.164901Z"
   },
   "Chuckleberry-Finn/game-night-spiffoTC": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:34.293393Z"
+    "timestamp": "2026-10-22T14:55:41.622239Z"
   },
   "Chuckleberry-Finn/big-bad-beavers-berserk": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:34.725461Z"
+    "timestamp": "2026-10-22T14:55:42.008097Z"
   },
   "Chuckleberry-Finn/ZombiesDropGames": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:35.153300Z"
+    "timestamp": "2026-10-22T14:55:42.336753Z"
   },
   "Chuckleberry-Finn/game-night-Yu-Spiff-oh": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:35.613363Z"
+    "timestamp": "2026-10-22T14:55:43.341323Z"
   },
   "Chuckleberry-Finn/Carjacking": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:36.006582Z"
+    "timestamp": "2026-10-22T14:55:44.328813Z"
   },
   "Chuckleberry-Finn/PZLastStandTogether": {
     "issues": [
@@ -899,11 +787,11 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:36.493468Z"
+    "timestamp": "2026-10-22T14:55:44.902730Z"
   },
   "Chuckleberry-Finn/NoDamageFromTrees": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:36.925791Z"
+    "timestamp": "2026-10-22T14:55:45.266031Z"
   },
   "Chuckleberry-Finn/Bard-To-The-Bone": {
     "issues": [
@@ -918,38 +806,27 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:37.386597Z"
+    "timestamp": "2026-10-22T14:55:45.763616Z"
   },
   "Chuckleberry-Finn/gameNight-covertNames": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:37.837809Z"
+    "timestamp": "2026-10-22T14:55:46.700348Z"
   },
   "Chuckleberry-Finn/AutoEat": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:38.349378Z"
+    "timestamp": "2026-10-22T14:55:47.088776Z"
   },
   "Chuckleberry-Finn/gameNight-americana": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:38.728048Z"
+    "timestamp": "2026-10-22T14:55:47.510362Z"
   },
   "Chuckleberry-Finn/pz-factionBanking": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:39.121798Z"
+    "timestamp": "2026-10-22T14:55:47.907032Z"
   },
   "Chuckleberry-Finn/Vanilla-Weapons-Expanded": {
-    "issues": [
-      {
-        "number": 1,
-        "title": "Fix In-Hand Orientation For Some Weapons",
-        "html_url": "https://github.com/Chuckleberry-Finn/Vanilla-Weapons-Expanded/issues/1",
-        "created_at": "2021-06-04T12:04:56Z",
-        "user": {
-          "login": "Chuckleberry-Finn"
-        },
-        "labels": []
-      }
-    ],
-    "timestamp": "2026-10-22T08:03:39.605550Z"
+    "issues": [],
+    "timestamp": "2026-10-22T14:55:48.624530Z"
   },
   "Chuckleberry-Finn/proximity-invites": {
     "issues": [
@@ -964,22 +841,22 @@
         "labels": []
       }
     ],
-    "timestamp": "2026-10-22T08:03:40.031054Z"
+    "timestamp": "2026-10-22T14:55:49.551760Z"
   },
   "Chuckleberry-Finn/roll-command-plus": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:40.474065Z"
+    "timestamp": "2026-10-22T14:55:49.885507Z"
   },
   "Chuckleberry-Finn/Aint-Trippin-Just-Sprintin": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:40.803116Z"
+    "timestamp": "2026-10-22T14:55:50.574661Z"
   },
   "Chuckleberry-Finn/Dynamic-Weapon-Endurance-Modifier": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:41.170875Z"
+    "timestamp": "2026-10-22T14:55:51.010342Z"
   },
   "Chuckleberry-Finn/containerLockout": {
     "issues": [],
-    "timestamp": "2026-10-22T08:03:41.567903Z"
+    "timestamp": "2026-10-22T14:55:51.365995Z"
   }
 }
